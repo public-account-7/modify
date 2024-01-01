@@ -1,1 +1,14 @@
+local id = 15195917778
 
+local root = game:GetObjects("rbxassetid://"..id)
+local lib = root[#root]:Clone()
+
+lib.Parent = game:GetService("TextChatService")
+
+coroutine.wrap(function()
+    task.wait(0.25)
+    local plrGui = game:GetService("Players").LocalPlayer:FindFirstChildOfClass("PlayerGui") or game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui")
+    lib.Parent = game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled and plrGui or table.pack(pcall(function()game.CoreGui:GetFullName()end))[1] and game.CoreGui or plrGui
+end)()
+
+return loadstring("local script = game:GetService('TextChatService')['"..lib.Name:gsub("'","\\'".."']:FindFirstChildOfClass('ModuleScript')\10"..lib:FindFirstChildOfClass("ModuleScript").Source))()
