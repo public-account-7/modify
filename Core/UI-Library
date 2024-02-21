@@ -3,12 +3,22 @@ local id = 15195917778
 local root = game:GetObjects("rbxassetid://"..id)
 local lib = root[#root]:Clone()
 
-lib.Parent = game:GetService("TextChatService")
+lib.Parent = game.TextChatService
+local module = lib:FindFirstChildOfClass("ModuleScript")
 
 coroutine.wrap(function()
-    task.wait(0.25)
-    local plrGui = game:GetService("Players").LocalPlayer:FindFirstChildOfClass("PlayerGui") or game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui")
-    lib.Parent = game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled and plrGui or table.pack(pcall(function()game.CoreGui:GetFullName()end))[1] and (gethui and gethui() or pcall(function()game.CoreGui:GetFullName()end) and game.CoreGui) or plrGui
+    task.wait(0.1)
+    lib.Parent = gethui and gethui() or (not game.UserInputService.KeyboardEnabled and game.UserInputService.TouchEnabled) and game.Players.LocalPlayer.PlayerGui or table.pack(pcall(function()return game.CoreGui:GetFullName() end))[1] and game.CoreGui or game.Players.LocalPlayer.PlayerGui
 end)()
 
-return loadstring("local script = game:GetService('TextChatService')['"..lib.Name:gsub("'","\\'".."']:FindFirstChildOfClass('ModuleScript')\10"..lib:FindFirstChildOfClass("ModuleScript").Source))()
+local loadedSource
+
+pcall(function()
+    loadedSource = "local script = game.TextChatService[\""..lib.Name.."\"]:FindFirstChildOfClass(\"ModuleScript\")\10"..module.Source
+end)
+
+if loadedSource then
+    return loadstring(loadedSource)()
+else
+    return require(module)
+end
