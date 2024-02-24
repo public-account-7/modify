@@ -12,7 +12,7 @@ coroutine.wrap(function()
 end)()
 
 local function isEmptyString(str)
-    return not not str and str:gsub("\10",""):gsub("\13",""):gsub(" ",""):gsub("\9","") == 0 or not str
+    return not not str and str:gsub("\10",""):gsub("\13",""):gsub(" ",""):gsub("\9","") == "" or not str
 end
 
 local loadedSource
