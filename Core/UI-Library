@@ -1,4 +1,5 @@
-local id = 16649132476
+local id = 17039440746
+print("Fire-Library ID: "..id)
 
 local root = game:GetObjects("rbxassetid://"..id)
 local lib = root[#root]:Clone()
