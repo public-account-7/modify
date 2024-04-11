@@ -1,4 +1,4 @@
-local working = false
+local working = true
 if not working then return warn("Fire~Hub is not working right now.") end
 
 local httpGet = function(...)
