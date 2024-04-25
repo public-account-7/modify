@@ -5,8 +5,9 @@ local httpGet = function(...)
     local res
     local args = table.pack(...)
     local function try(obj,name)
+        if res then return end
         pcall(function()
-            res = res or obj[name](unpack(args))
+            res = res or obj[name](obj, unpack(args))
         end)
     end
 
