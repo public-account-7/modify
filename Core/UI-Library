@@ -1,4 +1,4 @@
-local id = 17538444982
+local id = 17538505678
 print("Fire-Library ID: "..id)
 
 local uiHolder = gethui and gethui() or (not game.UserInputService.KeyboardEnabled and game.UserInputService.TouchEnabled) and game.Players.LocalPlayer.PlayerGui or table.pack(pcall(function()return game.CoreGui:GetFullName() end))[1] and game.CoreGui or game.Players.LocalPlayer.PlayerGui
