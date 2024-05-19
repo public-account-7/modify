@@ -19,26 +19,20 @@ end
 local root = uiHolder:FindFirstChild("FireLib") and nil or game:GetObjects("rbxassetid://"..id)
 local lib = uiHolder:FindFirstChild("FireLib") or root[#root]:Clone()
 
-lib.Parent = game.TextChatService
 local module = lib:FindFirstChildOfClass("ModuleScript")
 
-coroutine.wrap(function()
-    task.wait(0.1)
-    lib.Parent = uiHolder
-end)()
-
 local function isEmptyString(str)
-    return not not str and str:gsub("\10",""):gsub("\13",""):gsub(" ",""):gsub("\9","") == "" or not str
+    return str and str:gsub("\10",""):gsub("\13",""):gsub(" ",""):gsub("\9","") == "" or false
 end
 
-local loadedSource
+local loadedSource = ""
 
 pcall(function()
-    loadedSource = "local script = game.TextChatService[\""..lib.Name.."\"]:FindFirstChildOfClass(\"ModuleScript\")\10"..module.Source
+    loadedSource = "local script = table.pack(...)[1]; "..module.Source
 end)
 
 if not isEmptyString(module.Source) and not isEmptyString(loadedSource) then
-    return loadstring(loadedSource)()
+    return loadstring(loadedSource)(module)
 else
     return require(module)
 end
