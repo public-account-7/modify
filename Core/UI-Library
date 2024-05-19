@@ -19,6 +19,8 @@ end
 local root = uiHolder:FindFirstChild("FireLib") and nil or game:GetObjects("rbxassetid://"..id)
 local lib = uiHolder:FindFirstChild("FireLib") or root[#root]:Clone()
 
+lib.Parent = uiHolder
+
 local module = lib:FindFirstChildOfClass("ModuleScript")
 
 local function isEmptyString(str)
