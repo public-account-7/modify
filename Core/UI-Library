@@ -1,7 +1,20 @@
 local id = 17545025222
 print("Fire-Library ID: "..id)
 
-local uiHolder = gethui and gethui() or (not game.UserInputService.KeyboardEnabled and game.UserInputService.TouchEnabled) and game.Players.LocalPlayer.PlayerGui or table.pack(pcall(function()return game.CoreGui:GetFullName() end))[1] and game.CoreGui or game.Players.LocalPlayer.PlayerGui
+local isMobile = game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled
+
+local uiHolder
+if typeof(gethui) == "function" and pcall(gethui) == true and gethui() then
+    uiHolder = gethui()
+elseif isMobile then
+    uiHolder = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+else
+    if pcall(function() return game:GetService("CoreGui"):GetFullName() end) == true then
+        uiHolder = game:GetService("CoreGui")
+    else
+        uiHolder = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+    end
+end
 
 local root = uiHolder:FindFirstChild("FireLib") and nil or game:GetObjects("rbxassetid://"..id)
 local lib = uiHolder:FindFirstChild("FireLib") or root[#root]:Clone()
