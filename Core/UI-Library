@@ -1,4 +1,4 @@
-local id = 17039440746
+local id = 17566397182
 print("Fire-Library ID: "..id)
 
 local isMobile = game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled
