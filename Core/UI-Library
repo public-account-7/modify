@@ -1,58 +1,24 @@
 local id = 17566397182
-local updates = 1
-print("Fire-Library ID: "..id.."\nUpdates: "..updates)
-
-local isMobile = game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled
-
-local uiHolder
-if typeof(gethui) == "function" and pcall(gethui) == true and gethui() then
-    uiHolder = gethui()
-elseif isMobile then
-    uiHolder = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-else
-    if pcall(function() return game:GetService("CoreGui"):GetFullName() end) == true then
-        uiHolder = game:GetService("CoreGui")
-    else
-        uiHolder = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-    end
-end
 
 local root = game:GetObjects("rbxassetid://"..id)
-local lib = uiHolder:FindFirstChild("FireLib")
-if lib then
-    root:Destroy()
-else
-    lib = root[#root]:Clone()
-end
+local lib = root[#root]:Clone()
 
-lib.Parent = uiHolder
+lib.Parent = game.TextChatService
 local module = lib:FindFirstChildOfClass("ModuleScript")
 
-local function isEmptyString(str)
-    return str and str:gsub("\10",""):gsub("\13",""):gsub(" ",""):gsub("\9","") == "" or false
-end
+coroutine.wrap(function()
+    task.wait(0.1)
+    lib.Parent = gethui and gethui() or (not game.UserInputService.KeyboardEnabled and game.UserInputService.TouchEnabled) and game.Players.LocalPlayer.PlayerGui or table.pack(pcall(function()return game.CoreGui:GetFullName() end))[1] and game.CoreGui or game.Players.LocalPlayer.PlayerGui
+end)()
 
-local loadedSource = ""
+local loadedSource
 
 pcall(function()
-    loadedSource = "local script = table.pack(...)[1]; "..module.Source
+    loadedSource = "local script = game.TextChatService[\""..lib.Name.."\"]:FindFirstChildOfClass(\"ModuleScript\")\10"..module.Source
 end)
 
-if not isEmptyString(module.Source) and not isEmptyString(loadedSource) then
-    local s,_ = loadstring(loadedSource)(module)
-    if s then
-        local s,e = pcall(function()
-            lib = s()
-            return lib.Notifications.Notification, lib.MakeWindow == nil and error()
-        end)
-        if s then
-            return lib
-        else
-            return require(module)
-        end
-    else
-        return require(module)
-    end
+if loadedSource then
+    return loadstring(loadedSource)()
 else
     return require(module)
 end
