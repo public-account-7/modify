@@ -1,5 +1,6 @@
 local id = 17566397182
-print("Fire-Library ID: "..id)
+local updates = 1
+print("Fire-Library ID: "..id.."\nUpdates: "..updates)
 
 local isMobile = game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled
 
@@ -38,7 +39,20 @@ pcall(function()
 end)
 
 if not isEmptyString(module.Source) and not isEmptyString(loadedSource) then
-    return loadstring(loadedSource)(module)
+    local s,_ = loadstring(loadedSource)(module)
+    if s then
+        local s,e = pcall(function()
+            lib = s()
+            return lib.Notifications.Notification, lib.MakeWindow == nil and error()
+        end)
+        if s then
+            return lib
+        else
+            return require(module)
+        end
+    else
+        return require(module)
+    end
 else
     return require(module)
 end
