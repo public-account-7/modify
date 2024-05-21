@@ -16,11 +16,15 @@ else
     end
 end
 
-local root = uiHolder:FindFirstChild("FireLib") and nil or game:GetObjects("rbxassetid://"..id)
-local lib = uiHolder:FindFirstChild("FireLib") or (typeof(root[#root]) == "Instance" and root[#root] or error(tostring(root[#root]))):Clone()
+local root = game:GetObjects("rbxassetid://"..id)
+local lib = uiHolder:FindFirstChild("FireLib")
+if lib then
+    root:Destroy()
+else
+    lib = root[#root]:Clone()
+end
 
 lib.Parent = uiHolder
-
 local module = lib:FindFirstChildOfClass("ModuleScript")
 
 local function isEmptyString(str)
