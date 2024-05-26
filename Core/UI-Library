@@ -4025,4 +4025,4 @@ local require = getfenv().require
 
 -- Your code down below --
 
-require(Instance_1.ModuleScript)
+return require(Instance_1.ModuleScript)
