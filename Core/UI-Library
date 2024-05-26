@@ -1,25 +1,4028 @@
-local id = 17039440746
-print(id)
+local Instance_1 = Instance.new("ScreenGui", gethui and gethui() or game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled and game.Players.LocalPlayer:WaitForChild("PlayerGui") or table.pack(pcall(function() return game.CoreGui.Name end))[1] and game.CoreGui or game.Players.LocalPlayer:WaitForChild("PlayerGui")) --FireLib
+Instance_1.Enabled = true
+Instance_1.SafeAreaCompatibility = Enum.SafeAreaCompatibility.FullscreenExtension
+Instance_1.IgnoreGuiInset = true
+Instance_1.ClipToDeviceSafeArea = true
+Instance_1.DisplayOrder = 999999999
+Instance_1.Name = "FireLib"
+Instance_1.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 
-local root = game:GetObjects("rbxassetid://"..id)
-local lib = root[#root]:Clone()
+local Instance_2 = Instance.new("Frame", Instance_1) --AspectFrame
+Instance_2.Visible = true
+Instance_2.SelectionOrder = 0
+Instance_2.Name = "AspectFrame"
+Instance_2.Active = false
+Instance_2.AutomaticSize = Enum.AutomaticSize.None
+Instance_2.AnchorPoint = Vector2.new(0.5, 0)
+Instance_2.Style = Enum.FrameStyle.Custom
+Instance_2.LayoutOrder = 0
+Instance_2.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_2.ZIndex = 1
+Instance_2.Size = UDim2.new(1, 0, 1, 0)
+Instance_2.Draggable = false
+Instance_2.Position = UDim2.new(0.5, 0, 0, 0)
+Instance_2.Selectable = false
+Instance_2.ClipsDescendants = false
+Instance_2.BorderColor3 = Color3.new(0, 0, 0)
+Instance_2.BorderSizePixel = 0
+Instance_2.Rotation = 0
+Instance_2.BackgroundTransparency = 1
+Instance_2.BorderMode = Enum.BorderMode.Outline
+Instance_2.BackgroundColor3 = Color3.new(1, 1, 1)
 
-lib.Parent = game.TextChatService
-local module = lib:FindFirstChildOfClass("ModuleScript")
+local Instance_3 = Instance.new("UIAspectRatioConstraint", Instance_2) --UIAspectRatioConstraint
+Instance_3.DominantAxis = Enum.DominantAxis.Width
+Instance_3.AspectRatio = 1
+Instance_3.Name = "UIAspectRatioConstraint"
+Instance_3.AspectType = Enum.AspectType.FitWithinMaxSize
 
-coroutine.wrap(function()
-    task.wait(0.1)
-    lib.Parent = gethui and gethui() or (not game.UserInputService.KeyboardEnabled and game.UserInputService.TouchEnabled) and game.Players.LocalPlayer.PlayerGui or table.pack(pcall(function()return game.CoreGui:GetFullName() end))[1] and game.CoreGui or game.Players.LocalPlayer.PlayerGui
-end)()
+local Instance_4 = Instance.new("TextButton", Instance_2) --LibWindow
+Instance_4.LayoutOrder = 0
+Instance_4.TextWrapped = false
+Instance_4.LineHeight = 1
+Instance_4.Active = false
+Instance_4.TextStrokeTransparency = 1
+Instance_4.TextTruncate = Enum.TextTruncate.None
+Instance_4.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_4.ZIndex = 0
+Instance_4.TextWrap = false
+Instance_4.Draggable = false
+Instance_4.RichText = false
+Instance_4.Modal = false
+Instance_4.SelectionOrder = 0
+Instance_4.Selectable = true
+Instance_4.AutoButtonColor = false
+Instance_4.TextXAlignment = Enum.TextXAlignment.Center
+Instance_4.Name = "LibWindow"
+Instance_4.TextYAlignment = Enum.TextYAlignment.Center
+Instance_4.TextScaled = false
+Instance_4.TextDirection = Enum.TextDirection.Auto
+Instance_4.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_4.Visible = false
+Instance_4.BorderMode = Enum.BorderMode.Outline
+Instance_4.TextTransparency = 0
+Instance_4.FontSize = Enum.FontSize.Size14
+Instance_4.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_4.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+Instance_4.AnchorPoint = Vector2.new(0.5, 0.5)
+Instance_4.TextSize = 14
+Instance_4.TextColor3 = Color3.new(0, 0, 0)
+Instance_4.Selected = false
+Instance_4.AutomaticSize = Enum.AutomaticSize.None
+Instance_4.Size = UDim2.new(1.2000000476837158, 0, 0.6000000238418579, 0)
+Instance_4.ClipsDescendants = true
+Instance_4.BorderColor3 = Color3.new(0, 0, 0)
+Instance_4.Text = ""
+Instance_4.BorderSizePixel = 0
+Instance_4.Rotation = 0
+Instance_4.BackgroundTransparency = 0
+Instance_4.MaxVisibleGraphemes = -1
+Instance_4.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instance_4.Style = Enum.ButtonStyle.Custom
 
-local loadedSource
+local Instance_5 = Instance.new("Frame", Instance_4) --TopDeco
+Instance_5.Visible = true
+Instance_5.SelectionOrder = 0
+Instance_5.Name = "TopDeco"
+Instance_5.Active = false
+Instance_5.AutomaticSize = Enum.AutomaticSize.None
+Instance_5.AnchorPoint = Vector2.new(0, 0)
+Instance_5.Style = Enum.FrameStyle.Custom
+Instance_5.LayoutOrder = 0
+Instance_5.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_5.ZIndex = 1
+Instance_5.Size = UDim2.new(1, 0, 0, 2)
+Instance_5.Draggable = false
+Instance_5.Position = UDim2.new(0, 0, 0, 0)
+Instance_5.Selectable = false
+Instance_5.ClipsDescendants = false
+Instance_5.BorderColor3 = Color3.new(0, 0, 0)
+Instance_5.BorderSizePixel = 0
+Instance_5.Rotation = 0
+Instance_5.BackgroundTransparency = 0
+Instance_5.BorderMode = Enum.BorderMode.Outline
+Instance_5.BackgroundColor3 = Color3.new(1, 0.333333, 0)
 
-pcall(function()
-    loadedSource = "local script = game.TextChatService[\""..lib.Name.."\"]:FindFirstChildOfClass(\"ModuleScript\")\10"..module.Source
-end)
+local Instance_6 = Instance.new("ImageLabel", Instance_5) --ImageLabel
+Instance_6.Visible = true
+Instance_6.Active = false
+Instance_6.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_6.ZIndex = 1
+Instance_6.BorderSizePixel = 0
+Instance_6.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance_6.Draggable = false
+Instance_6.ScaleType = Enum.ScaleType.Stretch
+Instance_6.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_6.ImageTransparency = 0.5
+Instance_6.AnchorPoint = Vector2.new(0.5, 0.5)
+Instance_6.Image = "http://www.roblox.com/asset/?id=10822615828"
+Instance_6.TileSize = UDim2.new(1, 0, 1, 0)
+Instance_6.ImageRectSize = Vector2.new(0, 0)
+Instance_6.SelectionOrder = 0
+Instance_6.Selectable = false
+Instance_6.Size = UDim2.new(1.2000000476837158, 0, 5, 0)
+Instance_6.Name = "ImageLabel"
+Instance_6.ResampleMode = Enum.ResamplerMode.Default
+Instance_6.ClipsDescendants = false
+Instance_6.BorderColor3 = Color3.new(0, 0, 0)
+Instance_6.ImageColor3 = Color3.new(1, 0.333333, 0)
+Instance_6.LayoutOrder = 0
+Instance_6.BorderMode = Enum.BorderMode.Outline
+Instance_6.Rotation = 0
+Instance_6.ImageRectOffset = Vector2.new(0, 0)
+Instance_6.BackgroundTransparency = 1
+Instance_6.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instance_6.SliceScale = 1
+Instance_6.AutomaticSize = Enum.AutomaticSize.None
 
-if loadedSource then
-    return loadstring(loadedSource)()
-else
-    return require(module)
+local Instance_7 = Instance.new("UIStroke", Instance_4) --UIStroke
+Instance_7.Enabled = true
+Instance_7.Color = Color3.new(0, 0, 0)
+Instance_7.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Instance_7.Thickness = 2
+Instance_7.Transparency = 0
+Instance_7.Name = "UIStroke"
+Instance_7.LineJoinMode = Enum.LineJoinMode.Miter
+
+local Instance_8 = Instance.new("TextLabel", Instance_4) --Title
+Instance_8.LayoutOrder = 0
+Instance_8.TextWrapped = true
+Instance_8.LineHeight = 1
+Instance_8.Active = false
+Instance_8.TextStrokeTransparency = 1
+Instance_8.TextTruncate = Enum.TextTruncate.None
+Instance_8.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_8.ZIndex = 1
+Instance_8.BorderSizePixel = 0
+Instance_8.Draggable = false
+Instance_8.RichText = false
+Instance_8.TextWrap = true
+Instance_8.TextTransparency = 0
+Instance_8.TextYAlignment = Enum.TextYAlignment.Center
+Instance_8.TextScaled = true
+Instance_8.TextXAlignment = Enum.TextXAlignment.Center
+Instance_8.FontFace = Font.new("rbxasset://fonts/families/Zekton.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_8.Name = "Title"
+Instance_8.BorderMode = Enum.BorderMode.Outline
+Instance_8.Selectable = false
+Instance_8.TextDirection = Enum.TextDirection.Auto
+Instance_8.Visible = true
+Instance_8.FontSize = Enum.FontSize.Size14
+Instance_8.AnchorPoint = Vector2.new(0.5, 0)
+Instance_8.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_8.TextSize = 14
+Instance_8.AutomaticSize = Enum.AutomaticSize.None
+Instance_8.Size = UDim2.new(0.699999988079071, 0, 0.10000000149011612, 0)
+Instance_8.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_8.ClipsDescendants = false
+Instance_8.BorderColor3 = Color3.new(0, 0, 0)
+Instance_8.Text = "Fire-Lib"
+Instance_8.SelectionOrder = 0
+Instance_8.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_8.Rotation = 0
+Instance_8.BackgroundTransparency = 1
+Instance_8.Position = UDim2.new(0.5, 0, 0.02500000037252903, 0)
+Instance_8.MaxVisibleGraphemes = -1
+
+local Instance_9 = Instance.new("Frame", Instance_4) --SomeStuff
+Instance_9.Visible = true
+Instance_9.SelectionOrder = 0
+Instance_9.Name = "SomeStuff"
+Instance_9.Active = false
+Instance_9.AutomaticSize = Enum.AutomaticSize.None
+Instance_9.AnchorPoint = Vector2.new(0, 0)
+Instance_9.Style = Enum.FrameStyle.Custom
+Instance_9.LayoutOrder = 0
+Instance_9.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_9.ZIndex = 1
+Instance_9.Size = UDim2.new(1, 0, 0.8500000238418579, -2)
+Instance_9.Draggable = false
+Instance_9.Position = UDim2.new(0, 0, 0.125, 2)
+Instance_9.Selectable = false
+Instance_9.ClipsDescendants = false
+Instance_9.BorderColor3 = Color3.new(0, 0, 0)
+Instance_9.BorderSizePixel = 0
+Instance_9.Rotation = 0
+Instance_9.BackgroundTransparency = 1
+Instance_9.BorderMode = Enum.BorderMode.Outline
+Instance_9.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_10 = Instance.new("ScrollingFrame", Instance_9) --Pages
+Instance_10.LayoutOrder = 0
+Instance_10.Active = true
+Instance_10.ScrollingDirection = Enum.ScrollingDirection.XY
+Instance_10.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_10.ZIndex = 1
+Instance_10.CanvasSize = UDim2.new(0, 0, 0, 0)
+Instance_10.Draggable = false
+Instance_10.MidImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+Instance_10.CanvasPosition = Vector2.new(0, 0)
+Instance_10.ElasticBehavior = Enum.ElasticBehavior.WhenScrollable
+Instance_10.TopImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+Instance_10.HorizontalScrollBarInset = Enum.ScrollBarInset.None
+Instance_10.VerticalScrollBarInset = Enum.ScrollBarInset.None
+Instance_10.BorderMode = Enum.BorderMode.Outline
+Instance_10.VerticalScrollBarPosition = Enum.VerticalScrollBarPosition.Right
+Instance_10.AutomaticCanvasSize = Enum.AutomaticSize.Y
+Instance_10.Selectable = true
+Instance_10.AnchorPoint = Vector2.new(0, 0)
+Instance_10.Name = "Pages"
+Instance_10.Visible = true
+Instance_10.Size = UDim2.new(0.22499999403953552, 0, 0.9750000238418579, 0)
+Instance_10.ScrollBarImageColor3 = Color3.new(0, 0, 0)
+Instance_10.BorderSizePixel = 0
+Instance_10.ScrollBarImageTransparency = 0
+Instance_10.ClipsDescendants = true
+Instance_10.BorderColor3 = Color3.new(0, 0, 0)
+Instance_10.ScrollBarThickness = 12
+Instance_10.SelectionOrder = 0
+Instance_10.Rotation = 0
+Instance_10.BackgroundTransparency = 1
+Instance_10.Position = UDim2.new(0.02500000037252903, 0, 0, 0)
+Instance_10.ScrollingEnabled = true
+Instance_10.BottomImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+Instance_10.AutomaticSize = Enum.AutomaticSize.None
+Instance_10.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_11 = Instance.new("UIGridLayout", Instance_10) --UIGridLayout
+Instance_11.CellPadding = UDim2.new(0, 0, 0, 5)
+Instance_11.StartCorner = Enum.StartCorner.TopLeft
+Instance_11.Name = "UIGridLayout"
+Instance_11.FillDirectionMaxCells = 0
+Instance_11.CellSize = UDim2.new(1, 0, 0.2800000011920929, 0)
+
+local Instance_12 = Instance.new("TextButton", Instance_10) --PageButton
+Instance_12.LayoutOrder = 0
+Instance_12.TextWrapped = false
+Instance_12.LineHeight = 1
+Instance_12.Active = true
+Instance_12.TextStrokeTransparency = 1
+Instance_12.TextTruncate = Enum.TextTruncate.None
+Instance_12.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_12.ZIndex = 1
+Instance_12.TextWrap = false
+Instance_12.Draggable = false
+Instance_12.RichText = false
+Instance_12.Modal = false
+Instance_12.SelectionOrder = 0
+Instance_12.Selectable = true
+Instance_12.AutoButtonColor = true
+Instance_12.TextXAlignment = Enum.TextXAlignment.Center
+Instance_12.Name = "PageButton"
+Instance_12.TextYAlignment = Enum.TextYAlignment.Center
+Instance_12.TextScaled = false
+Instance_12.TextDirection = Enum.TextDirection.Auto
+Instance_12.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_12.Visible = false
+Instance_12.BorderMode = Enum.BorderMode.Outline
+Instance_12.TextTransparency = 0
+Instance_12.FontSize = Enum.FontSize.Size14
+Instance_12.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_12.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+Instance_12.AnchorPoint = Vector2.new(0, 0)
+Instance_12.TextSize = 14
+Instance_12.TextColor3 = Color3.new(0, 0, 0)
+Instance_12.Selected = false
+Instance_12.AutomaticSize = Enum.AutomaticSize.None
+Instance_12.Size = UDim2.new(0, 200, 0, 50)
+Instance_12.ClipsDescendants = false
+Instance_12.BorderColor3 = Color3.new(0, 0, 0)
+Instance_12.Text = ""
+Instance_12.BorderSizePixel = 0
+Instance_12.Rotation = 0
+Instance_12.BackgroundTransparency = 0
+Instance_12.MaxVisibleGraphemes = -1
+Instance_12.Position = UDim2.new(0, 0, 0, 0)
+Instance_12.Style = Enum.ButtonStyle.Custom
+
+local Instance_13 = Instance.new("TextLabel", Instance_12) --Title
+Instance_13.LayoutOrder = 0
+Instance_13.TextWrapped = true
+Instance_13.LineHeight = 1
+Instance_13.Active = false
+Instance_13.TextStrokeTransparency = 1
+Instance_13.TextTruncate = Enum.TextTruncate.None
+Instance_13.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_13.ZIndex = 1
+Instance_13.BorderSizePixel = 0
+Instance_13.Draggable = false
+Instance_13.RichText = false
+Instance_13.TextWrap = true
+Instance_13.TextTransparency = 0
+Instance_13.TextYAlignment = Enum.TextYAlignment.Center
+Instance_13.TextScaled = true
+Instance_13.TextXAlignment = Enum.TextXAlignment.Center
+Instance_13.FontFace = Font.new("rbxasset://fonts/families/Zekton.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_13.Name = "Title"
+Instance_13.BorderMode = Enum.BorderMode.Outline
+Instance_13.Selectable = false
+Instance_13.TextDirection = Enum.TextDirection.Auto
+Instance_13.Visible = true
+Instance_13.FontSize = Enum.FontSize.Size14
+Instance_13.AnchorPoint = Vector2.new(0, 0.5)
+Instance_13.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_13.TextSize = 14
+Instance_13.AutomaticSize = Enum.AutomaticSize.None
+Instance_13.Size = UDim2.new(1, 0, 0.6000000238418579, 0)
+Instance_13.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_13.ClipsDescendants = false
+Instance_13.BorderColor3 = Color3.new(0, 0, 0)
+Instance_13.Text = "Page"
+Instance_13.SelectionOrder = 0
+Instance_13.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_13.Rotation = 0
+Instance_13.BackgroundTransparency = 1
+Instance_13.Position = UDim2.new(0, 0, 0.5, 0)
+Instance_13.MaxVisibleGraphemes = -1
+
+local Instance_14 = Instance.new("UICorner", Instance_12) --UICorner
+Instance_14.Name = "UICorner"
+Instance_14.CornerRadius = UDim.new(0.150000006, 0)
+
+local Instance_15 = Instance.new("Frame", Instance_12) --IconFrame
+Instance_15.Visible = false
+Instance_15.SelectionOrder = 0
+Instance_15.Name = "IconFrame"
+Instance_15.Active = false
+Instance_15.AutomaticSize = Enum.AutomaticSize.None
+Instance_15.AnchorPoint = Vector2.new(0, 0)
+Instance_15.Style = Enum.FrameStyle.Custom
+Instance_15.LayoutOrder = 0
+Instance_15.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_15.ZIndex = 1
+Instance_15.Size = UDim2.new(0.15000000596046448, 0, 1, 0)
+Instance_15.Draggable = false
+Instance_15.Position = UDim2.new(0.800000011920929, 0, 0, 0)
+Instance_15.Selectable = false
+Instance_15.ClipsDescendants = false
+Instance_15.BorderColor3 = Color3.new(0, 0, 0)
+Instance_15.BorderSizePixel = 0
+Instance_15.Rotation = 0
+Instance_15.BackgroundTransparency = 1
+Instance_15.BorderMode = Enum.BorderMode.Outline
+Instance_15.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_16 = Instance.new("ImageLabel", Instance_15) --Icon
+Instance_16.Visible = true
+Instance_16.Active = false
+Instance_16.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_16.ZIndex = 1
+Instance_16.BorderSizePixel = 0
+Instance_16.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance_16.Draggable = false
+Instance_16.ScaleType = Enum.ScaleType.Stretch
+Instance_16.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_16.ImageTransparency = 0
+Instance_16.AnchorPoint = Vector2.new(0.5, 0.5)
+Instance_16.Image = "http://www.roblox.com/asset/?id=5715427603"
+Instance_16.TileSize = UDim2.new(1, 0, 1, 0)
+Instance_16.ImageRectSize = Vector2.new(0, 0)
+Instance_16.SelectionOrder = 0
+Instance_16.Selectable = false
+Instance_16.Size = UDim2.new(0.699999988079071, 0, 0.699999988079071, 0)
+Instance_16.Name = "Icon"
+Instance_16.ResampleMode = Enum.ResamplerMode.Default
+Instance_16.ClipsDescendants = false
+Instance_16.BorderColor3 = Color3.new(0, 0, 0)
+Instance_16.ImageColor3 = Color3.new(1, 0.333333, 0)
+Instance_16.LayoutOrder = 0
+Instance_16.BorderMode = Enum.BorderMode.Outline
+Instance_16.Rotation = -15
+Instance_16.ImageRectOffset = Vector2.new(0, 0)
+Instance_16.BackgroundTransparency = 1
+Instance_16.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instance_16.SliceScale = 1
+Instance_16.AutomaticSize = Enum.AutomaticSize.None
+
+local Instance_17 = Instance.new("UIAspectRatioConstraint", Instance_16) --UIAspectRatioConstraint
+Instance_17.DominantAxis = Enum.DominantAxis.Width
+Instance_17.AspectRatio = 1
+Instance_17.Name = "UIAspectRatioConstraint"
+Instance_17.AspectType = Enum.AspectType.FitWithinMaxSize
+
+local Instance_18 = Instance.new("UICorner", Instance_16) --UICorner
+Instance_18.Name = "UICorner"
+Instance_18.CornerRadius = UDim.new(0.200000003, 0)
+
+local Instance_19 = Instance.new("Frame", Instance_9) --Frame
+Instance_19.Visible = true
+Instance_19.SelectionOrder = 0
+Instance_19.Name = "Frame"
+Instance_19.Active = false
+Instance_19.AutomaticSize = Enum.AutomaticSize.None
+Instance_19.AnchorPoint = Vector2.new(0, 0)
+Instance_19.Style = Enum.FrameStyle.Custom
+Instance_19.LayoutOrder = 0
+Instance_19.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_19.ZIndex = 1
+Instance_19.Size = UDim2.new(0.699999988079071, 0, 0.9750000238418579, 0)
+Instance_19.Draggable = false
+Instance_19.Position = UDim2.new(0.2750000059604645, 0, 0, 0)
+Instance_19.Selectable = false
+Instance_19.ClipsDescendants = true
+Instance_19.BorderColor3 = Color3.new(0, 0, 0)
+Instance_19.BorderSizePixel = 0
+Instance_19.Rotation = 0
+Instance_19.BackgroundTransparency = 1
+Instance_19.BorderMode = Enum.BorderMode.Outline
+Instance_19.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_20 = Instance.new("ScrollingFrame", Instance_19) --Page
+Instance_20.LayoutOrder = 0
+Instance_20.Active = true
+Instance_20.ScrollingDirection = Enum.ScrollingDirection.XY
+Instance_20.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_20.ZIndex = 1
+Instance_20.CanvasSize = UDim2.new(0, 0, 0, 0)
+Instance_20.Draggable = false
+Instance_20.MidImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+Instance_20.CanvasPosition = Vector2.new(0, 0)
+Instance_20.ElasticBehavior = Enum.ElasticBehavior.WhenScrollable
+Instance_20.TopImage = "rbxasset://textures/ui/Scroll/scroll-top.png"
+Instance_20.HorizontalScrollBarInset = Enum.ScrollBarInset.None
+Instance_20.VerticalScrollBarInset = Enum.ScrollBarInset.None
+Instance_20.BorderMode = Enum.BorderMode.Outline
+Instance_20.VerticalScrollBarPosition = Enum.VerticalScrollBarPosition.Right
+Instance_20.AutomaticCanvasSize = Enum.AutomaticSize.Y
+Instance_20.Selectable = true
+Instance_20.AnchorPoint = Vector2.new(0, 0)
+Instance_20.Name = "Page"
+Instance_20.Visible = true
+Instance_20.Size = UDim2.new(1, 0, 1, 0)
+Instance_20.ScrollBarImageColor3 = Color3.new(0, 0, 0)
+Instance_20.BorderSizePixel = 0
+Instance_20.ScrollBarImageTransparency = 0
+Instance_20.ClipsDescendants = true
+Instance_20.BorderColor3 = Color3.new(0, 0, 0)
+Instance_20.ScrollBarThickness = 12
+Instance_20.SelectionOrder = 0
+Instance_20.Rotation = 0
+Instance_20.BackgroundTransparency = 1
+Instance_20.Position = UDim2.new(0, 0, 0, 0)
+Instance_20.ScrollingEnabled = true
+Instance_20.BottomImage = "rbxasset://textures/ui/Scroll/scroll-bottom.png"
+Instance_20.AutomaticSize = Enum.AutomaticSize.None
+Instance_20.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_21 = Instance.new("TextButton", Instance_20) --Button
+Instance_21.LayoutOrder = 0
+Instance_21.TextWrapped = false
+Instance_21.LineHeight = 1
+Instance_21.Active = true
+Instance_21.TextStrokeTransparency = 1
+Instance_21.TextTruncate = Enum.TextTruncate.None
+Instance_21.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_21.ZIndex = 1
+Instance_21.TextWrap = false
+Instance_21.Draggable = false
+Instance_21.RichText = false
+Instance_21.Modal = false
+Instance_21.SelectionOrder = 0
+Instance_21.Selectable = true
+Instance_21.AutoButtonColor = true
+Instance_21.TextXAlignment = Enum.TextXAlignment.Center
+Instance_21.Name = "Button"
+Instance_21.TextYAlignment = Enum.TextYAlignment.Center
+Instance_21.TextScaled = false
+Instance_21.TextDirection = Enum.TextDirection.Auto
+Instance_21.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_21.Visible = false
+Instance_21.BorderMode = Enum.BorderMode.Outline
+Instance_21.TextTransparency = 0
+Instance_21.FontSize = Enum.FontSize.Size14
+Instance_21.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_21.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+Instance_21.AnchorPoint = Vector2.new(0, 0)
+Instance_21.TextSize = 14
+Instance_21.TextColor3 = Color3.new(0, 0, 0)
+Instance_21.Selected = false
+Instance_21.AutomaticSize = Enum.AutomaticSize.None
+Instance_21.Size = UDim2.new(1, 0, 0.20000000298023224, 0)
+Instance_21.ClipsDescendants = false
+Instance_21.BorderColor3 = Color3.new(0, 0, 0)
+Instance_21.Text = ""
+Instance_21.BorderSizePixel = 0
+Instance_21.Rotation = 0
+Instance_21.BackgroundTransparency = 0
+Instance_21.MaxVisibleGraphemes = -1
+Instance_21.Position = UDim2.new(0, 0, 0, 0)
+Instance_21.Style = Enum.ButtonStyle.Custom
+
+local Instance_22 = Instance.new("UICorner", Instance_21) --UICorner
+Instance_22.Name = "UICorner"
+Instance_22.CornerRadius = UDim.new(0.150000006, 0)
+
+local Instance_23 = Instance.new("TextLabel", Instance_21) --Caption
+Instance_23.LayoutOrder = 0
+Instance_23.TextWrapped = true
+Instance_23.LineHeight = 1
+Instance_23.Active = false
+Instance_23.TextStrokeTransparency = 1
+Instance_23.TextTruncate = Enum.TextTruncate.None
+Instance_23.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_23.ZIndex = 1
+Instance_23.BorderSizePixel = 0
+Instance_23.Draggable = false
+Instance_23.RichText = false
+Instance_23.TextWrap = true
+Instance_23.TextTransparency = 0
+Instance_23.TextYAlignment = Enum.TextYAlignment.Center
+Instance_23.TextScaled = true
+Instance_23.TextXAlignment = Enum.TextXAlignment.Left
+Instance_23.FontFace = Font.new("rbxasset://fonts/families/Zekton.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_23.Name = "Caption"
+Instance_23.BorderMode = Enum.BorderMode.Outline
+Instance_23.Selectable = false
+Instance_23.TextDirection = Enum.TextDirection.Auto
+Instance_23.Visible = true
+Instance_23.FontSize = Enum.FontSize.Size14
+Instance_23.AnchorPoint = Vector2.new(0, 0.5)
+Instance_23.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_23.TextSize = 14
+Instance_23.AutomaticSize = Enum.AutomaticSize.None
+Instance_23.Size = UDim2.new(0.75, 0, 0.6000000238418579, 0)
+Instance_23.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_23.ClipsDescendants = false
+Instance_23.BorderColor3 = Color3.new(0, 0, 0)
+Instance_23.Text = "Button"
+Instance_23.SelectionOrder = 0
+Instance_23.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_23.Rotation = 0
+Instance_23.BackgroundTransparency = 1
+Instance_23.Position = UDim2.new(0.02500000037252903, 0, 0.5, 0)
+Instance_23.MaxVisibleGraphemes = -1
+
+local Instance_24 = Instance.new("Frame", Instance_21) --IconFrame
+Instance_24.Visible = true
+Instance_24.SelectionOrder = 0
+Instance_24.Name = "IconFrame"
+Instance_24.Active = false
+Instance_24.AutomaticSize = Enum.AutomaticSize.None
+Instance_24.AnchorPoint = Vector2.new(0, 0)
+Instance_24.Style = Enum.FrameStyle.Custom
+Instance_24.LayoutOrder = 0
+Instance_24.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_24.ZIndex = 1
+Instance_24.Size = UDim2.new(0.15000000596046448, 0, 1, 0)
+Instance_24.Draggable = false
+Instance_24.Position = UDim2.new(0.800000011920929, 0, 0, 0)
+Instance_24.Selectable = false
+Instance_24.ClipsDescendants = false
+Instance_24.BorderColor3 = Color3.new(0, 0, 0)
+Instance_24.BorderSizePixel = 0
+Instance_24.Rotation = 0
+Instance_24.BackgroundTransparency = 1
+Instance_24.BorderMode = Enum.BorderMode.Outline
+Instance_24.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_25 = Instance.new("ImageLabel", Instance_24) --Icon
+Instance_25.Visible = true
+Instance_25.Active = false
+Instance_25.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_25.ZIndex = 1
+Instance_25.BorderSizePixel = 0
+Instance_25.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance_25.Draggable = false
+Instance_25.ScaleType = Enum.ScaleType.Stretch
+Instance_25.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_25.ImageTransparency = 0
+Instance_25.AnchorPoint = Vector2.new(0.5, 0.5)
+Instance_25.Image = "http://www.roblox.com/asset/?id=5715427603"
+Instance_25.TileSize = UDim2.new(1, 0, 1, 0)
+Instance_25.ImageRectSize = Vector2.new(0, 0)
+Instance_25.SelectionOrder = 0
+Instance_25.Selectable = false
+Instance_25.Size = UDim2.new(0.699999988079071, 0, 0.699999988079071, 0)
+Instance_25.Name = "Icon"
+Instance_25.ResampleMode = Enum.ResamplerMode.Default
+Instance_25.ClipsDescendants = false
+Instance_25.BorderColor3 = Color3.new(0, 0, 0)
+Instance_25.ImageColor3 = Color3.new(1, 0.333333, 0)
+Instance_25.LayoutOrder = 0
+Instance_25.BorderMode = Enum.BorderMode.Outline
+Instance_25.Rotation = -15
+Instance_25.ImageRectOffset = Vector2.new(0, 0)
+Instance_25.BackgroundTransparency = 1
+Instance_25.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instance_25.SliceScale = 1
+Instance_25.AutomaticSize = Enum.AutomaticSize.None
+
+local Instance_26 = Instance.new("UIAspectRatioConstraint", Instance_25) --UIAspectRatioConstraint
+Instance_26.DominantAxis = Enum.DominantAxis.Width
+Instance_26.AspectRatio = 1
+Instance_26.Name = "UIAspectRatioConstraint"
+Instance_26.AspectType = Enum.AspectType.FitWithinMaxSize
+
+local Instance_27 = Instance.new("UICorner", Instance_25) --UICorner
+Instance_27.Name = "UICorner"
+Instance_27.CornerRadius = UDim.new(0.200000003, 0)
+
+local Instance_28 = Instance.new("TextButton", Instance_20) --Toggle
+Instance_28.LayoutOrder = 0
+Instance_28.TextWrapped = false
+Instance_28.LineHeight = 1
+Instance_28.Active = true
+Instance_28.TextStrokeTransparency = 1
+Instance_28.TextTruncate = Enum.TextTruncate.None
+Instance_28.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_28.ZIndex = 1
+Instance_28.TextWrap = false
+Instance_28.Draggable = false
+Instance_28.RichText = false
+Instance_28.Modal = false
+Instance_28.SelectionOrder = 0
+Instance_28.Selectable = true
+Instance_28.AutoButtonColor = true
+Instance_28.TextXAlignment = Enum.TextXAlignment.Center
+Instance_28.Name = "Toggle"
+Instance_28.TextYAlignment = Enum.TextYAlignment.Center
+Instance_28.TextScaled = false
+Instance_28.TextDirection = Enum.TextDirection.Auto
+Instance_28.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_28.Visible = false
+Instance_28.BorderMode = Enum.BorderMode.Outline
+Instance_28.TextTransparency = 0
+Instance_28.FontSize = Enum.FontSize.Size14
+Instance_28.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_28.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+Instance_28.AnchorPoint = Vector2.new(0, 0)
+Instance_28.TextSize = 14
+Instance_28.TextColor3 = Color3.new(0, 0, 0)
+Instance_28.Selected = false
+Instance_28.AutomaticSize = Enum.AutomaticSize.None
+Instance_28.Size = UDim2.new(1, 0, 0.20000000298023224, 0)
+Instance_28.ClipsDescendants = false
+Instance_28.BorderColor3 = Color3.new(0, 0, 0)
+Instance_28.Text = ""
+Instance_28.BorderSizePixel = 0
+Instance_28.Rotation = 0
+Instance_28.BackgroundTransparency = 0
+Instance_28.MaxVisibleGraphemes = -1
+Instance_28.Position = UDim2.new(0, 0, 0, 0)
+Instance_28.Style = Enum.ButtonStyle.Custom
+
+local Instance_29 = Instance.new("UICorner", Instance_28) --UICorner
+Instance_29.Name = "UICorner"
+Instance_29.CornerRadius = UDim.new(0.150000006, 0)
+
+local Instance_30 = Instance.new("TextLabel", Instance_28) --Caption
+Instance_30.LayoutOrder = 0
+Instance_30.TextWrapped = true
+Instance_30.LineHeight = 1
+Instance_30.Active = false
+Instance_30.TextStrokeTransparency = 1
+Instance_30.TextTruncate = Enum.TextTruncate.None
+Instance_30.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_30.ZIndex = 1
+Instance_30.BorderSizePixel = 0
+Instance_30.Draggable = false
+Instance_30.RichText = false
+Instance_30.TextWrap = true
+Instance_30.TextTransparency = 0
+Instance_30.TextYAlignment = Enum.TextYAlignment.Center
+Instance_30.TextScaled = true
+Instance_30.TextXAlignment = Enum.TextXAlignment.Left
+Instance_30.FontFace = Font.new("rbxasset://fonts/families/Zekton.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_30.Name = "Caption"
+Instance_30.BorderMode = Enum.BorderMode.Outline
+Instance_30.Selectable = false
+Instance_30.TextDirection = Enum.TextDirection.Auto
+Instance_30.Visible = true
+Instance_30.FontSize = Enum.FontSize.Size14
+Instance_30.AnchorPoint = Vector2.new(0, 0.5)
+Instance_30.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_30.TextSize = 14
+Instance_30.AutomaticSize = Enum.AutomaticSize.None
+Instance_30.Size = UDim2.new(0.75, 0, 0.6000000238418579, 0)
+Instance_30.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_30.ClipsDescendants = false
+Instance_30.BorderColor3 = Color3.new(0, 0, 0)
+Instance_30.Text = "Toggle"
+Instance_30.SelectionOrder = 0
+Instance_30.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_30.Rotation = 0
+Instance_30.BackgroundTransparency = 1
+Instance_30.Position = UDim2.new(0.02500000037252903, 0, 0.5, 0)
+Instance_30.MaxVisibleGraphemes = -1
+
+local Instance_31 = Instance.new("Frame", Instance_28) --IconFrame
+Instance_31.Visible = true
+Instance_31.SelectionOrder = 0
+Instance_31.Name = "IconFrame"
+Instance_31.Active = false
+Instance_31.AutomaticSize = Enum.AutomaticSize.None
+Instance_31.AnchorPoint = Vector2.new(0, 0)
+Instance_31.Style = Enum.FrameStyle.Custom
+Instance_31.LayoutOrder = 0
+Instance_31.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_31.ZIndex = 1
+Instance_31.Size = UDim2.new(0.15000000596046448, 0, 1, 0)
+Instance_31.Draggable = false
+Instance_31.Position = UDim2.new(0.800000011920929, 0, 0, 0)
+Instance_31.Selectable = false
+Instance_31.ClipsDescendants = false
+Instance_31.BorderColor3 = Color3.new(0, 0, 0)
+Instance_31.BorderSizePixel = 0
+Instance_31.Rotation = 0
+Instance_31.BackgroundTransparency = 1
+Instance_31.BorderMode = Enum.BorderMode.Outline
+Instance_31.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_32 = Instance.new("ImageLabel", Instance_31) --Icon
+Instance_32.Visible = true
+Instance_32.Active = false
+Instance_32.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_32.ZIndex = 1
+Instance_32.BorderSizePixel = 0
+Instance_32.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance_32.Draggable = false
+Instance_32.ScaleType = Enum.ScaleType.Stretch
+Instance_32.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_32.ImageTransparency = 0
+Instance_32.AnchorPoint = Vector2.new(0.5, 0.5)
+Instance_32.Image = "http://www.roblox.com/asset/?id=703387192"
+Instance_32.TileSize = UDim2.new(1, 0, 1, 0)
+Instance_32.ImageRectSize = Vector2.new(0, 0)
+Instance_32.SelectionOrder = 0
+Instance_32.Selectable = false
+Instance_32.Size = UDim2.new(0.5, 0, 0.5, 0)
+Instance_32.Name = "Icon"
+Instance_32.ResampleMode = Enum.ResamplerMode.Default
+Instance_32.ClipsDescendants = false
+Instance_32.BorderColor3 = Color3.new(0, 0, 0)
+Instance_32.ImageColor3 = Color3.new(1, 0.333333, 0)
+Instance_32.LayoutOrder = 0
+Instance_32.BorderMode = Enum.BorderMode.Outline
+Instance_32.Rotation = -15
+Instance_32.ImageRectOffset = Vector2.new(0, 0)
+Instance_32.BackgroundTransparency = 1
+Instance_32.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instance_32.SliceScale = 1
+Instance_32.AutomaticSize = Enum.AutomaticSize.None
+
+local Instance_33 = Instance.new("UIAspectRatioConstraint", Instance_32) --UIAspectRatioConstraint
+Instance_33.DominantAxis = Enum.DominantAxis.Width
+Instance_33.AspectRatio = 1
+Instance_33.Name = "UIAspectRatioConstraint"
+Instance_33.AspectType = Enum.AspectType.FitWithinMaxSize
+
+local Instance_34 = Instance.new("UICorner", Instance_32) --UICorner
+Instance_34.Name = "UICorner"
+Instance_34.CornerRadius = UDim.new(0.200000003, 0)
+
+local Instance_35 = Instance.new("UIGradient", Instance_32) --UIGradient
+Instance_35.Offset = Vector2.new(0, 0)
+Instance_35.Color = ColorSequence.new({
+	[1] = ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
+	[2] = ColorSequenceKeypoint.new(1, Color3.new(1, 1, 1))
+})
+Instance_35.Rotation = 0
+Instance_35.Transparency = NumberSequence.new({
+	[1] = NumberSequenceKeypoint.new(0, 0, 0),
+	[2] = NumberSequenceKeypoint.new(1, 0, 0)
+})
+Instance_35.Name = "UIGradient"
+Instance_35.Enabled = true
+
+local Instance_36 = Instance.new("UIListLayout", Instance_20) --UIListLayout
+Instance_36.Name = "UIListLayout"
+Instance_36.Padding = UDim.new(0, 7)
+
+local Instance_37 = Instance.new("Frame", Instance_20) --Slider
+Instance_37.Visible = false
+Instance_37.SelectionOrder = 0
+Instance_37.Name = "Slider"
+Instance_37.Active = false
+Instance_37.AutomaticSize = Enum.AutomaticSize.None
+Instance_37.AnchorPoint = Vector2.new(0, 0)
+Instance_37.Style = Enum.FrameStyle.Custom
+Instance_37.LayoutOrder = 0
+Instance_37.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_37.ZIndex = 1
+Instance_37.Size = UDim2.new(1, 0, 0.30000001192092896, 0)
+Instance_37.Draggable = false
+Instance_37.Position = UDim2.new(0, 0, 0, 0)
+Instance_37.Selectable = false
+Instance_37.ClipsDescendants = false
+Instance_37.BorderColor3 = Color3.new(0, 0, 0)
+Instance_37.BorderSizePixel = 0
+Instance_37.Rotation = 0
+Instance_37.BackgroundTransparency = 0
+Instance_37.BorderMode = Enum.BorderMode.Outline
+Instance_37.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+
+local Instance_38 = Instance.new("Frame", Instance_37) --IconFrame
+Instance_38.Visible = false
+Instance_38.SelectionOrder = 0
+Instance_38.Name = "IconFrame"
+Instance_38.Active = false
+Instance_38.AutomaticSize = Enum.AutomaticSize.None
+Instance_38.AnchorPoint = Vector2.new(0, 0)
+Instance_38.Style = Enum.FrameStyle.Custom
+Instance_38.LayoutOrder = 0
+Instance_38.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_38.ZIndex = 1
+Instance_38.Size = UDim2.new(0.15000000596046448, 0, 1, 0)
+Instance_38.Draggable = false
+Instance_38.Position = UDim2.new(0.800000011920929, 0, 0, 0)
+Instance_38.Selectable = false
+Instance_38.ClipsDescendants = false
+Instance_38.BorderColor3 = Color3.new(0, 0, 0)
+Instance_38.BorderSizePixel = 0
+Instance_38.Rotation = 0
+Instance_38.BackgroundTransparency = 1
+Instance_38.BorderMode = Enum.BorderMode.Outline
+Instance_38.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_39 = Instance.new("ImageLabel", Instance_38) --Icon
+Instance_39.Visible = true
+Instance_39.Active = false
+Instance_39.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_39.ZIndex = 1
+Instance_39.BorderSizePixel = 0
+Instance_39.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance_39.Draggable = false
+Instance_39.ScaleType = Enum.ScaleType.Stretch
+Instance_39.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_39.ImageTransparency = 0
+Instance_39.AnchorPoint = Vector2.new(0.5, 0.5)
+Instance_39.Image = "http://www.roblox.com/asset/?id=5715427603"
+Instance_39.TileSize = UDim2.new(1, 0, 1, 0)
+Instance_39.ImageRectSize = Vector2.new(0, 0)
+Instance_39.SelectionOrder = 0
+Instance_39.Selectable = false
+Instance_39.Size = UDim2.new(0.699999988079071, 0, 0.699999988079071, 0)
+Instance_39.Name = "Icon"
+Instance_39.ResampleMode = Enum.ResamplerMode.Default
+Instance_39.ClipsDescendants = false
+Instance_39.BorderColor3 = Color3.new(0, 0, 0)
+Instance_39.ImageColor3 = Color3.new(1, 0.333333, 0)
+Instance_39.LayoutOrder = 0
+Instance_39.BorderMode = Enum.BorderMode.Outline
+Instance_39.Rotation = -15
+Instance_39.ImageRectOffset = Vector2.new(0, 0)
+Instance_39.BackgroundTransparency = 1
+Instance_39.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instance_39.SliceScale = 1
+Instance_39.AutomaticSize = Enum.AutomaticSize.None
+
+local Instance_40 = Instance.new("UIAspectRatioConstraint", Instance_39) --UIAspectRatioConstraint
+Instance_40.DominantAxis = Enum.DominantAxis.Width
+Instance_40.AspectRatio = 1
+Instance_40.Name = "UIAspectRatioConstraint"
+Instance_40.AspectType = Enum.AspectType.FitWithinMaxSize
+
+local Instance_41 = Instance.new("UICorner", Instance_39) --UICorner
+Instance_41.Name = "UICorner"
+Instance_41.CornerRadius = UDim.new(0.200000003, 0)
+
+local Instance_42 = Instance.new("TextButton", Instance_37) --FillBar
+Instance_42.LayoutOrder = 0
+Instance_42.TextWrapped = false
+Instance_42.LineHeight = 1
+Instance_42.Active = true
+Instance_42.TextStrokeTransparency = 1
+Instance_42.TextTruncate = Enum.TextTruncate.None
+Instance_42.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_42.ZIndex = 1
+Instance_42.TextWrap = false
+Instance_42.Draggable = false
+Instance_42.RichText = false
+Instance_42.Modal = false
+Instance_42.SelectionOrder = 0
+Instance_42.Selectable = true
+Instance_42.AutoButtonColor = false
+Instance_42.TextXAlignment = Enum.TextXAlignment.Center
+Instance_42.Name = "FillBar"
+Instance_42.TextYAlignment = Enum.TextYAlignment.Center
+Instance_42.TextScaled = false
+Instance_42.TextDirection = Enum.TextDirection.Auto
+Instance_42.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_42.Visible = true
+Instance_42.BorderMode = Enum.BorderMode.Outline
+Instance_42.TextTransparency = 0
+Instance_42.FontSize = Enum.FontSize.Size14
+Instance_42.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_42.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+Instance_42.AnchorPoint = Vector2.new(0.5, 0)
+Instance_42.TextSize = 14
+Instance_42.TextColor3 = Color3.new(0, 0, 0)
+Instance_42.Selected = false
+Instance_42.AutomaticSize = Enum.AutomaticSize.None
+Instance_42.Size = UDim2.new(0.8999999761581421, 0, 0.30000001192092896, 0)
+Instance_42.ClipsDescendants = false
+Instance_42.BorderColor3 = Color3.new(0, 0, 0)
+Instance_42.Text = ""
+Instance_42.BorderSizePixel = 0
+Instance_42.Rotation = 0
+Instance_42.BackgroundTransparency = 0
+Instance_42.MaxVisibleGraphemes = -1
+Instance_42.Position = UDim2.new(0.5, 2, 0.6000000238418579, 0)
+Instance_42.Style = Enum.ButtonStyle.Custom
+
+local Instance_43 = Instance.new("TextLabel", Instance_42) --Step
+Instance_43.LayoutOrder = 0
+Instance_43.TextWrapped = true
+Instance_43.LineHeight = 1
+Instance_43.Active = false
+Instance_43.TextStrokeTransparency = 1
+Instance_43.TextTruncate = Enum.TextTruncate.None
+Instance_43.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_43.ZIndex = 2
+Instance_43.BorderSizePixel = 0
+Instance_43.Draggable = false
+Instance_43.RichText = false
+Instance_43.TextWrap = true
+Instance_43.TextTransparency = 0
+Instance_43.TextYAlignment = Enum.TextYAlignment.Center
+Instance_43.TextScaled = true
+Instance_43.TextXAlignment = Enum.TextXAlignment.Center
+Instance_43.FontFace = Font.new("rbxasset://fonts/families/Zekton.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_43.Name = "Step"
+Instance_43.BorderMode = Enum.BorderMode.Outline
+Instance_43.Selectable = false
+Instance_43.TextDirection = Enum.TextDirection.Auto
+Instance_43.Visible = true
+Instance_43.FontSize = Enum.FontSize.Size14
+Instance_43.AnchorPoint = Vector2.new(0.5, 0.5)
+Instance_43.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_43.TextSize = 14
+Instance_43.AutomaticSize = Enum.AutomaticSize.None
+Instance_43.Size = UDim2.new(0.75, 0, 0.8999999761581421, 0)
+Instance_43.TextColor3 = Color3.new(1, 1, 1)
+Instance_43.ClipsDescendants = false
+Instance_43.BorderColor3 = Color3.new(0, 0, 0)
+Instance_43.Text = "0 | 50"
+Instance_43.SelectionOrder = 0
+Instance_43.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_43.Rotation = 0
+Instance_43.BackgroundTransparency = 1
+Instance_43.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instance_43.MaxVisibleGraphemes = -1
+
+local Instance_44 = Instance.new("Frame", Instance_42) --Filled
+Instance_44.Visible = true
+Instance_44.SelectionOrder = 0
+Instance_44.Name = "Filled"
+Instance_44.Active = false
+Instance_44.AutomaticSize = Enum.AutomaticSize.None
+Instance_44.AnchorPoint = Vector2.new(0, 0)
+Instance_44.Style = Enum.FrameStyle.Custom
+Instance_44.LayoutOrder = 0
+Instance_44.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_44.ZIndex = 1
+Instance_44.Size = UDim2.new(0.5, 0, 1, 0)
+Instance_44.Draggable = false
+Instance_44.Position = UDim2.new(0, 0, 0, 0)
+Instance_44.Selectable = false
+Instance_44.ClipsDescendants = false
+Instance_44.BorderColor3 = Color3.new(0, 0, 0)
+Instance_44.BorderSizePixel = 0
+Instance_44.Rotation = 0
+Instance_44.BackgroundTransparency = 0
+Instance_44.BorderMode = Enum.BorderMode.Outline
+Instance_44.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+
+local Instance_45 = Instance.new("UICorner", Instance_44) --UICorner
+Instance_45.Name = "UICorner"
+Instance_45.CornerRadius = UDim.new(0.200000003, 0)
+
+local Instance_46 = Instance.new("UIStroke", Instance_42) --UIStroke
+Instance_46.Enabled = true
+Instance_46.Color = Color3.new(1, 0.333333, 0)
+Instance_46.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Instance_46.Thickness = 2
+Instance_46.Transparency = 0
+Instance_46.Name = "UIStroke"
+Instance_46.LineJoinMode = Enum.LineJoinMode.Round
+
+local Instance_47 = Instance.new("UIGradient", Instance_46) --UIGradient
+Instance_47.Offset = Vector2.new(0, 0)
+Instance_47.Color = ColorSequence.new({
+	[1] = ColorSequenceKeypoint.new(0, Color3.new(0.686275, 0.686275, 0.686275)),
+	[2] = ColorSequenceKeypoint.new(1, Color3.new(0.686275, 0.686275, 0.686275))
+})
+Instance_47.Rotation = 0
+Instance_47.Transparency = NumberSequence.new({
+	[1] = NumberSequenceKeypoint.new(0, 0, 0),
+	[2] = NumberSequenceKeypoint.new(1, 0, 0)
+})
+Instance_47.Name = "UIGradient"
+Instance_47.Enabled = true
+
+local Instance_48 = Instance.new("UICorner", Instance_42) --UICorner
+Instance_48.Name = "UICorner"
+Instance_48.CornerRadius = UDim.new(0.200000003, 0)
+
+local Instance_49 = Instance.new("UIGradient", Instance_42) --UIGradient
+Instance_49.Offset = Vector2.new(0, 0)
+Instance_49.Color = ColorSequence.new({
+	[1] = ColorSequenceKeypoint.new(0, Color3.new(0.294118, 0.294118, 0.294118)),
+	[2] = ColorSequenceKeypoint.new(1, Color3.new(0.294118, 0.294118, 0.294118))
+})
+Instance_49.Rotation = 0
+Instance_49.Transparency = NumberSequence.new({
+	[1] = NumberSequenceKeypoint.new(0, 0, 0),
+	[2] = NumberSequenceKeypoint.new(1, 0, 0)
+})
+Instance_49.Name = "UIGradient"
+Instance_49.Enabled = true
+
+local Instance_50 = Instance.new("TextLabel", Instance_37) --Caption
+Instance_50.LayoutOrder = 0
+Instance_50.TextWrapped = true
+Instance_50.LineHeight = 1
+Instance_50.Active = false
+Instance_50.TextStrokeTransparency = 1
+Instance_50.TextTruncate = Enum.TextTruncate.None
+Instance_50.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_50.ZIndex = 1
+Instance_50.BorderSizePixel = 0
+Instance_50.Draggable = false
+Instance_50.RichText = false
+Instance_50.TextWrap = true
+Instance_50.TextTransparency = 0
+Instance_50.TextYAlignment = Enum.TextYAlignment.Center
+Instance_50.TextScaled = true
+Instance_50.TextXAlignment = Enum.TextXAlignment.Left
+Instance_50.FontFace = Font.new("rbxasset://fonts/families/Zekton.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_50.Name = "Caption"
+Instance_50.BorderMode = Enum.BorderMode.Outline
+Instance_50.Selectable = false
+Instance_50.TextDirection = Enum.TextDirection.Auto
+Instance_50.Visible = true
+Instance_50.FontSize = Enum.FontSize.Size14
+Instance_50.AnchorPoint = Vector2.new(0, 0)
+Instance_50.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_50.TextSize = 14
+Instance_50.AutomaticSize = Enum.AutomaticSize.None
+Instance_50.Size = UDim2.new(0.75, 0, 0.4000000059604645, 0)
+Instance_50.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_50.ClipsDescendants = false
+Instance_50.BorderColor3 = Color3.new(0, 0, 0)
+Instance_50.Text = "Slider"
+Instance_50.SelectionOrder = 0
+Instance_50.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_50.Rotation = 0
+Instance_50.BackgroundTransparency = 1
+Instance_50.Position = UDim2.new(0.02500000037252903, 0, 0.125, 0)
+Instance_50.MaxVisibleGraphemes = -1
+
+local Instance_51 = Instance.new("UICorner", Instance_37) --UICorner
+Instance_51.Name = "UICorner"
+Instance_51.CornerRadius = UDim.new(0.100000001, 0)
+
+local Instance_52 = Instance.new("Frame", Instance_20) --Label
+Instance_52.Visible = false
+Instance_52.SelectionOrder = 0
+Instance_52.Name = "Label"
+Instance_52.Active = false
+Instance_52.AutomaticSize = Enum.AutomaticSize.None
+Instance_52.AnchorPoint = Vector2.new(0, 0)
+Instance_52.Style = Enum.FrameStyle.Custom
+Instance_52.LayoutOrder = 0
+Instance_52.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_52.ZIndex = 1
+Instance_52.Size = UDim2.new(1, 0, 0.20000000298023224, 0)
+Instance_52.Draggable = false
+Instance_52.Position = UDim2.new(0, 0, 0, 0)
+Instance_52.Selectable = false
+Instance_52.ClipsDescendants = false
+Instance_52.BorderColor3 = Color3.new(0, 0, 0)
+Instance_52.BorderSizePixel = 0
+Instance_52.Rotation = 0
+Instance_52.BackgroundTransparency = 0
+Instance_52.BorderMode = Enum.BorderMode.Outline
+Instance_52.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+
+local Instance_53 = Instance.new("UICorner", Instance_52) --UICorner
+Instance_53.Name = "UICorner"
+Instance_53.CornerRadius = UDim.new(0.100000001, 0)
+
+local Instance_54 = Instance.new("Frame", Instance_52) --IconFrame
+Instance_54.Visible = true
+Instance_54.SelectionOrder = 0
+Instance_54.Name = "IconFrame"
+Instance_54.Active = false
+Instance_54.AutomaticSize = Enum.AutomaticSize.None
+Instance_54.AnchorPoint = Vector2.new(0, 0)
+Instance_54.Style = Enum.FrameStyle.Custom
+Instance_54.LayoutOrder = 0
+Instance_54.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_54.ZIndex = 1
+Instance_54.Size = UDim2.new(0.15000000596046448, 0, 1, 0)
+Instance_54.Draggable = false
+Instance_54.Position = UDim2.new(0.800000011920929, 0, 0, 0)
+Instance_54.Selectable = false
+Instance_54.ClipsDescendants = false
+Instance_54.BorderColor3 = Color3.new(0, 0, 0)
+Instance_54.BorderSizePixel = 0
+Instance_54.Rotation = 0
+Instance_54.BackgroundTransparency = 1
+Instance_54.BorderMode = Enum.BorderMode.Outline
+Instance_54.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_55 = Instance.new("ImageLabel", Instance_54) --Icon
+Instance_55.Visible = true
+Instance_55.Active = false
+Instance_55.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_55.ZIndex = 1
+Instance_55.BorderSizePixel = 0
+Instance_55.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance_55.Draggable = false
+Instance_55.ScaleType = Enum.ScaleType.Stretch
+Instance_55.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_55.ImageTransparency = 0
+Instance_55.AnchorPoint = Vector2.new(0.5, 0.5)
+Instance_55.Image = "http://www.roblox.com/asset/?id=13321848320"
+Instance_55.TileSize = UDim2.new(1, 0, 1, 0)
+Instance_55.ImageRectSize = Vector2.new(0, 0)
+Instance_55.SelectionOrder = 0
+Instance_55.Selectable = false
+Instance_55.Size = UDim2.new(1, 0, 1, 0)
+Instance_55.Name = "Icon"
+Instance_55.ResampleMode = Enum.ResamplerMode.Default
+Instance_55.ClipsDescendants = false
+Instance_55.BorderColor3 = Color3.new(0, 0, 0)
+Instance_55.ImageColor3 = Color3.new(1, 0.333333, 0)
+Instance_55.LayoutOrder = 0
+Instance_55.BorderMode = Enum.BorderMode.Outline
+Instance_55.Rotation = -15
+Instance_55.ImageRectOffset = Vector2.new(0, 0)
+Instance_55.BackgroundTransparency = 1
+Instance_55.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instance_55.SliceScale = 1
+Instance_55.AutomaticSize = Enum.AutomaticSize.None
+
+local Instance_56 = Instance.new("UIAspectRatioConstraint", Instance_55) --UIAspectRatioConstraint
+Instance_56.DominantAxis = Enum.DominantAxis.Width
+Instance_56.AspectRatio = 1
+Instance_56.Name = "UIAspectRatioConstraint"
+Instance_56.AspectType = Enum.AspectType.FitWithinMaxSize
+
+local Instance_57 = Instance.new("UICorner", Instance_55) --UICorner
+Instance_57.Name = "UICorner"
+Instance_57.CornerRadius = UDim.new(0.200000003, 0)
+
+local Instance_58 = Instance.new("TextLabel", Instance_52) --Caption
+Instance_58.LayoutOrder = 0
+Instance_58.TextWrapped = true
+Instance_58.LineHeight = 1
+Instance_58.Active = false
+Instance_58.TextStrokeTransparency = 1
+Instance_58.TextTruncate = Enum.TextTruncate.None
+Instance_58.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_58.ZIndex = 1
+Instance_58.BorderSizePixel = 0
+Instance_58.Draggable = false
+Instance_58.RichText = false
+Instance_58.TextWrap = true
+Instance_58.TextTransparency = 0
+Instance_58.TextYAlignment = Enum.TextYAlignment.Center
+Instance_58.TextScaled = true
+Instance_58.TextXAlignment = Enum.TextXAlignment.Left
+Instance_58.FontFace = Font.new("rbxasset://fonts/families/Zekton.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_58.Name = "Caption"
+Instance_58.BorderMode = Enum.BorderMode.Outline
+Instance_58.Selectable = false
+Instance_58.TextDirection = Enum.TextDirection.Auto
+Instance_58.Visible = true
+Instance_58.FontSize = Enum.FontSize.Size14
+Instance_58.AnchorPoint = Vector2.new(0, 0.5)
+Instance_58.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_58.TextSize = 14
+Instance_58.AutomaticSize = Enum.AutomaticSize.None
+Instance_58.Size = UDim2.new(0.75, 0, 0.6000000238418579, 0)
+Instance_58.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_58.ClipsDescendants = false
+Instance_58.BorderColor3 = Color3.new(0, 0, 0)
+Instance_58.Text = "Label"
+Instance_58.SelectionOrder = 0
+Instance_58.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_58.Rotation = 0
+Instance_58.BackgroundTransparency = 1
+Instance_58.Position = UDim2.new(0.02500000037252903, 0, 0.5, 0)
+Instance_58.MaxVisibleGraphemes = -1
+
+local Instance_59 = Instance.new("Frame", Instance_20) --TextBox
+Instance_59.Visible = false
+Instance_59.SelectionOrder = 0
+Instance_59.Name = "TextBox"
+Instance_59.Active = false
+Instance_59.AutomaticSize = Enum.AutomaticSize.None
+Instance_59.AnchorPoint = Vector2.new(0, 0)
+Instance_59.Style = Enum.FrameStyle.Custom
+Instance_59.LayoutOrder = 0
+Instance_59.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_59.ZIndex = 1
+Instance_59.Size = UDim2.new(1, 0, 0.20000000298023224, 0)
+Instance_59.Draggable = false
+Instance_59.Position = UDim2.new(0, 0, 0, 0)
+Instance_59.Selectable = false
+Instance_59.ClipsDescendants = false
+Instance_59.BorderColor3 = Color3.new(0, 0, 0)
+Instance_59.BorderSizePixel = 0
+Instance_59.Rotation = 0
+Instance_59.BackgroundTransparency = 0
+Instance_59.BorderMode = Enum.BorderMode.Outline
+Instance_59.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+
+local Instance_60 = Instance.new("UICorner", Instance_59) --UICorner
+Instance_60.Name = "UICorner"
+Instance_60.CornerRadius = UDim.new(0.100000001, 0)
+
+local Instance_61 = Instance.new("Frame", Instance_59) --IconFrame
+Instance_61.Visible = true
+Instance_61.SelectionOrder = 0
+Instance_61.Name = "IconFrame"
+Instance_61.Active = false
+Instance_61.AutomaticSize = Enum.AutomaticSize.None
+Instance_61.AnchorPoint = Vector2.new(0, 0)
+Instance_61.Style = Enum.FrameStyle.Custom
+Instance_61.LayoutOrder = 0
+Instance_61.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_61.ZIndex = 1
+Instance_61.Size = UDim2.new(0.15000000596046448, 0, 1, 0)
+Instance_61.Draggable = false
+Instance_61.Position = UDim2.new(0.800000011920929, 0, 0, 0)
+Instance_61.Selectable = false
+Instance_61.ClipsDescendants = false
+Instance_61.BorderColor3 = Color3.new(0, 0, 0)
+Instance_61.BorderSizePixel = 0
+Instance_61.Rotation = 0
+Instance_61.BackgroundTransparency = 1
+Instance_61.BorderMode = Enum.BorderMode.Outline
+Instance_61.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_62 = Instance.new("ImageLabel", Instance_61) --Icon
+Instance_62.Visible = true
+Instance_62.Active = false
+Instance_62.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_62.ZIndex = 1
+Instance_62.BorderSizePixel = 0
+Instance_62.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance_62.Draggable = false
+Instance_62.ScaleType = Enum.ScaleType.Stretch
+Instance_62.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_62.ImageTransparency = 0
+Instance_62.AnchorPoint = Vector2.new(0.5, 0.5)
+Instance_62.Image = "http://www.roblox.com/asset/?id=15911231575"
+Instance_62.TileSize = UDim2.new(1, 0, 1, 0)
+Instance_62.ImageRectSize = Vector2.new(0, 0)
+Instance_62.SelectionOrder = 0
+Instance_62.Selectable = false
+Instance_62.Size = UDim2.new(0.699999988079071, 0, 0.699999988079071, 0)
+Instance_62.Name = "Icon"
+Instance_62.ResampleMode = Enum.ResamplerMode.Default
+Instance_62.ClipsDescendants = false
+Instance_62.BorderColor3 = Color3.new(0, 0, 0)
+Instance_62.ImageColor3 = Color3.new(1, 0.333333, 0)
+Instance_62.LayoutOrder = 0
+Instance_62.BorderMode = Enum.BorderMode.Outline
+Instance_62.Rotation = -15
+Instance_62.ImageRectOffset = Vector2.new(0, 0)
+Instance_62.BackgroundTransparency = 1
+Instance_62.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instance_62.SliceScale = 1
+Instance_62.AutomaticSize = Enum.AutomaticSize.None
+
+local Instance_63 = Instance.new("UIAspectRatioConstraint", Instance_62) --UIAspectRatioConstraint
+Instance_63.DominantAxis = Enum.DominantAxis.Width
+Instance_63.AspectRatio = 1
+Instance_63.Name = "UIAspectRatioConstraint"
+Instance_63.AspectType = Enum.AspectType.FitWithinMaxSize
+
+local Instance_64 = Instance.new("UICorner", Instance_62) --UICorner
+Instance_64.Name = "UICorner"
+Instance_64.CornerRadius = UDim.new(0.200000003, 0)
+
+local Instance_65 = Instance.new("TextBox", Instance_59) --TextBox
+Instance_65.Visible = true
+Instance_65.FontSize = Enum.FontSize.Size14
+Instance_65.LineHeight = 1
+Instance_65.Active = true
+Instance_65.ClearTextOnFocus = false
+Instance_65.TextStrokeTransparency = 1
+Instance_65.SelectionStart = -1
+Instance_65.TextTransparency = 0
+Instance_65.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_65.TextTruncate = Enum.TextTruncate.None
+Instance_65.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_65.ZIndex = 1
+Instance_65.BorderSizePixel = 0
+Instance_65.TextEditable = true
+Instance_65.Draggable = false
+Instance_65.RichText = false
+Instance_65.TextXAlignment = Enum.TextXAlignment.Left
+Instance_65.Size = UDim2.new(0.75, 0, 0.6000000238418579, 0)
+Instance_65.AutomaticSize = Enum.AutomaticSize.None
+Instance_65.SelectionOrder = 0
+Instance_65.PlaceholderColor3 = Color3.new(0.803922, 0.137255, 0)
+Instance_65.TextYAlignment = Enum.TextYAlignment.Center
+Instance_65.TextScaled = true
+Instance_65.TextWrap = true
+Instance_65.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_65.Position = UDim2.new(0.02500000037252903, 0, 0.5, 0)
+Instance_65.BorderMode = Enum.BorderMode.Outline
+Instance_65.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_65.LayoutOrder = 0
+Instance_65.MultiLine = false
+Instance_65.AnchorPoint = Vector2.new(0, 0.5)
+Instance_65.TextSize = 14
+Instance_65.TextDirection = Enum.TextDirection.Auto
+Instance_65.CursorPosition = 1
+Instance_65.PlaceholderText = "Textbox"
+Instance_65.ShowNativeInput = true
+Instance_65.Selectable = true
+Instance_65.BackgroundTransparency = 1
+Instance_65.ClipsDescendants = false
+Instance_65.BorderColor3 = Color3.new(0, 0, 0)
+Instance_65.Text = ""
+Instance_65.FontFace = Font.new("rbxasset://fonts/families/Zekton.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_65.Rotation = 0
+Instance_65.Name = "TextBox"
+Instance_65.MaxVisibleGraphemes = -1
+Instance_65.TextWrapped = true
+
+local Instance_66 = Instance.new("UIGradient", Instance_4) --UIGradient
+Instance_66.Offset = Vector2.new(0, 0)
+Instance_66.Color = ColorSequence.new({
+	[1] = ColorSequenceKeypoint.new(0, Color3.new(0.784314, 0.784314, 0.784314)),
+	[2] = ColorSequenceKeypoint.new(1, Color3.new(0.784314, 0.784314, 0.784314))
+})
+Instance_66.Rotation = 0
+Instance_66.Transparency = NumberSequence.new({
+	[1] = NumberSequenceKeypoint.new(0, 0, 0),
+	[2] = NumberSequenceKeypoint.new(1, 0, 0)
+})
+Instance_66.Name = "UIGradient"
+Instance_66.Enabled = true
+
+local Instance_67 = Instance.new("Frame", Instance_4) --StarterFade
+Instance_67.Visible = true
+Instance_67.SelectionOrder = 0
+Instance_67.Name = "StarterFade"
+Instance_67.Active = false
+Instance_67.AutomaticSize = Enum.AutomaticSize.None
+Instance_67.AnchorPoint = Vector2.new(0, 0)
+Instance_67.Style = Enum.FrameStyle.Custom
+Instance_67.LayoutOrder = 0
+Instance_67.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_67.ZIndex = 3
+Instance_67.Size = UDim2.new(1, 0, 1, 0)
+Instance_67.Draggable = false
+Instance_67.Position = UDim2.new(0, 0, 0, 0)
+Instance_67.Selectable = false
+Instance_67.ClipsDescendants = false
+Instance_67.BorderColor3 = Color3.new(0, 0, 0)
+Instance_67.BorderSizePixel = 0
+Instance_67.Rotation = 0
+Instance_67.BackgroundTransparency = 1
+Instance_67.BorderMode = Enum.BorderMode.Outline
+Instance_67.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+
+local Instance_68 = Instance.new("UIGradient", Instance_67) --UIGradient
+Instance_68.Offset = Vector2.new(0, 0)
+Instance_68.Color = ColorSequence.new({
+	[1] = ColorSequenceKeypoint.new(0, Color3.new(0.784314, 0.784314, 0.784314)),
+	[2] = ColorSequenceKeypoint.new(1, Color3.new(0.784314, 0.784314, 0.784314))
+})
+Instance_68.Rotation = 0
+Instance_68.Transparency = NumberSequence.new({
+	[1] = NumberSequenceKeypoint.new(0, 0, 0),
+	[2] = NumberSequenceKeypoint.new(1, 0, 0)
+})
+Instance_68.Name = "UIGradient"
+Instance_68.Enabled = true
+
+local Instance_69 = Instance.new("TextButton", Instance_4) --ClickingOverlay
+Instance_69.LayoutOrder = 0
+Instance_69.TextWrapped = false
+Instance_69.LineHeight = 1
+Instance_69.Active = true
+Instance_69.TextStrokeTransparency = 1
+Instance_69.TextTruncate = Enum.TextTruncate.None
+Instance_69.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_69.ZIndex = 1
+Instance_69.TextWrap = false
+Instance_69.Draggable = false
+Instance_69.RichText = false
+Instance_69.Modal = false
+Instance_69.SelectionOrder = 0
+Instance_69.Selectable = true
+Instance_69.AutoButtonColor = true
+Instance_69.TextXAlignment = Enum.TextXAlignment.Center
+Instance_69.Name = "ClickingOverlay"
+Instance_69.TextYAlignment = Enum.TextYAlignment.Center
+Instance_69.TextScaled = false
+Instance_69.TextDirection = Enum.TextDirection.Auto
+Instance_69.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_69.Visible = false
+Instance_69.BorderMode = Enum.BorderMode.Outline
+Instance_69.TextTransparency = 0
+Instance_69.FontSize = Enum.FontSize.Size14
+Instance_69.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_69.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_69.AnchorPoint = Vector2.new(0, 0)
+Instance_69.TextSize = 14
+Instance_69.TextColor3 = Color3.new(0, 0, 0)
+Instance_69.Selected = false
+Instance_69.AutomaticSize = Enum.AutomaticSize.None
+Instance_69.Size = UDim2.new(1, 0, 1, 0)
+Instance_69.ClipsDescendants = false
+Instance_69.BorderColor3 = Color3.new(0, 0, 0)
+Instance_69.Text = ""
+Instance_69.BorderSizePixel = 0
+Instance_69.Rotation = 0
+Instance_69.BackgroundTransparency = 1
+Instance_69.MaxVisibleGraphemes = -1
+Instance_69.Position = UDim2.new(0, 0, 0, 0)
+Instance_69.Style = Enum.ButtonStyle.Custom
+
+local Instance_70 = Instance.new("ImageButton", Instance_4) --Close
+Instance_70.LayoutOrder = 0
+Instance_70.Active = true
+Instance_70.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_70.ZIndex = 0
+Instance_70.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance_70.Draggable = false
+Instance_70.ScaleType = Enum.ScaleType.Fit
+Instance_70.Modal = false
+Instance_70.AutoButtonColor = true
+Instance_70.ResampleMode = Enum.ResamplerMode.Default
+Instance_70.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_70.BorderSizePixel = 0
+Instance_70.ImageTransparency = 0
+Instance_70.Name = "Close"
+Instance_70.Selectable = true
+Instance_70.AnchorPoint = Vector2.new(0, 0)
+Instance_70.Image = "http://www.roblox.com/asset/?id=9545003266"
+Instance_70.TileSize = UDim2.new(1, 0, 1, 0)
+Instance_70.ImageRectSize = Vector2.new(0, 0)
+Instance_70.Selected = false
+Instance_70.Size = UDim2.new(0.05000000074505806, 0, 0.10000000149011612, 0)
+Instance_70.Visible = true
+Instance_70.HoverImage = ""
+Instance_70.ImageColor3 = Color3.new(1, 0.333333, 0)
+Instance_70.ClipsDescendants = false
+Instance_70.BorderColor3 = Color3.new(0, 0, 0)
+Instance_70.BorderMode = Enum.BorderMode.Outline
+Instance_70.PressedImage = ""
+Instance_70.Rotation = 0
+Instance_70.ImageRectOffset = Vector2.new(0, 0)
+Instance_70.BackgroundTransparency = 1
+Instance_70.Position = UDim2.new(0.9399999976158142, 0, 0.02500000037252903, 0)
+Instance_70.SliceScale = 1
+Instance_70.AutomaticSize = Enum.AutomaticSize.None
+Instance_70.SelectionOrder = 0
+Instance_70.Style = Enum.ButtonStyle.Custom
+
+local Instance_71 = Instance.new("ImageButton", Instance_4) --Minimize
+Instance_71.LayoutOrder = 0
+Instance_71.Active = true
+Instance_71.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_71.ZIndex = 0
+Instance_71.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance_71.Draggable = false
+Instance_71.ScaleType = Enum.ScaleType.Fit
+Instance_71.Modal = false
+Instance_71.AutoButtonColor = true
+Instance_71.ResampleMode = Enum.ResamplerMode.Default
+Instance_71.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_71.BorderSizePixel = 0
+Instance_71.ImageTransparency = 0
+Instance_71.Name = "Minimize"
+Instance_71.Selectable = true
+Instance_71.AnchorPoint = Vector2.new(0, 0)
+Instance_71.Image = "http://www.roblox.com/asset/?id=8874551390"
+Instance_71.TileSize = UDim2.new(1, 0, 1, 0)
+Instance_71.ImageRectSize = Vector2.new(0, 0)
+Instance_71.Selected = false
+Instance_71.Size = UDim2.new(0.05000000074505806, 0, 0.10000000149011612, 0)
+Instance_71.Visible = true
+Instance_71.HoverImage = ""
+Instance_71.ImageColor3 = Color3.new(1, 0.333333, 0)
+Instance_71.ClipsDescendants = false
+Instance_71.BorderColor3 = Color3.new(0, 0, 0)
+Instance_71.BorderMode = Enum.BorderMode.Outline
+Instance_71.PressedImage = ""
+Instance_71.Rotation = 0
+Instance_71.ImageRectOffset = Vector2.new(0, 0)
+Instance_71.BackgroundTransparency = 1
+Instance_71.Position = UDim2.new(0.8799999952316284, 0, 0.02500000037252903, 0)
+Instance_71.SliceScale = 1
+Instance_71.AutomaticSize = Enum.AutomaticSize.None
+Instance_71.SelectionOrder = 0
+Instance_71.Style = Enum.ButtonStyle.Custom
+
+local Instance_72 = Instance.new("Frame", Instance_4) --SettingsFrame
+Instance_72.Visible = true
+Instance_72.SelectionOrder = 0
+Instance_72.Name = "SettingsFrame"
+Instance_72.Active = false
+Instance_72.AutomaticSize = Enum.AutomaticSize.None
+Instance_72.AnchorPoint = Vector2.new(0, 0)
+Instance_72.Style = Enum.FrameStyle.Custom
+Instance_72.LayoutOrder = 0
+Instance_72.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_72.ZIndex = 4
+Instance_72.Size = UDim2.new(0.25, 0, 1, 0)
+Instance_72.Draggable = false
+Instance_72.Position = UDim2.new(-0.25, 0, 0, 0)
+Instance_72.Selectable = false
+Instance_72.ClipsDescendants = false
+Instance_72.BorderColor3 = Color3.new(0, 0, 0)
+Instance_72.BorderSizePixel = 0
+Instance_72.Rotation = 0
+Instance_72.BackgroundTransparency = 1
+Instance_72.BorderMode = Enum.BorderMode.Outline
+Instance_72.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_73 = Instance.new("TextButton", Instance_72) --SettingOverlay
+Instance_73.LayoutOrder = 0
+Instance_73.TextWrapped = false
+Instance_73.LineHeight = 1
+Instance_73.Active = true
+Instance_73.TextStrokeTransparency = 1
+Instance_73.TextTruncate = Enum.TextTruncate.None
+Instance_73.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_73.ZIndex = 100
+Instance_73.TextWrap = false
+Instance_73.Draggable = false
+Instance_73.RichText = false
+Instance_73.Modal = false
+Instance_73.SelectionOrder = 0
+Instance_73.Selectable = true
+Instance_73.AutoButtonColor = false
+Instance_73.TextXAlignment = Enum.TextXAlignment.Center
+Instance_73.Name = "SettingOverlay"
+Instance_73.TextYAlignment = Enum.TextYAlignment.Center
+Instance_73.TextScaled = false
+Instance_73.TextDirection = Enum.TextDirection.Auto
+Instance_73.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_73.Visible = true
+Instance_73.BorderMode = Enum.BorderMode.Outline
+Instance_73.TextTransparency = 0
+Instance_73.FontSize = Enum.FontSize.Size14
+Instance_73.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_73.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+Instance_73.AnchorPoint = Vector2.new(0, 0)
+Instance_73.TextSize = 14
+Instance_73.TextColor3 = Color3.new(0, 0, 0)
+Instance_73.Selected = false
+Instance_73.AutomaticSize = Enum.AutomaticSize.None
+Instance_73.Size = UDim2.new(1, 0, 1, 0)
+Instance_73.ClipsDescendants = false
+Instance_73.BorderColor3 = Color3.new(0, 0, 0)
+Instance_73.Text = ""
+Instance_73.BorderSizePixel = 0
+Instance_73.Rotation = 0
+Instance_73.BackgroundTransparency = 0
+Instance_73.MaxVisibleGraphemes = -1
+Instance_73.Position = UDim2.new(0, 0, 0, 0)
+Instance_73.Style = Enum.ButtonStyle.Custom
+
+local Instance_74 = Instance.new("TextLabel", Instance_73) --Library
+Instance_74.LayoutOrder = 0
+Instance_74.TextWrapped = true
+Instance_74.LineHeight = 1
+Instance_74.Active = false
+Instance_74.TextStrokeTransparency = 1
+Instance_74.TextTruncate = Enum.TextTruncate.None
+Instance_74.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_74.ZIndex = 101
+Instance_74.BorderSizePixel = 0
+Instance_74.Draggable = false
+Instance_74.RichText = false
+Instance_74.TextWrap = true
+Instance_74.TextTransparency = 0
+Instance_74.TextYAlignment = Enum.TextYAlignment.Center
+Instance_74.TextScaled = true
+Instance_74.TextXAlignment = Enum.TextXAlignment.Center
+Instance_74.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_74.Name = "Library"
+Instance_74.BorderMode = Enum.BorderMode.Outline
+Instance_74.Selectable = false
+Instance_74.TextDirection = Enum.TextDirection.Auto
+Instance_74.Visible = true
+Instance_74.FontSize = Enum.FontSize.Size14
+Instance_74.AnchorPoint = Vector2.new(0.5, 0)
+Instance_74.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_74.TextSize = 14
+Instance_74.AutomaticSize = Enum.AutomaticSize.None
+Instance_74.Size = UDim2.new(0.800000011920929, 0, 0.10000000149011612, 0)
+Instance_74.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_74.ClipsDescendants = false
+Instance_74.BorderColor3 = Color3.new(0, 0, 0)
+Instance_74.Text = "Fire~Library"
+Instance_74.SelectionOrder = 0
+Instance_74.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_74.Rotation = 0
+Instance_74.BackgroundTransparency = 1
+Instance_74.Position = UDim2.new(0.5, 0, 0.014999999664723873, 0)
+Instance_74.MaxVisibleGraphemes = -1
+
+local Instance_75 = Instance.new("TextLabel", Instance_73) --LibraryVersion
+Instance_75.LayoutOrder = 0
+Instance_75.TextWrapped = true
+Instance_75.LineHeight = 1
+Instance_75.Active = false
+Instance_75.TextStrokeTransparency = 1
+Instance_75.TextTruncate = Enum.TextTruncate.None
+Instance_75.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_75.ZIndex = 101
+Instance_75.BorderSizePixel = 0
+Instance_75.Draggable = false
+Instance_75.RichText = false
+Instance_75.TextWrap = true
+Instance_75.TextTransparency = 0
+Instance_75.TextYAlignment = Enum.TextYAlignment.Center
+Instance_75.TextScaled = true
+Instance_75.TextXAlignment = Enum.TextXAlignment.Left
+Instance_75.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_75.Name = "LibraryVersion"
+Instance_75.BorderMode = Enum.BorderMode.Outline
+Instance_75.Selectable = false
+Instance_75.TextDirection = Enum.TextDirection.Auto
+Instance_75.Visible = true
+Instance_75.FontSize = Enum.FontSize.Size14
+Instance_75.AnchorPoint = Vector2.new(0.5, 0)
+Instance_75.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_75.TextSize = 14
+Instance_75.AutomaticSize = Enum.AutomaticSize.None
+Instance_75.Size = UDim2.new(0.2750000059604645, 0, 0.05000000074505806, 0)
+Instance_75.TextColor3 = Color3.new(0.392157, 0.392157, 0.392157)
+Instance_75.ClipsDescendants = false
+Instance_75.BorderColor3 = Color3.new(0, 0, 0)
+Instance_75.Text = "4.0"
+Instance_75.SelectionOrder = 0
+Instance_75.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_75.Rotation = 0
+Instance_75.BackgroundTransparency = 1
+Instance_75.Position = UDim2.new(0.25, 0, 0.10000000149011612, 0)
+Instance_75.MaxVisibleGraphemes = -1
+
+local Instance_76 = Instance.new("ScrollingFrame", Instance_73) --Settings
+Instance_76.LayoutOrder = 0
+Instance_76.Active = true
+Instance_76.ScrollingDirection = Enum.ScrollingDirection.Y
+Instance_76.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_76.ZIndex = 101
+Instance_76.CanvasSize = UDim2.new(0, 0, 0, 0)
+Instance_76.Draggable = false
+Instance_76.MidImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+Instance_76.CanvasPosition = Vector2.new(0, 0)
+Instance_76.ElasticBehavior = Enum.ElasticBehavior.Never
+Instance_76.TopImage = "rbxasset://textures/ui/Scroll/scroll-top.png"
+Instance_76.HorizontalScrollBarInset = Enum.ScrollBarInset.None
+Instance_76.VerticalScrollBarInset = Enum.ScrollBarInset.None
+Instance_76.BorderMode = Enum.BorderMode.Outline
+Instance_76.VerticalScrollBarPosition = Enum.VerticalScrollBarPosition.Right
+Instance_76.AutomaticCanvasSize = Enum.AutomaticSize.Y
+Instance_76.Selectable = true
+Instance_76.AnchorPoint = Vector2.new(0, 0)
+Instance_76.Name = "Settings"
+Instance_76.Visible = true
+Instance_76.Size = UDim2.new(1, 0, 0.824999988079071, 0)
+Instance_76.ScrollBarImageColor3 = Color3.new(0, 0, 0)
+Instance_76.BorderSizePixel = 0
+Instance_76.ScrollBarImageTransparency = 1
+Instance_76.ClipsDescendants = true
+Instance_76.BorderColor3 = Color3.new(0, 0, 0)
+Instance_76.ScrollBarThickness = 12
+Instance_76.SelectionOrder = 0
+Instance_76.Rotation = 0
+Instance_76.BackgroundTransparency = 1
+Instance_76.Position = UDim2.new(0, 0, 0.17499999701976776, 0)
+Instance_76.ScrollingEnabled = true
+Instance_76.BottomImage = "rbxasset://textures/ui/Scroll/scroll-bottom.png"
+Instance_76.AutomaticSize = Enum.AutomaticSize.None
+Instance_76.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_77 = Instance.new("TextButton", Instance_76) --SettingButtonRow
+Instance_77.LayoutOrder = 0
+Instance_77.TextWrapped = false
+Instance_77.LineHeight = 1
+Instance_77.Active = true
+Instance_77.TextStrokeTransparency = 1
+Instance_77.TextTruncate = Enum.TextTruncate.None
+Instance_77.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_77.ZIndex = 102
+Instance_77.TextWrap = false
+Instance_77.Draggable = false
+Instance_77.RichText = false
+Instance_77.Modal = false
+Instance_77.SelectionOrder = 0
+Instance_77.Selectable = true
+Instance_77.AutoButtonColor = true
+Instance_77.TextXAlignment = Enum.TextXAlignment.Center
+Instance_77.Name = "SettingButtonRow"
+Instance_77.TextYAlignment = Enum.TextYAlignment.Center
+Instance_77.TextScaled = false
+Instance_77.TextDirection = Enum.TextDirection.Auto
+Instance_77.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_77.Visible = false
+Instance_77.BorderMode = Enum.BorderMode.Outline
+Instance_77.TextTransparency = 0
+Instance_77.FontSize = Enum.FontSize.Size14
+Instance_77.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_77.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_77.AnchorPoint = Vector2.new(0, 0)
+Instance_77.TextSize = 14
+Instance_77.TextColor3 = Color3.new(0, 0, 0)
+Instance_77.Selected = false
+Instance_77.AutomaticSize = Enum.AutomaticSize.None
+Instance_77.Size = UDim2.new(1, 0, 0.20000000298023224, 0)
+Instance_77.ClipsDescendants = false
+Instance_77.BorderColor3 = Color3.new(0, 0, 0)
+Instance_77.Text = ""
+Instance_77.BorderSizePixel = 0
+Instance_77.Rotation = 0
+Instance_77.BackgroundTransparency = 1
+Instance_77.MaxVisibleGraphemes = -1
+Instance_77.Position = UDim2.new(0, 0, 0.20000000298023224, 0)
+Instance_77.Style = Enum.ButtonStyle.Custom
+
+local Instance_78 = Instance.new("TextLabel", Instance_77) --Setting
+Instance_78.LayoutOrder = 0
+Instance_78.TextWrapped = true
+Instance_78.LineHeight = 1
+Instance_78.Active = false
+Instance_78.TextStrokeTransparency = 1
+Instance_78.TextTruncate = Enum.TextTruncate.None
+Instance_78.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_78.ZIndex = 103
+Instance_78.BorderSizePixel = 0
+Instance_78.Draggable = false
+Instance_78.RichText = false
+Instance_78.TextWrap = true
+Instance_78.TextTransparency = 0
+Instance_78.TextYAlignment = Enum.TextYAlignment.Center
+Instance_78.TextScaled = true
+Instance_78.TextXAlignment = Enum.TextXAlignment.Center
+Instance_78.FontFace = Font.new("rbxasset://fonts/families/Zekton.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_78.Name = "Setting"
+Instance_78.BorderMode = Enum.BorderMode.Outline
+Instance_78.Selectable = false
+Instance_78.TextDirection = Enum.TextDirection.Auto
+Instance_78.Visible = true
+Instance_78.FontSize = Enum.FontSize.Size14
+Instance_78.AnchorPoint = Vector2.new(0, 0.5)
+Instance_78.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_78.TextSize = 14
+Instance_78.AutomaticSize = Enum.AutomaticSize.None
+Instance_78.Size = UDim2.new(0.6499999761581421, 0, 0.5, 0)
+Instance_78.TextColor3 = Color3.new(0.392157, 0.392157, 0.392157)
+Instance_78.ClipsDescendants = false
+Instance_78.BorderColor3 = Color3.new(0, 0, 0)
+Instance_78.Text = "Setting"
+Instance_78.SelectionOrder = 0
+Instance_78.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_78.Rotation = 0
+Instance_78.BackgroundTransparency = 1
+Instance_78.Position = UDim2.new(0.05000000074505806, 0, 0.5, 0)
+Instance_78.MaxVisibleGraphemes = -1
+
+local Instance_79 = Instance.new("ImageLabel", Instance_77) --ImageLabel
+Instance_79.Visible = true
+Instance_79.Active = false
+Instance_79.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_79.ZIndex = 103
+Instance_79.BorderSizePixel = 0
+Instance_79.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance_79.Draggable = false
+Instance_79.ScaleType = Enum.ScaleType.Fit
+Instance_79.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_79.ImageTransparency = 0
+Instance_79.AnchorPoint = Vector2.new(0, 0.5)
+Instance_79.Image = "http://www.roblox.com/asset/?id=2418686949"
+Instance_79.TileSize = UDim2.new(1, 0, 1, 0)
+Instance_79.ImageRectSize = Vector2.new(0, 0)
+Instance_79.SelectionOrder = 0
+Instance_79.Selectable = false
+Instance_79.Size = UDim2.new(0.25, 0, 0.6000000238418579, 0)
+Instance_79.Name = "ImageLabel"
+Instance_79.ResampleMode = Enum.ResamplerMode.Default
+Instance_79.ClipsDescendants = false
+Instance_79.BorderColor3 = Color3.new(0, 0, 0)
+Instance_79.ImageColor3 = Color3.new(0.392157, 0.392157, 0.392157)
+Instance_79.LayoutOrder = 0
+Instance_79.BorderMode = Enum.BorderMode.Outline
+Instance_79.Rotation = 0
+Instance_79.ImageRectOffset = Vector2.new(0, 0)
+Instance_79.BackgroundTransparency = 1
+Instance_79.Position = UDim2.new(0.699999988079071, 0, 0.550000011920929, 0)
+Instance_79.SliceScale = 1
+Instance_79.AutomaticSize = Enum.AutomaticSize.None
+
+local Instance_80 = Instance.new("UIListLayout", Instance_76) --UIListLayout
+Instance_80.Name = "UIListLayout"
+Instance_80.Padding = UDim.new(0, 0)
+
+local Instance_81 = Instance.new("TextLabel", Instance_73) --ExecutorInfo
+Instance_81.LayoutOrder = 0
+Instance_81.TextWrapped = true
+Instance_81.LineHeight = 1
+Instance_81.Active = false
+Instance_81.TextStrokeTransparency = 1
+Instance_81.TextTruncate = Enum.TextTruncate.None
+Instance_81.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_81.ZIndex = 101
+Instance_81.BorderSizePixel = 0
+Instance_81.Draggable = false
+Instance_81.RichText = false
+Instance_81.TextWrap = true
+Instance_81.TextTransparency = 0
+Instance_81.TextYAlignment = Enum.TextYAlignment.Center
+Instance_81.TextScaled = true
+Instance_81.TextXAlignment = Enum.TextXAlignment.Right
+Instance_81.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_81.Name = "ExecutorInfo"
+Instance_81.BorderMode = Enum.BorderMode.Outline
+Instance_81.Selectable = false
+Instance_81.TextDirection = Enum.TextDirection.Auto
+Instance_81.Visible = true
+Instance_81.FontSize = Enum.FontSize.Size14
+Instance_81.AnchorPoint = Vector2.new(0.5, 0)
+Instance_81.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_81.TextSize = 14
+Instance_81.AutomaticSize = Enum.AutomaticSize.None
+Instance_81.Size = UDim2.new(0.574999988079071, 0, 0.05000000074505806, 0)
+Instance_81.TextColor3 = Color3.new(0.392157, 0.392157, 0.392157)
+Instance_81.ClipsDescendants = false
+Instance_81.BorderColor3 = Color3.new(0, 0, 0)
+Instance_81.Text = "Executor 0.0.0"
+Instance_81.SelectionOrder = 0
+Instance_81.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_81.Rotation = 0
+Instance_81.BackgroundTransparency = 1
+Instance_81.Position = UDim2.new(0.6000000238418579, 0, 0.10000000149011612, 0)
+Instance_81.MaxVisibleGraphemes = -1
+
+local Instance_82 = Instance.new("TextButton", Instance_72) --SettingPage
+Instance_82.LayoutOrder = 0
+Instance_82.TextWrapped = false
+Instance_82.LineHeight = 1
+Instance_82.Active = true
+Instance_82.TextStrokeTransparency = 1
+Instance_82.TextTruncate = Enum.TextTruncate.None
+Instance_82.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_82.ZIndex = 10
+Instance_82.TextWrap = false
+Instance_82.Draggable = false
+Instance_82.RichText = false
+Instance_82.Modal = false
+Instance_82.SelectionOrder = 0
+Instance_82.Selectable = true
+Instance_82.AutoButtonColor = false
+Instance_82.TextXAlignment = Enum.TextXAlignment.Center
+Instance_82.Name = "SettingPage"
+Instance_82.TextYAlignment = Enum.TextYAlignment.Center
+Instance_82.TextScaled = false
+Instance_82.TextDirection = Enum.TextDirection.Auto
+Instance_82.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_82.Visible = true
+Instance_82.BorderMode = Enum.BorderMode.Outline
+Instance_82.TextTransparency = 0
+Instance_82.FontSize = Enum.FontSize.Size14
+Instance_82.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_82.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+Instance_82.AnchorPoint = Vector2.new(0, 0)
+Instance_82.TextSize = 14
+Instance_82.TextColor3 = Color3.new(0, 0, 0)
+Instance_82.Selected = false
+Instance_82.AutomaticSize = Enum.AutomaticSize.None
+Instance_82.Size = UDim2.new(1, 0, 1, 0)
+Instance_82.ClipsDescendants = false
+Instance_82.BorderColor3 = Color3.new(0, 0, 0)
+Instance_82.Text = ""
+Instance_82.BorderSizePixel = 0
+Instance_82.Rotation = 0
+Instance_82.BackgroundTransparency = 0
+Instance_82.MaxVisibleGraphemes = -1
+Instance_82.Position = UDim2.new(0, 0, 0, 0)
+Instance_82.Style = Enum.ButtonStyle.Custom
+
+local Instance_83 = Instance.new("ScrollingFrame", Instance_82) --Settings
+Instance_83.LayoutOrder = 0
+Instance_83.Active = true
+Instance_83.ScrollingDirection = Enum.ScrollingDirection.Y
+Instance_83.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_83.ZIndex = 11
+Instance_83.CanvasSize = UDim2.new(0, 0, 0, 0)
+Instance_83.Draggable = false
+Instance_83.MidImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+Instance_83.CanvasPosition = Vector2.new(0, 0)
+Instance_83.ElasticBehavior = Enum.ElasticBehavior.Never
+Instance_83.TopImage = "rbxasset://textures/ui/Scroll/scroll-top.png"
+Instance_83.HorizontalScrollBarInset = Enum.ScrollBarInset.None
+Instance_83.VerticalScrollBarInset = Enum.ScrollBarInset.None
+Instance_83.BorderMode = Enum.BorderMode.Outline
+Instance_83.VerticalScrollBarPosition = Enum.VerticalScrollBarPosition.Right
+Instance_83.AutomaticCanvasSize = Enum.AutomaticSize.Y
+Instance_83.Selectable = true
+Instance_83.AnchorPoint = Vector2.new(0.5, 0.5)
+Instance_83.Name = "Settings"
+Instance_83.Visible = true
+Instance_83.Size = UDim2.new(0.8999999761581421, 0, 0.8999999761581421, 0)
+Instance_83.ScrollBarImageColor3 = Color3.new(0, 0, 0)
+Instance_83.BorderSizePixel = 0
+Instance_83.ScrollBarImageTransparency = 1
+Instance_83.ClipsDescendants = true
+Instance_83.BorderColor3 = Color3.new(0, 0, 0)
+Instance_83.ScrollBarThickness = 12
+Instance_83.SelectionOrder = 0
+Instance_83.Rotation = 0
+Instance_83.BackgroundTransparency = 1
+Instance_83.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instance_83.ScrollingEnabled = true
+Instance_83.BottomImage = "rbxasset://textures/ui/Scroll/scroll-bottom.png"
+Instance_83.AutomaticSize = Enum.AutomaticSize.None
+Instance_83.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_84 = Instance.new("UIListLayout", Instance_83) --UIListLayout
+Instance_84.Name = "UIListLayout"
+Instance_84.Padding = UDim.new(0, 5)
+
+local Instance_85 = Instance.new("Frame", Instance_83) --TextBox
+Instance_85.Visible = false
+Instance_85.SelectionOrder = 0
+Instance_85.Name = "TextBox"
+Instance_85.Active = false
+Instance_85.AutomaticSize = Enum.AutomaticSize.None
+Instance_85.AnchorPoint = Vector2.new(0, 0)
+Instance_85.Style = Enum.FrameStyle.Custom
+Instance_85.LayoutOrder = 0
+Instance_85.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_85.ZIndex = 12
+Instance_85.Size = UDim2.new(1, 0, 0.20000000298023224, 0)
+Instance_85.Draggable = false
+Instance_85.Position = UDim2.new(0, 0, 0, 0)
+Instance_85.Selectable = false
+Instance_85.ClipsDescendants = false
+Instance_85.BorderColor3 = Color3.new(0, 0, 0)
+Instance_85.BorderSizePixel = 0
+Instance_85.Rotation = 0
+Instance_85.BackgroundTransparency = 1
+Instance_85.BorderMode = Enum.BorderMode.Outline
+Instance_85.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_86 = Instance.new("TextLabel", Instance_85) --Caption
+Instance_86.LayoutOrder = 0
+Instance_86.TextWrapped = true
+Instance_86.LineHeight = 1
+Instance_86.Active = false
+Instance_86.TextStrokeTransparency = 1
+Instance_86.TextTruncate = Enum.TextTruncate.None
+Instance_86.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_86.ZIndex = 13
+Instance_86.BorderSizePixel = 0
+Instance_86.Draggable = false
+Instance_86.RichText = false
+Instance_86.TextWrap = true
+Instance_86.TextTransparency = 0
+Instance_86.TextYAlignment = Enum.TextYAlignment.Center
+Instance_86.TextScaled = true
+Instance_86.TextXAlignment = Enum.TextXAlignment.Left
+Instance_86.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_86.Name = "Caption"
+Instance_86.BorderMode = Enum.BorderMode.Outline
+Instance_86.Selectable = false
+Instance_86.TextDirection = Enum.TextDirection.Auto
+Instance_86.Visible = true
+Instance_86.FontSize = Enum.FontSize.Size14
+Instance_86.AnchorPoint = Vector2.new(0, 0)
+Instance_86.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_86.TextSize = 14
+Instance_86.AutomaticSize = Enum.AutomaticSize.None
+Instance_86.Size = UDim2.new(1, 0, 0.4000000059604645, 0)
+Instance_86.TextColor3 = Color3.new(0.392157, 0.392157, 0.392157)
+Instance_86.ClipsDescendants = false
+Instance_86.BorderColor3 = Color3.new(0, 0, 0)
+Instance_86.Text = "TextBox"
+Instance_86.SelectionOrder = 0
+Instance_86.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_86.Rotation = 0
+Instance_86.BackgroundTransparency = 1
+Instance_86.Position = UDim2.new(0, 0, 0, 0)
+Instance_86.MaxVisibleGraphemes = -1
+
+local Instance_87 = Instance.new("Frame", Instance_85) --BackgroundFrame
+Instance_87.Visible = true
+Instance_87.SelectionOrder = 0
+Instance_87.Name = "BackgroundFrame"
+Instance_87.Active = false
+Instance_87.AutomaticSize = Enum.AutomaticSize.None
+Instance_87.AnchorPoint = Vector2.new(0, 0)
+Instance_87.Style = Enum.FrameStyle.Custom
+Instance_87.LayoutOrder = 0
+Instance_87.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_87.ZIndex = 13
+Instance_87.Size = UDim2.new(1, 0, 0.6000000238418579, 0)
+Instance_87.Draggable = false
+Instance_87.Position = UDim2.new(0, 0, 0.4000000059604645, 0)
+Instance_87.Selectable = false
+Instance_87.ClipsDescendants = false
+Instance_87.BorderColor3 = Color3.new(0, 0, 0)
+Instance_87.BorderSizePixel = 0
+Instance_87.Rotation = 0
+Instance_87.BackgroundTransparency = 0
+Instance_87.BorderMode = Enum.BorderMode.Outline
+Instance_87.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+
+local Instance_88 = Instance.new("UICorner", Instance_87) --UICorner
+Instance_88.Name = "UICorner"
+Instance_88.CornerRadius = UDim.new(0.300000012, 0)
+
+local Instance_89 = Instance.new("TextBox", Instance_87) --TextBox
+Instance_89.Visible = true
+Instance_89.FontSize = Enum.FontSize.Size14
+Instance_89.LineHeight = 1
+Instance_89.Active = true
+Instance_89.ClearTextOnFocus = false
+Instance_89.TextStrokeTransparency = 1
+Instance_89.SelectionStart = -1
+Instance_89.TextTransparency = 0
+Instance_89.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_89.TextTruncate = Enum.TextTruncate.None
+Instance_89.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_89.ZIndex = 14
+Instance_89.BorderSizePixel = 0
+Instance_89.TextEditable = true
+Instance_89.Draggable = false
+Instance_89.RichText = false
+Instance_89.TextXAlignment = Enum.TextXAlignment.Center
+Instance_89.Size = UDim2.new(1, 0, 1, 0)
+Instance_89.AutomaticSize = Enum.AutomaticSize.None
+Instance_89.SelectionOrder = 0
+Instance_89.PlaceholderColor3 = Color3.new(0.7, 0.7, 0.7)
+Instance_89.TextYAlignment = Enum.TextYAlignment.Center
+Instance_89.TextScaled = true
+Instance_89.TextWrap = true
+Instance_89.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_89.Position = UDim2.new(0, 0, 0, 0)
+Instance_89.BorderMode = Enum.BorderMode.Outline
+Instance_89.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_89.LayoutOrder = 0
+Instance_89.MultiLine = false
+Instance_89.AnchorPoint = Vector2.new(0, 0)
+Instance_89.TextSize = 14
+Instance_89.TextDirection = Enum.TextDirection.Auto
+Instance_89.CursorPosition = 1
+Instance_89.PlaceholderText = ""
+Instance_89.ShowNativeInput = true
+Instance_89.Selectable = true
+Instance_89.BackgroundTransparency = 1
+Instance_89.ClipsDescendants = false
+Instance_89.BorderColor3 = Color3.new(0, 0, 0)
+Instance_89.Text = ""
+Instance_89.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_89.Rotation = 0
+Instance_89.Name = "TextBox"
+Instance_89.MaxVisibleGraphemes = -1
+Instance_89.TextWrapped = true
+
+local Instance_90 = Instance.new("Frame", Instance_83) --Toggle
+Instance_90.Visible = false
+Instance_90.SelectionOrder = 0
+Instance_90.Name = "Toggle"
+Instance_90.Active = false
+Instance_90.AutomaticSize = Enum.AutomaticSize.None
+Instance_90.AnchorPoint = Vector2.new(0, 0)
+Instance_90.Style = Enum.FrameStyle.Custom
+Instance_90.LayoutOrder = 0
+Instance_90.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_90.ZIndex = 12
+Instance_90.Size = UDim2.new(1, 0, 0.20000000298023224, 0)
+Instance_90.Draggable = false
+Instance_90.Position = UDim2.new(0, 0, 0, 0)
+Instance_90.Selectable = false
+Instance_90.ClipsDescendants = false
+Instance_90.BorderColor3 = Color3.new(0, 0, 0)
+Instance_90.BorderSizePixel = 0
+Instance_90.Rotation = 0
+Instance_90.BackgroundTransparency = 1
+Instance_90.BorderMode = Enum.BorderMode.Outline
+Instance_90.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_91 = Instance.new("TextLabel", Instance_90) --Caption
+Instance_91.LayoutOrder = 0
+Instance_91.TextWrapped = true
+Instance_91.LineHeight = 1
+Instance_91.Active = false
+Instance_91.TextStrokeTransparency = 1
+Instance_91.TextTruncate = Enum.TextTruncate.None
+Instance_91.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_91.ZIndex = 13
+Instance_91.BorderSizePixel = 0
+Instance_91.Draggable = false
+Instance_91.RichText = false
+Instance_91.TextWrap = true
+Instance_91.TextTransparency = 0
+Instance_91.TextYAlignment = Enum.TextYAlignment.Center
+Instance_91.TextScaled = true
+Instance_91.TextXAlignment = Enum.TextXAlignment.Left
+Instance_91.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_91.Name = "Caption"
+Instance_91.BorderMode = Enum.BorderMode.Outline
+Instance_91.Selectable = false
+Instance_91.TextDirection = Enum.TextDirection.Auto
+Instance_91.Visible = true
+Instance_91.FontSize = Enum.FontSize.Size14
+Instance_91.AnchorPoint = Vector2.new(0, 0)
+Instance_91.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_91.TextSize = 14
+Instance_91.AutomaticSize = Enum.AutomaticSize.None
+Instance_91.Size = UDim2.new(1, 0, 0.4000000059604645, 0)
+Instance_91.TextColor3 = Color3.new(0.392157, 0.392157, 0.392157)
+Instance_91.ClipsDescendants = false
+Instance_91.BorderColor3 = Color3.new(0, 0, 0)
+Instance_91.Text = "Toggle"
+Instance_91.SelectionOrder = 0
+Instance_91.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_91.Rotation = 0
+Instance_91.BackgroundTransparency = 1
+Instance_91.Position = UDim2.new(0, 0, 0, 0)
+Instance_91.MaxVisibleGraphemes = -1
+
+local Instance_92 = Instance.new("TextButton", Instance_90) --Input
+Instance_92.LayoutOrder = 0
+Instance_92.TextWrapped = false
+Instance_92.LineHeight = 1
+Instance_92.Active = true
+Instance_92.TextStrokeTransparency = 1
+Instance_92.TextTruncate = Enum.TextTruncate.None
+Instance_92.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_92.ZIndex = 13
+Instance_92.TextWrap = false
+Instance_92.Draggable = false
+Instance_92.RichText = false
+Instance_92.Modal = false
+Instance_92.SelectionOrder = 0
+Instance_92.Selectable = true
+Instance_92.AutoButtonColor = true
+Instance_92.TextXAlignment = Enum.TextXAlignment.Center
+Instance_92.Name = "Input"
+Instance_92.TextYAlignment = Enum.TextYAlignment.Center
+Instance_92.TextScaled = false
+Instance_92.TextDirection = Enum.TextDirection.Auto
+Instance_92.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_92.Visible = true
+Instance_92.BorderMode = Enum.BorderMode.Outline
+Instance_92.TextTransparency = 0
+Instance_92.FontSize = Enum.FontSize.Size14
+Instance_92.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_92.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_92.AnchorPoint = Vector2.new(0, 0)
+Instance_92.TextSize = 14
+Instance_92.TextColor3 = Color3.new(0, 0, 0)
+Instance_92.Selected = false
+Instance_92.AutomaticSize = Enum.AutomaticSize.None
+Instance_92.Size = UDim2.new(1, 0, 1, 0)
+Instance_92.ClipsDescendants = false
+Instance_92.BorderColor3 = Color3.new(0, 0, 0)
+Instance_92.Text = ""
+Instance_92.BorderSizePixel = 0
+Instance_92.Rotation = 0
+Instance_92.BackgroundTransparency = 1
+Instance_92.MaxVisibleGraphemes = -1
+Instance_92.Position = UDim2.new(0, 0, 0, 0)
+Instance_92.Style = Enum.ButtonStyle.Custom
+
+local Instance_93 = Instance.new("Frame", Instance_90) --State
+Instance_93.Visible = true
+Instance_93.SelectionOrder = 0
+Instance_93.Name = "State"
+Instance_93.Active = false
+Instance_93.AutomaticSize = Enum.AutomaticSize.None
+Instance_93.AnchorPoint = Vector2.new(0, 0)
+Instance_93.Style = Enum.FrameStyle.Custom
+Instance_93.LayoutOrder = 0
+Instance_93.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_93.ZIndex = 13
+Instance_93.Size = UDim2.new(0.949999988079071, 0, 0.550000011920929, 0)
+Instance_93.Draggable = false
+Instance_93.Position = UDim2.new(0.02500000037252903, 0, 0.42500001192092896, 0)
+Instance_93.Selectable = false
+Instance_93.ClipsDescendants = false
+Instance_93.BorderColor3 = Color3.new(0, 0, 0)
+Instance_93.BorderSizePixel = 0
+Instance_93.Rotation = 0
+Instance_93.BackgroundTransparency = 0
+Instance_93.BorderMode = Enum.BorderMode.Outline
+Instance_93.BackgroundColor3 = Color3.new(1, 0, 0)
+
+local Instance_94 = Instance.new("UICorner", Instance_93) --UICorner
+Instance_94.Name = "UICorner"
+Instance_94.CornerRadius = UDim.new(0.300000012, 0)
+
+local Instance_95 = Instance.new("Frame", Instance_83) --Button
+Instance_95.Visible = false
+Instance_95.SelectionOrder = 0
+Instance_95.Name = "Button"
+Instance_95.Active = false
+Instance_95.AutomaticSize = Enum.AutomaticSize.None
+Instance_95.AnchorPoint = Vector2.new(0, 0)
+Instance_95.Style = Enum.FrameStyle.Custom
+Instance_95.LayoutOrder = 0
+Instance_95.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_95.ZIndex = 12
+Instance_95.Size = UDim2.new(1, 0, 0.0820000022649765, 0)
+Instance_95.Draggable = false
+Instance_95.Position = UDim2.new(0, 0, 0, 0)
+Instance_95.Selectable = false
+Instance_95.ClipsDescendants = false
+Instance_95.BorderColor3 = Color3.new(0, 0, 0)
+Instance_95.BorderSizePixel = 0
+Instance_95.Rotation = 0
+Instance_95.BackgroundTransparency = 1
+Instance_95.BorderMode = Enum.BorderMode.Outline
+Instance_95.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_96 = Instance.new("TextLabel", Instance_95) --Caption
+Instance_96.LayoutOrder = 0
+Instance_96.TextWrapped = true
+Instance_96.LineHeight = 1
+Instance_96.Active = false
+Instance_96.TextStrokeTransparency = 1
+Instance_96.TextTruncate = Enum.TextTruncate.None
+Instance_96.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_96.ZIndex = 13
+Instance_96.BorderSizePixel = 0
+Instance_96.Draggable = false
+Instance_96.RichText = false
+Instance_96.TextWrap = true
+Instance_96.TextTransparency = 0
+Instance_96.TextYAlignment = Enum.TextYAlignment.Center
+Instance_96.TextScaled = true
+Instance_96.TextXAlignment = Enum.TextXAlignment.Left
+Instance_96.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_96.Name = "Caption"
+Instance_96.BorderMode = Enum.BorderMode.Outline
+Instance_96.Selectable = false
+Instance_96.TextDirection = Enum.TextDirection.Auto
+Instance_96.Visible = true
+Instance_96.FontSize = Enum.FontSize.Size14
+Instance_96.AnchorPoint = Vector2.new(0, 0)
+Instance_96.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_96.TextSize = 14
+Instance_96.AutomaticSize = Enum.AutomaticSize.None
+Instance_96.Size = UDim2.new(1, 0, 1, 0)
+Instance_96.TextColor3 = Color3.new(0.392157, 0.392157, 0.392157)
+Instance_96.ClipsDescendants = false
+Instance_96.BorderColor3 = Color3.new(0, 0, 0)
+Instance_96.Text = "Toggle"
+Instance_96.SelectionOrder = 0
+Instance_96.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_96.Rotation = 0
+Instance_96.BackgroundTransparency = 1
+Instance_96.Position = UDim2.new(0, 0, 0, 0)
+Instance_96.MaxVisibleGraphemes = -1
+
+local Instance_97 = Instance.new("TextButton", Instance_95) --Input
+Instance_97.LayoutOrder = 0
+Instance_97.TextWrapped = false
+Instance_97.LineHeight = 1
+Instance_97.Active = true
+Instance_97.TextStrokeTransparency = 1
+Instance_97.TextTruncate = Enum.TextTruncate.None
+Instance_97.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_97.ZIndex = 13
+Instance_97.TextWrap = false
+Instance_97.Draggable = false
+Instance_97.RichText = false
+Instance_97.Modal = false
+Instance_97.SelectionOrder = 0
+Instance_97.Selectable = true
+Instance_97.AutoButtonColor = true
+Instance_97.TextXAlignment = Enum.TextXAlignment.Center
+Instance_97.Name = "Input"
+Instance_97.TextYAlignment = Enum.TextYAlignment.Center
+Instance_97.TextScaled = false
+Instance_97.TextDirection = Enum.TextDirection.Auto
+Instance_97.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_97.Visible = true
+Instance_97.BorderMode = Enum.BorderMode.Outline
+Instance_97.TextTransparency = 0
+Instance_97.FontSize = Enum.FontSize.Size14
+Instance_97.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_97.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_97.AnchorPoint = Vector2.new(0, 0)
+Instance_97.TextSize = 14
+Instance_97.TextColor3 = Color3.new(0, 0, 0)
+Instance_97.Selected = false
+Instance_97.AutomaticSize = Enum.AutomaticSize.None
+Instance_97.Size = UDim2.new(1, 0, 1, 0)
+Instance_97.ClipsDescendants = false
+Instance_97.BorderColor3 = Color3.new(0, 0, 0)
+Instance_97.Text = ""
+Instance_97.BorderSizePixel = 0
+Instance_97.Rotation = 0
+Instance_97.BackgroundTransparency = 1
+Instance_97.MaxVisibleGraphemes = -1
+Instance_97.Position = UDim2.new(0, 0, 0, 0)
+Instance_97.Style = Enum.ButtonStyle.Custom
+
+local Instance_98 = Instance.new("TextButton", Instance_4) --SettingsOverlay
+Instance_98.LayoutOrder = 0
+Instance_98.TextWrapped = false
+Instance_98.LineHeight = 1
+Instance_98.Active = true
+Instance_98.TextStrokeTransparency = 1
+Instance_98.TextTruncate = Enum.TextTruncate.None
+Instance_98.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_98.ZIndex = 2
+Instance_98.TextWrap = false
+Instance_98.Draggable = false
+Instance_98.RichText = false
+Instance_98.Modal = false
+Instance_98.SelectionOrder = 0
+Instance_98.Selectable = true
+Instance_98.AutoButtonColor = false
+Instance_98.TextXAlignment = Enum.TextXAlignment.Center
+Instance_98.Name = "SettingsOverlay"
+Instance_98.TextYAlignment = Enum.TextYAlignment.Center
+Instance_98.TextScaled = false
+Instance_98.TextDirection = Enum.TextDirection.Auto
+Instance_98.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_98.Visible = false
+Instance_98.BorderMode = Enum.BorderMode.Outline
+Instance_98.TextTransparency = 0
+Instance_98.FontSize = Enum.FontSize.Size14
+Instance_98.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_98.BackgroundColor3 = Color3.new(0, 0, 0)
+Instance_98.AnchorPoint = Vector2.new(0, 0)
+Instance_98.TextSize = 14
+Instance_98.TextColor3 = Color3.new(0, 0, 0)
+Instance_98.Selected = false
+Instance_98.AutomaticSize = Enum.AutomaticSize.None
+Instance_98.Size = UDim2.new(1, 0, 1, 0)
+Instance_98.ClipsDescendants = false
+Instance_98.BorderColor3 = Color3.new(0, 0, 0)
+Instance_98.Text = ""
+Instance_98.BorderSizePixel = 0
+Instance_98.Rotation = 0
+Instance_98.BackgroundTransparency = 1
+Instance_98.MaxVisibleGraphemes = -1
+Instance_98.Position = UDim2.new(0, 0, 0, 0)
+Instance_98.Style = Enum.ButtonStyle.Custom
+
+local Instance_99 = Instance.new("ImageButton", Instance_4) --Settings
+Instance_99.LayoutOrder = 0
+Instance_99.Active = true
+Instance_99.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_99.ZIndex = 0
+Instance_99.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance_99.Draggable = false
+Instance_99.ScaleType = Enum.ScaleType.Fit
+Instance_99.Modal = false
+Instance_99.AutoButtonColor = true
+Instance_99.ResampleMode = Enum.ResamplerMode.Default
+Instance_99.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_99.BorderSizePixel = 0
+Instance_99.ImageTransparency = 0
+Instance_99.Name = "Settings"
+Instance_99.Selectable = true
+Instance_99.AnchorPoint = Vector2.new(0, 0)
+Instance_99.Image = "http://www.roblox.com/asset/?id=6663675885"
+Instance_99.TileSize = UDim2.new(1, 0, 1, 0)
+Instance_99.ImageRectSize = Vector2.new(0, 0)
+Instance_99.Selected = false
+Instance_99.Size = UDim2.new(0.05000000074505806, 0, 0.10000000149011612, 0)
+Instance_99.Visible = true
+Instance_99.HoverImage = ""
+Instance_99.ImageColor3 = Color3.new(1, 0.333333, 0)
+Instance_99.ClipsDescendants = false
+Instance_99.BorderColor3 = Color3.new(0, 0, 0)
+Instance_99.BorderMode = Enum.BorderMode.Outline
+Instance_99.PressedImage = ""
+Instance_99.Rotation = 0
+Instance_99.ImageRectOffset = Vector2.new(0, 0)
+Instance_99.BackgroundTransparency = 1
+Instance_99.Position = UDim2.new(0.009999999776482582, 0, 0.02500000037252903, 0)
+Instance_99.SliceScale = 1
+Instance_99.AutomaticSize = Enum.AutomaticSize.None
+Instance_99.SelectionOrder = 0
+Instance_99.Style = Enum.ButtonStyle.Custom
+
+local Instance_100 = Instance.new("Folder", Instance_1) --Sounds
+Instance_100.Name = "Sounds"
+
+local Instance_101 = Instance.new("Sound", Instance_100) --Notification
+Instance_101.Pitch = 1
+Instance_101.EmitterSize = 10
+Instance_101.RollOffMode = Enum.RollOffMode.Inverse
+Instance_101.LoopRegion = NumberRange.new(0, 60000)
+Instance_101.TimePosition = 0
+Instance_101.PlaybackSpeed = 1
+Instance_101.RollOffMaxDistance = 10000
+Instance_101.Volume = 0.5
+Instance_101.PlaybackRegion = NumberRange.new(0, 60000)
+Instance_101.SoundId = "rbxassetid://6026984224"
+Instance_101.Playing = false
+Instance_101.Name = "Notification"
+Instance_101.RollOffMinDistance = 10
+Instance_101.Looped = false
+Instance_101.MinDistance = 10
+Instance_101.MaxDistance = 10000
+Instance_101.PlaybackRegionsEnabled = false
+Instance_101.PlayOnRemove = false
+
+local Instance_102 = Instance.new("Sound", Instance_100) --MouseHover
+Instance_102.Pitch = 1
+Instance_102.EmitterSize = 10
+Instance_102.RollOffMode = Enum.RollOffMode.Inverse
+Instance_102.LoopRegion = NumberRange.new(0, 60000)
+Instance_102.TimePosition = 0
+Instance_102.PlaybackSpeed = 1
+Instance_102.RollOffMaxDistance = 10000
+Instance_102.Volume = 0.5
+Instance_102.PlaybackRegion = NumberRange.new(0, 60000)
+Instance_102.SoundId = "rbxassetid://6052548458"
+Instance_102.Playing = false
+Instance_102.Name = "MouseHover"
+Instance_102.RollOffMinDistance = 10
+Instance_102.Looped = false
+Instance_102.MinDistance = 10
+Instance_102.MaxDistance = 10000
+Instance_102.PlaybackRegionsEnabled = false
+Instance_102.PlayOnRemove = false
+
+local Instance_103 = Instance.new("Sound", Instance_100) --Click
+Instance_103.Pitch = 1
+Instance_103.EmitterSize = 10
+Instance_103.RollOffMode = Enum.RollOffMode.Inverse
+Instance_103.LoopRegion = NumberRange.new(0, 60000)
+Instance_103.TimePosition = 0
+Instance_103.PlaybackSpeed = 1
+Instance_103.RollOffMaxDistance = 10000
+Instance_103.Volume = 0.5
+Instance_103.PlaybackRegion = NumberRange.new(0, 60000)
+Instance_103.SoundId = "rbxassetid://7147290635"
+Instance_103.Playing = false
+Instance_103.Name = "Click"
+Instance_103.RollOffMinDistance = 10
+Instance_103.Looped = false
+Instance_103.MinDistance = 10
+Instance_103.MaxDistance = 10000
+Instance_103.PlaybackRegionsEnabled = false
+Instance_103.PlayOnRemove = false
+
+local Instance_104 = Instance.new("Folder", Instance_1) --ModuleScript, Class: ModuleScript
+Instance_104.Name = "ModuleScript"
+
+local Instance_105 = Instance.new("Frame", Instance_1) --Notifications
+Instance_105.Visible = true
+Instance_105.SelectionOrder = 0
+Instance_105.Name = "Notifications"
+Instance_105.Active = false
+Instance_105.AutomaticSize = Enum.AutomaticSize.None
+Instance_105.AnchorPoint = Vector2.new(0, 0)
+Instance_105.Style = Enum.FrameStyle.Custom
+Instance_105.LayoutOrder = 0
+Instance_105.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_105.ZIndex = -1
+Instance_105.Size = UDim2.new(0.22499999403953552, 0, 1, 0)
+Instance_105.Draggable = false
+Instance_105.Position = UDim2.new(0, 0, 0, 0)
+Instance_105.Selectable = false
+Instance_105.ClipsDescendants = false
+Instance_105.BorderColor3 = Color3.new(0, 0, 0)
+Instance_105.BorderSizePixel = 0
+Instance_105.Rotation = 0
+Instance_105.BackgroundTransparency = 1
+Instance_105.BorderMode = Enum.BorderMode.Outline
+Instance_105.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_106 = Instance.new("Frame", Instance_105) --Notification
+Instance_106.Visible = false
+Instance_106.SelectionOrder = 0
+Instance_106.Name = "Notification"
+Instance_106.Active = false
+Instance_106.AutomaticSize = Enum.AutomaticSize.None
+Instance_106.AnchorPoint = Vector2.new(0, 0)
+Instance_106.Style = Enum.FrameStyle.Custom
+Instance_106.LayoutOrder = 0
+Instance_106.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_106.ZIndex = -1
+Instance_106.Size = UDim2.new(1, 0, 0, 100)
+Instance_106.Draggable = false
+Instance_106.Position = UDim2.new(0, 0, 0, 0)
+Instance_106.Selectable = false
+Instance_106.ClipsDescendants = false
+Instance_106.BorderColor3 = Color3.new(0, 0, 0)
+Instance_106.BorderSizePixel = 0
+Instance_106.Rotation = 0
+Instance_106.BackgroundTransparency = 0
+Instance_106.BorderMode = Enum.BorderMode.Outline
+Instance_106.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+
+local Instance_107 = Instance.new("Frame", Instance_106) --Contents
+Instance_107.Visible = true
+Instance_107.SelectionOrder = 0
+Instance_107.Name = "Contents"
+Instance_107.Active = false
+Instance_107.AutomaticSize = Enum.AutomaticSize.None
+Instance_107.AnchorPoint = Vector2.new(0, 0)
+Instance_107.Style = Enum.FrameStyle.Custom
+Instance_107.LayoutOrder = 0
+Instance_107.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_107.ZIndex = 1
+Instance_107.Size = UDim2.new(0.949999988079071, 0, 0.925000011920929, 0)
+Instance_107.Draggable = false
+Instance_107.Position = UDim2.new(0, 0, 0.02500000037252903, 0)
+Instance_107.Selectable = false
+Instance_107.ClipsDescendants = false
+Instance_107.BorderColor3 = Color3.new(0, 0, 0)
+Instance_107.BorderSizePixel = 0
+Instance_107.Rotation = 0
+Instance_107.BackgroundTransparency = 0
+Instance_107.BorderMode = Enum.BorderMode.Outline
+Instance_107.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+
+local Instance_108 = Instance.new("TextLabel", Instance_107) --Title
+Instance_108.LayoutOrder = 0
+Instance_108.TextWrapped = true
+Instance_108.LineHeight = 1
+Instance_108.Active = false
+Instance_108.TextStrokeTransparency = 1
+Instance_108.TextTruncate = Enum.TextTruncate.None
+Instance_108.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_108.ZIndex = 1
+Instance_108.BorderSizePixel = 0
+Instance_108.Draggable = false
+Instance_108.RichText = false
+Instance_108.TextWrap = true
+Instance_108.TextTransparency = 0
+Instance_108.TextYAlignment = Enum.TextYAlignment.Center
+Instance_108.TextScaled = true
+Instance_108.TextXAlignment = Enum.TextXAlignment.Center
+Instance_108.FontFace = Font.new("rbxasset://fonts/families/Zekton.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_108.Name = "Title"
+Instance_108.BorderMode = Enum.BorderMode.Outline
+Instance_108.Selectable = false
+Instance_108.TextDirection = Enum.TextDirection.Auto
+Instance_108.Visible = true
+Instance_108.FontSize = Enum.FontSize.Size14
+Instance_108.AnchorPoint = Vector2.new(0, 0)
+Instance_108.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_108.TextSize = 14
+Instance_108.AutomaticSize = Enum.AutomaticSize.None
+Instance_108.Size = UDim2.new(1, 0, 0.15000000596046448, 0)
+Instance_108.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_108.ClipsDescendants = false
+Instance_108.BorderColor3 = Color3.new(0, 0, 0)
+Instance_108.Text = "Title"
+Instance_108.SelectionOrder = 0
+Instance_108.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_108.Rotation = 0
+Instance_108.BackgroundTransparency = 1
+Instance_108.Position = UDim2.new(0, 0, 0, 0)
+Instance_108.MaxVisibleGraphemes = -1
+
+local Instance_109 = Instance.new("TextLabel", Instance_107) --Text
+Instance_109.LayoutOrder = 0
+Instance_109.TextWrapped = true
+Instance_109.LineHeight = 1
+Instance_109.Active = false
+Instance_109.TextStrokeTransparency = 1
+Instance_109.TextTruncate = Enum.TextTruncate.None
+Instance_109.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_109.ZIndex = 1
+Instance_109.BorderSizePixel = 0
+Instance_109.Draggable = false
+Instance_109.RichText = false
+Instance_109.TextWrap = true
+Instance_109.TextTransparency = 0
+Instance_109.TextYAlignment = Enum.TextYAlignment.Top
+Instance_109.TextScaled = false
+Instance_109.TextXAlignment = Enum.TextXAlignment.Left
+Instance_109.FontFace = Font.new("rbxasset://fonts/families/Zekton.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_109.Name = "Text"
+Instance_109.BorderMode = Enum.BorderMode.Outline
+Instance_109.Selectable = false
+Instance_109.TextDirection = Enum.TextDirection.Auto
+Instance_109.Visible = true
+Instance_109.FontSize = Enum.FontSize.Size14
+Instance_109.AnchorPoint = Vector2.new(0, 0)
+Instance_109.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_109.TextSize = 14
+Instance_109.AutomaticSize = Enum.AutomaticSize.None
+Instance_109.Size = UDim2.new(1, 0, 0.8500000238418579, 0)
+Instance_109.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_109.ClipsDescendants = false
+Instance_109.BorderColor3 = Color3.new(0, 0, 0)
+Instance_109.Text = "Text"
+Instance_109.SelectionOrder = 0
+Instance_109.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_109.Rotation = 0
+Instance_109.BackgroundTransparency = 1
+Instance_109.Position = UDim2.new(0, 0, 0.15000000596046448, 0)
+Instance_109.MaxVisibleGraphemes = -1
+
+local Instance_110 = Instance.new("UIListLayout", Instance_105) --UIListLayout
+Instance_110.Name = "UIListLayout"
+Instance_110.Padding = UDim.new(0, 7)
+Instance_110.VerticalAlignment = Enum.VerticalAlignment.Bottom
+
+local Instance_111 = Instance.new("Frame", Instance_105) --ChooseNotification
+Instance_111.Visible = false
+Instance_111.SelectionOrder = 0
+Instance_111.Name = "ChooseNotification"
+Instance_111.Active = false
+Instance_111.AutomaticSize = Enum.AutomaticSize.None
+Instance_111.AnchorPoint = Vector2.new(0, 0)
+Instance_111.Style = Enum.FrameStyle.Custom
+Instance_111.LayoutOrder = 0
+Instance_111.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_111.ZIndex = -1
+Instance_111.Size = UDim2.new(1, 0, 0, 100)
+Instance_111.Draggable = false
+Instance_111.Position = UDim2.new(0, 0, 0, 0)
+Instance_111.Selectable = false
+Instance_111.ClipsDescendants = false
+Instance_111.BorderColor3 = Color3.new(0, 0, 0)
+Instance_111.BorderSizePixel = 0
+Instance_111.Rotation = 0
+Instance_111.BackgroundTransparency = 0
+Instance_111.BorderMode = Enum.BorderMode.Outline
+Instance_111.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+
+local Instance_112 = Instance.new("Frame", Instance_111) --Contents
+Instance_112.Visible = true
+Instance_112.SelectionOrder = 0
+Instance_112.Name = "Contents"
+Instance_112.Active = false
+Instance_112.AutomaticSize = Enum.AutomaticSize.None
+Instance_112.AnchorPoint = Vector2.new(0, 0)
+Instance_112.Style = Enum.FrameStyle.Custom
+Instance_112.LayoutOrder = 0
+Instance_112.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_112.ZIndex = 1
+Instance_112.Size = UDim2.new(0.949999988079071, 0, 0.925000011920929, 0)
+Instance_112.Draggable = false
+Instance_112.Position = UDim2.new(0, 0, 0.02500000037252903, 0)
+Instance_112.Selectable = false
+Instance_112.ClipsDescendants = false
+Instance_112.BorderColor3 = Color3.new(0, 0, 0)
+Instance_112.BorderSizePixel = 0
+Instance_112.Rotation = 0
+Instance_112.BackgroundTransparency = 0
+Instance_112.BorderMode = Enum.BorderMode.Outline
+Instance_112.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+
+local Instance_113 = Instance.new("TextLabel", Instance_112) --Title
+Instance_113.LayoutOrder = 0
+Instance_113.TextWrapped = true
+Instance_113.LineHeight = 1
+Instance_113.Active = false
+Instance_113.TextStrokeTransparency = 1
+Instance_113.TextTruncate = Enum.TextTruncate.None
+Instance_113.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_113.ZIndex = 1
+Instance_113.BorderSizePixel = 0
+Instance_113.Draggable = false
+Instance_113.RichText = false
+Instance_113.TextWrap = true
+Instance_113.TextTransparency = 0
+Instance_113.TextYAlignment = Enum.TextYAlignment.Center
+Instance_113.TextScaled = true
+Instance_113.TextXAlignment = Enum.TextXAlignment.Center
+Instance_113.FontFace = Font.new("rbxasset://fonts/families/Zekton.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_113.Name = "Title"
+Instance_113.BorderMode = Enum.BorderMode.Outline
+Instance_113.Selectable = false
+Instance_113.TextDirection = Enum.TextDirection.Auto
+Instance_113.Visible = true
+Instance_113.FontSize = Enum.FontSize.Size14
+Instance_113.AnchorPoint = Vector2.new(0, 0)
+Instance_113.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_113.TextSize = 14
+Instance_113.AutomaticSize = Enum.AutomaticSize.None
+Instance_113.Size = UDim2.new(0.8500000238418579, 0, 0.15000000596046448, 0)
+Instance_113.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_113.ClipsDescendants = false
+Instance_113.BorderColor3 = Color3.new(0, 0, 0)
+Instance_113.Text = "Title"
+Instance_113.SelectionOrder = 0
+Instance_113.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_113.Rotation = 0
+Instance_113.BackgroundTransparency = 1
+Instance_113.Position = UDim2.new(0, 0, 0, 0)
+Instance_113.MaxVisibleGraphemes = -1
+
+local Instance_114 = Instance.new("TextLabel", Instance_112) --Text
+Instance_114.LayoutOrder = 0
+Instance_114.TextWrapped = true
+Instance_114.LineHeight = 1
+Instance_114.Active = false
+Instance_114.TextStrokeTransparency = 1
+Instance_114.TextTruncate = Enum.TextTruncate.None
+Instance_114.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_114.ZIndex = 1
+Instance_114.BorderSizePixel = 0
+Instance_114.Draggable = false
+Instance_114.RichText = false
+Instance_114.TextWrap = true
+Instance_114.TextTransparency = 0
+Instance_114.TextYAlignment = Enum.TextYAlignment.Top
+Instance_114.TextScaled = false
+Instance_114.TextXAlignment = Enum.TextXAlignment.Left
+Instance_114.FontFace = Font.new("rbxasset://fonts/families/Zekton.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_114.Name = "Text"
+Instance_114.BorderMode = Enum.BorderMode.Outline
+Instance_114.Selectable = false
+Instance_114.TextDirection = Enum.TextDirection.Auto
+Instance_114.Visible = true
+Instance_114.FontSize = Enum.FontSize.Size14
+Instance_114.AnchorPoint = Vector2.new(0, 0)
+Instance_114.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_114.TextSize = 14
+Instance_114.AutomaticSize = Enum.AutomaticSize.None
+Instance_114.Size = UDim2.new(1, 0, 0.8500000238418579, 0)
+Instance_114.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_114.ClipsDescendants = false
+Instance_114.BorderColor3 = Color3.new(0, 0, 0)
+Instance_114.Text = "Text"
+Instance_114.SelectionOrder = 0
+Instance_114.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_114.Rotation = 0
+Instance_114.BackgroundTransparency = 1
+Instance_114.Position = UDim2.new(0, 0, 0.15000000596046448, 0)
+Instance_114.MaxVisibleGraphemes = -1
+
+local Instance_115 = Instance.new("Frame", Instance_112) --Choose
+Instance_115.Visible = true
+Instance_115.SelectionOrder = 0
+Instance_115.Name = "Choose"
+Instance_115.Active = false
+Instance_115.AutomaticSize = Enum.AutomaticSize.None
+Instance_115.AnchorPoint = Vector2.new(0, 0)
+Instance_115.Style = Enum.FrameStyle.Custom
+Instance_115.LayoutOrder = 0
+Instance_115.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_115.ZIndex = 1
+Instance_115.Size = UDim2.new(0.15000000596046448, 0, 0.15000000596046448, 0)
+Instance_115.Draggable = false
+Instance_115.Position = UDim2.new(0.8500000238418579, 0, 0, 0)
+Instance_115.Selectable = false
+Instance_115.ClipsDescendants = false
+Instance_115.BorderColor3 = Color3.new(0, 0, 0)
+Instance_115.BorderSizePixel = 0
+Instance_115.Rotation = 0
+Instance_115.BackgroundTransparency = 1
+Instance_115.BorderMode = Enum.BorderMode.Outline
+Instance_115.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance_116 = Instance.new("TextButton", Instance_115) --Yes
+Instance_116.LayoutOrder = -1
+Instance_116.TextWrapped = true
+Instance_116.LineHeight = 1
+Instance_116.Active = true
+Instance_116.TextStrokeTransparency = 1
+Instance_116.TextTruncate = Enum.TextTruncate.None
+Instance_116.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_116.ZIndex = 1
+Instance_116.TextWrap = true
+Instance_116.Draggable = false
+Instance_116.RichText = false
+Instance_116.Modal = false
+Instance_116.SelectionOrder = 0
+Instance_116.Selectable = true
+Instance_116.AutoButtonColor = true
+Instance_116.TextXAlignment = Enum.TextXAlignment.Center
+Instance_116.Name = "Yes"
+Instance_116.TextYAlignment = Enum.TextYAlignment.Center
+Instance_116.TextScaled = true
+Instance_116.TextDirection = Enum.TextDirection.Auto
+Instance_116.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_116.Visible = true
+Instance_116.BorderMode = Enum.BorderMode.Outline
+Instance_116.TextTransparency = 0
+Instance_116.FontSize = Enum.FontSize.Size14
+Instance_116.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_116.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+Instance_116.AnchorPoint = Vector2.new(0, 0)
+Instance_116.TextSize = 14
+Instance_116.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_116.Selected = false
+Instance_116.AutomaticSize = Enum.AutomaticSize.None
+Instance_116.Size = UDim2.new(0, 200, 0, 50)
+Instance_116.ClipsDescendants = false
+Instance_116.BorderColor3 = Color3.new(0, 0, 0)
+Instance_116.Text = ""
+Instance_116.BorderSizePixel = 0
+Instance_116.Rotation = 0
+Instance_116.BackgroundTransparency = 0
+Instance_116.MaxVisibleGraphemes = -1
+Instance_116.Position = UDim2.new(0, 0, 0, 0)
+Instance_116.Style = Enum.ButtonStyle.Custom
+
+local Instance_117 = Instance.new("ImageLabel", Instance_116) --Icon
+Instance_117.Visible = true
+Instance_117.Active = false
+Instance_117.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_117.ZIndex = 1
+Instance_117.BorderSizePixel = 0
+Instance_117.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance_117.Draggable = false
+Instance_117.ScaleType = Enum.ScaleType.Fit
+Instance_117.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_117.ImageTransparency = 0
+Instance_117.AnchorPoint = Vector2.new(0.5, 0.5)
+Instance_117.Image = "http://www.roblox.com/asset/?id=3642321726"
+Instance_117.TileSize = UDim2.new(1, 0, 1, 0)
+Instance_117.ImageRectSize = Vector2.new(0, 0)
+Instance_117.SelectionOrder = 0
+Instance_117.Selectable = false
+Instance_117.Size = UDim2.new(0.699999988079071, 0, 0.699999988079071, 0)
+Instance_117.Name = "Icon"
+Instance_117.ResampleMode = Enum.ResamplerMode.Default
+Instance_117.ClipsDescendants = false
+Instance_117.BorderColor3 = Color3.new(0, 0, 0)
+Instance_117.ImageColor3 = Color3.new(1, 0.333333, 0)
+Instance_117.LayoutOrder = 0
+Instance_117.BorderMode = Enum.BorderMode.Outline
+Instance_117.Rotation = 0
+Instance_117.ImageRectOffset = Vector2.new(0, 0)
+Instance_117.BackgroundTransparency = 1
+Instance_117.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instance_117.SliceScale = 1
+Instance_117.AutomaticSize = Enum.AutomaticSize.None
+
+local Instance_118 = Instance.new("UIGradient", Instance_116) --UIGradient
+Instance_118.Offset = Vector2.new(0, 0)
+Instance_118.Color = ColorSequence.new({
+	[1] = ColorSequenceKeypoint.new(0, Color3.new(0.784314, 0.784314, 0.784314)),
+	[2] = ColorSequenceKeypoint.new(1, Color3.new(0.784314, 0.784314, 0.784314))
+})
+Instance_118.Rotation = 0
+Instance_118.Transparency = NumberSequence.new({
+	[1] = NumberSequenceKeypoint.new(0, 0, 0),
+	[2] = NumberSequenceKeypoint.new(1, 0, 0)
+})
+Instance_118.Name = "UIGradient"
+Instance_118.Enabled = true
+
+local Instance_119 = Instance.new("TextButton", Instance_115) --No
+Instance_119.LayoutOrder = 0
+Instance_119.TextWrapped = true
+Instance_119.LineHeight = 1
+Instance_119.Active = true
+Instance_119.TextStrokeTransparency = 1
+Instance_119.TextTruncate = Enum.TextTruncate.None
+Instance_119.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_119.ZIndex = 1
+Instance_119.TextWrap = true
+Instance_119.Draggable = false
+Instance_119.RichText = false
+Instance_119.Modal = false
+Instance_119.SelectionOrder = 0
+Instance_119.Selectable = true
+Instance_119.AutoButtonColor = true
+Instance_119.TextXAlignment = Enum.TextXAlignment.Center
+Instance_119.Name = "No"
+Instance_119.TextYAlignment = Enum.TextYAlignment.Center
+Instance_119.TextScaled = true
+Instance_119.TextDirection = Enum.TextDirection.Auto
+Instance_119.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_119.Visible = true
+Instance_119.BorderMode = Enum.BorderMode.Outline
+Instance_119.TextTransparency = 0
+Instance_119.FontSize = Enum.FontSize.Size14
+Instance_119.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_119.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+Instance_119.AnchorPoint = Vector2.new(0, 0)
+Instance_119.TextSize = 14
+Instance_119.TextColor3 = Color3.new(0, 0, 0)
+Instance_119.Selected = false
+Instance_119.AutomaticSize = Enum.AutomaticSize.None
+Instance_119.Size = UDim2.new(0, 200, 0, 50)
+Instance_119.ClipsDescendants = false
+Instance_119.BorderColor3 = Color3.new(0, 0, 0)
+Instance_119.Text = ""
+Instance_119.BorderSizePixel = 0
+Instance_119.Rotation = 0
+Instance_119.BackgroundTransparency = 0
+Instance_119.MaxVisibleGraphemes = -1
+Instance_119.Position = UDim2.new(0, 0, 0, 0)
+Instance_119.Style = Enum.ButtonStyle.Custom
+
+local Instance_120 = Instance.new("UIGradient", Instance_119) --UIGradient
+Instance_120.Offset = Vector2.new(0, 0)
+Instance_120.Color = ColorSequence.new({
+	[1] = ColorSequenceKeypoint.new(0, Color3.new(0.784314, 0.784314, 0.784314)),
+	[2] = ColorSequenceKeypoint.new(1, Color3.new(0.784314, 0.784314, 0.784314))
+})
+Instance_120.Rotation = 0
+Instance_120.Transparency = NumberSequence.new({
+	[1] = NumberSequenceKeypoint.new(0, 0, 0),
+	[2] = NumberSequenceKeypoint.new(1, 0, 0)
+})
+Instance_120.Name = "UIGradient"
+Instance_120.Enabled = true
+
+local Instance_121 = Instance.new("ImageLabel", Instance_119) --Icon
+Instance_121.Visible = true
+Instance_121.Active = false
+Instance_121.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_121.ZIndex = 1
+Instance_121.BorderSizePixel = 0
+Instance_121.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance_121.Draggable = false
+Instance_121.ScaleType = Enum.ScaleType.Fit
+Instance_121.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance_121.ImageTransparency = 0
+Instance_121.AnchorPoint = Vector2.new(0.5, 0.5)
+Instance_121.Image = "http://www.roblox.com/asset/?id=4661609682"
+Instance_121.TileSize = UDim2.new(1, 0, 1, 0)
+Instance_121.ImageRectSize = Vector2.new(0, 0)
+Instance_121.SelectionOrder = 0
+Instance_121.Selectable = false
+Instance_121.Size = UDim2.new(1, 0, 1, 0)
+Instance_121.Name = "Icon"
+Instance_121.ResampleMode = Enum.ResamplerMode.Default
+Instance_121.ClipsDescendants = false
+Instance_121.BorderColor3 = Color3.new(0, 0, 0)
+Instance_121.ImageColor3 = Color3.new(1, 0.333333, 0)
+Instance_121.LayoutOrder = 0
+Instance_121.BorderMode = Enum.BorderMode.Outline
+Instance_121.Rotation = 0
+Instance_121.ImageRectOffset = Vector2.new(0, 0)
+Instance_121.BackgroundTransparency = 1
+Instance_121.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instance_121.SliceScale = 1
+Instance_121.AutomaticSize = Enum.AutomaticSize.None
+
+local Instance_122 = Instance.new("UIGridLayout", Instance_115) --UIGridLayout
+Instance_122.CellPadding = UDim2.new(0, 0, 0, 0)
+Instance_122.StartCorner = Enum.StartCorner.TopLeft
+Instance_122.Name = "UIGridLayout"
+Instance_122.FillDirectionMaxCells = 0
+Instance_122.CellSize = UDim2.new(0.5, 0, 1, 0)
+
+local Instance_123 = Instance.new("UIGradient", Instance_112) --UIGradient
+Instance_123.Offset = Vector2.new(0, 0)
+Instance_123.Color = ColorSequence.new({
+	[1] = ColorSequenceKeypoint.new(0, Color3.new(0.784314, 0.784314, 0.784314)),
+	[2] = ColorSequenceKeypoint.new(1, Color3.new(0.784314, 0.784314, 0.784314))
+})
+Instance_123.Rotation = 0
+Instance_123.Transparency = NumberSequence.new({
+	[1] = NumberSequenceKeypoint.new(0, 0, 0),
+	[2] = NumberSequenceKeypoint.new(1, 0, 0)
+})
+Instance_123.Name = "UIGradient"
+Instance_123.Enabled = true
+
+local Instance_124 = Instance.new("Color3Value", Instance_1) --ThemeColor1
+Instance_124.Name = "ThemeColor1"
+Instance_124.Value = Color3.new(1, 0.333333, 0)
+
+local Instance_125 = Instance.new("Color3Value", Instance_1) --ThemeColor2
+Instance_125.Name = "ThemeColor2"
+Instance_125.Value = Color3.new(0.156863, 0.156863, 0.156863)
+
+local Instance_126 = Instance.new("TextButton", Instance_1) --Maximize
+Instance_126.LayoutOrder = 0
+Instance_126.TextWrapped = true
+Instance_126.LineHeight = 1
+Instance_126.Active = true
+Instance_126.TextStrokeTransparency = 1
+Instance_126.TextTruncate = Enum.TextTruncate.None
+Instance_126.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance_126.ZIndex = 1
+Instance_126.TextWrap = true
+Instance_126.Draggable = false
+Instance_126.RichText = false
+Instance_126.Modal = false
+Instance_126.SelectionOrder = 0
+Instance_126.Selectable = true
+Instance_126.AutoButtonColor = true
+Instance_126.TextXAlignment = Enum.TextXAlignment.Center
+Instance_126.Name = "Maximize"
+Instance_126.TextYAlignment = Enum.TextYAlignment.Center
+Instance_126.TextScaled = true
+Instance_126.TextDirection = Enum.TextDirection.Auto
+Instance_126.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance_126.Visible = false
+Instance_126.BorderMode = Enum.BorderMode.Outline
+Instance_126.TextTransparency = 0
+Instance_126.FontSize = Enum.FontSize.Size14
+Instance_126.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance_126.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+Instance_126.AnchorPoint = Vector2.new(0, 0.5)
+Instance_126.TextSize = 14
+Instance_126.TextColor3 = Color3.new(1, 0.333333, 0)
+Instance_126.Selected = false
+Instance_126.AutomaticSize = Enum.AutomaticSize.None
+Instance_126.Size = UDim2.new(0.10000000149011612, 0, 0.10000000149011612, 0)
+Instance_126.ClipsDescendants = false
+Instance_126.BorderColor3 = Color3.new(0, 0, 0)
+Instance_126.Text = "+"
+Instance_126.BorderSizePixel = 0
+Instance_126.Rotation = 0
+Instance_126.BackgroundTransparency = 0
+Instance_126.MaxVisibleGraphemes = -1
+Instance_126.Position = UDim2.new(0.02500000037252903, 0, 0.5, 0)
+Instance_126.Style = Enum.ButtonStyle.Custom
+
+local Instance_127 = Instance.new("UIAspectRatioConstraint", Instance_126) --UIAspectRatioConstraint
+Instance_127.DominantAxis = Enum.DominantAxis.Width
+Instance_127.AspectRatio = 1
+Instance_127.Name = "UIAspectRatioConstraint"
+Instance_127.AspectType = Enum.AspectType.FitWithinMaxSize
+
+local Instance_128 = Instance.new("UICorner", Instance_126) --UICorner
+Instance_128.Name = "UICorner"
+Instance_128.CornerRadius = UDim.new(0.200000003, 0)
+
+local Instance_129 = Instance.new("UIStroke", Instance_126) --UIStroke
+Instance_129.Enabled = true
+Instance_129.Color = Color3.new(0, 0, 0)
+Instance_129.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Instance_129.Thickness = 2.299999952316284
+Instance_129.Transparency = 0
+Instance_129.Name = "UIStroke"
+Instance_129.LineJoinMode = Enum.LineJoinMode.Round
+
+local moduleScripts = {}
+
+
+moduleScripts[Instance_104] = function()
+	local script = Instance_104
+	
+	local libraryName = "Fire~Library"
+	local libraryVersion = "4.1"
+	
+	--
+	
+	local fullLibraryName = libraryName.." "..libraryVersion
+	local writefile, readfile, makefolder, identifyexecutor = getfenv().writefile, getfenv().readfile, getfenv().makefolder, getfenv().identifyexecutor or function() return "Unknown Executor", "0" end
+	local isMobile = game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled
+	
+	local lib = script.Parent
+	local function tween(a, b, c)
+		coroutine.wrap(function()
+			local t = game.TweenService:Create(a, b, c)
+			t:Play()
+			task.wait(b.Time + 0.1)
+			t:Destroy()
+			t = nil
+		end)()
+	end
+	
+	local animateSteps = {
+		[1] = {
+			Props = {Size = UDim2.new(0, 0, 0, 100)},
+			TI = TweenInfo.new(0.5)
+		},
+		[2] = {
+			Props = {Size = UDim2.new(1, 0, 0, 100)},
+			TI = TweenInfo.new(0.5)
+		},
+		[3] = {
+			Props = {Size = UDim2.new(0, 0, 0, 0)},
+			TI = TweenInfo.new(0.4)
+		},
+		[4] = {
+			Props = {Rotation = -5},
+			TI = TweenInfo.new(0.2)
+		},
+		[5] = {
+			Props = {Rotation = -15},
+			TI = TweenInfo.new(0.2)
+		},
+		[6] = {
+			Props = {Position = UDim2.fromScale(0.5, -1.5)},
+			TI = TweenInfo.new(1, Enum.EasingStyle.Back, Enum.EasingDirection.InOut)
+		},
+		[7] = {
+			Props = {Size = UDim2.fromScale(1.2, 0)},
+			TI = TweenInfo.new(1)
+		},
+		[8] = {
+			Props = {Size = UDim2.fromScale(1.2, 0.6)},
+			TI = TweenInfo.new(2)
+		},
+		[9] = {
+			Props = {BackgroundTransparency = 1},
+			TI = TweenInfo.new(1)
+		},
+		[10] = {
+			Props = {BackgroundTransparency = 0},
+			TI = TweenInfo.new(1)
+		},
+		[11] = {
+			Props = {Position = UDim2.fromScale(-0.5, 0.5)},
+			TI = TweenInfo.new(1)
+		},
+		[12] = {
+			Props = {Position = lib.Maximize.Position},
+			TI = TweenInfo.new(1)
+		},
+		[13] = {
+			Props = {Position = UDim2.fromScale(-0.5, 0)},
+			TI = TweenInfo.new(0.4)
+		},
+		--
+		[14] = {
+			Props = {Position = UDim2.fromScale(-0.5, 0)},
+			TI = TweenInfo.new(0.4)
+		},
+		[15] = {
+			Props = {BackgroundTransparency = 0.5},
+			TI = TweenInfo.new(0.4)
+		},
+		[16] = {
+			Props = {Size = UDim2.new(0, 0, 0, 0)},
+			TI = TweenInfo.new(0.4)
+		},
+	}
+	
+	local function loadAsset(asset)
+		if asset.IsLoaded then return end
+		for i=1, 100 do
+			if asset.IsLoaded then
+				break
+			end
+			task.wait(0.1)
+		end
+	end
+	
+	local function playSoundBasic(sound)
+		sound.RollOffMaxDistance = 100000
+		sound.RollOffMinDistance = 10
+		sound.Parent = game.SoundService
+		loadAsset(sound)
+		sound:Play()
+		task.wait(sound.TimeLength)
+		sound:Destroy()
+		sound = nil
+	end
+	
+	local function playSound(name)
+		if tonumber(name) then
+			local sound = Instance.new("Sound")
+			sound.SoundId = "rbxassetid://"..name
+			playSoundBasic(sound)
+			sound = nil
+		elseif lib.Sounds:FindFirstChild(tostring(name)) then
+			local sound = lib.Sounds:FindFirstChild(tostring(name)):Clone()
+			playSoundBasic(sound)
+			sound = nil
+		else
+			local sound = Instance.new("Sound")
+			sound.SoundId = name
+			playSoundBasic(sound)
+			sound = nil
+		end
+	end
+	
+	local delta, dragInput
+	local function update(input, gui, dragStart, startPos)
+		delta = input.Position - dragStart
+		tween(gui, TweenInfo.new(0.3), {Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)})
+		delta = nil	
+	end
+	
+	local function makeDraggable(gui)
+		local dragging, dragStart, startPos, delta
+		
+		gui.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				dragging = true
+				dragStart = input.Position
+				startPos = gui.Position
+	
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragging = false
+					end
+				end)
+			end
+		end)
+	
+		gui.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+	
+		game.UserInputService.InputChanged:Connect(function(input)
+			if input == dragInput and dragging then
+				update(input, gui, dragStart, startPos)
+			end
+		end)
+	end
+	
+	local function setupThemes(d)
+		if d and not d:IsA("UIGradient") then
+			local atts = d:GetAttributes()
+	
+			for i,v in atts do
+				if i:sub(0, #i-1) == "UseThemeColor" and lib:FindFirstChild(i:sub(4, #i)) then
+					lib[i:sub(4, #i)].Changed:Connect(function(col)
+						if d:IsA("TextButton") then
+							if d.BackgroundTransparency ~= 1 then
+								d.BackgroundColor3 = col
+							else
+								d.TextColor3 = col
+							end
+						elseif d:IsA("TextBox") then
+							d.TextColor3 = col
+							d.PlaceholderColor3 = Color3.fromRGB(math.max(0, (col.R*255)-50), math.max(0, (col.G*255)-50), math.max(0, (col.B*255)-50))
+						elseif d:IsA("TextLabel") then
+							d.TextColor3 = col
+						elseif d:IsA("Frame") then
+							d.BackgroundColor3 = col
+						elseif d:IsA("ImageLabel") or d:IsA("ImageButton") then
+							d.ImageColor3 = col
+						elseif d:IsA("UIStroke") then
+							d.Color = col					
+						end
+					end)
+				end
+			end
+		end
+	end
+	
+	lib.ThemeColor1.Changed:Connect(function(val)
+		lib.Maximize.TextColor3 = val
+	end)
+	lib.ThemeColor2.Changed:Connect(function(val)
+		lib.Maximize.BackgroundColor3 = val
+	end)
+	
+	local nullFunc = function() end
+	
+	for i,v in lib:GetDescendants() do
+		setupThemes(v)
+	end
+	lib.DescendantAdded:Connect(setupThemes)
+	
+	local function backToLive(button)
+		if not button then return end
+	
+		button.MouseEnter:Connect(function()
+			tween(button.IconFrame.Icon, animateSteps[4].TI, animateSteps[4].Props)
+			if button:IsA("GuiButton") then
+				playSound("MouseHover")
+			end
+		end)
+	
+		button.MouseLeave:Connect(function()
+			tween(button.IconFrame.Icon, animateSteps[5].TI, animateSteps[5].Props)
+		end)
+		
+		if button:IsA("GuiButton") then
+			button.MouseButton1Click:Connect(function()
+				playSound("Click")
+			end)
+		end
+	end
+	
+	local function lowMemorySet(f, v)
+		task.wait(0.1)
+		f(v)
+	end
+	
+	local newTI = TweenInfo.new(0.5)
+	local function animateImageButton(btn, click)
+		btn.MouseEnter:Connect(function()
+			tween(btn, newTI, {ImageColor3 = Color3.fromRGB(math.max(0,(lib.ThemeColor1.Value.R*255)-50),math.max(0,(lib.ThemeColor1.Value.G*255)-50),math.max(0,(lib.ThemeColor1.Value.B*255)-50))})
+		end)
+		btn.MouseLeave:Connect(function()
+			tween(btn, newTI, {ImageColor3 = lib.ThemeColor1.Value})
+		end)
+		btn.MouseButton1Click:Connect(click)
+	end
+	local function animateSettingRowButton(btn)
+		local originalColor = btn.Setting.TextColor3
+		btn.MouseEnter:Connect(function()
+			playSound("MouseHover")
+			tween(btn.ImageLabel, TweenInfo.new(0.4), {ImageColor3 = lib.ThemeColor1.Value})
+			tween(btn.Setting, TweenInfo.new(0.4), {TextColor3 = lib.ThemeColor1.Value})
+			for i,v in btn.Parent:GetChildren() do
+				if v and v ~= btn and v:IsA("TextButton") then
+					tween(v.ImageLabel, TweenInfo.new(0.4), {ImageColor3 = originalColor})
+					tween(v.Setting, TweenInfo.new(0.4), {TextColor3 = originalColor})
+				end
+			end
+		end)
+		btn.MouseLeave:Connect(function()
+			tween(btn.ImageLabel, TweenInfo.new(0.4), {ImageColor3 = originalColor})
+			tween(btn.Setting, TweenInfo.new(0.4), {TextColor3 = originalColor})
+		end)
+		btn.MouseButton1Click:Connect(function()
+			playSound("Click")
+		end)
+	end
+	
+	local execName, execVer = identifyexecutor()
+	execVer = " "..execVer or ""
+	
+	local emptyT = {}
+	local libFunctions; libFunctions = {
+		SetThemeColor = table.clone(emptyT),
+		MakeWindow = function(self, options)
+			local options = typeof(options) == "table" and options or emptyT
+			
+			local title = typeof(options.Title) ~= "nil" and tostring(options.Title) or libraryName
+			local closeCallback = typeof(options.CloseCallback) == "function" and options.CloseCallback or nullFunc
+			
+			local things = emptyT
+			local function addThing(t)
+				if t.Default and t.Set then
+					things[#things+1] = t
+				end
+			end
+			
+			local newWindow = lib.AspectFrame.LibWindow:Clone()
+			newWindow.Parent = lib.AspectFrame
+			newWindow.Visible = true
+			
+			newWindow.Title.Text = title
+			
+			newWindow.TopDeco.Visible = false
+			
+			newWindow.StarterFade.Visible = true
+			newWindow.StarterFade.BackgroundTransparency = 0
+			
+			newWindow.DescendantAdded:Connect(setupThemes)
+			
+			makeDraggable(newWindow)
+			
+			newWindow.Size = UDim2.fromScale(0, 0)
+			tween(newWindow, animateSteps[7].TI, animateSteps[7].Props)
+			
+			task.wait(1.1)
+	
+			tween(newWindow, animateSteps[8].TI, animateSteps[8].Props)
+			
+			task.wait(1)
+			
+			newWindow.TopDeco.Visible = true
+			tween(newWindow.StarterFade, animateSteps[9].TI, animateSteps[9].Props)
+			
+			newWindow.SomeStuff.Pages.ChildAdded:Connect(function(c)
+				backToLive(c)
+				c = nil
+			end)
+			
+			local function showSettings(show)
+				if show then
+					tween(newWindow.SettingsFrame, TweenInfo.new(0.5), {Position = UDim2.fromScale(0,0)})
+					tween(newWindow.SettingsOverlay, animateSteps[15].TI, animateSteps[15].Props)
+					newWindow.SettingsOverlay.Visible = true
+				else
+					tween(newWindow.SettingsFrame, TweenInfo.new(0.5), {Position = UDim2.fromScale(-0.25,0)})
+					tween(newWindow.SettingsOverlay, animateSteps[9].TI, animateSteps[9].Props)
+					for i,v in newWindow.SettingsFrame:GetChildren() do
+						if v and v:IsA("TextButton") and v.Name ~= "SettingOverlay" then
+							tween(v, TweenInfo.new(0.5), {Position = UDim2.fromScale(0,0)})
+						end
+					end
+					task.wait(0.5)
+					newWindow.SettingsOverlay.Visible = false
+				end
+			end
+			local visible,cd = true,false
+			
+			newWindow.SettingsOverlay.MouseButton1Click:Connect(showSettings)
+			newWindow.SettingsFrame.SettingOverlay.Library.Text = libraryName
+			newWindow.SettingsFrame.SettingOverlay.LibraryVersion.Text = libraryVersion
+			newWindow.SettingsFrame.SettingOverlay.ExecutorInfo.Text = execName..execVer
+			
+			local settingsLib = {
+				AddSettingPage = function(self, options)
+					local newButtonRow = newWindow.SettingsFrame.SettingOverlay.Settings.SettingButtonRow:Clone()
+					newButtonRow.Parent = newWindow.SettingsFrame.SettingOverlay.Settings
+					newButtonRow.Visible = true
+					
+					local newSettingPage = newWindow.SettingsFrame.SettingPage:Clone()
+					newSettingPage.Parent = newWindow.SettingsFrame
+					newButtonRow.Setting.Text = options.SettingPage
+					
+					local opened = false
+					newButtonRow.MouseButton1Click:Connect(function()
+						opened = not opened
+						for i,v in newWindow.SettingsFrame:GetChildren() do
+							if v and v:IsA("TextButton") and v.Name ~= "SettingOverlay" and v ~= newSettingPage then
+								tween(v, TweenInfo.new(0.5), {Position = UDim2.fromScale(0,0)})
+							end
+						end
+						tween(newSettingPage,TweenInfo.new(0.5), {Position = UDim2.fromScale(opened and 1 or 0,0)})
+					end)
+					
+					local function notOpen(button)
+						if not button then return end
+						button.MouseButton1Click:Connect(function()
+							opened = false
+						end)
+					end
+					for i,v in newWindow.SettingsFrame.SettingOverlay.Settings:GetChildren() do
+						if v and v:IsA("TextButton") and v ~= newButtonRow then
+							notOpen(v)
+						end
+					end
+					
+					newWindow.SettingsFrame.SettingOverlay.Settings.ChildAdded:Connect(notOpen)
+					newWindow.SettingsOverlay.MouseButton1Click:Connect(notOpen)
+					
+					animateSettingRowButton(newButtonRow)
+					
+					local setting = {
+						AddTextBox = function(self, options)
+							local newTextBox = newSettingPage.Settings.TextBox:Clone()
+							newTextBox.Parent = newSettingPage.Settings
+							newTextBox.Caption.Text = options.Caption
+							newTextBox.BackgroundFrame.TextBox.Text = options.Default or ""
+							newTextBox.Visible = true
+							newTextBox.BackgroundFrame.TextBox.FocusLost:Connect(function(enter)
+								if options.CallbackOnEnter and enter or not options.CallbackOnEnter then
+									options.Callback(newTextBox.BackgroundFrame.TextBox.Text)
+								end
+							end)
+							newTextBox.BackgroundFrame.TextBox.MouseEnter:Connect(function()
+								playSound("MouseHover")
+							end)
+						end,
+						AddToggle = function(self, options)
+							local newToggle = newSettingPage.Settings.Toggle:Clone()
+							newToggle.Parent = newSettingPage.Settings
+							newToggle.State.BackgroundColor3 = options.Default and Color3.fromRGB(0, 255) or Color3.fromRGB(255)
+							newToggle.Caption.Text = options.Caption
+							local state = options.Default
+							newToggle.Input.MouseEnter:Connect(function()
+								playSound("MouseHover")
+							end)
+							newToggle.Input.MouseButton1Click:Connect(function()
+								state = not state
+								newToggle.State.BackgroundColor3 = state and Color3.fromRGB(0, 255) or Color3.fromRGB(255)
+								playSound("Click")
+								options.Callback(state)
+							end)
+						end,
+						AddButton = function(self, options)
+							local newToggle = newSettingPage.Settings.Toggle:Clone()
+							newToggle.Parent = newSettingPage.Settings
+							newToggle.Caption.Text = options.Caption
+							local state = options.Default
+							newToggle.Input.MouseEnter:Connect(function()
+								playSound("MouseHover")
+							end)
+							newToggle.Input.MouseButton1Click:Connect(function()
+								playSound("Click")
+								options.Callback()
+							end)
+						end,
+					}
+					
+					return setting
+				end,
+			}
+			
+			local configsSetting = settingsLib:AddSettingPage({SettingPage = "Configs"})
+			local themesSetting = settingsLib:AddSettingPage({SettingPage = "Themes"})
+			
+			themesSetting:AddTextBox({Caption = "Main theme color", Default = math.floor(lib.ThemeColor1.Value.R*255)..", "..math.floor(lib.ThemeColor1.Value.G*255)..", "..math.floor(lib.ThemeColor1.Value.B*255), Callback = function(text)
+				lib.ThemeColor1.Value = Color3.fromRGB(unpack(text:gsub(" ",""):split(",")))
+			end})
+			themesSetting:AddTextBox({Caption = "Secondary theme color", Default = math.floor(lib.ThemeColor2.Value.R*255)..", "..math.floor(lib.ThemeColor2.Value.G*255)..", "..math.floor(lib.ThemeColor2.Value.B*255), Callback = function(text)
+				lib.ThemeColor2.Value = Color3.fromRGB(unpack(text:gsub(" ",""):split(",")))
+			end})
+			
+			local windowFuncs = {
+				AddPage = function(self, options)
+					local options = typeof(options) == "table" and options or emptyT
+	
+					local title = typeof(options.Title) ~= "nil" and tostring(options.Title) or "Page"
+					local pageButton = newWindow.SomeStuff.Pages.PageButton:Clone()
+					pageButton.Parent = newWindow.SomeStuff.Pages
+					
+					pageButton.Visible = true
+					pageButton.Title.Text = title
+					
+					local page = newWindow.SomeStuff.Frame.Page:Clone()
+					page.Parent = newWindow.SomeStuff.Frame
+					
+					page.Visible = true
+					page.Position = UDim2.fromScale(1, 0)
+	
+					page.ChildAdded:Connect(function(c)
+						backToLive(c)
+						c = nil
+					end)
+					
+					pageButton.MouseButton1Click:Connect(function()
+						for i,v in newWindow.SomeStuff.Frame:GetChildren() do
+							if v and v:IsA("ScrollingFrame") and v.Visible then
+								v.ZIndex = v == page and 2 or 1
+								tween(v, TweenInfo.new(1), {Position = UDim2.fromScale(v == page and 0 or 1, 0)})
+							end
+						end
+					end)
+					
+					return {
+						AddLabel = function(self, options)
+							local options = typeof(options) == "table" and options or emptyT
+	
+							local caption = typeof(options.Caption) ~= "nil" and tostring(options.Caption) or ""
+							
+							local label = page.Label:Clone()
+							label.Parent = page
+							
+							label.Visible = true
+							label.Caption.Text = caption
+							
+							local labelFuncs = {
+								SetText = function(self, text)
+									label.Caption.Text = tostring(text)
+								end,
+								Visible = function(self, visible)
+									label.Visible = not not visible
+								end,
+								Delete = function(self)
+									label:Destroy()
+									for i,_ in self do
+										self[i] = nil
+									end
+								end,
+							}
+							
+							return labelFuncs
+						end,
+						AddButton = function(self, options)
+							local options = typeof(options) == "table" and options or emptyT
+	
+							local caption = typeof(options.Caption) ~= "nil" and tostring(options.Caption) or ""
+							local callback = typeof(options.Callback) == "function" and options.Callback or nullFunc
+	
+							local label = page.Button:Clone()
+							label.Parent = page
+	
+							label.Visible = true
+							label.Caption.Text = caption
+	
+							label.MouseButton1Click:Connect(callback)
+	
+							local labelFuncs = {
+								SetText = function(self, text)
+									label.Caption.Text = tostring(text)
+								end,
+								Visible = function(self, visible)
+									label.Visible = not not visible
+								end,
+								Delete = function(self)
+									label:Destroy()
+									for i,_ in self do
+										self[i] = nil
+									end
+								end,
+							}
+	
+							return labelFuncs
+						end,
+						AddToggle = function(self, options)
+							local options = typeof(options) == "table" and options or emptyT
+	
+							local caption = typeof(options.Caption) ~= "nil" and tostring(options.Caption) or ""
+							local callback = typeof(options.Callback) == "function" and options.Callback or nullFunc
+							local default = typeof(options.Default) == "boolean" and options.Default or typeof(options.Default) ~= "boolean" and true
+							local current = not not default
+							
+							local label = page.Toggle:Clone()
+							label.Parent = page
+	
+							label.Visible = true
+							label.Caption.Text = caption
+							
+							label.IconFrame.Icon.UIGradient.Color = ColorSequence.new(current and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(150, 150, 150))
+	
+							label.MouseButton1Click:Connect(function()
+								current = not current
+								label.IconFrame.Icon.UIGradient.Color = ColorSequence.new(current and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(150, 150, 150))
+								callback(current)
+							end)
+	
+							local labelFuncs = {
+								SetText = function(self, text)
+									label.Caption.Text = tostring(text)
+								end,
+								Visible = function(self, visible)
+									label.Visible = not not visible
+								end,
+								Delete = function(self)
+									label:Destroy()
+									for i,_ in self do
+										self[i] = nil
+									end
+								end,
+								Set = function(self, val)
+									current = not not val
+									label.IconFrame.Icon.UIGradient.Color = ColorSequence.new(current and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(150, 150, 150))
+									callback(current)
+								end,
+								Default = default
+							}
+							addThing(labelFuncs)
+	
+							return labelFuncs
+						end,
+						AddTextBox = function(self, options)
+							local options = typeof(options) == "table" and options or emptyT
+	
+							local caption = typeof(options.Caption) ~= "nil" and tostring(options.Caption) or ""
+							local default = typeof(options.Default) ~= "nil" and tostring(options.Default) or ""
+							local cboe = typeof(options.CallbackOnEnter) == "boolean" and options.CallBackOnEnter or false
+							local callback = typeof(options.Callback) == "function" and options.Callback or nullFunc
+	
+							local label = page.TextBox:Clone()
+							label.Parent = page
+							
+							label.Visible = true
+							label.TextBox.PlaceholderText = caption
+							label.TextBox.Text = default
+	
+							label.TextBox.FocusLost:Connect(function(enter)
+								if cboe and enter or not cboe then
+									callback(label.TextBox.Text)
+								end
+							end)
+	
+							local labelFuncs = {
+								SetText = function(self, text)
+									label.TextBox.Text = tostring(text)
+								end,
+								Set = function(self, text)
+									self:SetText(text)
+								end,
+								SetPlaceholderText = function(self, text)
+									label.TextBox.PlaceholderText = tostring(text)
+								end,
+								Visible = function(self, visible)
+									label.Visible = not not visible
+								end,
+								Delete = function(self)
+									label:Destroy()
+									for i,_ in self do
+										self[i] = nil
+									end
+								end,
+								Default = default
+							}
+							addThing(labelFuncs)
+	
+							return labelFuncs
+						end,
+						AddSlider = function(self, options)
+							local options = typeof(options) == "table" and options or emptyT
+	
+							local caption = typeof(options.Caption) ~= "nil" and tostring(options.Caption) or ""
+							local callback = typeof(options.Callback) == "function" and options.Callback or nullFunc
+							local max = tonumber(options.Max) or 100
+							local min = tonumber(options.Min) or max - 100
+							local Max = max
+							max = math.max(min, max)
+							min = math.min(Max, min)
+							Max = nil
+							if max == min then
+								return self:AddButton({Caption = caption, Callback = function()
+									callback(max)
+								end})
+							end
+							local default = tonumber(options.Default) or min
+							local step = tonumber(options.Step) or (max-min)/10
+							local prevVal = tonumber(default) or min
+							local val = default
+							local customTextDisplay = typeof(options.CustomTextDisplay) == "function" and options.CustomTextDisplay or function(val)
+								return val.." | "..max
+							end
+	
+							local label = page.Slider:Clone()
+							label.Parent = page
+	
+							label.Visible = true
+							label.Caption.Text = caption
+							
+							local sliderDrag = label.FillBar
+							local sliderBar = sliderDrag.Filled
+							local dragging = false
+	
+							sliderDrag.InputBegan:Connect(function(input)
+								if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
+									dragging = true 
+								end 
+							end)
+							sliderDrag.InputEnded:Connect(function(input) 
+								if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
+									dragging = false 
+								end 
+							end)
+							
+							local function round(Number, Factor)
+								local Result = math.floor(Number/Factor + (math.sign(Number) * 0.5)) * Factor
+								if Result < 0 then Result = Result + Factor end
+								return Result
+							end
+							
+							local newVal
+							local function set(num)
+								newVal = math.round((math.clamp(round(num, step), min, max))*1000)/1000
+								if newVal then
+									tween(sliderBar,TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{Size = UDim2.fromScale((newVal - min) / (max - min), 1)})
+									val = newVal
+									sliderDrag.Step.Text = tostring(customTextDisplay(val))
+									if newVal ~= prevVal then
+										coroutine.wrap(playSound)("MouseHover")
+										callback(newVal)
+										prevVal = newVal
+										newVal = nil
+									end
+								end
+							end
+	
+							game.UserInputService.InputChanged:Connect(function(input)
+								if dragging and (not isMobile and input.UserInputType == Enum.UserInputType.MouseMovement or isMobile) then 
+									local sizeScale = math.clamp((input.Position.X - sliderDrag.AbsolutePosition.X) / sliderDrag.AbsoluteSize.X, 0, 1)
+									set(min + ((max - min) * sizeScale)) 
+								end
+							end)
+							
+							coroutine.wrap(lowMemorySet)(set, default)
+	
+							local labelFuncs = {
+								SetText = function(self, text)
+									label.Caption.Text = tostring(text)
+								end,
+								Visible = function(self, visible)
+									label.Visible = not not visible
+								end,
+								Set = function(self, val)
+									set(val)
+								end,
+								Delete = function(self)
+									label:Destroy()
+									for i,_ in self do
+										self[i] = nil
+									end
+								end,
+								Default = default
+							}
+							addThing(labelFuncs)
+	
+							return labelFuncs
+						end,
+					}
+				end,
+				_WindowTitle = title,
+				CloseWindow = function(self)
+					if typeof(self) == "boolean" and not self then return end
+					closeCallback()
+					for i,v in things do
+						coroutine.wrap(v.Set)(v, v.Default)
+					end
+					tween(newWindow.StarterFade, animateSteps[10].TI, animateSteps[10].Props)
+					task.wait(1)
+					for i,v in newWindow.SomeStuff.Frame:GetChildren() do
+						if v then
+							v:Destroy()
+						end
+					end
+					for i,v in newWindow.SomeStuff.Pages:GetChildren() do
+						if v then
+							v:Destroy()
+						end
+					end
+					tween(newWindow, animateSteps[7].TI, animateSteps[7].Props)
+					newWindow.TopDeco.Visible = false
+					task.wait(animateSteps[7].TI.Time)
+					tween(newWindow, animateSteps[3].TI, animateSteps[3].Props)
+					task.wait(animateSteps[3].TI.Time)
+					if #newWindow.Parent:GetChildren() == 2 then
+						lib:Destroy()
+					else
+						newWindow:Destroy()
+					end
+				end,
+				ShowWindow = function(self, show)
+					if cd then return end
+					cd = true
+					if show then
+						if visible then return end
+						visible = true
+						newWindow.Visible = true
+						tween(lib.Maximize, animateSteps[11].TI, animateSteps[11].Props)
+						tween(newWindow, animateSteps[7].TI, animateSteps[7].Props)
+						task.wait(1)
+						newWindow.SomeStuff.Frame.Visible = true
+						newWindow.SomeStuff.Pages.Visible = true
+						task.wait(0.1)
+						tween(newWindow, animateSteps[8].TI, animateSteps[8].Props)
+						task.wait(1)
+						newWindow.TopDeco.Visible = true
+						tween(newWindow.StarterFade, animateSteps[9].TI, animateSteps[9].Props)
+					else
+						if not visible then return end
+						visible = false
+						if isMobile then
+							tween(lib.Maximize, animateSteps[12].TI, animateSteps[12].Props)
+							lib.Maximize.Visible = true
+						end
+						tween(newWindow.StarterFade, animateSteps[10].TI, animateSteps[10].Props)
+						task.wait(1)
+						newWindow.SomeStuff.Frame.Visible = false
+						newWindow.SomeStuff.Pages.Visible = false
+						tween(newWindow, animateSteps[7].TI, animateSteps[7].Props)
+						newWindow.TopDeco.Visible = false
+						task.wait(animateSteps[7].TI.Time)
+						tween(newWindow, animateSteps[3].TI, animateSteps[3].Props)
+						task.wait(animateSteps[3].TI.Time)
+						newWindow.Visible = false
+					end
+					cd = false
+				end,
+			}
+			
+			animateImageButton(newWindow.Close, function()
+				libFunctions.Notifications:ChooseNotification({Time = 10, Title = "Are you sure?", Text = "Are you sure that you want to close "..windowFuncs._WindowTitle.."?", Callback = windowFuncs.CloseWindow})
+			end)
+			animateImageButton(newWindow.Minimize, function()
+				if cd then return end
+				libFunctions.Notifications:Notification({Time = 15, Title = "UI Hidden", Text = (isMobile and "Press \"+\" button on your screen" or "Press Shift key on your keyboard").." to maximize ui"})
+				windowFuncs:ShowWindow(false)
+			end)
+			animateImageButton(newWindow.Settings, function()
+				showSettings(true)
+			end)
+			lib.Maximize.MouseButton1Click:Connect(function()
+				windowFuncs:ShowWindow(true)
+			end)
+			game.UserInputService.InputBegan:Connect(function(input,chat)
+				if (input.KeyCode == Enum.KeyCode.LeftShift or input.KeyCode == Enum.KeyCode.RightShift) then
+					windowFuncs:ShowWindow(true)
+				end
+			end)
+			
+			return windowFuncs
+		end,
+		
+		Notifications = {
+			__CWANIMFUNC = function(frame, OnOrOff)
+				if OnOrOff then
+					frame.Size = UDim2.new(0, 0, 0, 0)
+					tween(frame, animateSteps[1].TI, animateSteps[1].Props)
+					task.wait(0.3)
+					tween(frame, animateSteps[2].TI, animateSteps[2].Props)
+				else
+					tween(frame, animateSteps[1].TI, animateSteps[1].Props)
+					task.wait(0.4)
+					tween(frame, animateSteps[3].TI, animateSteps[3].Props)
+				end
+			end,
+			__AnimateNotificationFrame = function(self, frame, OnOrOff)
+				coroutine.wrap(self.__CWANIMFUNC)(frame, OnOrOff)
+			end,
+			__Notification = function(self, options)
+				local options = typeof(options) == "table" and options or emptyT
+				
+				local time = math.max(tonumber(options.Time) or 5, 0)
+				local title = typeof(options.Title) ~= "nil" and tostring(options.Title) or "Notification"
+				local text = typeof(options.Text) ~= "nil" and tostring(options.Text) or ""
+				
+				local frame = lib.Notifications.Notification:Clone()
+				frame.Parent = lib.Notifications
+				frame.Visible = true
+				
+				frame.Contents.Title.Text = title
+				frame.Contents.Text.Text = text
+				
+				title = nil
+				text = nil
+				
+				self:__AnimateNotificationFrame(frame, true)
+				
+				if time >= 0.3 then
+					coroutine.wrap(playSound)("Notification")
+				end
+				
+				task.wait(time)
+				
+				table.clear(options)
+				options = nil
+	
+				self:__AnimateNotificationFrame(frame, false)
+	
+				if time >= 0.9 then
+					task.wait(0.9)
+				end
+	
+				time = nil
+				
+				frame:Destroy()
+				frame = nil
+			end,
+			Notify = function(self, ...)
+				return self:Notification(...)
+			end,
+			Notification = function(self, ...)
+				coroutine.wrap(self.__Notification)(self,...)
+			end,
+			__ChooseNotification = function(self, options)
+				local options = typeof(options) == "table" and options or emptyT
+	
+				local time = math.max(tonumber(options.Time) or 5, 0)
+				local title = typeof(options.Title) ~= "nil" and tostring(options.Title) or "Notification"
+				local text = typeof(options.Text) ~= "nil" and tostring(options.Text) or ""
+				local callback = typeof(options.Callback) == "function" and options.Callback or nullFunc
+	
+				local frame = lib.Notifications.ChooseNotification:Clone()
+				frame.Parent = lib.Notifications
+				frame.Visible = true
+	
+				frame.Contents.Title.Text = title
+				frame.Contents.Text.Text = text
+	
+				title = nil
+				text = nil
+				
+				local con1, con2
+				
+				local finish
+				function finish()
+					con1:Disconnect()
+					con1 = nil
+					con2:Disconnect()
+					con2 = nil
+					
+					table.clear(options)
+					options = nil
+					
+					self:__AnimateNotificationFrame(frame, false)
+					
+					if time >= 0.9 then
+						task.wait(0.9)
+					end
+					
+					time = nil
+					
+					frame:Destroy()
+					frame = nil
+					
+					finish = nil
+				end
+				
+				con1 = frame.Contents.Choose.Yes.MouseButton1Click:Connect(function()
+					coroutine.wrap(finish)()
+					callback(true)
+				end)
+				con2 = frame.Contents.Choose.No.MouseButton1Click:Connect(function()
+					coroutine.wrap(finish)()
+					callback(false)
+				end)
+	
+				self:__AnimateNotificationFrame(frame, true)
+	
+				if time >= 0.3 then
+					coroutine.wrap(playSound)("Notification")
+				end
+	
+				task.wait(time)
+				
+				if not time then return end
+	
+				finish()
+			end,
+			ChooseNotification = function(self, ...)
+				coroutine.wrap(self.__ChooseNotification)(self, ...)
+			end,
+		},
+	}
+	
+	for i,v in lib:GetChildren() do
+		if v and v.Name:match("ThemeColor") and v:IsA("Color3Value") then
+			libFunctions.SetThemeColor[tonumber(table.pack(v.Name:gsub("ThemeColor",""))[1])] = function(r,g,b)
+				v.Value = Color3.fromRGB(r,g,b)
+			end
+		end
+	end
+	
+	return libFunctions
 end
+local oldRequire = require
+getfenv().require = function(scr)
+	if typeof(scr) ~= "Instance" or (not scr:IsA("ModuleScript") and not moduleScripts[scr]) then return oldRequire(scr) end
+	if moduleScripts[scr] then
+		return moduleScripts[scr]()
+	else
+		return oldRequire(scr)
+	end
+end
+
+local require = getfenv().require
+
+
+-- Your code down below --
+
+require(Instance_1.ModuleScript)
