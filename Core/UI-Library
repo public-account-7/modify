@@ -1,4 +1,4 @@
-local Created1 = Instance.new("ScreenGui", getfenv().gethui and getfenv().gethui() or game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled and game.Players.LocalPlayer:WaitForChild("PlayerGui") or table.pack(pcall(function() return game.CoreGui.Name end))[1] and game.CoreGui or game.Players.LocalPlayer:WaitForChild("PlayerGui"))
+local Created1 = Instance.new("ScreenGui", getfenv().gethui and getfenv().gethui() or game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled and game.Players.LocalPlayer:WaitForChild("PlayerGui") or table.pack(pcall(function() return game.CoreGui.Name end))[1] and game.CoreGui or game.Players.LocalPlayer:WaitForChild("PlayerGui")) --FireLib
 Created1.Enabled = true
 Created1.SafeAreaCompatibility = Enum.SafeAreaCompatibility.FullscreenExtension
 Created1.IgnoreGuiInset = true
@@ -7,7 +7,7 @@ Created1.DisplayOrder = 999999999
 Created1.Name = "FireLib"
 Created1.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 
-local Created2 = Instance.new("Frame", Created1)
+local Created2 = Instance.new("Frame", Created1) --AspectFrame
 Created2.Visible = true
 Created2.SelectionOrder = 0
 Created2.Name = "AspectFrame"
@@ -30,13 +30,13 @@ Created2.BackgroundTransparency = 1
 Created2.BorderMode = Enum.BorderMode.Outline
 Created2.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created3 = Instance.new("UIAspectRatioConstraint", Created2)
+local Created3 = Instance.new("UIAspectRatioConstraint", Created2) --UIAspectRatioConstraint
 Created3.DominantAxis = Enum.DominantAxis.Width
 Created3.AspectRatio = 1
 Created3.Name = "UIAspectRatioConstraint"
 Created3.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Created4 = Instance.new("TextButton", Created2)
+local Created4 = Instance.new("TextButton", Created2) --LibWindow
 Created4.LayoutOrder = 0
 Created4.TextWrapped = false
 Created4.LineHeight = 1
@@ -80,7 +80,7 @@ Created4.MaxVisibleGraphemes = -1
 Created4.Position = UDim2.new(0.5, 0, 0.5, 0)
 Created4.Style = Enum.ButtonStyle.Custom
 
-local Created5 = Instance.new("Frame", Created4)
+local Created5 = Instance.new("Frame", Created4) --TopDeco
 Created5.Visible = true
 Created5.SelectionOrder = 0
 Created5.Name = "TopDeco"
@@ -103,7 +103,7 @@ Created5.BackgroundTransparency = 0
 Created5.BorderMode = Enum.BorderMode.Outline
 Created5.BackgroundColor3 = Color3.new(1, 0.333333, 0)
 
-local Created6 = Instance.new("ImageLabel", Created5)
+local Created6 = Instance.new("ImageLabel", Created5) --ImageLabel
 Created6.Visible = true
 Created6.Active = false
 Created6.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -135,7 +135,7 @@ Created6.Position = UDim2.new(0.5, 0, 0.5, 0)
 Created6.SliceScale = 1
 Created6.AutomaticSize = Enum.AutomaticSize.None
 
-local Created7 = Instance.new("UIStroke", Created4)
+local Created7 = Instance.new("UIStroke", Created4) --UIStroke
 Created7.Enabled = true
 Created7.Color = Color3.new(0, 0, 0)
 Created7.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -144,7 +144,7 @@ Created7.Transparency = 0
 Created7.Name = "UIStroke"
 Created7.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Created8 = Instance.new("TextLabel", Created4)
+local Created8 = Instance.new("TextLabel", Created4) --Title
 Created8.LayoutOrder = 0
 Created8.TextWrapped = true
 Created8.LineHeight = 1
@@ -184,7 +184,7 @@ Created8.BackgroundTransparency = 1
 Created8.Position = UDim2.new(0.5, 0, 0.02500000037252903, 0)
 Created8.MaxVisibleGraphemes = -1
 
-local Created9 = Instance.new("Frame", Created4)
+local Created9 = Instance.new("Frame", Created4) --SomeStuff
 Created9.Visible = true
 Created9.SelectionOrder = 0
 Created9.Name = "SomeStuff"
@@ -207,7 +207,7 @@ Created9.BackgroundTransparency = 1
 Created9.BorderMode = Enum.BorderMode.Outline
 Created9.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created10 = Instance.new("ScrollingFrame", Created9)
+local Created10 = Instance.new("ScrollingFrame", Created9) --Pages
 Created10.LayoutOrder = 0
 Created10.Active = true
 Created10.ScrollingDirection = Enum.ScrollingDirection.XY
@@ -244,14 +244,14 @@ Created10.BottomImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
 Created10.AutomaticSize = Enum.AutomaticSize.None
 Created10.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created11 = Instance.new("UIGridLayout", Created10)
+local Created11 = Instance.new("UIGridLayout", Created10) --UIGridLayout
 Created11.CellPadding = UDim2.new(0, 0, 0, 5)
 Created11.StartCorner = Enum.StartCorner.TopLeft
 Created11.Name = "UIGridLayout"
 Created11.FillDirectionMaxCells = 0
 Created11.CellSize = UDim2.new(1, 0, 0.18000000715255737, 0)
 
-local Created12 = Instance.new("TextButton", Created10)
+local Created12 = Instance.new("TextButton", Created10) --PageButton
 Created12.LayoutOrder = 0
 Created12.TextWrapped = false
 Created12.LineHeight = 1
@@ -295,7 +295,7 @@ Created12.MaxVisibleGraphemes = -1
 Created12.Position = UDim2.new(0, 0, 0, 0)
 Created12.Style = Enum.ButtonStyle.Custom
 
-local Created13 = Instance.new("TextLabel", Created12)
+local Created13 = Instance.new("TextLabel", Created12) --Title
 Created13.LayoutOrder = 0
 Created13.TextWrapped = true
 Created13.LineHeight = 1
@@ -335,11 +335,11 @@ Created13.BackgroundTransparency = 1
 Created13.Position = UDim2.new(0, 0, 0.5, 0)
 Created13.MaxVisibleGraphemes = -1
 
-local Created14 = Instance.new("UICorner", Created12)
+local Created14 = Instance.new("UICorner", Created12) --UICorner
 Created14.Name = "UICorner"
 Created14.CornerRadius = UDim.new(0.150000006, 0)
 
-local Created15 = Instance.new("Frame", Created12)
+local Created15 = Instance.new("Frame", Created12) --IconFrame
 Created15.Visible = false
 Created15.SelectionOrder = 0
 Created15.Name = "IconFrame"
@@ -362,7 +362,7 @@ Created15.BackgroundTransparency = 1
 Created15.BorderMode = Enum.BorderMode.Outline
 Created15.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created16 = Instance.new("ImageLabel", Created15)
+local Created16 = Instance.new("ImageLabel", Created15) --Icon
 Created16.Visible = true
 Created16.Active = false
 Created16.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -394,17 +394,17 @@ Created16.Position = UDim2.new(0.5, 0, 0.5, 0)
 Created16.SliceScale = 1
 Created16.AutomaticSize = Enum.AutomaticSize.None
 
-local Created17 = Instance.new("UIAspectRatioConstraint", Created16)
+local Created17 = Instance.new("UIAspectRatioConstraint", Created16) --UIAspectRatioConstraint
 Created17.DominantAxis = Enum.DominantAxis.Width
 Created17.AspectRatio = 1
 Created17.Name = "UIAspectRatioConstraint"
 Created17.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Created18 = Instance.new("UICorner", Created16)
+local Created18 = Instance.new("UICorner", Created16) --UICorner
 Created18.Name = "UICorner"
 Created18.CornerRadius = UDim.new(0.200000003, 0)
 
-local Created19 = Instance.new("Frame", Created9)
+local Created19 = Instance.new("Frame", Created9) --Frame
 Created19.Visible = true
 Created19.SelectionOrder = 0
 Created19.Name = "Frame"
@@ -427,7 +427,7 @@ Created19.BackgroundTransparency = 1
 Created19.BorderMode = Enum.BorderMode.Outline
 Created19.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created20 = Instance.new("ScrollingFrame", Created19)
+local Created20 = Instance.new("ScrollingFrame", Created19) --Page
 Created20.LayoutOrder = 0
 Created20.Active = true
 Created20.ScrollingDirection = Enum.ScrollingDirection.XY
@@ -464,7 +464,7 @@ Created20.BottomImage = "rbxasset://textures/ui/Scroll/scroll-bottom.png"
 Created20.AutomaticSize = Enum.AutomaticSize.None
 Created20.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created21 = Instance.new("TextButton", Created20)
+local Created21 = Instance.new("TextButton", Created20) --Button
 Created21.LayoutOrder = 0
 Created21.TextWrapped = false
 Created21.LineHeight = 1
@@ -508,11 +508,11 @@ Created21.MaxVisibleGraphemes = -1
 Created21.Position = UDim2.new(0, 0, 0, 0)
 Created21.Style = Enum.ButtonStyle.Custom
 
-local Created22 = Instance.new("UICorner", Created21)
+local Created22 = Instance.new("UICorner", Created21) --UICorner
 Created22.Name = "UICorner"
 Created22.CornerRadius = UDim.new(0.150000006, 0)
 
-local Created23 = Instance.new("TextLabel", Created21)
+local Created23 = Instance.new("TextLabel", Created21) --Caption
 Created23.LayoutOrder = 0
 Created23.TextWrapped = true
 Created23.LineHeight = 1
@@ -552,7 +552,7 @@ Created23.BackgroundTransparency = 1
 Created23.Position = UDim2.new(0.02500000037252903, 0, 0.5, 0)
 Created23.MaxVisibleGraphemes = -1
 
-local Created24 = Instance.new("Frame", Created21)
+local Created24 = Instance.new("Frame", Created21) --IconFrame
 Created24.Visible = true
 Created24.SelectionOrder = 0
 Created24.Name = "IconFrame"
@@ -575,7 +575,7 @@ Created24.BackgroundTransparency = 1
 Created24.BorderMode = Enum.BorderMode.Outline
 Created24.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created25 = Instance.new("ImageLabel", Created24)
+local Created25 = Instance.new("ImageLabel", Created24) --Icon
 Created25.Visible = true
 Created25.Active = false
 Created25.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -607,17 +607,17 @@ Created25.Position = UDim2.new(0.5, 0, 0.5, 0)
 Created25.SliceScale = 1
 Created25.AutomaticSize = Enum.AutomaticSize.None
 
-local Created26 = Instance.new("UIAspectRatioConstraint", Created25)
+local Created26 = Instance.new("UIAspectRatioConstraint", Created25) --UIAspectRatioConstraint
 Created26.DominantAxis = Enum.DominantAxis.Width
 Created26.AspectRatio = 1
 Created26.Name = "UIAspectRatioConstraint"
 Created26.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Created27 = Instance.new("UICorner", Created25)
+local Created27 = Instance.new("UICorner", Created25) --UICorner
 Created27.Name = "UICorner"
 Created27.CornerRadius = UDim.new(0.200000003, 0)
 
-local Created28 = Instance.new("TextButton", Created20)
+local Created28 = Instance.new("TextButton", Created20) --Toggle
 Created28.LayoutOrder = 0
 Created28.TextWrapped = false
 Created28.LineHeight = 1
@@ -661,11 +661,11 @@ Created28.MaxVisibleGraphemes = -1
 Created28.Position = UDim2.new(0, 0, 0, 0)
 Created28.Style = Enum.ButtonStyle.Custom
 
-local Created29 = Instance.new("UICorner", Created28)
+local Created29 = Instance.new("UICorner", Created28) --UICorner
 Created29.Name = "UICorner"
 Created29.CornerRadius = UDim.new(0.150000006, 0)
 
-local Created30 = Instance.new("TextLabel", Created28)
+local Created30 = Instance.new("TextLabel", Created28) --Caption
 Created30.LayoutOrder = 0
 Created30.TextWrapped = true
 Created30.LineHeight = 1
@@ -705,7 +705,7 @@ Created30.BackgroundTransparency = 1
 Created30.Position = UDim2.new(0.02500000037252903, 0, 0.5, 0)
 Created30.MaxVisibleGraphemes = -1
 
-local Created31 = Instance.new("Frame", Created28)
+local Created31 = Instance.new("Frame", Created28) --IconFrame
 Created31.Visible = true
 Created31.SelectionOrder = 0
 Created31.Name = "IconFrame"
@@ -728,7 +728,7 @@ Created31.BackgroundTransparency = 1
 Created31.BorderMode = Enum.BorderMode.Outline
 Created31.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created32 = Instance.new("ImageLabel", Created31)
+local Created32 = Instance.new("ImageLabel", Created31) --Icon
 Created32.Visible = true
 Created32.Active = false
 Created32.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -760,17 +760,17 @@ Created32.Position = UDim2.new(0.5, 0, 0.5, 0)
 Created32.SliceScale = 1
 Created32.AutomaticSize = Enum.AutomaticSize.None
 
-local Created33 = Instance.new("UIAspectRatioConstraint", Created32)
+local Created33 = Instance.new("UIAspectRatioConstraint", Created32) --UIAspectRatioConstraint
 Created33.DominantAxis = Enum.DominantAxis.Width
 Created33.AspectRatio = 1
 Created33.Name = "UIAspectRatioConstraint"
 Created33.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Created34 = Instance.new("UICorner", Created32)
+local Created34 = Instance.new("UICorner", Created32) --UICorner
 Created34.Name = "UICorner"
 Created34.CornerRadius = UDim.new(0.200000003, 0)
 
-local Created35 = Instance.new("UIGradient", Created32)
+local Created35 = Instance.new("UIGradient", Created32) --UIGradient
 Created35.Offset = Vector2.new(0, 0)
 Created35.Color = ColorSequence.new({
 	[1] = ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
@@ -784,11 +784,11 @@ Created35.Transparency = NumberSequence.new({
 Created35.Name = "UIGradient"
 Created35.Enabled = true
 
-local Created36 = Instance.new("UIListLayout", Created20)
+local Created36 = Instance.new("UIListLayout", Created20) --UIListLayout
 Created36.Name = "UIListLayout"
 Created36.Padding = UDim.new(0, 7)
 
-local Created37 = Instance.new("Frame", Created20)
+local Created37 = Instance.new("Frame", Created20) --Slider
 Created37.Visible = false
 Created37.SelectionOrder = 0
 Created37.Name = "Slider"
@@ -811,7 +811,7 @@ Created37.BackgroundTransparency = 0
 Created37.BorderMode = Enum.BorderMode.Outline
 Created37.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
 
-local Created38 = Instance.new("Frame", Created37)
+local Created38 = Instance.new("Frame", Created37) --IconFrame
 Created38.Visible = false
 Created38.SelectionOrder = 0
 Created38.Name = "IconFrame"
@@ -834,7 +834,7 @@ Created38.BackgroundTransparency = 1
 Created38.BorderMode = Enum.BorderMode.Outline
 Created38.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created39 = Instance.new("ImageLabel", Created38)
+local Created39 = Instance.new("ImageLabel", Created38) --Icon
 Created39.Visible = true
 Created39.Active = false
 Created39.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -866,17 +866,17 @@ Created39.Position = UDim2.new(0.5, 0, 0.5, 0)
 Created39.SliceScale = 1
 Created39.AutomaticSize = Enum.AutomaticSize.None
 
-local Created40 = Instance.new("UIAspectRatioConstraint", Created39)
+local Created40 = Instance.new("UIAspectRatioConstraint", Created39) --UIAspectRatioConstraint
 Created40.DominantAxis = Enum.DominantAxis.Width
 Created40.AspectRatio = 1
 Created40.Name = "UIAspectRatioConstraint"
 Created40.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Created41 = Instance.new("UICorner", Created39)
+local Created41 = Instance.new("UICorner", Created39) --UICorner
 Created41.Name = "UICorner"
 Created41.CornerRadius = UDim.new(0.200000003, 0)
 
-local Created42 = Instance.new("TextButton", Created37)
+local Created42 = Instance.new("TextButton", Created37) --FillBar
 Created42.LayoutOrder = 0
 Created42.TextWrapped = false
 Created42.LineHeight = 1
@@ -920,7 +920,7 @@ Created42.MaxVisibleGraphemes = -1
 Created42.Position = UDim2.new(0.5, 2, 0.6000000238418579, 0)
 Created42.Style = Enum.ButtonStyle.Custom
 
-local Created43 = Instance.new("TextLabel", Created42)
+local Created43 = Instance.new("TextLabel", Created42) --Step
 Created43.LayoutOrder = 0
 Created43.TextWrapped = true
 Created43.LineHeight = 1
@@ -928,7 +928,7 @@ Created43.Active = false
 Created43.TextStrokeTransparency = 1
 Created43.TextTruncate = Enum.TextTruncate.None
 Created43.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Created43.ZIndex = 15
+Created43.ZIndex = 16
 Created43.BorderSizePixel = 0
 Created43.Draggable = false
 Created43.RichText = false
@@ -960,7 +960,7 @@ Created43.BackgroundTransparency = 1
 Created43.Position = UDim2.new(0.5, 0, 0.5, 0)
 Created43.MaxVisibleGraphemes = -1
 
-local Created44 = Instance.new("Frame", Created42)
+local Created44 = Instance.new("Frame", Created42) --Filled
 Created44.Visible = true
 Created44.SelectionOrder = 0
 Created44.Name = "Filled"
@@ -983,11 +983,11 @@ Created44.BackgroundTransparency = 0
 Created44.BorderMode = Enum.BorderMode.Outline
 Created44.BackgroundColor3 = Color3.new(1, 0.333333, 0)
 
-local Created45 = Instance.new("UICorner", Created44)
+local Created45 = Instance.new("UICorner", Created44) --UICorner
 Created45.Name = "UICorner"
 Created45.CornerRadius = UDim.new(0.200000003, 0)
 
-local Created46 = Instance.new("UIStroke", Created42)
+local Created46 = Instance.new("UIStroke", Created42) --UIStroke
 Created46.Enabled = true
 Created46.Color = Color3.new(1, 0.333333, 0)
 Created46.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -996,7 +996,7 @@ Created46.Transparency = 0
 Created46.Name = "UIStroke"
 Created46.LineJoinMode = Enum.LineJoinMode.Round
 
-local Created47 = Instance.new("UIGradient", Created46)
+local Created47 = Instance.new("UIGradient", Created46) --UIGradient
 Created47.Offset = Vector2.new(0, 0)
 Created47.Color = ColorSequence.new({
 	[1] = ColorSequenceKeypoint.new(0, Color3.new(0.686275, 0.686275, 0.686275)),
@@ -1010,11 +1010,11 @@ Created47.Transparency = NumberSequence.new({
 Created47.Name = "UIGradient"
 Created47.Enabled = true
 
-local Created48 = Instance.new("UICorner", Created42)
+local Created48 = Instance.new("UICorner", Created42) --UICorner
 Created48.Name = "UICorner"
 Created48.CornerRadius = UDim.new(0.200000003, 0)
 
-local Created49 = Instance.new("UIGradient", Created42)
+local Created49 = Instance.new("UIGradient", Created42) --UIGradient
 Created49.Offset = Vector2.new(0, 0)
 Created49.Color = ColorSequence.new({
 	[1] = ColorSequenceKeypoint.new(0, Color3.new(0.294118, 0.294118, 0.294118)),
@@ -1028,7 +1028,7 @@ Created49.Transparency = NumberSequence.new({
 Created49.Name = "UIGradient"
 Created49.Enabled = true
 
-local Created50 = Instance.new("TextLabel", Created37)
+local Created50 = Instance.new("TextLabel", Created37) --Caption
 Created50.LayoutOrder = 0
 Created50.TextWrapped = true
 Created50.LineHeight = 1
@@ -1068,11 +1068,11 @@ Created50.BackgroundTransparency = 1
 Created50.Position = UDim2.new(0.02500000037252903, 0, 0.125, 0)
 Created50.MaxVisibleGraphemes = -1
 
-local Created51 = Instance.new("UICorner", Created37)
+local Created51 = Instance.new("UICorner", Created37) --UICorner
 Created51.Name = "UICorner"
 Created51.CornerRadius = UDim.new(0.100000001, 0)
 
-local Created52 = Instance.new("Frame", Created20)
+local Created52 = Instance.new("Frame", Created20) --Label
 Created52.Visible = false
 Created52.SelectionOrder = 0
 Created52.Name = "Label"
@@ -1095,11 +1095,11 @@ Created52.BackgroundTransparency = 0
 Created52.BorderMode = Enum.BorderMode.Outline
 Created52.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
 
-local Created53 = Instance.new("UICorner", Created52)
+local Created53 = Instance.new("UICorner", Created52) --UICorner
 Created53.Name = "UICorner"
 Created53.CornerRadius = UDim.new(0.100000001, 0)
 
-local Created54 = Instance.new("Frame", Created52)
+local Created54 = Instance.new("Frame", Created52) --IconFrame
 Created54.Visible = true
 Created54.SelectionOrder = 0
 Created54.Name = "IconFrame"
@@ -1122,7 +1122,7 @@ Created54.BackgroundTransparency = 1
 Created54.BorderMode = Enum.BorderMode.Outline
 Created54.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created55 = Instance.new("ImageLabel", Created54)
+local Created55 = Instance.new("ImageLabel", Created54) --Icon
 Created55.Visible = true
 Created55.Active = false
 Created55.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -1154,17 +1154,17 @@ Created55.Position = UDim2.new(0.5, 0, 0.5, 0)
 Created55.SliceScale = 1
 Created55.AutomaticSize = Enum.AutomaticSize.None
 
-local Created56 = Instance.new("UIAspectRatioConstraint", Created55)
+local Created56 = Instance.new("UIAspectRatioConstraint", Created55) --UIAspectRatioConstraint
 Created56.DominantAxis = Enum.DominantAxis.Width
 Created56.AspectRatio = 1
 Created56.Name = "UIAspectRatioConstraint"
 Created56.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Created57 = Instance.new("UICorner", Created55)
+local Created57 = Instance.new("UICorner", Created55) --UICorner
 Created57.Name = "UICorner"
 Created57.CornerRadius = UDim.new(0.200000003, 0)
 
-local Created58 = Instance.new("TextLabel", Created52)
+local Created58 = Instance.new("TextLabel", Created52) --Caption
 Created58.LayoutOrder = 0
 Created58.TextWrapped = true
 Created58.LineHeight = 1
@@ -1204,7 +1204,7 @@ Created58.BackgroundTransparency = 1
 Created58.Position = UDim2.new(0.02500000037252903, 0, 0.5, 0)
 Created58.MaxVisibleGraphemes = -1
 
-local Created59 = Instance.new("Frame", Created20)
+local Created59 = Instance.new("Frame", Created20) --TextBox
 Created59.Visible = false
 Created59.SelectionOrder = 0
 Created59.Name = "TextBox"
@@ -1227,11 +1227,11 @@ Created59.BackgroundTransparency = 0
 Created59.BorderMode = Enum.BorderMode.Outline
 Created59.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
 
-local Created60 = Instance.new("UICorner", Created59)
+local Created60 = Instance.new("UICorner", Created59) --UICorner
 Created60.Name = "UICorner"
 Created60.CornerRadius = UDim.new(0.100000001, 0)
 
-local Created61 = Instance.new("Frame", Created59)
+local Created61 = Instance.new("Frame", Created59) --IconFrame
 Created61.Visible = true
 Created61.SelectionOrder = 0
 Created61.Name = "IconFrame"
@@ -1254,7 +1254,7 @@ Created61.BackgroundTransparency = 1
 Created61.BorderMode = Enum.BorderMode.Outline
 Created61.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created62 = Instance.new("ImageLabel", Created61)
+local Created62 = Instance.new("ImageLabel", Created61) --Icon
 Created62.Visible = true
 Created62.Active = false
 Created62.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -1286,17 +1286,17 @@ Created62.Position = UDim2.new(0.5, 0, 0.5, 0)
 Created62.SliceScale = 1
 Created62.AutomaticSize = Enum.AutomaticSize.None
 
-local Created63 = Instance.new("UIAspectRatioConstraint", Created62)
+local Created63 = Instance.new("UIAspectRatioConstraint", Created62) --UIAspectRatioConstraint
 Created63.DominantAxis = Enum.DominantAxis.Width
 Created63.AspectRatio = 1
 Created63.Name = "UIAspectRatioConstraint"
 Created63.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Created64 = Instance.new("UICorner", Created62)
+local Created64 = Instance.new("UICorner", Created62) --UICorner
 Created64.Name = "UICorner"
 Created64.CornerRadius = UDim.new(0.200000003, 0)
 
-local Created65 = Instance.new("TextBox", Created59)
+local Created65 = Instance.new("TextBox", Created59) --TextBox
 Created65.Visible = true
 Created65.FontSize = Enum.FontSize.Size14
 Created65.LineHeight = 1
@@ -1344,7 +1344,7 @@ Created65.Name = "TextBox"
 Created65.MaxVisibleGraphemes = -1
 Created65.TextWrapped = true
 
-local Created66 = Instance.new("UIGradient", Created4)
+local Created66 = Instance.new("UIGradient", Created4) --UIGradient
 Created66.Offset = Vector2.new(0, 0)
 Created66.Color = ColorSequence.new({
 	[1] = ColorSequenceKeypoint.new(0, Color3.new(0.784314, 0.784314, 0.784314)),
@@ -1358,7 +1358,7 @@ Created66.Transparency = NumberSequence.new({
 Created66.Name = "UIGradient"
 Created66.Enabled = true
 
-local Created67 = Instance.new("Frame", Created4)
+local Created67 = Instance.new("Frame", Created4) --StarterFade
 Created67.Visible = true
 Created67.SelectionOrder = 0
 Created67.Name = "StarterFade"
@@ -1381,7 +1381,7 @@ Created67.BackgroundTransparency = 1
 Created67.BorderMode = Enum.BorderMode.Outline
 Created67.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
 
-local Created68 = Instance.new("UIGradient", Created67)
+local Created68 = Instance.new("UIGradient", Created67) --UIGradient
 Created68.Offset = Vector2.new(0, 0)
 Created68.Color = ColorSequence.new({
 	[1] = ColorSequenceKeypoint.new(0, Color3.new(0.784314, 0.784314, 0.784314)),
@@ -1395,7 +1395,7 @@ Created68.Transparency = NumberSequence.new({
 Created68.Name = "UIGradient"
 Created68.Enabled = true
 
-local Created69 = Instance.new("TextButton", Created4)
+local Created69 = Instance.new("TextButton", Created4) --ClickingOverlay
 Created69.LayoutOrder = 0
 Created69.TextWrapped = false
 Created69.LineHeight = 1
@@ -1439,7 +1439,7 @@ Created69.MaxVisibleGraphemes = -1
 Created69.Position = UDim2.new(0, 0, 0, 0)
 Created69.Style = Enum.ButtonStyle.Custom
 
-local Created70 = Instance.new("ImageButton", Created4)
+local Created70 = Instance.new("ImageButton", Created4) --Close
 Created70.LayoutOrder = 0
 Created70.Active = true
 Created70.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -1477,7 +1477,7 @@ Created70.AutomaticSize = Enum.AutomaticSize.None
 Created70.SelectionOrder = 0
 Created70.Style = Enum.ButtonStyle.Custom
 
-local Created71 = Instance.new("ImageButton", Created4)
+local Created71 = Instance.new("ImageButton", Created4) --Minimize
 Created71.LayoutOrder = 0
 Created71.Active = true
 Created71.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -1515,7 +1515,7 @@ Created71.AutomaticSize = Enum.AutomaticSize.None
 Created71.SelectionOrder = 0
 Created71.Style = Enum.ButtonStyle.Custom
 
-local Created72 = Instance.new("Frame", Created4)
+local Created72 = Instance.new("Frame", Created4) --SettingsFrame
 Created72.Visible = true
 Created72.SelectionOrder = 0
 Created72.Name = "SettingsFrame"
@@ -1538,7 +1538,7 @@ Created72.BackgroundTransparency = 1
 Created72.BorderMode = Enum.BorderMode.Outline
 Created72.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created73 = Instance.new("TextButton", Created72)
+local Created73 = Instance.new("TextButton", Created72) --SettingOverlay
 Created73.LayoutOrder = 0
 Created73.TextWrapped = false
 Created73.LineHeight = 1
@@ -1582,7 +1582,7 @@ Created73.MaxVisibleGraphemes = -1
 Created73.Position = UDim2.new(0, 0, 0, 0)
 Created73.Style = Enum.ButtonStyle.Custom
 
-local Created74 = Instance.new("TextLabel", Created73)
+local Created74 = Instance.new("TextLabel", Created73) --Library
 Created74.LayoutOrder = 0
 Created74.TextWrapped = true
 Created74.LineHeight = 1
@@ -1622,7 +1622,7 @@ Created74.BackgroundTransparency = 1
 Created74.Position = UDim2.new(0.5, 0, 0.014999999664723873, 0)
 Created74.MaxVisibleGraphemes = -1
 
-local Created75 = Instance.new("TextLabel", Created73)
+local Created75 = Instance.new("TextLabel", Created73) --LibraryVersion
 Created75.LayoutOrder = 0
 Created75.TextWrapped = true
 Created75.LineHeight = 1
@@ -1662,7 +1662,7 @@ Created75.BackgroundTransparency = 1
 Created75.Position = UDim2.new(0.25, 0, 0.10000000149011612, 0)
 Created75.MaxVisibleGraphemes = -1
 
-local Created76 = Instance.new("ScrollingFrame", Created73)
+local Created76 = Instance.new("ScrollingFrame", Created73) --Settings
 Created76.LayoutOrder = 0
 Created76.Active = true
 Created76.ScrollingDirection = Enum.ScrollingDirection.Y
@@ -1699,7 +1699,7 @@ Created76.BottomImage = "rbxasset://textures/ui/Scroll/scroll-bottom.png"
 Created76.AutomaticSize = Enum.AutomaticSize.None
 Created76.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created77 = Instance.new("TextButton", Created76)
+local Created77 = Instance.new("TextButton", Created76) --SettingButtonRow
 Created77.LayoutOrder = 0
 Created77.TextWrapped = false
 Created77.LineHeight = 1
@@ -1743,7 +1743,7 @@ Created77.MaxVisibleGraphemes = -1
 Created77.Position = UDim2.new(0, 0, 0.20000000298023224, 0)
 Created77.Style = Enum.ButtonStyle.Custom
 
-local Created78 = Instance.new("TextLabel", Created77)
+local Created78 = Instance.new("TextLabel", Created77) --Setting
 Created78.LayoutOrder = 0
 Created78.TextWrapped = true
 Created78.LineHeight = 1
@@ -1783,7 +1783,7 @@ Created78.BackgroundTransparency = 1
 Created78.Position = UDim2.new(0.05000000074505806, 0, 0.5, 0)
 Created78.MaxVisibleGraphemes = -1
 
-local Created79 = Instance.new("ImageLabel", Created77)
+local Created79 = Instance.new("ImageLabel", Created77) --ImageLabel
 Created79.Visible = true
 Created79.Active = false
 Created79.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -1815,11 +1815,11 @@ Created79.Position = UDim2.new(0.699999988079071, 0, 0.550000011920929, 0)
 Created79.SliceScale = 1
 Created79.AutomaticSize = Enum.AutomaticSize.None
 
-local Created80 = Instance.new("UIListLayout", Created76)
+local Created80 = Instance.new("UIListLayout", Created76) --UIListLayout
 Created80.Name = "UIListLayout"
 Created80.Padding = UDim.new(0, 0)
 
-local Created81 = Instance.new("TextLabel", Created73)
+local Created81 = Instance.new("TextLabel", Created73) --ExecutorInfo
 Created81.LayoutOrder = 0
 Created81.TextWrapped = true
 Created81.LineHeight = 1
@@ -1859,7 +1859,7 @@ Created81.BackgroundTransparency = 1
 Created81.Position = UDim2.new(0.6000000238418579, 0, 0.10000000149011612, 0)
 Created81.MaxVisibleGraphemes = -1
 
-local Created82 = Instance.new("TextButton", Created72)
+local Created82 = Instance.new("TextButton", Created72) --SettingPage
 Created82.LayoutOrder = 0
 Created82.TextWrapped = false
 Created82.LineHeight = 1
@@ -1903,7 +1903,7 @@ Created82.MaxVisibleGraphemes = -1
 Created82.Position = UDim2.new(0, 0, 0, 0)
 Created82.Style = Enum.ButtonStyle.Custom
 
-local Created83 = Instance.new("ScrollingFrame", Created82)
+local Created83 = Instance.new("ScrollingFrame", Created82) --Settings
 Created83.LayoutOrder = 0
 Created83.Active = true
 Created83.ScrollingDirection = Enum.ScrollingDirection.Y
@@ -1940,11 +1940,11 @@ Created83.BottomImage = "rbxasset://textures/ui/Scroll/scroll-bottom.png"
 Created83.AutomaticSize = Enum.AutomaticSize.None
 Created83.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created84 = Instance.new("UIListLayout", Created83)
+local Created84 = Instance.new("UIListLayout", Created83) --UIListLayout
 Created84.Name = "UIListLayout"
 Created84.Padding = UDim.new(0, 5)
 
-local Created85 = Instance.new("Frame", Created83)
+local Created85 = Instance.new("Frame", Created83) --TextBox
 Created85.Visible = false
 Created85.SelectionOrder = 0
 Created85.Name = "TextBox"
@@ -1967,7 +1967,7 @@ Created85.BackgroundTransparency = 1
 Created85.BorderMode = Enum.BorderMode.Outline
 Created85.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created86 = Instance.new("TextLabel", Created85)
+local Created86 = Instance.new("TextLabel", Created85) --Caption
 Created86.LayoutOrder = 0
 Created86.TextWrapped = true
 Created86.LineHeight = 1
@@ -2007,7 +2007,7 @@ Created86.BackgroundTransparency = 1
 Created86.Position = UDim2.new(0, 0, 0, 0)
 Created86.MaxVisibleGraphemes = -1
 
-local Created87 = Instance.new("Frame", Created85)
+local Created87 = Instance.new("Frame", Created85) --BackgroundFrame
 Created87.Visible = true
 Created87.SelectionOrder = 0
 Created87.Name = "BackgroundFrame"
@@ -2030,11 +2030,11 @@ Created87.BackgroundTransparency = 0
 Created87.BorderMode = Enum.BorderMode.Outline
 Created87.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
 
-local Created88 = Instance.new("UICorner", Created87)
+local Created88 = Instance.new("UICorner", Created87) --UICorner
 Created88.Name = "UICorner"
 Created88.CornerRadius = UDim.new(0.300000012, 0)
 
-local Created89 = Instance.new("TextBox", Created87)
+local Created89 = Instance.new("TextBox", Created87) --TextBox
 Created89.Visible = true
 Created89.FontSize = Enum.FontSize.Size14
 Created89.LineHeight = 1
@@ -2082,7 +2082,7 @@ Created89.Name = "TextBox"
 Created89.MaxVisibleGraphemes = -1
 Created89.TextWrapped = true
 
-local Created90 = Instance.new("Frame", Created83)
+local Created90 = Instance.new("Frame", Created83) --Toggle
 Created90.Visible = false
 Created90.SelectionOrder = 0
 Created90.Name = "Toggle"
@@ -2105,7 +2105,7 @@ Created90.BackgroundTransparency = 1
 Created90.BorderMode = Enum.BorderMode.Outline
 Created90.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created91 = Instance.new("TextLabel", Created90)
+local Created91 = Instance.new("TextLabel", Created90) --Caption
 Created91.LayoutOrder = 0
 Created91.TextWrapped = true
 Created91.LineHeight = 1
@@ -2145,7 +2145,7 @@ Created91.BackgroundTransparency = 1
 Created91.Position = UDim2.new(0, 0, 0, 0)
 Created91.MaxVisibleGraphemes = -1
 
-local Created92 = Instance.new("TextButton", Created90)
+local Created92 = Instance.new("TextButton", Created90) --Input
 Created92.LayoutOrder = 0
 Created92.TextWrapped = false
 Created92.LineHeight = 1
@@ -2189,7 +2189,7 @@ Created92.MaxVisibleGraphemes = -1
 Created92.Position = UDim2.new(0, 0, 0, 0)
 Created92.Style = Enum.ButtonStyle.Custom
 
-local Created93 = Instance.new("Frame", Created90)
+local Created93 = Instance.new("Frame", Created90) --State
 Created93.Visible = true
 Created93.SelectionOrder = 0
 Created93.Name = "State"
@@ -2212,11 +2212,11 @@ Created93.BackgroundTransparency = 0
 Created93.BorderMode = Enum.BorderMode.Outline
 Created93.BackgroundColor3 = Color3.new(1, 0, 0)
 
-local Created94 = Instance.new("UICorner", Created93)
+local Created94 = Instance.new("UICorner", Created93) --UICorner
 Created94.Name = "UICorner"
 Created94.CornerRadius = UDim.new(0.300000012, 0)
 
-local Created95 = Instance.new("Frame", Created83)
+local Created95 = Instance.new("Frame", Created83) --Button
 Created95.Visible = false
 Created95.SelectionOrder = 0
 Created95.Name = "Button"
@@ -2239,7 +2239,7 @@ Created95.BackgroundTransparency = 1
 Created95.BorderMode = Enum.BorderMode.Outline
 Created95.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created96 = Instance.new("TextLabel", Created95)
+local Created96 = Instance.new("TextLabel", Created95) --Caption
 Created96.LayoutOrder = 0
 Created96.TextWrapped = true
 Created96.LineHeight = 1
@@ -2279,7 +2279,7 @@ Created96.BackgroundTransparency = 1
 Created96.Position = UDim2.new(0, 0, 0, 0)
 Created96.MaxVisibleGraphemes = -1
 
-local Created97 = Instance.new("TextButton", Created95)
+local Created97 = Instance.new("TextButton", Created95) --Input
 Created97.LayoutOrder = 0
 Created97.TextWrapped = false
 Created97.LineHeight = 1
@@ -2323,7 +2323,7 @@ Created97.MaxVisibleGraphemes = -1
 Created97.Position = UDim2.new(0, 0, 0, 0)
 Created97.Style = Enum.ButtonStyle.Custom
 
-local Created98 = Instance.new("TextButton", Created4)
+local Created98 = Instance.new("TextButton", Created4) --SettingsOverlay
 Created98.LayoutOrder = 0
 Created98.TextWrapped = false
 Created98.LineHeight = 1
@@ -2367,7 +2367,7 @@ Created98.MaxVisibleGraphemes = -1
 Created98.Position = UDim2.new(0, 0, 0, 0)
 Created98.Style = Enum.ButtonStyle.Custom
 
-local Created99 = Instance.new("ImageButton", Created4)
+local Created99 = Instance.new("ImageButton", Created4) --Settings
 Created99.LayoutOrder = 0
 Created99.Active = true
 Created99.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -2405,10 +2405,10 @@ Created99.AutomaticSize = Enum.AutomaticSize.None
 Created99.SelectionOrder = 0
 Created99.Style = Enum.ButtonStyle.Custom
 
-local Created100 = Instance.new("Folder", Created1)
+local Created100 = Instance.new("Folder", Created1) --Sounds
 Created100.Name = "Sounds"
 
-local Created101 = Instance.new("Sound", Created100)
+local Created101 = Instance.new("Sound", Created100) --Notification
 Created101.Pitch = 1
 Created101.EmitterSize = 10
 Created101.RollOffMode = Enum.RollOffMode.Inverse
@@ -2428,7 +2428,7 @@ Created101.MaxDistance = 10000
 Created101.PlaybackRegionsEnabled = false
 Created101.PlayOnRemove = false
 
-local Created102 = Instance.new("Sound", Created100)
+local Created102 = Instance.new("Sound", Created100) --MouseHover
 Created102.Pitch = 1
 Created102.EmitterSize = 10
 Created102.RollOffMode = Enum.RollOffMode.Inverse
@@ -2448,7 +2448,7 @@ Created102.MaxDistance = 10000
 Created102.PlaybackRegionsEnabled = false
 Created102.PlayOnRemove = false
 
-local Created103 = Instance.new("Sound", Created100)
+local Created103 = Instance.new("Sound", Created100) --Click
 Created103.Pitch = 1
 Created103.EmitterSize = 10
 Created103.RollOffMode = Enum.RollOffMode.Inverse
@@ -2468,10 +2468,10 @@ Created103.MaxDistance = 10000
 Created103.PlaybackRegionsEnabled = false
 Created103.PlayOnRemove = false
 
-local Created104 = Instance.new("Folder", Created1)
+local Created104 = Instance.new("Folder", Created1) --ModuleScript, Class: ModuleScript
 Created104.Name = "ModuleScript"
 
-local Created105 = Instance.new("Frame", Created1)
+local Created105 = Instance.new("Frame", Created1) --Notifications
 Created105.Visible = true
 Created105.SelectionOrder = 0
 Created105.Name = "Notifications"
@@ -2494,7 +2494,7 @@ Created105.BackgroundTransparency = 1
 Created105.BorderMode = Enum.BorderMode.Outline
 Created105.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created106 = Instance.new("Frame", Created105)
+local Created106 = Instance.new("Frame", Created105) --Notification
 Created106.Visible = false
 Created106.SelectionOrder = 0
 Created106.Name = "Notification"
@@ -2517,7 +2517,7 @@ Created106.BackgroundTransparency = 0
 Created106.BorderMode = Enum.BorderMode.Outline
 Created106.BackgroundColor3 = Color3.new(1, 0.333333, 0)
 
-local Created107 = Instance.new("Frame", Created106)
+local Created107 = Instance.new("Frame", Created106) --Contents
 Created107.Visible = true
 Created107.SelectionOrder = 0
 Created107.Name = "Contents"
@@ -2540,7 +2540,7 @@ Created107.BackgroundTransparency = 0
 Created107.BorderMode = Enum.BorderMode.Outline
 Created107.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
 
-local Created108 = Instance.new("TextLabel", Created107)
+local Created108 = Instance.new("TextLabel", Created107) --Title
 Created108.LayoutOrder = 0
 Created108.TextWrapped = true
 Created108.LineHeight = 1
@@ -2580,7 +2580,7 @@ Created108.BackgroundTransparency = 1
 Created108.Position = UDim2.new(0, 0, 0, 0)
 Created108.MaxVisibleGraphemes = -1
 
-local Created109 = Instance.new("TextLabel", Created107)
+local Created109 = Instance.new("TextLabel", Created107) --Text
 Created109.LayoutOrder = 0
 Created109.TextWrapped = true
 Created109.LineHeight = 1
@@ -2620,11 +2620,12 @@ Created109.BackgroundTransparency = 1
 Created109.Position = UDim2.new(0, 0, 0.15000000596046448, 0)
 Created109.MaxVisibleGraphemes = -1
 
-local Created110 = Instance.new("UIListLayout", Created105)
+local Created110 = Instance.new("UIListLayout", Created105) --UIListLayout
 Created110.Name = "UIListLayout"
 Created110.Padding = UDim.new(0, 7)
+Created110.VerticalAlignment = Enum.VerticalAlignment.Bottom
 
-local Created111 = Instance.new("Frame", Created105)
+local Created111 = Instance.new("Frame", Created105) --ChooseNotification
 Created111.Visible = false
 Created111.SelectionOrder = 0
 Created111.Name = "ChooseNotification"
@@ -2647,7 +2648,7 @@ Created111.BackgroundTransparency = 0
 Created111.BorderMode = Enum.BorderMode.Outline
 Created111.BackgroundColor3 = Color3.new(1, 0.333333, 0)
 
-local Created112 = Instance.new("Frame", Created111)
+local Created112 = Instance.new("Frame", Created111) --Contents
 Created112.Visible = true
 Created112.SelectionOrder = 0
 Created112.Name = "Contents"
@@ -2670,7 +2671,7 @@ Created112.BackgroundTransparency = 0
 Created112.BorderMode = Enum.BorderMode.Outline
 Created112.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
 
-local Created113 = Instance.new("TextLabel", Created112)
+local Created113 = Instance.new("TextLabel", Created112) --Title
 Created113.LayoutOrder = 0
 Created113.TextWrapped = true
 Created113.LineHeight = 1
@@ -2710,7 +2711,7 @@ Created113.BackgroundTransparency = 1
 Created113.Position = UDim2.new(0, 0, 0, 0)
 Created113.MaxVisibleGraphemes = -1
 
-local Created114 = Instance.new("TextLabel", Created112)
+local Created114 = Instance.new("TextLabel", Created112) --Text
 Created114.LayoutOrder = 0
 Created114.TextWrapped = true
 Created114.LineHeight = 1
@@ -2750,7 +2751,7 @@ Created114.BackgroundTransparency = 1
 Created114.Position = UDim2.new(0, 0, 0.15000000596046448, 0)
 Created114.MaxVisibleGraphemes = -1
 
-local Created115 = Instance.new("Frame", Created112)
+local Created115 = Instance.new("Frame", Created112) --Choose
 Created115.Visible = true
 Created115.SelectionOrder = 0
 Created115.Name = "Choose"
@@ -2773,7 +2774,7 @@ Created115.BackgroundTransparency = 1
 Created115.BorderMode = Enum.BorderMode.Outline
 Created115.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Created116 = Instance.new("TextButton", Created115)
+local Created116 = Instance.new("TextButton", Created115) --Yes
 Created116.LayoutOrder = -1
 Created116.TextWrapped = true
 Created116.LineHeight = 1
@@ -2817,7 +2818,7 @@ Created116.MaxVisibleGraphemes = -1
 Created116.Position = UDim2.new(0, 0, 0, 0)
 Created116.Style = Enum.ButtonStyle.Custom
 
-local Created117 = Instance.new("ImageLabel", Created116)
+local Created117 = Instance.new("ImageLabel", Created116) --Icon
 Created117.Visible = true
 Created117.Active = false
 Created117.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -2849,7 +2850,7 @@ Created117.Position = UDim2.new(0.5, 0, 0.5, 0)
 Created117.SliceScale = 1
 Created117.AutomaticSize = Enum.AutomaticSize.None
 
-local Created118 = Instance.new("UIGradient", Created116)
+local Created118 = Instance.new("UIGradient", Created116) --UIGradient
 Created118.Offset = Vector2.new(0, 0)
 Created118.Color = ColorSequence.new({
 	[1] = ColorSequenceKeypoint.new(0, Color3.new(0.784314, 0.784314, 0.784314)),
@@ -2863,7 +2864,7 @@ Created118.Transparency = NumberSequence.new({
 Created118.Name = "UIGradient"
 Created118.Enabled = true
 
-local Created119 = Instance.new("TextButton", Created115)
+local Created119 = Instance.new("TextButton", Created115) --No
 Created119.LayoutOrder = 0
 Created119.TextWrapped = true
 Created119.LineHeight = 1
@@ -2907,7 +2908,7 @@ Created119.MaxVisibleGraphemes = -1
 Created119.Position = UDim2.new(0, 0, 0, 0)
 Created119.Style = Enum.ButtonStyle.Custom
 
-local Created120 = Instance.new("UIGradient", Created119)
+local Created120 = Instance.new("UIGradient", Created119) --UIGradient
 Created120.Offset = Vector2.new(0, 0)
 Created120.Color = ColorSequence.new({
 	[1] = ColorSequenceKeypoint.new(0, Color3.new(0.784314, 0.784314, 0.784314)),
@@ -2921,7 +2922,7 @@ Created120.Transparency = NumberSequence.new({
 Created120.Name = "UIGradient"
 Created120.Enabled = true
 
-local Created121 = Instance.new("ImageLabel", Created119)
+local Created121 = Instance.new("ImageLabel", Created119) --Icon
 Created121.Visible = true
 Created121.Active = false
 Created121.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -2953,14 +2954,14 @@ Created121.Position = UDim2.new(0.5, 0, 0.5, 0)
 Created121.SliceScale = 1
 Created121.AutomaticSize = Enum.AutomaticSize.None
 
-local Created122 = Instance.new("UIGridLayout", Created115)
+local Created122 = Instance.new("UIGridLayout", Created115) --UIGridLayout
 Created122.CellPadding = UDim2.new(0, 0, 0, 0)
 Created122.StartCorner = Enum.StartCorner.TopLeft
 Created122.Name = "UIGridLayout"
 Created122.FillDirectionMaxCells = 0
 Created122.CellSize = UDim2.new(0.5, 0, 1, 0)
 
-local Created123 = Instance.new("UIGradient", Created112)
+local Created123 = Instance.new("UIGradient", Created112) --UIGradient
 Created123.Offset = Vector2.new(0, 0)
 Created123.Color = ColorSequence.new({
 	[1] = ColorSequenceKeypoint.new(0, Color3.new(0.784314, 0.784314, 0.784314)),
@@ -2974,15 +2975,15 @@ Created123.Transparency = NumberSequence.new({
 Created123.Name = "UIGradient"
 Created123.Enabled = true
 
-local Created124 = Instance.new("Color3Value", Created1)
+local Created124 = Instance.new("Color3Value", Created1) --ThemeColor1
 Created124.Name = "ThemeColor1"
 Created124.Value = Color3.new(1, 0.333333, 0)
 
-local Created125 = Instance.new("Color3Value", Created1)
+local Created125 = Instance.new("Color3Value", Created1) --ThemeColor2
 Created125.Name = "ThemeColor2"
 Created125.Value = Color3.new(0.156863, 0.156863, 0.156863)
 
-local Created126 = Instance.new("TextButton", Created1)
+local Created126 = Instance.new("TextButton", Created1) --Maximize
 Created126.LayoutOrder = 0
 Created126.TextWrapped = true
 Created126.LineHeight = 1
@@ -3026,17 +3027,17 @@ Created126.MaxVisibleGraphemes = -1
 Created126.Position = UDim2.new(0.02500000037252903, 0, 0.5, 0)
 Created126.Style = Enum.ButtonStyle.Custom
 
-local Created127 = Instance.new("UIAspectRatioConstraint", Created126)
+local Created127 = Instance.new("UIAspectRatioConstraint", Created126) --UIAspectRatioConstraint
 Created127.DominantAxis = Enum.DominantAxis.Width
 Created127.AspectRatio = 1
 Created127.Name = "UIAspectRatioConstraint"
 Created127.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Created128 = Instance.new("UICorner", Created126)
+local Created128 = Instance.new("UICorner", Created126) --UICorner
 Created128.Name = "UICorner"
 Created128.CornerRadius = UDim.new(0.200000003, 0)
 
-local Created129 = Instance.new("UIStroke", Created126)
+local Created129 = Instance.new("UIStroke", Created126) --UIStroke
 Created129.Enabled = true
 Created129.Color = Color3.new(0, 0, 0)
 Created129.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -3050,16 +3051,16 @@ local moduleScripts = {}
 
 moduleScripts[Created104] = function()
 	local script = Created104
-	
+
 	local libraryName = "Fire~Library"
 	local libraryVersion = "4.1"
-	
+
 	--
-	
+
 	local fullLibraryName = libraryName.." "..libraryVersion
 	local writefile, readfile, makefolder, identifyexecutor = getfenv().writefile, getfenv().readfile, getfenv().makefolder, getfenv().identifyexecutor or function() return "Unknown Executor", "0" end
 	local isMobile = game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled
-	
+
 	local lib = script.Parent
 	local function tween(a, b, c)
 		coroutine.wrap(function()
@@ -3070,7 +3071,7 @@ moduleScripts[Created104] = function()
 			t = nil
 		end)()
 	end
-	
+
 	local animateSteps = {
 		[1] = {
 			Props = {Size = UDim2.new(0, 0, 0, 100)},
@@ -3138,7 +3139,7 @@ moduleScripts[Created104] = function()
 			TI = TweenInfo.new(0.4)
 		},
 	}
-	
+
 	local function loadAsset(asset)
 		if asset.IsLoaded then return end
 		for i=1, 100 do
@@ -3148,7 +3149,7 @@ moduleScripts[Created104] = function()
 			task.wait(0.1)
 		end
 	end
-	
+
 	local function playSoundBasic(sound)
 		sound.RollOffMaxDistance = 100000
 		sound.RollOffMinDistance = 10
@@ -3159,7 +3160,7 @@ moduleScripts[Created104] = function()
 		sound:Destroy()
 		sound = nil
 	end
-	
+
 	local function playSound(name)
 		if tonumber(name) then
 			local sound = Instance.new("Sound")
@@ -3177,23 +3178,23 @@ moduleScripts[Created104] = function()
 			sound = nil
 		end
 	end
-	
+
 	local delta, dragInput
 	local function update(input, gui, dragStart, startPos)
 		delta = input.Position - dragStart
 		tween(gui, TweenInfo.new(0.3), {Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)})
-		delta = nil	
+		delta = nil    
 	end
-	
+
 	local function makeDraggable(gui)
 		local dragging, dragStart, startPos, delta
-		
+
 		gui.InputBegan:Connect(function(input)
 			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 				dragging = true
 				dragStart = input.Position
 				startPos = gui.Position
-	
+
 				input.Changed:Connect(function()
 					if input.UserInputState == Enum.UserInputState.End then
 						dragging = false
@@ -3201,24 +3202,24 @@ moduleScripts[Created104] = function()
 				end)
 			end
 		end)
-	
+
 		gui.InputChanged:Connect(function(input)
 			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 				dragInput = input
 			end
 		end)
-	
+
 		game.UserInputService.InputChanged:Connect(function(input)
 			if input == dragInput and dragging then
 				update(input, gui, dragStart, startPos)
 			end
 		end)
 	end
-	
+
 	local function setupThemes(d)
 		if d and not d:IsA("UIGradient") then
 			local atts = d:GetAttributes()
-	
+
 			for i,v in atts do
 				if i:sub(0, #i-1) == "UseThemeColor" and lib:FindFirstChild(i:sub(4, #i)) then
 					lib[i:sub(4, #i)].Changed:Connect(function(col)
@@ -3238,54 +3239,54 @@ moduleScripts[Created104] = function()
 						elseif d:IsA("ImageLabel") or d:IsA("ImageButton") then
 							d.ImageColor3 = col
 						elseif d:IsA("UIStroke") then
-							d.Color = col					
+							d.Color = col                    
 						end
 					end)
 				end
 			end
 		end
 	end
-	
+
 	lib.ThemeColor1.Changed:Connect(function(val)
 		lib.Maximize.TextColor3 = val
 	end)
 	lib.ThemeColor2.Changed:Connect(function(val)
 		lib.Maximize.BackgroundColor3 = val
 	end)
-	
+
 	local nullFunc = function() end
-	
+
 	for i,v in lib:GetDescendants() do
 		setupThemes(v)
 	end
 	lib.DescendantAdded:Connect(setupThemes)
-	
+
 	local function backToLive(button)
 		if not button then return end
-	
+
 		button.MouseEnter:Connect(function()
 			tween(button.IconFrame.Icon, animateSteps[4].TI, animateSteps[4].Props)
 			if button:IsA("GuiButton") then
 				playSound("MouseHover")
 			end
 		end)
-	
+
 		button.MouseLeave:Connect(function()
 			tween(button.IconFrame.Icon, animateSteps[5].TI, animateSteps[5].Props)
 		end)
-		
+
 		if button:IsA("GuiButton") then
 			button.MouseButton1Click:Connect(function()
 				playSound("Click")
 			end)
 		end
 	end
-	
+
 	local function lowMemorySet(f, v)
 		task.wait(0.1)
 		f(v)
 	end
-	
+
 	local newTI = TweenInfo.new(0.5)
 	local function animateImageButton(btn, click)
 		btn.MouseEnter:Connect(function()
@@ -3317,58 +3318,58 @@ moduleScripts[Created104] = function()
 			playSound("Click")
 		end)
 	end
-	
+
 	local execName, execVer = identifyexecutor()
 	execVer = " "..execVer or ""
-	
+
 	local emptyT = {}
 	local libFunctions; libFunctions = {
 		SetThemeColor = table.clone(emptyT),
 		MakeWindow = function(self, options)
 			local options = typeof(options) == "table" and options or emptyT
-			
+
 			local title = typeof(options.Title) ~= "nil" and tostring(options.Title) or libraryName
 			local closeCallback = typeof(options.CloseCallback) == "function" and options.CloseCallback or nullFunc
-			
+
 			local things = emptyT
 			local function addThing(t)
 				if t.Default and t.Set then
 					things[#things+1] = t
 				end
 			end
-			
+
 			local newWindow = lib.AspectFrame.LibWindow:Clone()
 			newWindow.Parent = lib.AspectFrame
 			newWindow.Visible = true
-			
+
 			newWindow.Title.Text = title
-			
+
 			newWindow.TopDeco.Visible = false
-			
+
 			newWindow.StarterFade.Visible = true
 			newWindow.StarterFade.BackgroundTransparency = 0
-			
+
 			newWindow.DescendantAdded:Connect(setupThemes)
-			
+
 			makeDraggable(newWindow)
-			
+
 			newWindow.Size = UDim2.fromScale(0, 0)
 			tween(newWindow, animateSteps[7].TI, animateSteps[7].Props)
-			
+
 			task.wait(1.1)
-	
+
 			tween(newWindow, animateSteps[8].TI, animateSteps[8].Props)
-			
+
 			task.wait(1)
-			
+
 			newWindow.TopDeco.Visible = true
 			tween(newWindow.StarterFade, animateSteps[9].TI, animateSteps[9].Props)
-			
+
 			newWindow.SomeStuff.Pages.ChildAdded:Connect(function(c)
 				backToLive(c)
 				c = nil
 			end)
-			
+
 			local function showSettings(show)
 				if show then
 					tween(newWindow.SettingsFrame, TweenInfo.new(0.5), {Position = UDim2.fromScale(0,0)})
@@ -3387,22 +3388,22 @@ moduleScripts[Created104] = function()
 				end
 			end
 			local visible,cd = true,false
-			
+
 			newWindow.SettingsOverlay.MouseButton1Click:Connect(showSettings)
 			newWindow.SettingsFrame.SettingOverlay.Library.Text = libraryName
 			newWindow.SettingsFrame.SettingOverlay.LibraryVersion.Text = libraryVersion
 			newWindow.SettingsFrame.SettingOverlay.ExecutorInfo.Text = execName..execVer
-			
+
 			local settingsLib = {
 				AddSettingPage = function(self, options)
 					local newButtonRow = newWindow.SettingsFrame.SettingOverlay.Settings.SettingButtonRow:Clone()
 					newButtonRow.Parent = newWindow.SettingsFrame.SettingOverlay.Settings
 					newButtonRow.Visible = true
-					
+
 					local newSettingPage = newWindow.SettingsFrame.SettingPage:Clone()
 					newSettingPage.Parent = newWindow.SettingsFrame
 					newButtonRow.Setting.Text = options.SettingPage
-					
+
 					local opened = false
 					newButtonRow.MouseButton1Click:Connect(function()
 						opened = not opened
@@ -3413,7 +3414,7 @@ moduleScripts[Created104] = function()
 						end
 						tween(newSettingPage,TweenInfo.new(0.5), {Position = UDim2.fromScale(opened and 1 or 0,0)})
 					end)
-					
+
 					local function notOpen(button)
 						if not button then return end
 						button.MouseButton1Click:Connect(function()
@@ -3425,12 +3426,12 @@ moduleScripts[Created104] = function()
 							notOpen(v)
 						end
 					end
-					
+
 					newWindow.SettingsFrame.SettingOverlay.Settings.ChildAdded:Connect(notOpen)
 					newWindow.SettingsOverlay.MouseButton1Click:Connect(notOpen)
-					
+
 					animateSettingRowButton(newButtonRow)
-					
+
 					local setting = {
 						AddTextBox = function(self, options)
 							local newTextBox = newSettingPage.Settings.TextBox:Clone()
@@ -3477,43 +3478,43 @@ moduleScripts[Created104] = function()
 							end)
 						end,
 					}
-					
+
 					return setting
 				end,
 			}
-			
+
 			local configsSetting = settingsLib:AddSettingPage({SettingPage = "Configs"})
 			local themesSetting = settingsLib:AddSettingPage({SettingPage = "Themes"})
-			
+
 			themesSetting:AddTextBox({Caption = "Main theme color", Default = math.floor(lib.ThemeColor1.Value.R*255)..", "..math.floor(lib.ThemeColor1.Value.G*255)..", "..math.floor(lib.ThemeColor1.Value.B*255), Callback = function(text)
 				lib.ThemeColor1.Value = Color3.fromRGB(unpack(text:gsub(" ",""):split(",")))
 			end})
 			themesSetting:AddTextBox({Caption = "Secondary theme color", Default = math.floor(lib.ThemeColor2.Value.R*255)..", "..math.floor(lib.ThemeColor2.Value.G*255)..", "..math.floor(lib.ThemeColor2.Value.B*255), Callback = function(text)
 				lib.ThemeColor2.Value = Color3.fromRGB(unpack(text:gsub(" ",""):split(",")))
 			end})
-			
+
 			local windowFuncs = {
 				AddPage = function(self, options)
 					local options = typeof(options) == "table" and options or emptyT
-	
+
 					local title = typeof(options.Title) ~= "nil" and tostring(options.Title) or "Page"
 					local pageButton = newWindow.SomeStuff.Pages.PageButton:Clone()
 					pageButton.Parent = newWindow.SomeStuff.Pages
-					
+
 					pageButton.Visible = true
 					pageButton.Title.Text = title
-					
+
 					local page = newWindow.SomeStuff.Frame.Page:Clone()
 					page.Parent = newWindow.SomeStuff.Frame
-					
+
 					page.Visible = true
 					page.Position = UDim2.fromScale(1, 0)
-	
+
 					page.ChildAdded:Connect(function(c)
 						backToLive(c)
 						c = nil
 					end)
-					
+
 					pageButton.MouseButton1Click:Connect(function()
 						for i,v in newWindow.SomeStuff.Frame:GetChildren() do
 							if v and v:IsA("ScrollingFrame") and v.Visible then
@@ -3522,19 +3523,19 @@ moduleScripts[Created104] = function()
 							end
 						end
 					end)
-					
+
 					return {
 						AddLabel = function(self, options)
 							local options = typeof(options) == "table" and options or emptyT
-	
+
 							local caption = typeof(options.Caption) ~= "nil" and tostring(options.Caption) or ""
-							
+
 							local label = page.Label:Clone()
 							label.Parent = page
-							
+
 							label.Visible = true
 							label.Caption.Text = caption
-							
+
 							local labelFuncs = {
 								SetText = function(self, text)
 									label.Caption.Text = tostring(text)
@@ -3549,23 +3550,23 @@ moduleScripts[Created104] = function()
 									end
 								end,
 							}
-							
+
 							return labelFuncs
 						end,
 						AddButton = function(self, options)
 							local options = typeof(options) == "table" and options or emptyT
-	
+
 							local caption = typeof(options.Caption) ~= "nil" and tostring(options.Caption) or ""
 							local callback = typeof(options.Callback) == "function" and options.Callback or nullFunc
-	
+
 							local label = page.Button:Clone()
 							label.Parent = page
-	
+
 							label.Visible = true
 							label.Caption.Text = caption
-	
+
 							label.MouseButton1Click:Connect(callback)
-	
+
 							local labelFuncs = {
 								SetText = function(self, text)
 									label.Caption.Text = tostring(text)
@@ -3580,31 +3581,31 @@ moduleScripts[Created104] = function()
 									end
 								end,
 							}
-	
+
 							return labelFuncs
 						end,
 						AddToggle = function(self, options)
 							local options = typeof(options) == "table" and options or emptyT
-	
+
 							local caption = typeof(options.Caption) ~= "nil" and tostring(options.Caption) or ""
 							local callback = typeof(options.Callback) == "function" and options.Callback or nullFunc
 							local default = typeof(options.Default) == "boolean" and options.Default or typeof(options.Default) ~= "boolean" and true
 							local current = not not default
-							
+
 							local label = page.Toggle:Clone()
 							label.Parent = page
-	
+
 							label.Visible = true
 							label.Caption.Text = caption
-							
+
 							label.IconFrame.Icon.UIGradient.Color = ColorSequence.new(current and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(150, 150, 150))
-	
+
 							label.MouseButton1Click:Connect(function()
 								current = not current
 								label.IconFrame.Icon.UIGradient.Color = ColorSequence.new(current and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(150, 150, 150))
 								callback(current)
 							end)
-	
+
 							local labelFuncs = {
 								SetText = function(self, text)
 									label.Caption.Text = tostring(text)
@@ -3626,30 +3627,30 @@ moduleScripts[Created104] = function()
 								Default = default
 							}
 							addThing(labelFuncs)
-	
+
 							return labelFuncs
 						end,
 						AddTextBox = function(self, options)
 							local options = typeof(options) == "table" and options or emptyT
-	
+
 							local caption = typeof(options.Caption) ~= "nil" and tostring(options.Caption) or ""
 							local default = typeof(options.Default) ~= "nil" and tostring(options.Default) or ""
 							local cboe = typeof(options.CallbackOnEnter) == "boolean" and options.CallBackOnEnter or false
 							local callback = typeof(options.Callback) == "function" and options.Callback or nullFunc
-	
+
 							local label = page.TextBox:Clone()
 							label.Parent = page
-							
+
 							label.Visible = true
 							label.TextBox.PlaceholderText = caption
 							label.TextBox.Text = default
-	
+
 							label.TextBox.FocusLost:Connect(function(enter)
 								if cboe and enter or not cboe then
 									callback(label.TextBox.Text)
 								end
 							end)
-	
+
 							local labelFuncs = {
 								SetText = function(self, text)
 									label.TextBox.Text = tostring(text)
@@ -3672,12 +3673,12 @@ moduleScripts[Created104] = function()
 								Default = default
 							}
 							addThing(labelFuncs)
-	
+
 							return labelFuncs
 						end,
 						AddSlider = function(self, options)
 							local options = typeof(options) == "table" and options or emptyT
-	
+
 							local caption = typeof(options.Caption) ~= "nil" and tostring(options.Caption) or ""
 							local callback = typeof(options.Callback) == "function" and options.Callback or nullFunc
 							local max = tonumber(options.Max) or 100
@@ -3698,17 +3699,17 @@ moduleScripts[Created104] = function()
 							local customTextDisplay = typeof(options.CustomTextDisplay) == "function" and options.CustomTextDisplay or function(val)
 								return val.." | "..max
 							end
-	
+
 							local label = page.Slider:Clone()
 							label.Parent = page
-	
+
 							label.Visible = true
 							label.Caption.Text = caption
-							
+
 							local sliderDrag = label.FillBar
 							local sliderBar = sliderDrag.Filled
 							local dragging = false
-	
+
 							sliderDrag.InputBegan:Connect(function(input)
 								if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
 									dragging = true 
@@ -3719,13 +3720,13 @@ moduleScripts[Created104] = function()
 									dragging = false 
 								end 
 							end)
-							
+
 							local function round(Number, Factor)
 								local Result = math.floor(Number/Factor + (math.sign(Number) * 0.5)) * Factor
 								if Result < 0 then Result = Result + Factor end
 								return Result
 							end
-							
+
 							local newVal
 							local function set(num)
 								newVal = math.round((math.clamp(round(num, step), min, max))*1000)/1000
@@ -3741,16 +3742,16 @@ moduleScripts[Created104] = function()
 									end
 								end
 							end
-	
+
 							game.UserInputService.InputChanged:Connect(function(input)
 								if dragging and (not isMobile and input.UserInputType == Enum.UserInputType.MouseMovement or isMobile) then 
 									local sizeScale = math.clamp((input.Position.X - sliderDrag.AbsolutePosition.X) / sliderDrag.AbsoluteSize.X, 0, 1)
 									set(min + ((max - min) * sizeScale)) 
 								end
 							end)
-							
+
 							coroutine.wrap(lowMemorySet)(set, default)
-	
+
 							local labelFuncs = {
 								SetText = function(self, text)
 									label.Caption.Text = tostring(text)
@@ -3770,7 +3771,7 @@ moduleScripts[Created104] = function()
 								Default = default
 							}
 							addThing(labelFuncs)
-	
+
 							return labelFuncs
 						end,
 					}
@@ -3843,7 +3844,7 @@ moduleScripts[Created104] = function()
 					cd = false
 				end,
 			}
-			
+
 			animateImageButton(newWindow.Close, function()
 				libFunctions.Notifications:ChooseNotification({Time = 10, Title = "Are you sure?", Text = "Are you sure that you want to close "..windowFuncs._WindowTitle.."?", Callback = windowFuncs.CloseWindow})
 			end)
@@ -3863,10 +3864,10 @@ moduleScripts[Created104] = function()
 					windowFuncs:ShowWindow(true)
 				end
 			end)
-			
+
 			return windowFuncs
 		end,
-		
+
 		Notifications = {
 			__CWANIMFUNC = function(frame, OnOrOff)
 				if OnOrOff then
@@ -3885,40 +3886,40 @@ moduleScripts[Created104] = function()
 			end,
 			__Notification = function(self, options)
 				local options = typeof(options) == "table" and options or emptyT
-				
+
 				local time = math.max(tonumber(options.Time) or 5, 0)
 				local title = typeof(options.Title) ~= "nil" and tostring(options.Title) or "Notification"
 				local text = typeof(options.Text) ~= "nil" and tostring(options.Text) or ""
-				
+
 				local frame = lib.Notifications.Notification:Clone()
 				frame.Parent = lib.Notifications
 				frame.Visible = true
-				
+
 				frame.Contents.Title.Text = title
 				frame.Contents.Text.Text = text
-				
+
 				title = nil
 				text = nil
-				
+
 				self:__AnimateNotificationFrame(frame, true)
-				
+
 				if time >= 0.3 then
 					coroutine.wrap(playSound)("Notification")
 				end
-				
+
 				task.wait(time)
-				
+
 				table.clear(options)
 				options = nil
-	
+
 				self:__AnimateNotificationFrame(frame, false)
-	
+
 				if time >= 0.9 then
 					task.wait(0.9)
 				end
-	
+
 				time = nil
-				
+
 				frame:Destroy()
 				frame = nil
 			end,
@@ -3930,48 +3931,48 @@ moduleScripts[Created104] = function()
 			end,
 			__ChooseNotification = function(self, options)
 				local options = typeof(options) == "table" and options or emptyT
-	
+
 				local time = math.max(tonumber(options.Time) or 5, 0)
 				local title = typeof(options.Title) ~= "nil" and tostring(options.Title) or "Notification"
 				local text = typeof(options.Text) ~= "nil" and tostring(options.Text) or ""
 				local callback = typeof(options.Callback) == "function" and options.Callback or nullFunc
-	
+
 				local frame = lib.Notifications.ChooseNotification:Clone()
 				frame.Parent = lib.Notifications
 				frame.Visible = true
-	
+
 				frame.Contents.Title.Text = title
 				frame.Contents.Text.Text = text
-	
+
 				title = nil
 				text = nil
-				
+
 				local con1, con2
-				
+
 				local finish
 				function finish()
 					con1:Disconnect()
 					con1 = nil
 					con2:Disconnect()
 					con2 = nil
-					
+
 					table.clear(options)
 					options = nil
-					
+
 					self:__AnimateNotificationFrame(frame, false)
-					
+
 					if time >= 0.9 then
 						task.wait(0.9)
 					end
-					
+
 					time = nil
-					
+
 					frame:Destroy()
 					frame = nil
-					
+
 					finish = nil
 				end
-				
+
 				con1 = frame.Contents.Choose.Yes.MouseButton1Click:Connect(function()
 					coroutine.wrap(finish)()
 					callback(true)
@@ -3980,17 +3981,17 @@ moduleScripts[Created104] = function()
 					coroutine.wrap(finish)()
 					callback(false)
 				end)
-	
+
 				self:__AnimateNotificationFrame(frame, true)
-	
+
 				if time >= 0.3 then
 					coroutine.wrap(playSound)("Notification")
 				end
-	
+
 				task.wait(time)
-				
+
 				if not time then return end
-	
+
 				finish()
 			end,
 			ChooseNotification = function(self, ...)
@@ -3998,7 +3999,7 @@ moduleScripts[Created104] = function()
 			end,
 		},
 	}
-	
+
 	for i,v in lib:GetChildren() do
 		if v and v.Name:match("ThemeColor") and v:IsA("Color3Value") then
 			libFunctions.SetThemeColor[tonumber(table.pack(v.Name:gsub("ThemeColor",""))[1])] = function(r,g,b)
@@ -4006,7 +4007,7 @@ moduleScripts[Created104] = function()
 			end
 		end
 	end
-	
+
 	return libFunctions
 end
 local oldRequire = require
