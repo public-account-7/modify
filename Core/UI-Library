@@ -787,6 +787,7 @@ Created35.Enabled = true
 local Created36 = Instance.new("UIListLayout", Created20) --UIListLayout
 Created36.Name = "UIListLayout"
 Created36.Padding = UDim.new(0, 7)
+Created36.SortOrder = Enum.SortOrder.LayoutOrder
 
 local Created37 = Instance.new("Frame", Created20) --Slider
 Created37.Visible = false
@@ -1818,6 +1819,7 @@ Created79.AutomaticSize = Enum.AutomaticSize.None
 local Created80 = Instance.new("UIListLayout", Created76) --UIListLayout
 Created80.Name = "UIListLayout"
 Created80.Padding = UDim.new(0, 0)
+Created80.SortOrder = Enum.SortOrder.LayoutOrder
 
 local Created81 = Instance.new("TextLabel", Created73) --ExecutorInfo
 Created81.LayoutOrder = 0
@@ -1943,6 +1945,7 @@ Created83.BackgroundColor3 = Color3.new(1, 1, 1)
 local Created84 = Instance.new("UIListLayout", Created83) --UIListLayout
 Created84.Name = "UIListLayout"
 Created84.Padding = UDim.new(0, 5)
+Created84.SortOrder = Enum.SortOrder.LayoutOrder
 
 local Created85 = Instance.new("Frame", Created83) --TextBox
 Created85.Visible = false
@@ -2624,6 +2627,7 @@ local Created110 = Instance.new("UIListLayout", Created105) --UIListLayout
 Created110.Name = "UIListLayout"
 Created110.Padding = UDim.new(0, 7)
 Created110.VerticalAlignment = Enum.VerticalAlignment.Bottom
+Created110.SortOrder = Enum.SortOrder.LayoutOrder
 
 local Created111 = Instance.new("Frame", Created105) --ChooseNotification
 Created111.Visible = false
