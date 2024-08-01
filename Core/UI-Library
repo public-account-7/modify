@@ -3335,7 +3335,7 @@ moduleScripts[Created104] = function()
 		Versions = {
 			FireHubVersion = FHVer,
 			FireLibVersion = FLVer
-		}
+		},
 		SetThemeColor = table.clone(emptyT),
 		MakeWindow = function(self, options)
 			local options = typeof(options) == "table" and options or emptyT
