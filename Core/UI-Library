@@ -1,3 +1,7 @@
+local Versions = game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Version"):split("\n")
+local FHVer = Versions[1]:split(" ")[1]
+local FLVer = Versions[2]:split(" ")[1]
+
 local Created1 = Instance.new("ScreenGui", getfenv().gethui and getfenv().gethui() or game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled and game.Players.LocalPlayer:WaitForChild("PlayerGui") or table.pack(pcall(function() return game.CoreGui.Name end))[1] and game.CoreGui or game.Players.LocalPlayer:WaitForChild("PlayerGui")) --FireLib
 Created1.Enabled = true
 Created1.SafeAreaCompatibility = Enum.SafeAreaCompatibility.FullscreenExtension
@@ -3328,6 +3332,10 @@ moduleScripts[Created104] = function()
 
 	local emptyT = {}
 	local libFunctions; libFunctions = {
+		Versions = {
+			FireHubVersion = FHVer,
+			FireLibVersion = FLVer
+		}
 		SetThemeColor = table.clone(emptyT),
 		MakeWindow = function(self, options)
 			local options = typeof(options) == "table" and options or emptyT
