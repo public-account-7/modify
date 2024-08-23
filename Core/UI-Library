@@ -86,7 +86,7 @@ Instance8.AnchorPoint = Vector2.new(0.5, 0.5)
 Instance8.Style = Enum.FrameStyle.Custom
 Instance8.LayoutOrder = 0
 Instance8.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance8.ZIndex = 0
+Instance8.ZIndex = 10000
 Instance8.Size = UDim2.new(1, 0, 1, 0)
 Instance8.Draggable = false
 Instance8.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -107,7 +107,7 @@ Instance9.Active = true
 Instance9.TextStrokeTransparency = 1
 Instance9.TextTruncate = Enum.TextTruncate.None
 Instance9.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance9.ZIndex = 1
+Instance9.ZIndex = 10001
 Instance9.TextWrap = false
 Instance9.Draggable = false
 Instance9.RichText = false
@@ -162,7 +162,7 @@ Instance11.AnchorPoint = Vector2.new(0, 0)
 Instance11.Style = Enum.FrameStyle.Custom
 Instance11.LayoutOrder = 0
 Instance11.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance11.ZIndex = 2
+Instance11.ZIndex = 10002
 Instance11.Size = UDim2.new(1, -4, 1, -4)
 Instance11.Draggable = false
 Instance11.Position = UDim2.new(0, 2, 0, 2)
@@ -183,7 +183,7 @@ Instance12.Active = false
 Instance12.TextStrokeTransparency = 1
 Instance12.TextTruncate = Enum.TextTruncate.None
 Instance12.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance12.ZIndex = 3
+Instance12.ZIndex = 10003
 Instance12.BorderSizePixel = 0
 Instance12.Draggable = false
 Instance12.RichText = false
@@ -225,7 +225,7 @@ Instance13.AnchorPoint = Vector2.new(0, 0)
 Instance13.Style = Enum.FrameStyle.Custom
 Instance13.LayoutOrder = 0
 Instance13.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance13.ZIndex = 3
+Instance13.ZIndex = 10003
 Instance13.Size = UDim2.new(1, 0, 0, 2)
 Instance13.Draggable = false
 Instance13.Position = UDim2.new(0, 0, 0.15600000321865082, 0)
@@ -243,7 +243,7 @@ Instance14.LayoutOrder = 0
 Instance14.Active = true
 Instance14.ScrollingDirection = Enum.ScrollingDirection.X
 Instance14.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance14.ZIndex = 3
+Instance14.ZIndex = 10003
 Instance14.CanvasSize = UDim2.new(0, 0, 0, 0)
 Instance14.Draggable = false
 Instance14.MidImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
@@ -283,7 +283,7 @@ Instance15.Active = true
 Instance15.TextStrokeTransparency = 1
 Instance15.TextTruncate = Enum.TextTruncate.None
 Instance15.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance15.ZIndex = 4
+Instance15.ZIndex = 10004
 Instance15.TextWrap = true
 Instance15.Draggable = false
 Instance15.RichText = false
@@ -327,7 +327,7 @@ Instance16.Active = true
 Instance16.TextStrokeTransparency = 1
 Instance16.TextTruncate = Enum.TextTruncate.None
 Instance16.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance16.ZIndex = 5
+Instance16.ZIndex = 10005
 Instance16.BorderSizePixel = 0
 Instance16.Draggable = false
 Instance16.RichText = false
@@ -369,7 +369,7 @@ Instance17.AnchorPoint = Vector2.new(0, 0)
 Instance17.Style = Enum.FrameStyle.Custom
 Instance17.LayoutOrder = 0
 Instance17.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance17.ZIndex = 5
+Instance17.ZIndex = 10005
 Instance17.Size = UDim2.new(1, 0, 0, 2)
 Instance17.Draggable = false
 Instance17.Position = UDim2.new(0, 0, 1, -2)
@@ -403,7 +403,7 @@ Instance19.AnchorPoint = Vector2.new(0, 0)
 Instance19.Style = Enum.FrameStyle.Custom
 Instance19.LayoutOrder = 0
 Instance19.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance19.ZIndex = 3
+Instance19.ZIndex = 10003
 Instance19.Size = UDim2.new(1, 0, 0.843999981880188, -1)
 Instance19.Draggable = false
 Instance19.Position = UDim2.new(0, 0, 0.15600000321865082, 1)
@@ -421,7 +421,7 @@ Instance20.LayoutOrder = 0
 Instance20.Active = true
 Instance20.ScrollingDirection = Enum.ScrollingDirection.Y
 Instance20.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance20.ZIndex = 4
+Instance20.ZIndex = 10004
 Instance20.CanvasSize = UDim2.new(0, 0, 0, 0)
 Instance20.Draggable = false
 Instance20.MidImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
@@ -474,7 +474,7 @@ Instance22.AnchorPoint = Vector2.new(0, 0)
 Instance22.Style = Enum.FrameStyle.Custom
 Instance22.LayoutOrder = 0
 Instance22.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance22.ZIndex = 5
+Instance22.ZIndex = 10005
 Instance22.Size = UDim2.new(1, 0, 0.10000000149011612, 0)
 Instance22.Draggable = false
 Instance22.Position = UDim2.new(0, 0, 0, 0)
@@ -495,7 +495,7 @@ Instance23.Active = true
 Instance23.TextStrokeTransparency = 1
 Instance23.TextTruncate = Enum.TextTruncate.None
 Instance23.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance23.ZIndex = 6
+Instance23.ZIndex = 10006
 Instance23.BorderSizePixel = 0
 Instance23.Draggable = false
 Instance23.RichText = false
@@ -537,7 +537,7 @@ Instance24.AnchorPoint = Vector2.new(0, 0)
 Instance24.Style = Enum.FrameStyle.Custom
 Instance24.LayoutOrder = 0
 Instance24.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance24.ZIndex = 1
+Instance24.ZIndex = 10001
 Instance24.Size = UDim2.new(1, 0, 0, 1)
 Instance24.Draggable = false
 Instance24.Position = UDim2.new(0, 0, 0, 0)
@@ -558,7 +558,7 @@ Instance25.Active = true
 Instance25.TextStrokeTransparency = 1
 Instance25.TextTruncate = Enum.TextTruncate.None
 Instance25.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance25.ZIndex = 5
+Instance25.ZIndex = 10005
 Instance25.TextWrap = false
 Instance25.Draggable = false
 Instance25.RichText = false
@@ -604,7 +604,7 @@ Instance26.AnchorPoint = Vector2.new(0, 0.5)
 Instance26.Style = Enum.FrameStyle.Custom
 Instance26.LayoutOrder = 0
 Instance26.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance26.ZIndex = 6
+Instance26.ZIndex = 10006
 Instance26.Size = UDim2.new(0.05000000074505806, -1, 1, 0)
 Instance26.Draggable = false
 Instance26.Position = UDim2.new(0.05000000074505806, 0, 0.5, 0)
@@ -642,7 +642,7 @@ Instance29.AnchorPoint = Vector2.new(0, 0)
 Instance29.Style = Enum.FrameStyle.Custom
 Instance29.LayoutOrder = 0
 Instance29.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance29.ZIndex = 7
+Instance29.ZIndex = 10007
 Instance29.Size = UDim2.new(1, -4, 1, -4)
 Instance29.Draggable = false
 Instance29.Position = UDim2.new(0, 2, 0, 2)
@@ -659,7 +659,7 @@ local Instance30 = Instance.new("ImageLabel", Instance29) --ImageLabel
 Instance30.Visible = true
 Instance30.Active = false
 Instance30.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance30.ZIndex = 8
+Instance30.ZIndex = 10008
 Instance30.BorderSizePixel = 0
 Instance30.SliceCenter = Rect.new(0, 0, 0, 0)
 Instance30.Draggable = false
@@ -695,7 +695,7 @@ Instance31.Active = true
 Instance31.TextStrokeTransparency = 1
 Instance31.TextTruncate = Enum.TextTruncate.None
 Instance31.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance31.ZIndex = 6
+Instance31.ZIndex = 10006
 Instance31.BorderSizePixel = 0
 Instance31.Draggable = false
 Instance31.RichText = false
@@ -737,7 +737,7 @@ Instance32.AnchorPoint = Vector2.new(0, 0)
 Instance32.Style = Enum.FrameStyle.Custom
 Instance32.LayoutOrder = 0
 Instance32.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance32.ZIndex = 6
+Instance32.ZIndex = 10006
 Instance32.Size = UDim2.new(1, 0, 0, 1)
 Instance32.Draggable = false
 Instance32.Position = UDim2.new(0, 0, 0, 0)
@@ -758,7 +758,7 @@ Instance33.Active = true
 Instance33.TextStrokeTransparency = 1
 Instance33.TextTruncate = Enum.TextTruncate.None
 Instance33.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance33.ZIndex = 5
+Instance33.ZIndex = 10005
 Instance33.TextWrap = false
 Instance33.Draggable = false
 Instance33.RichText = false
@@ -802,7 +802,7 @@ Instance34.Active = true
 Instance34.TextStrokeTransparency = 1
 Instance34.TextTruncate = Enum.TextTruncate.None
 Instance34.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance34.ZIndex = 6
+Instance34.ZIndex = 10006
 Instance34.BorderSizePixel = 0
 Instance34.Draggable = false
 Instance34.RichText = false
@@ -844,7 +844,7 @@ Instance35.AnchorPoint = Vector2.new(0, 0)
 Instance35.Style = Enum.FrameStyle.Custom
 Instance35.LayoutOrder = 0
 Instance35.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance35.ZIndex = 6
+Instance35.ZIndex = 10006
 Instance35.Size = UDim2.new(1, 0, 0, 1)
 Instance35.Draggable = false
 Instance35.Position = UDim2.new(0, 0, 0, 0)
@@ -867,7 +867,7 @@ Instance36.AnchorPoint = Vector2.new(0, 0)
 Instance36.Style = Enum.FrameStyle.Custom
 Instance36.LayoutOrder = 0
 Instance36.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance36.ZIndex = 6
+Instance36.ZIndex = 10006
 Instance36.Size = UDim2.new(0.8999999761581421, -2, 0.4000000059604645, 0)
 Instance36.Draggable = false
 Instance36.Position = UDim2.new(0.05000000074505806, 1, 0.5, 0)
@@ -899,7 +899,7 @@ Instance38.AnchorPoint = Vector2.new(0, 0)
 Instance38.Style = Enum.FrameStyle.Custom
 Instance38.LayoutOrder = 0
 Instance38.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance38.ZIndex = 7
+Instance38.ZIndex = 10007
 Instance38.Size = UDim2.new(1, -4, 1, -4)
 Instance38.Draggable = false
 Instance38.Position = UDim2.new(0, 2, 0, 2)
@@ -922,7 +922,7 @@ Instance39.AnchorPoint = Vector2.new(0, 0)
 Instance39.Style = Enum.FrameStyle.Custom
 Instance39.LayoutOrder = 0
 Instance39.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance39.ZIndex = 8
+Instance39.ZIndex = 10008
 Instance39.Size = UDim2.new(0.5, 0, 1, 0)
 Instance39.Draggable = false
 Instance39.Position = UDim2.new(0, 0, 0, 0)
@@ -943,7 +943,7 @@ Instance40.Active = false
 Instance40.TextStrokeTransparency = 1
 Instance40.TextTruncate = Enum.TextTruncate.None
 Instance40.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance40.ZIndex = 9
+Instance40.ZIndex = 10009
 Instance40.BorderSizePixel = 0
 Instance40.Draggable = false
 Instance40.RichText = false
@@ -985,7 +985,7 @@ Instance41.AnchorPoint = Vector2.new(0, 0)
 Instance41.Style = Enum.FrameStyle.Custom
 Instance41.LayoutOrder = 0
 Instance41.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance41.ZIndex = 5
+Instance41.ZIndex = 10005
 Instance41.Size = UDim2.new(1, 0, 0.10000000149011612, 0)
 Instance41.Draggable = false
 Instance41.Position = UDim2.new(0, 0, 0, 0)
@@ -1008,7 +1008,7 @@ Instance42.AnchorPoint = Vector2.new(0, 0)
 Instance42.Style = Enum.FrameStyle.Custom
 Instance42.LayoutOrder = 0
 Instance42.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance42.ZIndex = 6
+Instance42.ZIndex = 10006
 Instance42.Size = UDim2.new(1, 0, 0, 1)
 Instance42.Draggable = false
 Instance42.Position = UDim2.new(0, 0, 0, 0)
@@ -1029,7 +1029,7 @@ Instance43.Active = true
 Instance43.TextStrokeTransparency = 1
 Instance43.TextTruncate = Enum.TextTruncate.None
 Instance43.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance43.ZIndex = 6
+Instance43.ZIndex = 10006
 Instance43.BorderSizePixel = 0
 Instance43.Draggable = false
 Instance43.RichText = false
@@ -1071,7 +1071,7 @@ Instance44.AnchorPoint = Vector2.new(0, 0.5)
 Instance44.Style = Enum.FrameStyle.Custom
 Instance44.LayoutOrder = 0
 Instance44.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance44.ZIndex = 7
+Instance44.ZIndex = 10007
 Instance44.Size = UDim2.new(0.699999988079071, 0, 0.699999988079071, 0)
 Instance44.Draggable = false
 Instance44.Position = UDim2.new(0.9700000286102295, 0, 0.5, 0)
@@ -1109,7 +1109,7 @@ Instance47.AnchorPoint = Vector2.new(0.5, 0)
 Instance47.Style = Enum.FrameStyle.Custom
 Instance47.LayoutOrder = 0
 Instance47.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance47.ZIndex = 6
+Instance47.ZIndex = 10006
 Instance47.Size = UDim2.new(0.9300000071525574, 0, 0.4000000059604645, 0)
 Instance47.Draggable = false
 Instance47.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -1143,7 +1143,7 @@ Instance49.AnchorPoint = Vector2.new(0, 0)
 Instance49.Style = Enum.FrameStyle.Custom
 Instance49.LayoutOrder = 0
 Instance49.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance49.ZIndex = 7
+Instance49.ZIndex = 10007
 Instance49.Size = UDim2.new(0.3330000042915344, 0, 1, 0)
 Instance49.Draggable = false
 Instance49.Position = UDim2.new(0, 0, 0, 0)
@@ -1164,7 +1164,7 @@ Instance50.Active = true
 Instance50.TextStrokeTransparency = 1
 Instance50.TextTruncate = Enum.TextTruncate.None
 Instance50.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance50.ZIndex = 1
+Instance50.ZIndex = 10001
 Instance50.TextWrap = false
 Instance50.Draggable = false
 Instance50.RichText = false
@@ -1210,7 +1210,7 @@ Instance51.AnchorPoint = Vector2.new(0, 0)
 Instance51.Style = Enum.FrameStyle.Custom
 Instance51.LayoutOrder = 0
 Instance51.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance51.ZIndex = 9
+Instance51.ZIndex = 10009
 Instance51.Size = UDim2.new(1, -4, 1, -4)
 Instance51.Draggable = false
 Instance51.Position = UDim2.new(0, 2, 0, 2)
@@ -1233,7 +1233,7 @@ Instance52.AnchorPoint = Vector2.new(0, 0)
 Instance52.Style = Enum.FrameStyle.Custom
 Instance52.LayoutOrder = 0
 Instance52.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance52.ZIndex = 10
+Instance52.ZIndex = 10010
 Instance52.Size = UDim2.new(0.5, 0, 1, 0)
 Instance52.Draggable = false
 Instance52.Position = UDim2.new(0, 0, 0, 0)
@@ -1254,7 +1254,7 @@ Instance53.Active = false
 Instance53.TextStrokeTransparency = 1
 Instance53.TextTruncate = Enum.TextTruncate.None
 Instance53.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance53.ZIndex = 11
+Instance53.ZIndex = 10011
 Instance53.BorderSizePixel = 0
 Instance53.Draggable = false
 Instance53.RichText = false
@@ -1305,7 +1305,7 @@ Instance55.AnchorPoint = Vector2.new(0, 0)
 Instance55.Style = Enum.FrameStyle.Custom
 Instance55.LayoutOrder = 0
 Instance55.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance55.ZIndex = 7
+Instance55.ZIndex = 10007
 Instance55.Size = UDim2.new(0.3330000042915344, 0, 1, 0)
 Instance55.Draggable = false
 Instance55.Position = UDim2.new(0, 0, 0, 0)
@@ -1326,7 +1326,7 @@ Instance56.Active = true
 Instance56.TextStrokeTransparency = 1
 Instance56.TextTruncate = Enum.TextTruncate.None
 Instance56.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance56.ZIndex = 1
+Instance56.ZIndex = 10001
 Instance56.TextWrap = false
 Instance56.Draggable = false
 Instance56.RichText = false
@@ -1372,7 +1372,7 @@ Instance57.AnchorPoint = Vector2.new(0, 0)
 Instance57.Style = Enum.FrameStyle.Custom
 Instance57.LayoutOrder = 0
 Instance57.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance57.ZIndex = 9
+Instance57.ZIndex = 10009
 Instance57.Size = UDim2.new(1, -4, 1, -4)
 Instance57.Draggable = false
 Instance57.Position = UDim2.new(0, 2, 0, 2)
@@ -1395,7 +1395,7 @@ Instance58.AnchorPoint = Vector2.new(0, 0)
 Instance58.Style = Enum.FrameStyle.Custom
 Instance58.LayoutOrder = 0
 Instance58.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance58.ZIndex = 10
+Instance58.ZIndex = 10010
 Instance58.Size = UDim2.new(0.5, 0, 1, 0)
 Instance58.Draggable = false
 Instance58.Position = UDim2.new(0, 0, 0, 0)
@@ -1416,7 +1416,7 @@ Instance59.Active = false
 Instance59.TextStrokeTransparency = 1
 Instance59.TextTruncate = Enum.TextTruncate.None
 Instance59.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance59.ZIndex = 11
+Instance59.ZIndex = 10011
 Instance59.BorderSizePixel = 0
 Instance59.Draggable = false
 Instance59.RichText = false
@@ -1467,7 +1467,7 @@ Instance61.AnchorPoint = Vector2.new(0, 0)
 Instance61.Style = Enum.FrameStyle.Custom
 Instance61.LayoutOrder = 0
 Instance61.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance61.ZIndex = 7
+Instance61.ZIndex = 10007
 Instance61.Size = UDim2.new(0.3330000042915344, 0, 1, 0)
 Instance61.Draggable = false
 Instance61.Position = UDim2.new(0, 0, 0, 0)
@@ -1488,7 +1488,7 @@ Instance62.Active = true
 Instance62.TextStrokeTransparency = 1
 Instance62.TextTruncate = Enum.TextTruncate.None
 Instance62.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance62.ZIndex = 1
+Instance62.ZIndex = 10001
 Instance62.TextWrap = false
 Instance62.Draggable = false
 Instance62.RichText = false
@@ -1534,7 +1534,7 @@ Instance63.AnchorPoint = Vector2.new(0, 0)
 Instance63.Style = Enum.FrameStyle.Custom
 Instance63.LayoutOrder = 0
 Instance63.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance63.ZIndex = 9
+Instance63.ZIndex = 10009
 Instance63.Size = UDim2.new(1, -4, 1, -4)
 Instance63.Draggable = false
 Instance63.Position = UDim2.new(0, 2, 0, 2)
@@ -1557,7 +1557,7 @@ Instance64.AnchorPoint = Vector2.new(0, 0)
 Instance64.Style = Enum.FrameStyle.Custom
 Instance64.LayoutOrder = 0
 Instance64.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance64.ZIndex = 10
+Instance64.ZIndex = 10010
 Instance64.Size = UDim2.new(0.5, 0, 1, 0)
 Instance64.Draggable = false
 Instance64.Position = UDim2.new(0, 0, 0, 0)
@@ -1578,7 +1578,7 @@ Instance65.Active = false
 Instance65.TextStrokeTransparency = 1
 Instance65.TextTruncate = Enum.TextTruncate.None
 Instance65.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance65.ZIndex = 11
+Instance65.ZIndex = 10011
 Instance65.BorderSizePixel = 0
 Instance65.Draggable = false
 Instance65.RichText = false
@@ -1627,7 +1627,7 @@ Instance67.Active = true
 Instance67.TextStrokeTransparency = 1
 Instance67.TextTruncate = Enum.TextTruncate.None
 Instance67.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance67.ZIndex = 5
+Instance67.ZIndex = 10005
 Instance67.TextWrap = false
 Instance67.Draggable = false
 Instance67.RichText = false
@@ -1673,7 +1673,7 @@ Instance68.AnchorPoint = Vector2.new(0, 0.5)
 Instance68.Style = Enum.FrameStyle.Custom
 Instance68.LayoutOrder = 0
 Instance68.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance68.ZIndex = 6
+Instance68.ZIndex = 10006
 Instance68.Size = UDim2.new(0.05000000074505806, -1, 1, 0)
 Instance68.Draggable = false
 Instance68.Position = UDim2.new(0.05000000074505806, 0, 0.5, 0)
@@ -1702,7 +1702,7 @@ Instance70.AnchorPoint = Vector2.new(0, 0)
 Instance70.Style = Enum.FrameStyle.Custom
 Instance70.LayoutOrder = 0
 Instance70.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance70.ZIndex = 7
+Instance70.ZIndex = 10007
 Instance70.Size = UDim2.new(1, -4, 1, -4)
 Instance70.Draggable = false
 Instance70.Position = UDim2.new(0, 2, 0, 2)
@@ -1719,7 +1719,7 @@ local Instance71 = Instance.new("ImageLabel", Instance70) --ImageLabel
 Instance71.Visible = true
 Instance71.Active = false
 Instance71.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance71.ZIndex = 8
+Instance71.ZIndex = 10008
 Instance71.BorderSizePixel = 0
 Instance71.SliceCenter = Rect.new(0, 0, 0, 0)
 Instance71.Draggable = false
@@ -1764,7 +1764,7 @@ Instance73.Active = true
 Instance73.TextStrokeTransparency = 1
 Instance73.TextTruncate = Enum.TextTruncate.None
 Instance73.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance73.ZIndex = 6
+Instance73.ZIndex = 10006
 Instance73.BorderSizePixel = 0
 Instance73.Draggable = false
 Instance73.RichText = false
@@ -1806,7 +1806,7 @@ Instance74.AnchorPoint = Vector2.new(0, 0)
 Instance74.Style = Enum.FrameStyle.Custom
 Instance74.LayoutOrder = 0
 Instance74.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance74.ZIndex = 6
+Instance74.ZIndex = 10006
 Instance74.Size = UDim2.new(1, 0, 0, 1)
 Instance74.Draggable = false
 Instance74.Position = UDim2.new(0, 0, 0, 0)
@@ -1827,7 +1827,7 @@ Instance75.Active = true
 Instance75.TextStrokeTransparency = 1
 Instance75.TextTruncate = Enum.TextTruncate.None
 Instance75.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance75.ZIndex = 5
+Instance75.ZIndex = 10005
 Instance75.TextWrap = false
 Instance75.Draggable = false
 Instance75.RichText = false
@@ -1871,7 +1871,7 @@ Instance76.Active = true
 Instance76.TextStrokeTransparency = 1
 Instance76.TextTruncate = Enum.TextTruncate.None
 Instance76.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance76.ZIndex = 6
+Instance76.ZIndex = 10006
 Instance76.BorderSizePixel = 0
 Instance76.Draggable = false
 Instance76.RichText = false
@@ -1913,7 +1913,7 @@ Instance77.AnchorPoint = Vector2.new(0, 0)
 Instance77.Style = Enum.FrameStyle.Custom
 Instance77.LayoutOrder = 0
 Instance77.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance77.ZIndex = 6
+Instance77.ZIndex = 10006
 Instance77.Size = UDim2.new(1, 0, 0, 1)
 Instance77.Draggable = false
 Instance77.Position = UDim2.new(0, 0, 0, 0)
@@ -1936,7 +1936,7 @@ Instance78.AnchorPoint = Vector2.new(0, 0)
 Instance78.Style = Enum.FrameStyle.Custom
 Instance78.LayoutOrder = 0
 Instance78.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance78.ZIndex = 6
+Instance78.ZIndex = 10006
 Instance78.Size = UDim2.new(0.8999999761581421, -2, 0.4000000059604645, 0)
 Instance78.Draggable = false
 Instance78.Position = UDim2.new(0.05000000074505806, 1, 0.5, 0)
@@ -1968,7 +1968,7 @@ Instance80.AnchorPoint = Vector2.new(0, 0)
 Instance80.Style = Enum.FrameStyle.Custom
 Instance80.LayoutOrder = 0
 Instance80.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance80.ZIndex = 7
+Instance80.ZIndex = 10007
 Instance80.Size = UDim2.new(1, -4, 1, -4)
 Instance80.Draggable = false
 Instance80.Position = UDim2.new(0, 2, 0, 2)
@@ -1993,7 +1993,7 @@ Instance81.TextTransparency = 0
 Instance81.BackgroundColor3 = Color3.new(1, 1, 1)
 Instance81.TextTruncate = Enum.TextTruncate.None
 Instance81.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance81.ZIndex = 8
+Instance81.ZIndex = 10008
 Instance81.BorderSizePixel = 0
 Instance81.TextEditable = true
 Instance81.Draggable = false
@@ -2044,7 +2044,7 @@ Instance83.Active = true
 Instance83.TextStrokeTransparency = 1
 Instance83.TextTruncate = Enum.TextTruncate.None
 Instance83.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance83.ZIndex = 5
+Instance83.ZIndex = 10005
 Instance83.TextWrap = false
 Instance83.Draggable = false
 Instance83.RichText = false
@@ -2090,7 +2090,7 @@ Instance84.AnchorPoint = Vector2.new(0, 0.5)
 Instance84.Style = Enum.FrameStyle.Custom
 Instance84.LayoutOrder = 0
 Instance84.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance84.ZIndex = 6
+Instance84.ZIndex = 10006
 Instance84.Size = UDim2.new(0.20000000298023224, -1, 0.5, 0)
 Instance84.Draggable = false
 Instance84.Position = UDim2.new(0.05000000074505806, 0, 0.5, 0)
@@ -2122,7 +2122,7 @@ Instance86.AnchorPoint = Vector2.new(0, 0)
 Instance86.Style = Enum.FrameStyle.Custom
 Instance86.LayoutOrder = 0
 Instance86.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance86.ZIndex = 7
+Instance86.ZIndex = 10007
 Instance86.Size = UDim2.new(1, -4, 1, -4)
 Instance86.Draggable = false
 Instance86.Position = UDim2.new(0, 2, 0, 2)
@@ -2143,7 +2143,7 @@ Instance87.Active = false
 Instance87.TextStrokeTransparency = 1
 Instance87.TextTruncate = Enum.TextTruncate.None
 Instance87.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance87.ZIndex = 8
+Instance87.ZIndex = 10008
 Instance87.BorderSizePixel = 0
 Instance87.Draggable = false
 Instance87.RichText = false
@@ -2183,7 +2183,7 @@ Instance88.Active = true
 Instance88.TextStrokeTransparency = 1
 Instance88.TextTruncate = Enum.TextTruncate.None
 Instance88.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance88.ZIndex = 6
+Instance88.ZIndex = 10006
 Instance88.BorderSizePixel = 0
 Instance88.Draggable = false
 Instance88.RichText = false
@@ -2225,7 +2225,7 @@ Instance89.AnchorPoint = Vector2.new(0, 0)
 Instance89.Style = Enum.FrameStyle.Custom
 Instance89.LayoutOrder = 0
 Instance89.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance89.ZIndex = 6
+Instance89.ZIndex = 10006
 Instance89.Size = UDim2.new(1, 0, 0, 1)
 Instance89.Draggable = false
 Instance89.Position = UDim2.new(0, 0, 0, 0)
@@ -2248,7 +2248,7 @@ Instance90.AnchorPoint = Vector2.new(0, 0)
 Instance90.Style = Enum.FrameStyle.Custom
 Instance90.LayoutOrder = 0
 Instance90.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance90.ZIndex = 5
+Instance90.ZIndex = 10005
 Instance90.Size = UDim2.new(1, 0, 0.02500000037252903, 0)
 Instance90.Draggable = false
 Instance90.Position = UDim2.new(0, 0, 0, 0)
@@ -2271,7 +2271,7 @@ Instance91.AnchorPoint = Vector2.new(0, 0)
 Instance91.Style = Enum.FrameStyle.Custom
 Instance91.LayoutOrder = 0
 Instance91.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance91.ZIndex = 1
+Instance91.ZIndex = 10001
 Instance91.Size = UDim2.new(1, 0, 0, 1)
 Instance91.Draggable = false
 Instance91.Position = UDim2.new(0, 0, 0, 0)
@@ -2287,14 +2287,14 @@ Instance91.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 local Instance92 = Instance.new("UIGradient", Instance11) --UIGradient
 Instance92.Offset = Vector2.new(0, 0)
 Instance92.Color = ColorSequence.new({
-	[1] = ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
-	[2] = ColorSequenceKeypoint.new(0.3499999940395355, Color3.new(1, 1, 1)),
-	[3] = ColorSequenceKeypoint.new(1, Color3.new(0.588235, 0.588235, 0.588235))
+    [1] = ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
+    [2] = ColorSequenceKeypoint.new(0.3499999940395355, Color3.new(1, 1, 1)),
+    [3] = ColorSequenceKeypoint.new(1, Color3.new(0.588235, 0.588235, 0.588235))
 })
 Instance92.Rotation = 75
 Instance92.Transparency = NumberSequence.new({
-	[1] = NumberSequenceKeypoint.new(0, 0, 0),
-	[2] = NumberSequenceKeypoint.new(1, 0, 0)
+    [1] = NumberSequenceKeypoint.new(0, 0, 0),
+    [2] = NumberSequenceKeypoint.new(1, 0, 0)
 })
 Instance92.Name = "UIGradient"
 Instance92.Enabled = true
@@ -2309,7 +2309,7 @@ Instance93.AnchorPoint = Vector2.new(0, 0)
 Instance93.Style = Enum.FrameStyle.Custom
 Instance93.LayoutOrder = 0
 Instance93.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance93.ZIndex = 20
+Instance93.ZIndex = 10020
 Instance93.Size = UDim2.new(1, 0, 1, 0)
 Instance93.Draggable = false
 Instance93.Position = UDim2.new(0, 0, 0, 0)
@@ -2325,13 +2325,13 @@ Instance93.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 local Instance94 = Instance.new("UIGradient", Instance9) --UIGradient
 Instance94.Offset = Vector2.new(0, 0)
 Instance94.Color = ColorSequence.new({
-	[1] = ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
-	[2] = ColorSequenceKeypoint.new(1, Color3.new(0.784314, 0.784314, 0.784314))
+    [1] = ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
+    [2] = ColorSequenceKeypoint.new(1, Color3.new(0.784314, 0.784314, 0.784314))
 })
 Instance94.Rotation = 45
 Instance94.Transparency = NumberSequence.new({
-	[1] = NumberSequenceKeypoint.new(0, 0, 0),
-	[2] = NumberSequenceKeypoint.new(1, 0, 0)
+    [1] = NumberSequenceKeypoint.new(0, 0, 0),
+    [2] = NumberSequenceKeypoint.new(1, 0, 0)
 })
 Instance94.Name = "UIGradient"
 Instance94.Enabled = true
@@ -2352,7 +2352,7 @@ Instance96.AnchorPoint = Vector2.new(0, 0)
 Instance96.Style = Enum.FrameStyle.Custom
 Instance96.LayoutOrder = 0
 Instance96.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance96.ZIndex = 0
+Instance96.ZIndex = 10030
 Instance96.Size = UDim2.new(0.25, 0, 1, 0)
 Instance96.Draggable = false
 Instance96.Position = UDim2.new(0, 0, 0, 0)
@@ -2375,7 +2375,7 @@ Instance97.AnchorPoint = Vector2.new(0, 0)
 Instance97.Style = Enum.FrameStyle.Custom
 Instance97.LayoutOrder = 0
 Instance97.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance97.ZIndex = 1
+Instance97.ZIndex = 10031
 Instance97.Size = UDim2.new(1, 0, 0.20000000298023224, 0)
 Instance97.Draggable = false
 Instance97.Position = UDim2.new(0, 0, 0, 0)
@@ -2398,7 +2398,7 @@ Instance98.AnchorPoint = Vector2.new(0, 0)
 Instance98.Style = Enum.FrameStyle.Custom
 Instance98.LayoutOrder = 0
 Instance98.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance98.ZIndex = 2
+Instance98.ZIndex = 10032
 Instance98.Size = UDim2.new(1, 0, 1, 0)
 Instance98.Draggable = false
 Instance98.Position = UDim2.new(0, 0, 0, 0)
@@ -2430,7 +2430,7 @@ Instance100.AnchorPoint = Vector2.new(0, 0)
 Instance100.Style = Enum.FrameStyle.Custom
 Instance100.LayoutOrder = 0
 Instance100.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance100.ZIndex = 3
+Instance100.ZIndex = 10033
 Instance100.Size = UDim2.new(1, -5, 1, -2)
 Instance100.Draggable = false
 Instance100.Position = UDim2.new(0, 0, 0, 2)
@@ -2453,7 +2453,7 @@ Instance101.AnchorPoint = Vector2.new(0, 0)
 Instance101.Style = Enum.FrameStyle.Custom
 Instance101.LayoutOrder = 0
 Instance101.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance101.ZIndex = 4
+Instance101.ZIndex = 10034
 Instance101.Size = UDim2.new(1, 0, 0, 5)
 Instance101.Draggable = false
 Instance101.Position = UDim2.new(0, 0, 1, -5)
@@ -2476,7 +2476,7 @@ Instance102.AnchorPoint = Vector2.new(0, 0)
 Instance102.Style = Enum.FrameStyle.Custom
 Instance102.LayoutOrder = 0
 Instance102.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance102.ZIndex = 5
+Instance102.ZIndex = 10035
 Instance102.Size = UDim2.new(0.5, 0, 1, 0)
 Instance102.Draggable = false
 Instance102.Position = UDim2.new(0.5, 0, 0, 0)
@@ -2497,7 +2497,7 @@ Instance103.Active = false
 Instance103.TextStrokeTransparency = 1
 Instance103.TextTruncate = Enum.TextTruncate.None
 Instance103.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance103.ZIndex = 4
+Instance103.ZIndex = 10034
 Instance103.BorderSizePixel = 0
 Instance103.Draggable = false
 Instance103.RichText = false
@@ -2539,7 +2539,7 @@ Instance104.AnchorPoint = Vector2.new(0, 0)
 Instance104.Style = Enum.FrameStyle.Custom
 Instance104.LayoutOrder = 0
 Instance104.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance104.ZIndex = 4
+Instance104.ZIndex = 10034
 Instance104.Size = UDim2.new(1, 0, 0, 1)
 Instance104.Draggable = false
 Instance104.Position = UDim2.new(0, 0, 0.20000000298023224, -1)
@@ -2562,7 +2562,7 @@ Instance105.AnchorPoint = Vector2.new(0, 0)
 Instance105.Style = Enum.FrameStyle.Custom
 Instance105.LayoutOrder = 0
 Instance105.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance105.ZIndex = 4
+Instance105.ZIndex = 10034
 Instance105.Size = UDim2.new(1, 0, 0.800000011920929, -5)
 Instance105.Draggable = false
 Instance105.Position = UDim2.new(0, 0, 0.20000000298023224, 0)
@@ -2594,7 +2594,7 @@ Instance107.Active = false
 Instance107.TextStrokeTransparency = 1
 Instance107.TextTruncate = Enum.TextTruncate.None
 Instance107.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance107.ZIndex = 5
+Instance107.ZIndex = 10035
 Instance107.BorderSizePixel = 0
 Instance107.Draggable = false
 Instance107.RichText = false
@@ -2634,7 +2634,7 @@ Instance108.Active = false
 Instance108.TextStrokeTransparency = 1
 Instance108.TextTruncate = Enum.TextTruncate.None
 Instance108.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance108.ZIndex = 5
+Instance108.ZIndex = 10035
 Instance108.BorderSizePixel = 0
 Instance108.Draggable = false
 Instance108.RichText = false
@@ -2674,7 +2674,7 @@ Instance109.Active = false
 Instance109.TextStrokeTransparency = 1
 Instance109.TextTruncate = Enum.TextTruncate.None
 Instance109.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance109.ZIndex = 5
+Instance109.ZIndex = 10035
 Instance109.BorderSizePixel = 0
 Instance109.Draggable = false
 Instance109.RichText = false
@@ -2714,7 +2714,7 @@ Instance110.Active = false
 Instance110.TextStrokeTransparency = 1
 Instance110.TextTruncate = Enum.TextTruncate.None
 Instance110.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance110.ZIndex = 5
+Instance110.ZIndex = 10035
 Instance110.BorderSizePixel = 0
 Instance110.Draggable = false
 Instance110.RichText = false
@@ -2754,7 +2754,7 @@ Instance111.Active = false
 Instance111.TextStrokeTransparency = 1
 Instance111.TextTruncate = Enum.TextTruncate.None
 Instance111.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance111.ZIndex = 5
+Instance111.ZIndex = 10035
 Instance111.BorderSizePixel = 0
 Instance111.Draggable = false
 Instance111.RichText = false
@@ -2794,7 +2794,7 @@ Instance112.Active = false
 Instance112.TextStrokeTransparency = 1
 Instance112.TextTruncate = Enum.TextTruncate.None
 Instance112.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance112.ZIndex = 5
+Instance112.ZIndex = 10035
 Instance112.BorderSizePixel = 0
 Instance112.Draggable = false
 Instance112.RichText = false
@@ -2847,7 +2847,7 @@ Instance114.AnchorPoint = Vector2.new(0, 0)
 Instance114.Style = Enum.FrameStyle.Custom
 Instance114.LayoutOrder = 0
 Instance114.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance114.ZIndex = 1
+Instance114.ZIndex = 10031
 Instance114.Size = UDim2.new(1, 0, 0.20000000298023224, 0)
 Instance114.Draggable = false
 Instance114.Position = UDim2.new(0, 0, 0, 0)
@@ -2870,7 +2870,7 @@ Instance115.AnchorPoint = Vector2.new(0, 0)
 Instance115.Style = Enum.FrameStyle.Custom
 Instance115.LayoutOrder = 0
 Instance115.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance115.ZIndex = 2
+Instance115.ZIndex = 10032
 Instance115.Size = UDim2.new(1, 0, 1, 0)
 Instance115.Draggable = false
 Instance115.Position = UDim2.new(0, 0, 0, 0)
@@ -2902,7 +2902,7 @@ Instance117.AnchorPoint = Vector2.new(0, 0)
 Instance117.Style = Enum.FrameStyle.Custom
 Instance117.LayoutOrder = 0
 Instance117.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance117.ZIndex = 3
+Instance117.ZIndex = 10033
 Instance117.Size = UDim2.new(1, -5, 1, -2)
 Instance117.Draggable = false
 Instance117.Position = UDim2.new(0, 0, 0, 2)
@@ -2925,7 +2925,7 @@ Instance118.AnchorPoint = Vector2.new(0, 0)
 Instance118.Style = Enum.FrameStyle.Custom
 Instance118.LayoutOrder = 0
 Instance118.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance118.ZIndex = 4
+Instance118.ZIndex = 10034
 Instance118.Size = UDim2.new(1, 0, 0, 5)
 Instance118.Draggable = false
 Instance118.Position = UDim2.new(0, 0, 1, -5)
@@ -2948,7 +2948,7 @@ Instance119.AnchorPoint = Vector2.new(0, 0)
 Instance119.Style = Enum.FrameStyle.Custom
 Instance119.LayoutOrder = 0
 Instance119.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance119.ZIndex = 5
+Instance119.ZIndex = 10035
 Instance119.Size = UDim2.new(0.5, 0, 1, 0)
 Instance119.Draggable = false
 Instance119.Position = UDim2.new(0.5, 0, 0, 0)
@@ -2969,7 +2969,7 @@ Instance120.Active = false
 Instance120.TextStrokeTransparency = 1
 Instance120.TextTruncate = Enum.TextTruncate.None
 Instance120.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance120.ZIndex = 4
+Instance120.ZIndex = 10034
 Instance120.BorderSizePixel = 0
 Instance120.Draggable = false
 Instance120.RichText = false
@@ -3011,7 +3011,7 @@ Instance121.AnchorPoint = Vector2.new(0, 0)
 Instance121.Style = Enum.FrameStyle.Custom
 Instance121.LayoutOrder = 0
 Instance121.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance121.ZIndex = 4
+Instance121.ZIndex = 10034
 Instance121.Size = UDim2.new(1, 0, 0, 1)
 Instance121.Draggable = false
 Instance121.Position = UDim2.new(0, 0, 0.20000000298023224, -1)
@@ -3034,7 +3034,7 @@ Instance122.AnchorPoint = Vector2.new(0, 0)
 Instance122.Style = Enum.FrameStyle.Custom
 Instance122.LayoutOrder = 0
 Instance122.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance122.ZIndex = 4
+Instance122.ZIndex = 10034
 Instance122.Size = UDim2.new(1, 0, 0.800000011920929, -5)
 Instance122.Draggable = false
 Instance122.Position = UDim2.new(0, 0, 0.20000000298023224, 0)
@@ -3066,7 +3066,7 @@ Instance124.Active = false
 Instance124.TextStrokeTransparency = 1
 Instance124.TextTruncate = Enum.TextTruncate.None
 Instance124.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance124.ZIndex = 5
+Instance124.ZIndex = 10035
 Instance124.BorderSizePixel = 0
 Instance124.Draggable = false
 Instance124.RichText = false
@@ -3106,7 +3106,7 @@ Instance125.Active = false
 Instance125.TextStrokeTransparency = 1
 Instance125.TextTruncate = Enum.TextTruncate.None
 Instance125.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance125.ZIndex = 5
+Instance125.ZIndex = 10035
 Instance125.BorderSizePixel = 0
 Instance125.Draggable = false
 Instance125.RichText = false
@@ -3146,7 +3146,7 @@ Instance126.Active = false
 Instance126.TextStrokeTransparency = 1
 Instance126.TextTruncate = Enum.TextTruncate.None
 Instance126.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance126.ZIndex = 5
+Instance126.ZIndex = 10035
 Instance126.BorderSizePixel = 0
 Instance126.Draggable = false
 Instance126.RichText = false
@@ -3186,7 +3186,7 @@ Instance127.Active = false
 Instance127.TextStrokeTransparency = 1
 Instance127.TextTruncate = Enum.TextTruncate.None
 Instance127.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance127.ZIndex = 5
+Instance127.ZIndex = 10035
 Instance127.BorderSizePixel = 0
 Instance127.Draggable = false
 Instance127.RichText = false
@@ -3226,7 +3226,7 @@ Instance128.Active = false
 Instance128.TextStrokeTransparency = 1
 Instance128.TextTruncate = Enum.TextTruncate.None
 Instance128.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance128.ZIndex = 5
+Instance128.ZIndex = 10035
 Instance128.BorderSizePixel = 0
 Instance128.Draggable = false
 Instance128.RichText = false
@@ -3266,7 +3266,7 @@ Instance129.Active = false
 Instance129.TextStrokeTransparency = 1
 Instance129.TextTruncate = Enum.TextTruncate.None
 Instance129.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance129.ZIndex = 5
+Instance129.ZIndex = 10035
 Instance129.BorderSizePixel = 0
 Instance129.Draggable = false
 Instance129.RichText = false
@@ -3302,7 +3302,7 @@ local Instance130 = Instance.new("ImageButton", Instance117) --Yes
 Instance130.LayoutOrder = 0
 Instance130.Active = true
 Instance130.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance130.ZIndex = 4
+Instance130.ZIndex = 10034
 Instance130.SliceCenter = Rect.new(0, 0, 0, 0)
 Instance130.Draggable = false
 Instance130.ScaleType = Enum.ScaleType.Fit
@@ -3340,7 +3340,7 @@ local Instance131 = Instance.new("ImageButton", Instance117) --No
 Instance131.LayoutOrder = 0
 Instance131.Active = true
 Instance131.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance131.ZIndex = 4
+Instance131.ZIndex = 10034
 Instance131.SliceCenter = Rect.new(0, 0, 0, 0)
 Instance131.Draggable = false
 Instance131.ScaleType = Enum.ScaleType.Fit
@@ -3380,646 +3380,646 @@ Instance131.Style = Enum.ButtonStyle.Custom
 local require; local moduleScripts = {}
 
 moduleScripts[Instance7] = function()
-	local script = Instance7
-	local versions
-	if not pcall(function()
-			local str = game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Version"):split("\n")
-			versions = {
-				["FireLibraryVersion"] = str[2],
-				["FireHubVersion"] = str[1]
-			}
-		end) then
-		versions = {
-			["FireLibraryVersion"] = "5.0",
-			["FireHubVersion"] = "4.0.1"
-		}
-	end
+    local script = Instance7
+    local versions
+if not pcall(function()
+        local str = game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Version"):split("\n")
+        versions = {
+            ["FireLibraryVersion"] = str[2],
+            ["FireHubVersion"] = str[1]
+        }
+    end) then
+    versions = {
+        ["FireLibraryVersion"] = "5.0",
+        ["FireHubVersion"] = "4.0.1"
+    }
+end
 
-	local isMobile = game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled
-	local uiHolder = getfenv().gethui and getfenv().gethui() or pcall(function() return game.CoreGui:GetFullName() end) and game.CoreGui:FindFirstChild("RobloxGui") or game.Players.LocalPlayer.PlayerGui
-	script.Parent.Parent = uiHolder
+local isMobile = game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled
+local uiHolder = getfenv().gethui and getfenv().gethui() or pcall(function() return game.CoreGui:GetFullName() end) and game.CoreGui:FindFirstChild("RobloxGui") or game.Players.LocalPlayer.PlayerGui
+script.Parent.Parent = uiHolder
 
-	local function playSound(soundName)
-		task.spawn(function()
-			local sCopy = script.Parent.Sounds.SoundsFolder:FindFirstChild(soundName)
-			if not sCopy then return end
-			sCopy = sCopy:Clone()
-			sCopy.Parent = script.Parent.Sounds
-			sCopy.Volume = 0.5
-			sCopy.Looped = false
-			sCopy.TimePosition = 0
-			sCopy:Play()
-			task.wait(sCopy.TimeLength)
-			sCopy:Destroy()
-		end)
-	end
+local function playSound(soundName)
+    task.spawn(function()
+        local sCopy = script.Parent.Sounds.SoundsFolder:FindFirstChild(soundName)
+        if not sCopy then return end
+        sCopy = sCopy:Clone()
+        sCopy.Parent = script.Parent.Sounds
+        sCopy.Volume = 0.5
+        sCopy.Looped = false
+        sCopy.TimePosition = 0
+        sCopy:Play()
+        task.wait(sCopy.TimeLength)
+        sCopy:Destroy()
+    end)
+end
 
-	local function setupSlider(slider, holder, options)
-		local val = options.Default
-		local prevVal = val
-		local customTextDisplay = typeof(options.CustomTextDisplay) == "function" and typeof(options.CustomTextDisplay(1, 5) == "string") and options.CustomTextDisplay or function(val, max)
-			return val .. " / " .. max
-		end
-		holder = holder or slider.Parent:IsA("Button") and slider.Parent or slider:FindFirstChildOfClass("TextButton") or slider
-		local sliderDrag = holder
-		local sliderBar = slider.SliderOuter.Bar.Fill
-		local dragging = false
+local function setupSlider(slider, holder, options)
+    local val = options.Default
+    local prevVal = val
+    local customTextDisplay = typeof(options.CustomTextDisplay) == "function" and typeof(options.CustomTextDisplay(1, 5) == "string") and options.CustomTextDisplay or function(val, max)
+        return val .. " / " .. max
+    end
+    holder = holder or slider.Parent:IsA("Button") and slider.Parent or slider:FindFirstChildOfClass("TextButton") or slider
+    local sliderDrag = holder
+    local sliderBar = slider.SliderOuter.Bar.Fill
+    local dragging = false
 
-		sliderDrag.InputBegan:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
-				dragging = true 
-			end 
-		end)
-		sliderDrag.InputEnded:Connect(function(input) 
-			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
-				dragging = false 
-			end 
-		end)
+    sliderDrag.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
+            dragging = true 
+        end 
+    end)
+    sliderDrag.InputEnded:Connect(function(input) 
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
+            dragging = false 
+        end 
+    end)
 
-		local function round(Number, Factor)
-			local Result = math.floor(Number/Factor + (math.sign(Number) * 0.5)) * Factor
-			if Result < 0 then Result = Result + Factor end
-			return Result
-		end
+    local function round(Number, Factor)
+        local Result = math.floor(Number/Factor + (math.sign(Number) * 0.5)) * Factor
+        if Result < 0 then Result = Result + Factor end
+        return Result
+    end
 
-		local newVal
-		local function set(num)
-			newVal = math.round((math.clamp(round(num, options.Step), options.Min, options.Max))*1000)/1000
-			if newVal then
-				sliderBar:TweenSize(UDim2.fromScale((newVal - options.Min) / (options.Max - options.Min), 1), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.15, true)
-				val = newVal
-				sliderBar.Parent.Progress.Text = tostring(customTextDisplay(val, options.Max))
-				if newVal ~= prevVal then
-					coroutine.wrap(playSound)("MouseHover")
-					coroutine.wrap(options.Callback)(newVal)
-					prevVal = newVal
-					newVal = nil
-				end
-			end
-		end
+    local newVal
+    local function set(num)
+        newVal = math.round((math.clamp(round(num, options.Step), options.Min, options.Max))*1000)/1000
+        if newVal then
+            sliderBar:TweenSize(UDim2.fromScale((newVal - options.Min) / (options.Max - options.Min), 1), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.15, true)
+            val = newVal
+            sliderBar.Parent.Progress.Text = tostring(customTextDisplay(val, options.Max))
+            if newVal ~= prevVal then
+                coroutine.wrap(playSound)("MouseHover")
+                coroutine.wrap(options.Callback)(newVal)
+                prevVal = newVal
+                newVal = nil
+            end
+        end
+    end
 
-		game.UserInputService.InputChanged:Connect(function(input)
-			if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or Enum.UserInputType.Touch) then 
-				local sizeScale = math.clamp((input.Position.X - sliderBar.Parent.AbsolutePosition.X) / sliderBar.Parent.AbsoluteSize.X, 0, 1)
-				set(options.Min + ((options.Max - options.Min) * sizeScale)) 
-			end
-		end)
+    game.UserInputService.InputChanged:Connect(function(input)
+        if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or Enum.UserInputType.Touch) then 
+            local sizeScale = math.clamp((input.Position.X - sliderBar.Parent.AbsolutePosition.X) / sliderBar.Parent.AbsoluteSize.X, 0, 1)
+            set(options.Min + ((options.Max - options.Min) * sizeScale)) 
+        end
+    end)
 
-		set(val)
+    set(val)
 
-		return set
-	end
+    return set
+end
 
-	local delta, dragInput
-	local function update(input, gui, dragStart, startPos)
-		delta = input.Position - dragStart
-		gui:TweenPosition(UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y), nil, nil, 0.3, true)
-		delta = nil    
-	end
+local delta, dragInput
+local function update(input, gui, dragStart, startPos)
+    delta = input.Position - dragStart
+    gui:TweenPosition(UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y), nil, nil, 0.3, true)
+    delta = nil    
+end
 
-	local function makeDraggable(gui)
-		local dragging, dragStart, startPos, delta
+local function makeDraggable(gui)
+    local dragging, dragStart, startPos, delta
 
-		gui.InputBegan:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-				dragging = true
-				dragStart = input.Position
-				startPos = gui.Position
+    gui.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = gui.Position
 
-				input.Changed:Connect(function()
-					if input.UserInputState == Enum.UserInputState.End then
-						dragging = false
-					end
-				end)
-			end
-		end)
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
 
-		gui.InputChanged:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-				dragInput = input
-			end
-		end)
+    gui.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
 
-		game.UserInputService.InputChanged:Connect(function(input)
-			if input == dragInput and dragging then
-				update(input, gui, dragStart, startPos)
-			end
-		end)
-	end
+    game.UserInputService.InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            update(input, gui, dragStart, startPos)
+        end
+    end)
+end
 
-	local function getOptions(options) -- cuz i was lazy to always insert the same line of code
-		-- also idk how properly call that function
-		return typeof(options) == "table" and options or {}
-	end
-	local function getCallback(options)
-		return typeof(options.Function) == "function" and options.Function or typeof(options.Callback) == "function" and options.Callback or function() end
-	end
-	local function getText(options)
-		return typeof(options.Title) == "string" and options.Title or typeof(options.Caption) == "string" and options.Caption or typeof(options.Name) == "string" and options.Name or typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content
-	end
+local function getOptions(options) -- cuz i was lazy to always insert the same line of code
+    -- also idk how properly call that function
+    return typeof(options) == "table" and options or {}
+end
+local function getCallback(options)
+    return typeof(options.Function) == "function" and options.Function or typeof(options.Callback) == "function" and options.Callback or function() end
+end
+local function getText(options)
+    return typeof(options.Title) == "string" and options.Title or typeof(options.Caption) == "string" and options.Caption or typeof(options.Name) == "string" and options.Name or typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content
+end
 
-	local lib; lib = {
-		SetThemeColor = setmetatable({}, {
-			__call = function(self, themeId, themeCol)
+local lib; lib = {
+    SetThemeColor = setmetatable({}, {
+        __call = function(self, themeId, themeCol)
 
-			end,
-			__newindex = function(self, themeId, themeCol)
-				themeId = tostring(themeId)
+        end,
+        __newindex = function(self, themeId, themeCol)
+            themeId = tostring(themeId)
 
-			end,
-			__index = function(self, themeId)
+        end,
+        __index = function(self, themeId)
 
-			end,
-		}),
-		Notifications = {
-			_AnimateNotification = {
-				In = function(notification)
-					if not notification or not notification.Parent then return end
-					playSound("Notification")
-					local size = notification.Size
-					notification.Size = UDim2.fromScale()
-					notification.Visible = true
-					notification:TweenSize(size, nil, nil, 0.3, true)
-					notification.NotificationOrange.Position = UDim2.new(-1, -1, 0, 0)
-					notification.NotificationOrange.NotificationMain.Position = UDim2.new(-1, 0, 0, 2)
-					task.wait(0.32)
-					if not notification or not notification.Parent then return end
-					notification.NotificationOrange:TweenPosition(UDim2.fromScale(0,0), nil, nil, 0.3, true)
-					notification.NotificationOrange.NotificationMain:TweenPosition(UDim2.fromOffset(0, 2), nil, nil, 0.45, true)
-				end,
-				Out = function(notification)
-					if not notification or not notification.Parent then return end
-					notification.NotificationOrange.NotificationMain:TweenPosition(UDim2.new(-1, 0, 0, 2), nil, nil, 0.45, true)
-					notification.NotificationOrange:TweenPosition(UDim2.new(-1, -1, 0, 0), nil, nil, 0.3, true)
-					task.wait(0.32)
-					if not notification or not notification.Parent then return end
-					notification:TweenSize(UDim2.fromScale(0, 0), nil, nil, 0.3, true)
-					task.wait(0.31)
-					if not notification or not notification.Parent then return end
-					notification:Destroy()
-				end
-			},
-			Notification = function(self, options)
-				task.spawn(function()
-					local notification = script.Parent.Notification.NotificationHolder:Clone()
-					notification.Parent = script.Parent.Notification
-					notification.Name = ""
-					notification.NotificationOrange.NotificationMain.Bar.Fill.Size = UDim2.fromScale(1,1)
-					notification.NotificationOrange.NotificationMain.Bar.Fill.Position = UDim2.fromScale(0,0)
-					notification.NotificationOrange.NotificationMain.Title.Text = typeof(options.Title) == "string" and options.Title or typeof(options.Name) == "string" and options.Name or "Notification"
-					local text = typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content or ""
-					for i,v in notification.NotificationOrange.NotificationMain.Lines:GetChildren() do
-						if v and v:IsA("TextLabel") then
-							v.Text = ""
-						end
-					end
-					for i,v in text:gsub("\13", "\n"):split("\n") do
-						if notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)) then
-							notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)).Text = v
-						end
-					end
-					coroutine.wrap(self._AnimateNotification.In)(notification)
-					local time = tonumber(options.Time) or tonumber(options.Delay) or tonumber(options.Length) or 5
-					notification.NotificationOrange.NotificationMain.Bar.Fill:TweenSizeAndPosition(UDim2.fromScale(0, 1), UDim2.fromScale(1, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, time, true)
-					task.wait(time)
-					coroutine.wrap(self._AnimateNotification.Out)(notification)
-				end)
-			end,
-			ChooseNotification = function(self, options)
-				task.spawn(function()
-					local notification = script.Parent.Notification.ChooseNotificationHolder:Clone()
-					notification.Parent = script.Parent.Notification
-					notification.Name = ""
-					notification.NotificationOrange.NotificationMain.Bar.Fill.Size = UDim2.fromScale(1,1)
-					notification.NotificationOrange.NotificationMain.Bar.Fill.Position = UDim2.fromScale(0,0)
-					notification.NotificationOrange.NotificationMain.Title.Text = typeof(options.Title) == "string" and options.Title or typeof(options.Name) == "string" and options.Name or "Notification"
-					local text = typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content or ""
-					for i,v in notification.NotificationOrange.NotificationMain.Lines:GetChildren() do
-						if v and v:IsA("TextLabel") then
-							v.Text = ""
-						end
-					end
-					for i,v in text:gsub("\13", "\n"):split("\n") do
-						if notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)) then
-							notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)).Text = v
-						end
-					end
-					local done = false
-					notification.NotificationOrange.NotificationMain.Yes.MouseButton1Click:Connect(function()
-						if done then return end
-						coroutine.wrap(self._AnimateNotification.Out)(notification)
-						done = true
-						getCallback(options)(true)
-					end)
-					notification.NotificationOrange.NotificationMain.No.MouseButton1Click:Connect(function()
-						if done then return end
-						coroutine.wrap(self._AnimateNotification.Out)(notification)
-						done = true
-						getCallback(options)(false)
-					end)
-					coroutine.wrap(self._AnimateNotification.In)(notification)
-					local time = tonumber(options.Time) or tonumber(options.Delay) or tonumber(options.Length) or 5
-					notification.NotificationOrange.NotificationMain.Bar.Fill:TweenSizeAndPosition(UDim2.fromScale(0, 1), UDim2.fromScale(1, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, time, true)
-					task.wait(time)
-					coroutine.wrap(self._AnimateNotification.Out)(notification)
-				end)
-			end
-		},
-		Versions = versions,
-		MakeWindow = function(self, options)
-			options = getOptions(options)
-			local cons = {}
-			local window = script.Parent.Holder.Window:Clone()
-			window.Parent = script.Parent.Holder
-			local fadeTime = 1
-			local size = window.Size
-			window.Name = ""
-			window.HolderFrame.Title.Text = getText(options) or "Fire Library | "..versions.FireLibraryVersion
-			window.Visible = true
-			window.Position = UDim2.fromScale(0.5, 0.5)
-			window.HolderFrame.StarterFade.Visible = true
-			window.Size = UDim2.fromScale(0,0)
-			makeDraggable(window)
+        end,
+    }),
+    Notifications = {
+        _AnimateNotification = {
+            In = function(notification)
+                if not notification or not notification.Parent then return end
+                playSound("Notification")
+                local size = notification.Size
+                notification.Size = UDim2.fromScale()
+                notification.Visible = true
+                notification:TweenSize(size, nil, nil, 0.3, true)
+                notification.NotificationOrange.Position = UDim2.new(-1, -1, 0, 0)
+                notification.NotificationOrange.NotificationMain.Position = UDim2.new(-1, 0, 0, 2)
+                task.wait(0.32)
+                if not notification or not notification.Parent then return end
+                notification.NotificationOrange:TweenPosition(UDim2.fromScale(0,0), nil, nil, 0.3, true)
+                notification.NotificationOrange.NotificationMain:TweenPosition(UDim2.fromOffset(0, 2), nil, nil, 0.45, true)
+            end,
+            Out = function(notification)
+                if not notification or not notification.Parent then return end
+                notification.NotificationOrange.NotificationMain:TweenPosition(UDim2.new(-1, 0, 0, 2), nil, nil, 0.45, true)
+                notification.NotificationOrange:TweenPosition(UDim2.new(-1, -1, 0, 0), nil, nil, 0.3, true)
+                task.wait(0.32)
+                if not notification or not notification.Parent then return end
+                notification:TweenSize(UDim2.fromScale(0, 0), nil, nil, 0.3, true)
+                task.wait(0.31)
+                if not notification or not notification.Parent then return end
+                notification:Destroy()
+            end
+        },
+        Notification = function(self, options)
+            task.spawn(function()
+                local notification = script.Parent.Notification.NotificationHolder:Clone()
+                notification.Parent = script.Parent.Notification
+                notification.Name = ""
+                notification.NotificationOrange.NotificationMain.Bar.Fill.Size = UDim2.fromScale(1,1)
+                notification.NotificationOrange.NotificationMain.Bar.Fill.Position = UDim2.fromScale(0,0)
+                notification.NotificationOrange.NotificationMain.Title.Text = typeof(options.Title) == "string" and options.Title or typeof(options.Name) == "string" and options.Name or "Notification"
+                local text = typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content or ""
+                for i,v in notification.NotificationOrange.NotificationMain.Lines:GetChildren() do
+                    if v and v:IsA("TextLabel") then
+                        v.Text = ""
+                    end
+                end
+                for i,v in text:gsub("\13", "\n"):split("\n") do
+                    if notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)) then
+                        notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)).Text = v
+                    end
+                end
+                coroutine.wrap(self._AnimateNotification.In)(notification)
+                local time = tonumber(options.Time) or tonumber(options.Delay) or tonumber(options.Length) or 5
+                notification.NotificationOrange.NotificationMain.Bar.Fill:TweenSizeAndPosition(UDim2.fromScale(0, 1), UDim2.fromScale(1, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, time, true)
+                task.wait(time)
+                coroutine.wrap(self._AnimateNotification.Out)(notification)
+            end)
+        end,
+        ChooseNotification = function(self, options)
+            task.spawn(function()
+                local notification = script.Parent.Notification.ChooseNotificationHolder:Clone()
+                notification.Parent = script.Parent.Notification
+                notification.Name = ""
+                notification.NotificationOrange.NotificationMain.Bar.Fill.Size = UDim2.fromScale(1,1)
+                notification.NotificationOrange.NotificationMain.Bar.Fill.Position = UDim2.fromScale(0,0)
+                notification.NotificationOrange.NotificationMain.Title.Text = typeof(options.Title) == "string" and options.Title or typeof(options.Name) == "string" and options.Name or "Notification"
+                local text = typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content or ""
+                for i,v in notification.NotificationOrange.NotificationMain.Lines:GetChildren() do
+                    if v and v:IsA("TextLabel") then
+                        v.Text = ""
+                    end
+                end
+                for i,v in text:gsub("\13", "\n"):split("\n") do
+                    if notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)) then
+                        notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)).Text = v
+                    end
+                end
+                local done = false
+                notification.NotificationOrange.NotificationMain.Yes.MouseButton1Click:Connect(function()
+                    if done then return end
+                    coroutine.wrap(self._AnimateNotification.Out)(notification)
+                    done = true
+                    getCallback(options)(true)
+                end)
+                notification.NotificationOrange.NotificationMain.No.MouseButton1Click:Connect(function()
+                    if done then return end
+                    coroutine.wrap(self._AnimateNotification.Out)(notification)
+                    done = true
+                    getCallback(options)(false)
+                end)
+                coroutine.wrap(self._AnimateNotification.In)(notification)
+                local time = tonumber(options.Time) or tonumber(options.Delay) or tonumber(options.Length) or 5
+                notification.NotificationOrange.NotificationMain.Bar.Fill:TweenSizeAndPosition(UDim2.fromScale(0, 1), UDim2.fromScale(1, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, time, true)
+                task.wait(time)
+                coroutine.wrap(self._AnimateNotification.Out)(notification)
+            end)
+        end
+    },
+    Versions = versions,
+    MakeWindow = function(self, options)
+        options = getOptions(options)
+        local cons = {}
+        local window = script.Parent.Holder.Window:Clone()
+        window.Parent = script.Parent.Holder
+        local fadeTime = 1
+        local size = window.Size
+        window.Name = ""
+        window.HolderFrame.Title.Text = getText(options) or "Fire Library | "..versions.FireLibraryVersion
+        window.Visible = true
+        window.Position = UDim2.fromScale(0.5, 0.5)
+        window.HolderFrame.StarterFade.Visible = true
+        window.Size = UDim2.fromScale(0,0)
+        makeDraggable(window)
 
-			local cd = false
-			local windowFuncs = {
-				Close = function(self)
-					task.spawn(function()
-						while cd and task.wait() do end
-						self:Hide()
-						task.wait(fadeTime + 0.01)
-						window:Destroy()
-					end)
-				end,
-				Show = function(self)
-					if cd then return false end
-					task.spawn(function()
-						-- for some reason window:TweenSize does not work :|
-						cd = true
-						window.Visible = true
-						game.TweenService:Create(window, TweenInfo.new(fadeTime / 2.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = size}):Play()
-						game.TweenService:Create(window.HolderFrame.StarterFade, TweenInfo.new(fadeTime, Enum.EasingStyle.Exponential, Enum.EasingDirection.In), {BackgroundTransparency = 1}):Play()
-						task.wait(fadeTime + 0.01)
-						cd = false
-						window.HolderFrame.StarterFade.Visible = false
-					end)
-					return true
-				end,
-				Hide = function(self)
-					if cd then return false end
-					task.spawn(function()
-						cd = true
-						window.HolderFrame.StarterFade.Visible = true
-						game.TweenService:Create(window, TweenInfo.new(fadeTime, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {Size = UDim2.fromScale(0,0)}):Play()
-						game.TweenService:Create(window.HolderFrame.StarterFade, TweenInfo.new(fadeTime / 2.5, Enum.EasingStyle.Exponential, Enum.EasingDirection.In), {BackgroundTransparency = 0}):Play()
-						task.wait(fadeTime + 0.01)
-						cd = false
-						window.Visible = false
-					end)
-					return true
-				end,
-				AddPage = function(self, options)
-					options = getOptions(options)
-					local pageButton = window.HolderFrame.PageButtons.PageButton:Clone()
-					pageButton.Parent = window.HolderFrame.PageButtons
-					pageButton.Visible = true
-					pageButton.Name = ""
-					pageButton:FindFirstChild("Text").Text = getText(options) or "Page"
-					cons[#cons+1] = pageButton.MouseEnter:Connect(function()
-						playSound("MouseHover")
-					end)
-					pageButton.Size = UDim2.fromScale((#pageButton:FindFirstChild("Text").Text / 65) + 0.05, 1)
-					local page = window.HolderFrame.PageDisplay.Page:Clone()
-					page.Parent = window.HolderFrame.PageDisplay
-					page.Name = ""
-					cons[#cons+1] = pageButton.MouseButton1Click:Connect(function()
-						playSound("Click")
-						if pageButton.Selection.Visible then
-							page.Visible = false
-							pageButton.Selection.Visible = false
-						else
-							for i,v in page.Parent:GetChildren() do
-								if v and v:IsA(page.ClassName) then
-									v.Visible = false
-								end
-							end
-							page.Visible = true
-							for i,v in pageButton.Parent:GetChildren() do
-								if v and v:IsA(pageButton.ClassName) then
-									v.Selection.Visible = false
-								end
-							end
-							pageButton.Selection.Visible = true
-						end
-					end)
+        local cd = false
+        local windowFuncs = {
+            Close = function(self)
+                task.spawn(function()
+                    while cd and task.wait() do end
+                    self:Hide()
+                    task.wait(fadeTime + 0.01)
+                    window:Destroy()
+                end)
+            end,
+            Show = function(self)
+                if cd then return false end
+                task.spawn(function()
+                    -- for some reason window:TweenSize does not work :|
+                    cd = true
+                    window.Visible = true
+                    game.TweenService:Create(window, TweenInfo.new(fadeTime / 2.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = size}):Play()
+                    game.TweenService:Create(window.HolderFrame.StarterFade, TweenInfo.new(fadeTime, Enum.EasingStyle.Exponential, Enum.EasingDirection.In), {BackgroundTransparency = 1}):Play()
+                    task.wait(fadeTime + 0.01)
+                    cd = false
+                    window.HolderFrame.StarterFade.Visible = false
+                end)
+                return true
+            end,
+            Hide = function(self)
+                if cd then return false end
+                task.spawn(function()
+                    cd = true
+                    window.HolderFrame.StarterFade.Visible = true
+                    game.TweenService:Create(window, TweenInfo.new(fadeTime, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {Size = UDim2.fromScale(0,0)}):Play()
+                    game.TweenService:Create(window.HolderFrame.StarterFade, TweenInfo.new(fadeTime / 2.5, Enum.EasingStyle.Exponential, Enum.EasingDirection.In), {BackgroundTransparency = 0}):Play()
+                    task.wait(fadeTime + 0.01)
+                    cd = false
+                    window.Visible = false
+                end)
+                return true
+            end,
+            AddPage = function(self, options)
+                options = getOptions(options)
+                local pageButton = window.HolderFrame.PageButtons.PageButton:Clone()
+                pageButton.Parent = window.HolderFrame.PageButtons
+                pageButton.Visible = true
+                pageButton.Name = ""
+                pageButton:FindFirstChild("Text").Text = getText(options) or "Page"
+                cons[#cons+1] = pageButton.MouseEnter:Connect(function()
+                    playSound("MouseHover")
+                end)
+                pageButton.Size = UDim2.fromScale((#pageButton:FindFirstChild("Text").Text / 65) + 0.05, 1)
+                local page = window.HolderFrame.PageDisplay.Page:Clone()
+                page.Parent = window.HolderFrame.PageDisplay
+                page.Name = ""
+                cons[#cons+1] = pageButton.MouseButton1Click:Connect(function()
+                    playSound("Click")
+                    if pageButton.Selection.Visible then
+                        page.Visible = false
+                        pageButton.Selection.Visible = false
+                    else
+                        for i,v in page.Parent:GetChildren() do
+                            if v and v:IsA(page.ClassName) then
+                                v.Visible = false
+                            end
+                        end
+                        page.Visible = true
+                        for i,v in pageButton.Parent:GetChildren() do
+                            if v and v:IsA(pageButton.ClassName) then
+                                v.Selection.Visible = false
+                            end
+                        end
+                        pageButton.Selection.Visible = true
+                    end
+                end)
 
-					local pageFuncs = {
-						AddSlider = function(self, options)
-							options = getOptions(options)
-							options.Min = tonumber(options.Min or options.Minimum) or 0
-							options.Max = tonumber(options.Max or options.Maximum) or 100
-							options.Callback = getCallback(options)
-							if options.Min > options.Max then
-								local max, min = options.Max, options.Min
-								options.Min = max
-								options.Max = min
-							elseif options.Min == options.Max then
-								local cb = options.Callback
-								options.Callback = function()
-									cb(options.Min)
-								end
-								return self:AddButton(options)
-							end
-							options.Step = tonumber(options.Step) or tonumber(options.Per) or (options.Max - options.Min) / 25
-							options.Default = tonumber(options.Default) or tonumber(options.Base) or options.Min
+                local pageFuncs = {
+                    AddSlider = function(self, options)
+                        options = getOptions(options)
+                        options.Min = tonumber(options.Min or options.Minimum) or 0
+                        options.Max = tonumber(options.Max or options.Maximum) or 100
+                        options.Callback = getCallback(options)
+                        if options.Min > options.Max then
+                            local max, min = options.Max, options.Min
+                            options.Min = max
+                            options.Max = min
+                        elseif options.Min == options.Max then
+                            local cb = options.Callback
+                            options.Callback = function()
+                                cb(options.Min)
+                            end
+                            return self:AddButton(options)
+                        end
+                        options.Step = tonumber(options.Step) or tonumber(options.Per) or (options.Max - options.Min) / 25
+                        options.Default = tonumber(options.Default) or tonumber(options.Base) or options.Min
 
-							--
+                        --
 
-							local slider = page.Slider:Clone()
-							slider.Parent = page
-							slider.Name = ""
-							slider.Visible = true
-							slider:FindFirstChild("Text").Text = getText(options) or "Slider"
+                        local slider = page.Slider:Clone()
+                        slider.Parent = page
+                        slider.Name = ""
+                        slider.Visible = true
+                        slider:FindFirstChild("Text").Text = getText(options) or "Slider"
 
-							setupSlider(slider, nil, options)(options.Default)
-						end,
-						AddSeparator = function(self)
-							local sep = page.Separator:Clone()
-							sep.Parent = page
-							sep.Visible = true
-							sep.Name = ""
-						end,
-						AddButton = function(self, options)
-							options = getOptions(options)
+                        setupSlider(slider, nil, options)(options.Default)
+                    end,
+                    AddSeparator = function(self)
+                        local sep = page.Separator:Clone()
+                        sep.Parent = page
+                        sep.Visible = true
+                        sep.Name = ""
+                    end,
+                    AddButton = function(self, options)
+                        options = getOptions(options)
 
-							local button = page.Button:Clone()
-							button.Parent = page
-							button.Visible = true
-							button.Name = ""
-							button:FindFirstChild("Text").Text = getText(options) or "Button"
-							cons[#cons+1] = button.MouseEnter:Connect(function()
-								playSound("MouseHover")
-							end)
-							cons[#cons+1] = button.MouseButton1Click:Connect(function()
-								playSound("Click")
-								getCallback(options)()
-							end)
-						end,
-						AddToggle = function(self, options)
-							options = getOptions(options)
+                        local button = page.Button:Clone()
+                        button.Parent = page
+                        button.Visible = true
+                        button.Name = ""
+                        button:FindFirstChild("Text").Text = getText(options) or "Button"
+                        cons[#cons+1] = button.MouseEnter:Connect(function()
+                            playSound("MouseHover")
+                        end)
+                        cons[#cons+1] = button.MouseButton1Click:Connect(function()
+                            playSound("Click")
+                            getCallback(options)()
+                        end)
+                    end,
+                    AddToggle = function(self, options)
+                        options = getOptions(options)
 
-							local state = typeof(options.Default) == "boolean" and options.Default or typeof(options.Base) == "boolean" and options.Base or false
-							local toggle = page.Toggle:Clone()
-							toggle.Parent = page
-							toggle.Visible = true
-							toggle.Name = ""
-							toggle:FindFirstChild("Text").Text = getText(options) or "Toggle"
-							cons[#cons+1] = toggle.MouseEnter:Connect(function()
-								playSound("MouseHover")
-							end)
-							toggle.ToggleOuter.Frame.ImageLabel.Visible = state
-							cons[#cons+1] = toggle.MouseButton1Click:Connect(function()
-								playSound("Click")
-								state = not state
-								toggle.ToggleOuter.Frame.ImageLabel.Visible = state
-								getCallback(options)(state)
-							end)
-						end,
-						AddLabel = function(self, options)
-							options = getOptions(options)
+                        local state = typeof(options.Default) == "boolean" and options.Default or typeof(options.Base) == "boolean" and options.Base or false
+                        local toggle = page.Toggle:Clone()
+                        toggle.Parent = page
+                        toggle.Visible = true
+                        toggle.Name = ""
+                        toggle:FindFirstChild("Text").Text = getText(options) or "Toggle"
+                        cons[#cons+1] = toggle.MouseEnter:Connect(function()
+                            playSound("MouseHover")
+                        end)
+                        toggle.ToggleOuter.Frame.ImageLabel.Visible = state
+                        cons[#cons+1] = toggle.MouseButton1Click:Connect(function()
+                            playSound("Click")
+                            state = not state
+                            toggle.ToggleOuter.Frame.ImageLabel.Visible = state
+                            getCallback(options)(state)
+                        end)
+                    end,
+                    AddLabel = function(self, options)
+                        options = getOptions(options)
 
-							local label = page.Label:Clone()
-							label.Parent = page
-							label.Visible = true
-							label.Name = ""
-							label:FindFirstChild("Text").Text = getText(options) or "Label"
-						end,
-						AddTextBox = function(self, options)
-							options = getOptions(options)
+                        local label = page.Label:Clone()
+                        label.Parent = page
+                        label.Visible = true
+                        label.Name = ""
+                        label:FindFirstChild("Text").Text = getText(options) or "Label"
+                    end,
+                    AddTextBox = function(self, options)
+                        options = getOptions(options)
 
-							local tb = page.TextBox:Clone()
-							tb.Parent = page
-							tb.Visible = true
-							tb.Name = ""
-							tb:FindFirstChild("Text").Text = getText(options) or "Text Box"
-							tb.TextBoxOuter.TextBoxHolder.TextBox.PlaceholderText = typeof(options.Placeholder) == "string" and options.Placeholder or typeof(options.PlaceholderText) == "string" and options.PlaceholderText or ""
-							tb.TextBoxOuter.TextBoxHolder.TextBox.Text = typeof(options.Default) == "string" and options.Default or typeof(options.Base) == "string" and options.Base or ""
-							cons[#cons+1] = tb.MouseButton1Click:Connect(function()
-								playSound("MouseHover")
-								tb.TextBoxOuter.TextBoxHolder.TextBox:CaptureFocus()
-							end)
-							cons[#cons+1] = tb.TextBoxOuter.TextBoxHolder.TextBox.FocusLost:Connect(function(enter)
-								if (options.Enter or options.NeedEnter or options.NeedsEnter) and enter or not (options.Enter or options.NeedEnter or options.NeedsEnter) then
-									playSound("Click")
-									getCallback(options)(tb.TextBoxOuter.TextBoxHolder.TextBox.Text)
-								end
-							end)
-						end,
-						AddInput = function(self, options)
-							options = getOptions(options)
-							options.Default = typeof(options.Default) == "string" and options.Default or typeof(options.Base) == "string" and options.Base or ""
+                        local tb = page.TextBox:Clone()
+                        tb.Parent = page
+                        tb.Visible = true
+                        tb.Name = ""
+                        tb:FindFirstChild("Text").Text = getText(options) or "Text Box"
+                        tb.TextBoxOuter.TextBoxHolder.TextBox.PlaceholderText = typeof(options.Placeholder) == "string" and options.Placeholder or typeof(options.PlaceholderText) == "string" and options.PlaceholderText or ""
+                        tb.TextBoxOuter.TextBoxHolder.TextBox.Text = typeof(options.Default) == "string" and options.Default or typeof(options.Base) == "string" and options.Base or ""
+                        cons[#cons+1] = tb.MouseButton1Click:Connect(function()
+                            playSound("MouseHover")
+                            tb.TextBoxOuter.TextBoxHolder.TextBox:CaptureFocus()
+                        end)
+                        cons[#cons+1] = tb.TextBoxOuter.TextBoxHolder.TextBox.FocusLost:Connect(function(enter)
+                            if (options.Enter or options.NeedEnter or options.NeedsEnter) and enter or not (options.Enter or options.NeedEnter or options.NeedsEnter) then
+                                playSound("Click")
+                                getCallback(options)(tb.TextBoxOuter.TextBoxHolder.TextBox.Text)
+                            end
+                        end)
+                    end,
+                    AddInput = function(self, options)
+                        options = getOptions(options)
+                        options.Default = typeof(options.Default) == "string" and options.Default or typeof(options.Base) == "string" and options.Base or ""
 
-							local blockedCodes = {
-								Enum.KeyCode.Unknown,
-								Enum.KeyCode.Power,
-								Enum.KeyCode.Left,
-								Enum.KeyCode.Right,
-								Enum.KeyCode.Up,
-								Enum.KeyCode.Down,
-								Enum.KeyCode.F11,
-								Enum.KeyCode.F9,
-								Enum.KeyCode.CapsLock,
-								Enum.KeyCode.ScrollLock,
-								Enum.KeyCode.NumLock
-							}
-							local focused = false
-							local con
-							local input = page.Input:Clone()
-							input.Parent = page
-							input.Visible = not isMobile
-							input.Name = ""
-							input:FindFirstChild("Text").Text = getText(options) or "Input"
-							local inpt = Enum.KeyCode[options.Default]
-							input.InputOuter.Frame.Input.Text = inpt.Name
-							cons[#cons+1] = input.MouseButton1Click:Connect(function()
-								playSound("Click")
-								focused = not focused
-								input.InputOuter.Frame.Input.Text = "..."
-								if focused then
-									con = game.UserInputService.InputBegan:Connect(function(s, chat)
-										if chat or table.find(blockedCodes, s.KeyCode) then return end
-										focused = false
-										con:Disconnect()
-										con = nil
-										inpt = s.KeyCode
-										input.InputOuter.Frame.Input.Text = inpt.Name
-										getCallback(options)(inpt)
-									end)
-								else
-									input.InputOuter.Frame.Input.Text = inpt.Name
-									if con then
-										con:Disconnect()
-										con = nil
-									end
-								end
-							end)
-							cons[#cons+1] = input.MouseEnter:Connect(function()
-								playSound("MouseHover")
-							end)
-						end,
-						AddColorPicker = function(self, options)
-							options = getOptions(options)
-							options.Default = typeof(options.Default) == "Color3" and options.Default or typeof(options.Base) == "Color3" and options.Base or Color3.fromRGB(255, 255, 255)
+                        local blockedCodes = {
+                            Enum.KeyCode.Unknown,
+                            Enum.KeyCode.Power,
+                            Enum.KeyCode.Left,
+                            Enum.KeyCode.Right,
+                            Enum.KeyCode.Up,
+                            Enum.KeyCode.Down,
+                            Enum.KeyCode.F11,
+                            Enum.KeyCode.F9,
+                            Enum.KeyCode.CapsLock,
+                            Enum.KeyCode.ScrollLock,
+                            Enum.KeyCode.NumLock
+                        }
+                        local focused = false
+                        local con
+                        local input = page.Input:Clone()
+                        input.Parent = page
+                        input.Visible = not isMobile
+                        input.Name = ""
+                        input:FindFirstChild("Text").Text = getText(options) or "Input"
+                        local inpt = Enum.KeyCode[options.Default]
+                        input.InputOuter.Frame.Input.Text = inpt.Name
+                        cons[#cons+1] = input.MouseButton1Click:Connect(function()
+                            playSound("Click")
+                            focused = not focused
+                            input.InputOuter.Frame.Input.Text = "..."
+                            if focused then
+                                con = game.UserInputService.InputBegan:Connect(function(s, chat)
+                                    if chat or table.find(blockedCodes, s.KeyCode) then return end
+                                    focused = false
+                                    con:Disconnect()
+                                    con = nil
+                                    inpt = s.KeyCode
+                                    input.InputOuter.Frame.Input.Text = inpt.Name
+                                    getCallback(options)(inpt)
+                                end)
+                            else
+                                input.InputOuter.Frame.Input.Text = inpt.Name
+                                if con then
+                                    con:Disconnect()
+                                    con = nil
+                                end
+                            end
+                        end)
+                        cons[#cons+1] = input.MouseEnter:Connect(function()
+                            playSound("MouseHover")
+                        end)
+                    end,
+                    AddColorPicker = function(self, options)
+                        options = getOptions(options)
+                        options.Default = typeof(options.Default) == "Color3" and options.Default or typeof(options.Base) == "Color3" and options.Base or Color3.fromRGB(255, 255, 255)
 
-							local cp = page.ColorPicker:Clone()
-							cp.Parent = page
-							cp.Visible = true
-							cp.Name = ""
-							cp:FindFirstChild("Text").Text = getText(options) or "Color Picker"
+                        local cp = page.ColorPicker:Clone()
+                        cp.Parent = page
+                        cp.Visible = true
+                        cp.Name = ""
+                        cp:FindFirstChild("Text").Text = getText(options) or "Color Picker"
 
-							local col = options.Default
-							cp:FindFirstChild("Text").Color.BackgroundColor3 = col
-							cp.RGB.RHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(col.R, 0, 0)
-							cp.RGB.GHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(0, col.G, 0)
-							cp.RGB.BHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(0, 0, col.B)
-							local Rs, Gs, Bs = 
-								setupSlider(cp.RGB.RHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.R * 255), Callback = function(v)
-									col = Color3.new(v/255, col.G, col.B)
-									cp:FindFirstChild("Text").Color.BackgroundColor3 = col
-									cp.RGB.RHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.fromRGB(v, 0, 0)
-									getCallback(options)(col)
-								end}),
-							setupSlider(cp.RGB.GHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.G * 255), Callback = function(v)
-								col = Color3.new(col.R, v/255, col.B)
-								cp:FindFirstChild("Text").Color.BackgroundColor3 = col
-								cp.RGB.GHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.fromRGB(0, v, 0)
-								getCallback(options)(col)
-							end}),
-							setupSlider(cp.RGB.BHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.B * 255), Callback = function(v)
-								col = Color3.new(col.R, col.G, v/255)
-								cp:FindFirstChild("Text").Color.BackgroundColor3 = col
-								cp.RGB.BHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.fromRGB(0, 0, v)
-								getCallback(options)(col)
-							end})
-						end,
-					}
-					pageFuncs.AddSwitch = pageFuncs.AddToggle
-					for i,v in pageFuncs do
-						if i:sub(1,3) == "Add" then
-							pageFuncs[i:gsub("Add", "Create")] = v
-							pageFuncs[i:gsub("Add", "")] = v
-						end
-					end
+                        local col = options.Default
+                        cp:FindFirstChild("Text").Color.BackgroundColor3 = col
+                        cp.RGB.RHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(col.R, 0, 0)
+                        cp.RGB.GHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(0, col.G, 0)
+                        cp.RGB.BHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(0, 0, col.B)
+                        local Rs, Gs, Bs = 
+                            setupSlider(cp.RGB.RHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.R * 255), Callback = function(v)
+                                col = Color3.new(v/255, col.G, col.B)
+                                cp:FindFirstChild("Text").Color.BackgroundColor3 = col
+                                cp.RGB.RHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.fromRGB(v, 0, 0)
+                                getCallback(options)(col)
+                            end}),
+                        setupSlider(cp.RGB.GHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.G * 255), Callback = function(v)
+                            col = Color3.new(col.R, v/255, col.B)
+                            cp:FindFirstChild("Text").Color.BackgroundColor3 = col
+                            cp.RGB.GHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.fromRGB(0, v, 0)
+                            getCallback(options)(col)
+                        end}),
+                        setupSlider(cp.RGB.BHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.B * 255), Callback = function(v)
+                            col = Color3.new(col.R, col.G, v/255)
+                            cp:FindFirstChild("Text").Color.BackgroundColor3 = col
+                            cp.RGB.BHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.fromRGB(0, 0, v)
+                            getCallback(options)(col)
+                        end})
+                    end,
+                }
+                pageFuncs.AddSwitch = pageFuncs.AddToggle
+                for i,v in pageFuncs do
+                    if i:sub(1,3) == "Add" then
+                        pageFuncs[i:gsub("Add", "Create")] = v
+                        pageFuncs[i:gsub("Add", "")] = v
+                    end
+                end
 
-					return pageFuncs
-				end,
-			}
-			windowFuncs.Shutdown = windowFuncs.Close
-			windowFuncs.Minimize = windowFuncs.Hide
-			windowFuncs.Maximize = windowFuncs.Show
-			windowFuncs:Show()
-			windowFuncs.InitFireHub = function(self)
-				local page = self:AddPage({Title = "Info"})
-				page:AddLabel({Text = "Fire-Hub version: "..versions.FireHubVersion})
-				page:AddLabel({Text = "Fire-Lib version: "..versions.FireLibraryVersion})
-				local isExec = true
-				local exec, ver
-				if typeof(getfenv().identifyexecutor) == "function" then
-					exec, ver = getfenv().identifyexecutor()
-					if typeof(exec) == "string" and typeof(ver) ~= "string" then
-						ver = "Unknown"
-					else
-						isExec = false
-						ver = getfenv().version()
-						exec = (game["Run Service"]:IsStudio() and "Studio" or "RobloxApp") .. (game["Run Service"]:IsClient() and "Client" or "Server")
-					end
-				else
-					ver = getfenv().version()
-					exec = (game["Run Service"]:IsStudio() and "Studio" or "RobloxApp") .. (game["Run Service"]:IsClient() and "Client" or "Server")
-					isExec = false
-				end
-				page:AddLabel({Text = "Executor: "..exec..", Version: "..ver})
-				if isExec then
-					page:AddSeparator()
-					page:AddTextBox({Enter = false, Text = "Spoof Executor", Placeholder = "Example: [ExecName, Version]", Default = exec..", "..ver, Callback = function(txt)
-						local splits = txt:split(", ")
-						local execu, vers = splits[1], splits[2]
-						local getgenv = getfenv().getgenv or getfenv
-						getgenv().identifyexecutor = function()
-							return execu, vers
-						end
-						getgenv().getexecutor = getgenv().identifyexecutor
-						getgenv().getexecutorname = getgenv().identifyexecutor
-						getgenv().executor = execu
-					end})
-				end
-				local qotp = getfenv().queue_on_teleport or getfenv().queueonteleport
-				if qotp then
-					local keep = false
-					page:AddToggle({Text = "Keep Fire~Hub on teleport", Callback = function(b)
-						keep = b
-						lib.Notifications:Notification({Title = "Warning", Text = "If you will close Fire~Hub, that setting wont apply!\nYou need to keep Fire~Hub opened!"})
-					end})
-					cons[#cons+1] = game.Players.LocalPlayer.OnTeleport:Connect(function()
-						if keep then
-							qotp([[loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Loader"))()]])
-						end
-					end)
-				end
-			end
+                return pageFuncs
+            end,
+        }
+        windowFuncs.Shutdown = windowFuncs.Close
+        windowFuncs.Minimize = windowFuncs.Hide
+        windowFuncs.Maximize = windowFuncs.Show
+        windowFuncs:Show()
+        windowFuncs.InitFireHub = function(self)
+            local page = self:AddPage({Title = "Info"})
+            page:AddLabel({Text = "Fire-Hub version: "..versions.FireHubVersion})
+            page:AddLabel({Text = "Fire-Lib version: "..versions.FireLibraryVersion})
+            local isExec = true
+            local exec, ver
+            if typeof(getfenv().identifyexecutor) == "function" then
+                exec, ver = getfenv().identifyexecutor()
+                if typeof(exec) == "string" and typeof(ver) ~= "string" then
+                    ver = "Unknown"
+                else
+                    isExec = false
+                    ver = getfenv().version()
+                    exec = (game["Run Service"]:IsStudio() and "Studio" or "RobloxApp") .. (game["Run Service"]:IsClient() and "Client" or "Server")
+                end
+            else
+                ver = getfenv().version()
+                exec = (game["Run Service"]:IsStudio() and "Studio" or "RobloxApp") .. (game["Run Service"]:IsClient() and "Client" or "Server")
+                isExec = false
+            end
+            page:AddLabel({Text = "Executor: "..exec..", Version: "..ver})
+            if isExec then
+                page:AddSeparator()
+                page:AddTextBox({Enter = false, Text = "Spoof Executor", Placeholder = "Example: [ExecName, Version]", Default = exec..", "..ver, Callback = function(txt)
+                    local splits = txt:split(", ")
+                    local execu, vers = splits[1], splits[2]
+                    local getgenv = getfenv().getgenv or getfenv
+                    getgenv().identifyexecutor = function()
+                        return execu, vers
+                    end
+                    getgenv().getexecutor = getgenv().identifyexecutor
+                    getgenv().getexecutorname = getgenv().identifyexecutor
+                    getgenv().executor = execu
+                end})
+            end
+            local qotp = getfenv().queue_on_teleport or getfenv().queueonteleport
+            if qotp then
+                local keep = false
+                page:AddToggle({Text = "Keep Fire~Hub on teleport", Callback = function(b)
+                    keep = b
+                    lib.Notifications:Notification({Title = "Warning", Text = "If you will close Fire~Hub, that setting wont apply!\nYou need to keep Fire~Hub opened!"})
+                end})
+                cons[#cons+1] = game.Players.LocalPlayer.OnTeleport:Connect(function()
+                    if keep then
+                        qotp([[loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Loader"))()]])
+                    end
+                end)
+            end
+        end
 
-			local page = windowFuncs:AddPage({Title = "Main"})
-			local maximizeKey = Enum.KeyCode.LeftAlt
-			page:AddButton({Text = "Hide UI", Callback = function()
-				if windowFuncs:Minimize() then
-					lib.Notifications:Notification({Title = "UI Hidden", Text = "Press "..maximizeKey.Name.." to show the UI"})
-				end
-			end})
-			page:AddInput({Text = "Show UI Key", Default = maximizeKey.Name, Callback = function(kk)
-				maximizeKey = kk
-			end})
-			cons[#cons+1] = game.UserInputService.InputBegan:Connect(function(input)
-				if game.UserInputService:GetFocusedTextBox() or input.KeyCode ~= maximizeKey then return end
-				windowFuncs:Show()
-			end)
-			local closeCallback = function()
-				for i,v in cons do
-					if v and v.Connected then
-						v:Disconnect()
-					end
-				end;
-				(typeof(options.CloseCallback) == "function" and options.CloseCallback or getCallback(options))()
-			end
-			page:AddButton({Text = "Close UI", Callback = function()
-				lib.Notifications:ChooseNotification({Title = "Are you sure?", Text = "Are you sure that you want to close\n"..window.HolderFrame.Title.Text.."?", Callback = function(b)
-					if b then
-						windowFuncs:Close()
-						closeCallback()
-					end
-				end})
-			end})
+        local page = windowFuncs:AddPage({Title = "Main"})
+        local maximizeKey = Enum.KeyCode.LeftAlt
+        page:AddButton({Text = "Hide UI", Callback = function()
+            if windowFuncs:Minimize() then
+                lib.Notifications:Notification({Title = "UI Hidden", Text = "Press "..maximizeKey.Name.." to show the UI"})
+            end
+        end})
+        page:AddInput({Text = "Show UI Key", Default = maximizeKey.Name, Callback = function(kk)
+            maximizeKey = kk
+        end})
+        cons[#cons+1] = game.UserInputService.InputBegan:Connect(function(input)
+            if game.UserInputService:GetFocusedTextBox() or input.KeyCode ~= maximizeKey then return end
+            windowFuncs:Show()
+        end)
+        local closeCallback = function()
+            for i,v in cons do
+                if v and v.Connected then
+                    v:Disconnect()
+                end
+            end;
+            (typeof(options.CloseCallback) == "function" and options.CloseCallback or getCallback(options))()
+        end
+        page:AddButton({Text = "Close UI", Callback = function()
+            lib.Notifications:ChooseNotification({Title = "Are you sure?", Text = "Are you sure that you want to close\n"..window.HolderFrame.Title.Text.."?", Callback = function(b)
+                if b then
+                    windowFuncs:Close()
+                    closeCallback()
+                end
+            end})
+        end})
 
-			return windowFuncs
-		end,
-	}
+        return windowFuncs
+    end,
+}
 
-	lib.CreateWindow = lib.MakeWindow
-	lib.AddWindow = lib.MakeWindow
-	lib.Notifications.Notify = lib.Notifications.Notification
-	lib.Notifications.SelectNotification = lib.Notifications.ChooseNotification
-	lib.Notifications.SelectionNotification = lib.Notifications.ChooseNotification
+lib.CreateWindow = lib.MakeWindow
+lib.AddWindow = lib.MakeWindow
+lib.Notifications.Notify = lib.Notifications.Notification
+lib.Notifications.SelectNotification = lib.Notifications.ChooseNotification
+lib.Notifications.SelectionNotification = lib.Notifications.ChooseNotification
 
-	return lib
+return lib
 end
 
 local oldRequire = getfenv().require
 getfenv().require = function(scr)
-	if typeof(scr) ~= "Instance" or (not scr:IsA("ModuleScript") and not moduleScripts[scr]) then return oldRequire(scr) end
-	if moduleScripts[scr] then
-		return moduleScripts[scr]()
-	else
-		return oldRequire(scr)
-	end
+    if typeof(scr) ~= "Instance" or (not scr:IsA("ModuleScript") and not moduleScripts[scr]) then return oldRequire(scr) end
+    if moduleScripts[scr] then
+        return moduleScripts[scr]()
+    else
+        return oldRequire(scr)
+    end
 end
 
 require = getfenv().require
