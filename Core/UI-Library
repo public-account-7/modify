@@ -2287,14 +2287,14 @@ Instance91.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 local Instance92 = Instance.new("UIGradient", Instance11) --UIGradient
 Instance92.Offset = Vector2.new(0, 0)
 Instance92.Color = ColorSequence.new({
-    [1] = ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
-    [2] = ColorSequenceKeypoint.new(0.3499999940395355, Color3.new(1, 1, 1)),
-    [3] = ColorSequenceKeypoint.new(1, Color3.new(0.588235, 0.588235, 0.588235))
+	[1] = ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
+	[2] = ColorSequenceKeypoint.new(0.3499999940395355, Color3.new(1, 1, 1)),
+	[3] = ColorSequenceKeypoint.new(1, Color3.new(0.588235, 0.588235, 0.588235))
 })
 Instance92.Rotation = 75
 Instance92.Transparency = NumberSequence.new({
-    [1] = NumberSequenceKeypoint.new(0, 0, 0),
-    [2] = NumberSequenceKeypoint.new(1, 0, 0)
+	[1] = NumberSequenceKeypoint.new(0, 0, 0),
+	[2] = NumberSequenceKeypoint.new(1, 0, 0)
 })
 Instance92.Name = "UIGradient"
 Instance92.Enabled = true
@@ -2325,13 +2325,13 @@ Instance93.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 local Instance94 = Instance.new("UIGradient", Instance9) --UIGradient
 Instance94.Offset = Vector2.new(0, 0)
 Instance94.Color = ColorSequence.new({
-    [1] = ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
-    [2] = ColorSequenceKeypoint.new(1, Color3.new(0.784314, 0.784314, 0.784314))
+	[1] = ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
+	[2] = ColorSequenceKeypoint.new(1, Color3.new(0.784314, 0.784314, 0.784314))
 })
 Instance94.Rotation = 45
 Instance94.Transparency = NumberSequence.new({
-    [1] = NumberSequenceKeypoint.new(0, 0, 0),
-    [2] = NumberSequenceKeypoint.new(1, 0, 0)
+	[1] = NumberSequenceKeypoint.new(0, 0, 0),
+	[2] = NumberSequenceKeypoint.new(1, 0, 0)
 })
 Instance94.Name = "UIGradient"
 Instance94.Enabled = true
@@ -3380,633 +3380,646 @@ Instance131.Style = Enum.ButtonStyle.Custom
 local require; local moduleScripts = {}
 
 moduleScripts[Instance7] = function()
-    local script = Instance7
-    local versions
-if not pcall(function()
-        local str = game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Version"):split("\n")
-        versions = {
-            ["FireLibraryVersion"] = str[2],
-            ["FireHubVersion"] = str[1]
-        }
-    end) then
-    versions = {
-        ["FireLibraryVersion"] = "5.0",
-        ["FireHubVersion"] = "4.0.1"
-    }
-end
+	local script = Instance7
+	local versions
+	if not pcall(function()
+			local str = game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Version"):split("\n")
+			versions = {
+				["FireLibraryVersion"] = str[2],
+				["FireHubVersion"] = str[1]
+			}
+		end) then
+		versions = {
+			["FireLibraryVersion"] = "5.0",
+			["FireHubVersion"] = "4.0.1"
+		}
+	end
 
-local isMobile = game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled
-local uiHolder = getfenv().gethui and getfenv().gethui() or pcall(function() return game.CoreGui:GetFullName() end) and game.CoreGui:FindFirstChild("RobloxGui") or game.Players.LocalPlayer.PlayerGui
-script.Parent.Parent = uiHolder
+	local isMobile = game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled
+	local uiHolder = getfenv().gethui and getfenv().gethui() or pcall(function() return game.CoreGui:GetFullName() end) and game.CoreGui:FindFirstChild("RobloxGui") or game.Players.LocalPlayer.PlayerGui
+	script.Parent.Parent = uiHolder
 
-local function playSound(soundName)
-    task.spawn(function()
-        local sCopy = script.Parent.Sounds.SoundsFolder:FindFirstChild(soundName)
-        if not sCopy then return end
-        sCopy = sCopy:Clone()
-        sCopy.Parent = script.Parent.Sounds
-        sCopy.Volume = 0.5
-        sCopy.Looped = false
-        sCopy.TimePosition = 0
-        sCopy:Play()
-        task.wait(sCopy.TimeLength)
-        sCopy:Destroy()
-    end)
-end
+	local function playSound(soundName)
+		task.spawn(function()
+			local sCopy = script.Parent.Sounds.SoundsFolder:FindFirstChild(soundName)
+			if not sCopy then return end
+			sCopy = sCopy:Clone()
+			sCopy.Parent = script.Parent.Sounds
+			sCopy.Volume = 0.5
+			sCopy.Looped = false
+			sCopy.TimePosition = 0
+			sCopy:Play()
+			task.wait(sCopy.TimeLength)
+			sCopy:Destroy()
+		end)
+	end
 
-local function setupSlider(slider, holder, options)
-    local val = options.Default
-    local prevVal = val
-    local customTextDisplay = typeof(options.CustomTextDisplay) == "function" and typeof(options.CustomTextDisplay(1, 5) == "string") and options.CustomTextDisplay or function(val, max)
-        return val .. " / " .. max
-    end
-    holder = holder or slider.Parent:IsA("Button") and slider.Parent or slider:FindFirstChildOfClass("TextButton") or slider
-    local sliderDrag = holder
-    local sliderBar = slider.SliderOuter.Bar.Fill
-    local dragging = false
+	local function setupSlider(slider, holder, options)
+		local val = options.Default
+		local prevVal = val
+		local customTextDisplay = typeof(options.CustomTextDisplay) == "function" and typeof(options.CustomTextDisplay(1, 5) == "string") and options.CustomTextDisplay or function(val, max)
+			return val .. " / " .. max
+		end
+		holder = holder or slider.Parent:IsA("Button") and slider.Parent or slider:FindFirstChildOfClass("TextButton") or slider
+		local sliderDrag = holder
+		local sliderBar = slider.SliderOuter.Bar.Fill
+		local dragging = false
 
-    sliderDrag.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
-            dragging = true 
-        end 
-    end)
-    sliderDrag.InputEnded:Connect(function(input) 
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
-            dragging = false 
-        end 
-    end)
+		sliderDrag.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
+				dragging = true 
+			end 
+		end)
+		sliderDrag.InputEnded:Connect(function(input) 
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
+				dragging = false 
+			end 
+		end)
 
-    local function round(Number, Factor)
-        local Result = math.floor(Number/Factor + (math.sign(Number) * 0.5)) * Factor
-        if Result < 0 then Result = Result + Factor end
-        return Result
-    end
+		local function round(Number, Factor)
+			local Result = math.floor(Number/Factor + (math.sign(Number) * 0.5)) * Factor
+			if Result < 0 then Result = Result + Factor end
+			return Result
+		end
 
-    local newVal
-    local function set(num)
-        newVal = math.round((math.clamp(round(num, options.Step), options.Min, options.Max))*1000)/1000
-        if newVal then
-            sliderBar:TweenSize(UDim2.fromScale((newVal - options.Min) / (options.Max - options.Min), 1), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.15, true)
-            val = newVal
-            sliderBar.Parent.Progress.Text = tostring(customTextDisplay(val, options.Max))
-            if newVal ~= prevVal then
-                coroutine.wrap(playSound)("MouseHover")
-                coroutine.wrap(options.Callback)(newVal)
-                prevVal = newVal
-                newVal = nil
-            end
-        end
-    end
+		local newVal
+		local function set(num)
+			newVal = math.round((math.clamp(round(num, options.Step), options.Min, options.Max))*1000)/1000
+			if newVal then
+				sliderBar:TweenSize(UDim2.fromScale((newVal - options.Min) / (options.Max - options.Min), 1), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.15, true)
+				val = newVal
+				sliderBar.Parent.Progress.Text = tostring(customTextDisplay(val, options.Max))
+				if newVal ~= prevVal then
+					coroutine.wrap(playSound)("MouseHover")
+					coroutine.wrap(options.Callback)(newVal)
+					prevVal = newVal
+					newVal = nil
+				end
+			end
+		end
 
-    game.UserInputService.InputChanged:Connect(function(input)
-        if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or Enum.UserInputType.Touch) then 
-            local sizeScale = math.clamp((input.Position.X - sliderBar.Parent.AbsolutePosition.X) / sliderBar.Parent.AbsoluteSize.X, 0, 1)
-            set(options.Min + ((options.Max - options.Min) * sizeScale)) 
-        end
-    end)
+		game.UserInputService.InputChanged:Connect(function(input)
+			if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or Enum.UserInputType.Touch) then 
+				local sizeScale = math.clamp((input.Position.X - sliderBar.Parent.AbsolutePosition.X) / sliderBar.Parent.AbsoluteSize.X, 0, 1)
+				set(options.Min + ((options.Max - options.Min) * sizeScale)) 
+			end
+		end)
 
-    set(val)
+		set(val)
 
-    return set
-end
+		return set
+	end
 
-local delta, dragInput
-local function update(input, gui, dragStart, startPos)
-    delta = input.Position - dragStart
-    gui:TweenPosition(UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y), nil, nil, 0.3, true)
-    delta = nil    
-end
+	local delta, dragInput
+	local function update(input, gui, dragStart, startPos)
+		delta = input.Position - dragStart
+		gui:TweenPosition(UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y), nil, nil, 0.3, true)
+		delta = nil    
+	end
 
-local function makeDraggable(gui)
-    local dragging, dragStart, startPos, delta
+	local function makeDraggable(gui)
+		local dragging, dragStart, startPos, delta
 
-    gui.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-            dragging = true
-            dragStart = input.Position
-            startPos = gui.Position
+		gui.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				dragging = true
+				dragStart = input.Position
+				startPos = gui.Position
 
-            input.Changed:Connect(function()
-                if input.UserInputState == Enum.UserInputState.End then
-                    dragging = false
-                end
-            end)
-        end
-    end)
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragging = false
+					end
+				end)
+			end
+		end)
 
-    gui.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-            dragInput = input
-        end
-    end)
+		gui.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
 
-    game.UserInputService.InputChanged:Connect(function(input)
-        if input == dragInput and dragging then
-            update(input, gui, dragStart, startPos)
-        end
-    end)
-end
+		game.UserInputService.InputChanged:Connect(function(input)
+			if input == dragInput and dragging then
+				update(input, gui, dragStart, startPos)
+			end
+		end)
+	end
 
-local function getOptions(options) -- cuz i was lazy to always insert the same line of code
-    -- also idk how properly call that function
-    return typeof(options) == "table" and options or {}
-end
-local function getCallback(options)
-    return typeof(options.Function) == "function" and options.Function or typeof(options.Callback) == "function" and options.Callback or function() end
-end
-local function getText(options)
-    return typeof(options.Title) == "string" and options.Title or typeof(options.Caption) == "string" and options.Caption or typeof(options.Name) == "string" and options.Name or typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content
-end
+	local function getOptions(options) -- cuz i was lazy to always insert the same line of code
+		-- also idk how properly call that function
+		return typeof(options) == "table" and options or {}
+	end
+	local function getCallback(options)
+		return typeof(options.Function) == "function" and options.Function or typeof(options.Callback) == "function" and options.Callback or function() end
+	end
+	local function getText(options)
+		return typeof(options.Title) == "string" and options.Title or typeof(options.Caption) == "string" and options.Caption or typeof(options.Name) == "string" and options.Name or typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content
+	end
 
-local lib; lib = {
-    SetThemeColor = setmetatable({}, {
-        __call = function(self, themeId, themeCol)
+	local lib; lib = {
+		SetThemeColor = setmetatable({}, {
+			__call = function(self, themeId, themeCol)
 
-        end,
-        __newindex = function(self, themeId, themeCol)
-            themeId = tostring(themeId)
+			end,
+			__newindex = function(self, themeId, themeCol)
+				themeId = tostring(themeId)
 
-        end,
-        __index = function(self, themeId)
+			end,
+			__index = function(self, themeId)
 
-        end,
-    }),
-    Notifications = {
-        _AnimateNotification = {
-            In = function(notification)
-                if not notification or not notification.Parent then return end
-                playSound("Notification")
-                local size = notification.Size
-                notification.Size = UDim2.fromScale()
-                notification.Visible = true
-                notification:TweenSize(size, nil, nil, 0.3, true)
-                notification.NotificationOrange.Position = UDim2.new(-1, -1, 0, 0)
-                notification.NotificationOrange.NotificationMain.Position = UDim2.new(-1, 0, 0, 2)
-                task.wait(0.32)
-                if not notification or not notification.Parent then return end
-                notification.NotificationOrange:TweenPosition(UDim2.fromScale(0,0), nil, nil, 0.3, true)
-                notification.NotificationOrange.NotificationMain:TweenPosition(UDim2.fromOffset(0, 2), nil, nil, 0.45, true)
-            end,
-            Out = function(notification)
-                if not notification or not notification.Parent then return end
-                notification.NotificationOrange.NotificationMain:TweenPosition(UDim2.new(-1, 0, 0, 2), nil, nil, 0.45, true)
-                notification.NotificationOrange:TweenPosition(UDim2.new(-1, -1, 0, 0), nil, nil, 0.3, true)
-                task.wait(0.32)
-                if not notification or not notification.Parent then return end
-                notification:TweenSize(UDim2.fromScale(0, 0), nil, nil, 0.3, true)
-                task.wait(0.31)
-                if not notification or not notification.Parent then return end
-                notification:Destroy()
-            end
-        },
-        Notification = function(self, options)
-            task.spawn(function()
-                local notification = script.Parent.Notification.NotificationHolder:Clone()
-                notification.Parent = script.Parent.Notification
-                notification.Name = ""
-                notification.NotificationOrange.NotificationMain.Bar.Fill.Size = UDim2.fromScale(1,1)
-                notification.NotificationOrange.NotificationMain.Bar.Fill.Position = UDim2.fromScale(0,0)
-                notification.NotificationOrange.NotificationMain.Title.Text = typeof(options.Title) == "string" and options.Title or typeof(options.Name) == "string" and options.Name or "Notification"
-                local text = typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content or ""
-                for i,v in notification.NotificationOrange.NotificationMain.Lines:GetChildren() do
-                    if v and v:IsA("TextLabel") then
-                        v.Text = ""
-                    end
-                end
-                for i,v in text:gsub("\13", "\n"):split("\n") do
-                    if notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)) then
-                        notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)).Text = v
-                    end
-                end
-                coroutine.wrap(self._AnimateNotification.In)(notification)
-                local time = tonumber(options.Time) or tonumber(options.Delay) or tonumber(options.Length) or 5
-                notification.NotificationOrange.NotificationMain.Bar.Fill:TweenSizeAndPosition(UDim2.fromScale(0, 1), UDim2.fromScale(1, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, time, true)
-                task.wait(time)
-                coroutine.wrap(self._AnimateNotification.Out)(notification)
-            end)
-        end,
-        ChooseNotification = function(self, options)
-            task.spawn(function()
-                local notification = script.Parent.Notification.ChooseNotificationHolder:Clone()
-                notification.Parent = script.Parent.Notification
-                notification.Name = ""
-                notification.NotificationOrange.NotificationMain.Bar.Fill.Size = UDim2.fromScale(1,1)
-                notification.NotificationOrange.NotificationMain.Bar.Fill.Position = UDim2.fromScale(0,0)
-                notification.NotificationOrange.NotificationMain.Title.Text = typeof(options.Title) == "string" and options.Title or typeof(options.Name) == "string" and options.Name or "Notification"
-                local text = typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content or ""
-                for i,v in notification.NotificationOrange.NotificationMain.Lines:GetChildren() do
-                    if v and v:IsA("TextLabel") then
-                        v.Text = ""
-                    end
-                end
-                for i,v in text:gsub("\13", "\n"):split("\n") do
-                    if notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)) then
-                        notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)).Text = v
-                    end
-                end
-                local done = false
-                notification.NotificationOrange.NotificationMain.Yes.MouseButton1Click:Connect(function()
-                    if done then return end
-                    coroutine.wrap(self._AnimateNotification.Out)(notification)
-                    done = true
-                    getCallback(options)(true)
-                end)
-                notification.NotificationOrange.NotificationMain.No.MouseButton1Click:Connect(function()
-                    if done then return end
-                    coroutine.wrap(self._AnimateNotification.Out)(notification)
-                    done = true
-                    getCallback(options)(false)
-                end)
-                coroutine.wrap(self._AnimateNotification.In)(notification)
-                local time = tonumber(options.Time) or tonumber(options.Delay) or tonumber(options.Length) or 5
-                notification.NotificationOrange.NotificationMain.Bar.Fill:TweenSizeAndPosition(UDim2.fromScale(0, 1), UDim2.fromScale(1, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, time, true)
-                task.wait(time)
-                coroutine.wrap(self._AnimateNotification.Out)(notification)
-            end)
-        end
-    },
-    Versions = versions,
-    MakeWindow = function(self, options)
-        options = getOptions(options)
-        local cons = {}
-        local window = script.Parent.Holder.Window:Clone()
-        window.Parent = script.Parent.Holder
-        local fadeTime = 1
-        local size = window.Size
-        window.Name = ""
-        window.HolderFrame.Title.Text = getText(options) or "Fire Library | "..versions.FireLibraryVersion
-        window.Visible = true
-        window.Position = UDim2.fromScale(0.5, 0.5)
-        window.HolderFrame.StarterFade.Visible = true
-        window.Size = UDim2.fromScale(0,0)
-        makeDraggable(window)
+			end,
+		}),
+		Notifications = {
+			_AnimateNotification = {
+				In = function(notification)
+					if not notification or not notification.Parent then return end
+					playSound("Notification")
+					local size = notification.Size
+					notification.Size = UDim2.fromScale()
+					notification.Visible = true
+					notification:TweenSize(size, nil, nil, 0.3, true)
+					notification.NotificationOrange.Position = UDim2.new(-1, -1, 0, 0)
+					notification.NotificationOrange.NotificationMain.Position = UDim2.new(-1, 0, 0, 2)
+					task.wait(0.32)
+					if not notification or not notification.Parent then return end
+					notification.NotificationOrange:TweenPosition(UDim2.fromScale(0,0), nil, nil, 0.3, true)
+					notification.NotificationOrange.NotificationMain:TweenPosition(UDim2.fromOffset(0, 2), nil, nil, 0.45, true)
+				end,
+				Out = function(notification)
+					if not notification or not notification.Parent then return end
+					notification.NotificationOrange.NotificationMain:TweenPosition(UDim2.new(-1, 0, 0, 2), nil, nil, 0.45, true)
+					notification.NotificationOrange:TweenPosition(UDim2.new(-1, -1, 0, 0), nil, nil, 0.3, true)
+					task.wait(0.32)
+					if not notification or not notification.Parent then return end
+					notification:TweenSize(UDim2.fromScale(0, 0), nil, nil, 0.3, true)
+					task.wait(0.31)
+					if not notification or not notification.Parent then return end
+					notification:Destroy()
+				end
+			},
+			Notification = function(self, options)
+				task.spawn(function()
+					local notification = script.Parent.Notification.NotificationHolder:Clone()
+					notification.Parent = script.Parent.Notification
+					notification.Name = ""
+					notification.NotificationOrange.NotificationMain.Bar.Fill.Size = UDim2.fromScale(1,1)
+					notification.NotificationOrange.NotificationMain.Bar.Fill.Position = UDim2.fromScale(0,0)
+					notification.NotificationOrange.NotificationMain.Title.Text = typeof(options.Title) == "string" and options.Title or typeof(options.Name) == "string" and options.Name or "Notification"
+					local text = typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content or ""
+					for i,v in notification.NotificationOrange.NotificationMain.Lines:GetChildren() do
+						if v and v:IsA("TextLabel") then
+							v.Text = ""
+						end
+					end
+					for i,v in text:gsub("\13", "\n"):split("\n") do
+						if notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)) then
+							notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)).Text = v
+						end
+					end
+					coroutine.wrap(self._AnimateNotification.In)(notification)
+					local time = tonumber(options.Time) or tonumber(options.Delay) or tonumber(options.Length) or 5
+					notification.NotificationOrange.NotificationMain.Bar.Fill:TweenSizeAndPosition(UDim2.fromScale(0, 1), UDim2.fromScale(1, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, time, true)
+					task.wait(time)
+					coroutine.wrap(self._AnimateNotification.Out)(notification)
+				end)
+			end,
+			ChooseNotification = function(self, options)
+				task.spawn(function()
+					local notification = script.Parent.Notification.ChooseNotificationHolder:Clone()
+					notification.Parent = script.Parent.Notification
+					notification.Name = ""
+					notification.NotificationOrange.NotificationMain.Bar.Fill.Size = UDim2.fromScale(1,1)
+					notification.NotificationOrange.NotificationMain.Bar.Fill.Position = UDim2.fromScale(0,0)
+					notification.NotificationOrange.NotificationMain.Title.Text = typeof(options.Title) == "string" and options.Title or typeof(options.Name) == "string" and options.Name or "Notification"
+					local text = typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content or ""
+					for i,v in notification.NotificationOrange.NotificationMain.Lines:GetChildren() do
+						if v and v:IsA("TextLabel") then
+							v.Text = ""
+						end
+					end
+					for i,v in text:gsub("\13", "\n"):split("\n") do
+						if notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)) then
+							notification.NotificationOrange.NotificationMain.Lines:FindFirstChild(tostring(i)).Text = v
+						end
+					end
+					local done = false
+					notification.NotificationOrange.NotificationMain.Yes.MouseButton1Click:Connect(function()
+						if done then return end
+						coroutine.wrap(self._AnimateNotification.Out)(notification)
+						done = true
+						getCallback(options)(true)
+					end)
+					notification.NotificationOrange.NotificationMain.No.MouseButton1Click:Connect(function()
+						if done then return end
+						coroutine.wrap(self._AnimateNotification.Out)(notification)
+						done = true
+						getCallback(options)(false)
+					end)
+					coroutine.wrap(self._AnimateNotification.In)(notification)
+					local time = tonumber(options.Time) or tonumber(options.Delay) or tonumber(options.Length) or 5
+					notification.NotificationOrange.NotificationMain.Bar.Fill:TweenSizeAndPosition(UDim2.fromScale(0, 1), UDim2.fromScale(1, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, time, true)
+					task.wait(time)
+					coroutine.wrap(self._AnimateNotification.Out)(notification)
+				end)
+			end
+		},
+		Versions = versions,
+		MakeWindow = function(self, options)
+			options = getOptions(options)
+			local cons = {}
+			local window = script.Parent.Holder.Window:Clone()
+			window.Parent = script.Parent.Holder
+			local fadeTime = 1
+			local size = window.Size
+			window.Name = ""
+			window.HolderFrame.Title.Text = getText(options) or "Fire Library | "..versions.FireLibraryVersion
+			window.Visible = true
+			window.Position = UDim2.fromScale(0.5, 0.5)
+			window.HolderFrame.StarterFade.Visible = true
+			window.Size = UDim2.fromScale(0,0)
+			makeDraggable(window)
 
-        local cd = false
-        local windowFuncs = {
-            Close = function(self)
-                task.spawn(function()
-                    while cd and task.wait() do end
-                    self:Hide()
-                    task.wait(fadeTime + 0.01)
-                    window:Destroy()
-                end)
-            end,
-            Show = function(self)
-                if cd then return false end
-                task.spawn(function()
-                    -- for some reason window:TweenSize does not work :|
-                    cd = true
-                    window.Visible = true
-                    game.TweenService:Create(window, TweenInfo.new(fadeTime / 2.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = size}):Play()
-                    game.TweenService:Create(window.HolderFrame.StarterFade, TweenInfo.new(fadeTime, Enum.EasingStyle.Exponential, Enum.EasingDirection.In), {BackgroundTransparency = 1}):Play()
-                    task.wait(fadeTime + 0.01)
-                    cd = false
-                    window.HolderFrame.StarterFade.Visible = false
-                end)
-                return true
-            end,
-            Hide = function(self)
-                if cd then return false end
-                task.spawn(function()
-                    cd = true
-                    window.HolderFrame.StarterFade.Visible = true
-                    game.TweenService:Create(window, TweenInfo.new(fadeTime, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {Size = UDim2.fromScale(0,0)}):Play()
-                    game.TweenService:Create(window.HolderFrame.StarterFade, TweenInfo.new(fadeTime / 2.5, Enum.EasingStyle.Exponential, Enum.EasingDirection.In), {BackgroundTransparency = 0}):Play()
-                    task.wait(fadeTime + 0.01)
-                    cd = false
-                    window.Visible = false
-                end)
-                return true
-            end,
-            AddPage = function(self, options)
-                options = getOptions(options)
-                local pageButton = window.HolderFrame.PageButtons.PageButton:Clone()
-                pageButton.Parent = window.HolderFrame.PageButtons
-                pageButton.Visible = true
-                pageButton.Name = ""
-                pageButton:FindFirstChild("Text").Text = getText(options) or "Page"
-                cons[#cons+1] = pageButton.MouseEnter:Connect(function()
-                    playSound("MouseHover")
-                end)
-                pageButton.Size = UDim2.fromScale((#pageButton:FindFirstChild("Text").Text / 65) + 0.05, 1)
-                local page = window.HolderFrame.PageDisplay.Page:Clone()
-                page.Parent = window.HolderFrame.PageDisplay
-                page.Name = ""
-                cons[#cons+1] = pageButton.MouseButton1Click:Connect(function()
-                    playSound("Click")
-                    if pageButton.Selection.Visible then
-                        page.Visible = false
-                        pageButton.Selection.Visible = false
-                    else
-                        for i,v in page.Parent:GetChildren() do
-                            if v and v:IsA(page.ClassName) then
-                                v.Visible = false
-                            end
-                        end
-                        page.Visible = true
-                        for i,v in pageButton.Parent:GetChildren() do
-                            if v and v:IsA(pageButton.ClassName) then
-                                v.Selection.Visible = false
-                            end
-                        end
-                        pageButton.Selection.Visible = true
-                    end
-                end)
+			local cd = false
+			local windowFuncs = {
+				Close = function(self)
+					task.spawn(function()
+						while cd and task.wait() do end
+						self:Hide()
+						task.wait(fadeTime + 0.01)
+						window:Destroy()
+					end)
+				end,
+				Show = function(self)
+					if cd then return false end
+					task.spawn(function()
+						-- for some reason window:TweenSize does not work :|
+						cd = true
+						window.Visible = true
+						game.TweenService:Create(window, TweenInfo.new(fadeTime / 2.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = size}):Play()
+						game.TweenService:Create(window.HolderFrame.StarterFade, TweenInfo.new(fadeTime, Enum.EasingStyle.Exponential, Enum.EasingDirection.In), {BackgroundTransparency = 1}):Play()
+						task.wait(fadeTime + 0.01)
+						cd = false
+						window.HolderFrame.StarterFade.Visible = false
+					end)
+					return true
+				end,
+				Hide = function(self)
+					if cd then return false end
+					task.spawn(function()
+						cd = true
+						window.HolderFrame.StarterFade.Visible = true
+						game.TweenService:Create(window, TweenInfo.new(fadeTime, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {Size = UDim2.fromScale(0,0)}):Play()
+						game.TweenService:Create(window.HolderFrame.StarterFade, TweenInfo.new(fadeTime / 2.5, Enum.EasingStyle.Exponential, Enum.EasingDirection.In), {BackgroundTransparency = 0}):Play()
+						task.wait(fadeTime + 0.01)
+						cd = false
+						window.Visible = false
+					end)
+					return true
+				end,
+				AddPage = function(self, options)
+					options = getOptions(options)
+					local pageButton = window.HolderFrame.PageButtons.PageButton:Clone()
+					pageButton.Parent = window.HolderFrame.PageButtons
+					pageButton.Visible = true
+					pageButton.Name = ""
+					pageButton:FindFirstChild("Text").Text = getText(options) or "Page"
+					cons[#cons+1] = pageButton.MouseEnter:Connect(function()
+						playSound("MouseHover")
+					end)
+					pageButton.Size = UDim2.fromScale((#pageButton:FindFirstChild("Text").Text / 65) + 0.05, 1)
+					local page = window.HolderFrame.PageDisplay.Page:Clone()
+					page.Parent = window.HolderFrame.PageDisplay
+					page.Name = ""
+					cons[#cons+1] = pageButton.MouseButton1Click:Connect(function()
+						playSound("Click")
+						if pageButton.Selection.Visible then
+							page.Visible = false
+							pageButton.Selection.Visible = false
+						else
+							for i,v in page.Parent:GetChildren() do
+								if v and v:IsA(page.ClassName) then
+									v.Visible = false
+								end
+							end
+							page.Visible = true
+							for i,v in pageButton.Parent:GetChildren() do
+								if v and v:IsA(pageButton.ClassName) then
+									v.Selection.Visible = false
+								end
+							end
+							pageButton.Selection.Visible = true
+						end
+					end)
 
-                local pageFuncs = {
-                    AddSlider = function(self, options)
-                        options = getOptions(options)
-                        options.Min = tonumber(options.Min or options.Minimum) or 0
-                        options.Max = tonumber(options.Max or options.Maximum) or 100
-                        options.Callback = getCallback(options)
-                        if options.Min > options.Max then
-                            local max, min = options.Max, options.Min
-                            options.Min = max
-                            options.Max = min
-                        elseif options.Min == options.Max then
-                            local cb = options.Callback
-                            options.Callback = function()
-                                cb(options.Min)
-                            end
-                            return self:AddButton(options)
-                        end
-                        options.Step = tonumber(options.Step) or tonumber(options.Per) or (options.Max - options.Min) / 25
-                        options.Default = tonumber(options.Default) or tonumber(options.Base) or options.Min
+					local pageFuncs = {
+						AddSlider = function(self, options)
+							options = getOptions(options)
+							options.Min = tonumber(options.Min or options.Minimum) or 0
+							options.Max = tonumber(options.Max or options.Maximum) or 100
+							options.Callback = getCallback(options)
+							if options.Min > options.Max then
+								local max, min = options.Max, options.Min
+								options.Min = max
+								options.Max = min
+							elseif options.Min == options.Max then
+								local cb = options.Callback
+								options.Callback = function()
+									cb(options.Min)
+								end
+								return self:AddButton(options)
+							end
+							options.Step = tonumber(options.Step) or tonumber(options.Per) or (options.Max - options.Min) / 25
+							options.Default = tonumber(options.Default) or tonumber(options.Base) or options.Min
 
-                        --
+							--
 
-                        local slider = page.Slider:Clone()
-                        slider.Parent = page
-                        slider.Name = ""
-                        slider.Visible = true
-                        slider:FindFirstChild("Text").Text = getText(options) or "Slider"
+							local slider = page.Slider:Clone()
+							slider.Parent = page
+							slider.Name = ""
+							slider.Visible = true
+							slider:FindFirstChild("Text").Text = getText(options) or "Slider"
 
-                        setupSlider(slider, nil, options)(options.Default)
-                    end,
-                    AddSeparator = function(self)
-                        local sep = page.Separator:Clone()
-                        sep.Parent = page
-                        sep.Visible = true
-                        sep.Name = ""
-                    end,
-                    AddButton = function(self, options)
-                        options = getOptions(options)
+							setupSlider(slider, nil, options)(options.Default)
+						end,
+						AddSeparator = function(self)
+							local sep = page.Separator:Clone()
+							sep.Parent = page
+							sep.Visible = true
+							sep.Name = ""
+						end,
+						AddButton = function(self, options)
+							options = getOptions(options)
 
-                        local button = page.Button:Clone()
-                        button.Parent = page
-                        button.Visible = true
-                        button.Name = ""
-                        button:FindFirstChild("Text").Text = getText(options) or "Button"
-                        cons[#cons+1] = button.MouseEnter:Connect(function()
-                            playSound("MouseHover")
-                        end)
-                        cons[#cons+1] = button.MouseButton1Click:Connect(function()
-                            playSound("Click")
-                            getCallback(options)()
-                        end)
-                    end,
-                    AddToggle = function(self, options)
-                        options = getOptions(options)
+							local button = page.Button:Clone()
+							button.Parent = page
+							button.Visible = true
+							button.Name = ""
+							button:FindFirstChild("Text").Text = getText(options) or "Button"
+							cons[#cons+1] = button.MouseEnter:Connect(function()
+								playSound("MouseHover")
+							end)
+							cons[#cons+1] = button.MouseButton1Click:Connect(function()
+								playSound("Click")
+								getCallback(options)()
+							end)
+						end,
+						AddToggle = function(self, options)
+							options = getOptions(options)
 
-                        local state = typeof(options.Default) == "boolean" and options.Default or typeof(options.Base) == "boolean" and options.Base or false
-                        local toggle = page.Toggle:Clone()
-                        toggle.Parent = page
-                        toggle.Visible = true
-                        toggle.Name = ""
-                        toggle:FindFirstChild("Text").Text = getText(options) or "Toggle"
-                        cons[#cons+1] = toggle.MouseEnter:Connect(function()
-                            playSound("MouseHover")
-                        end)
-                        toggle.ToggleOuter.Frame.ImageLabel.Visible = state
-                        cons[#cons+1] = toggle.MouseButton1Click:Connect(function()
-                            playSound("Click")
-                            state = not state
-                            toggle.ToggleOuter.Frame.ImageLabel.Visible = state
-                            getCallback(options)(state)
-                        end)
-                    end,
-                    AddLabel = function(self, options)
-                        options = getOptions(options)
+							local state = typeof(options.Default) == "boolean" and options.Default or typeof(options.Base) == "boolean" and options.Base or false
+							local toggle = page.Toggle:Clone()
+							toggle.Parent = page
+							toggle.Visible = true
+							toggle.Name = ""
+							toggle:FindFirstChild("Text").Text = getText(options) or "Toggle"
+							cons[#cons+1] = toggle.MouseEnter:Connect(function()
+								playSound("MouseHover")
+							end)
+							toggle.ToggleOuter.Frame.ImageLabel.Visible = state
+							cons[#cons+1] = toggle.MouseButton1Click:Connect(function()
+								playSound("Click")
+								state = not state
+								toggle.ToggleOuter.Frame.ImageLabel.Visible = state
+								getCallback(options)(state)
+							end)
+						end,
+						AddLabel = function(self, options)
+							options = getOptions(options)
 
-                        local label = page.Label:Clone()
-                        label.Parent = page
-                        label.Visible = true
-                        label.Name = ""
-                        label:FindFirstChild("Text").Text = getText(options) or "Label"
-                    end,
-                    AddTextBox = function(self, options)
-                        options = getOptions(options)
+							local label = page.Label:Clone()
+							label.Parent = page
+							label.Visible = true
+							label.Name = ""
+							label:FindFirstChild("Text").Text = getText(options) or "Label"
+						end,
+						AddTextBox = function(self, options)
+							options = getOptions(options)
 
-                        local tb = page.TextBox:Clone()
-                        tb.Parent = page
-                        tb.Visible = true
-                        tb.Name = ""
-                        tb:FindFirstChild("Text").Text = getText(options) or "Text Box"
-                        tb.TextBoxOuter.TextBoxHolder.TextBox.PlaceholderText = typeof(options.Placeholder) == "string" and options.Placeholder or typeof(options.PlaceholderText) == "string" and options.PlaceholderText or ""
-                        tb.TextBoxOuter.TextBoxHolder.TextBox.Text = typeof(options.Default) == "string" and options.Default or typeof(options.Base) == "string" and options.Base or ""
-                        cons[#cons+1] = tb.MouseButton1Click:Connect(function()
-                            playSound("MouseHover")
-                            tb.TextBoxOuter.TextBoxHolder.TextBox:CaptureFocus()
-                        end)
-                        cons[#cons+1] = tb.TextBoxOuter.TextBoxHolder.TextBox.FocusLost:Connect(function(enter)
-                            if (options.Enter or options.NeedEnter or options.NeedsEnter) and enter or not (options.Enter or options.NeedEnter or options.NeedsEnter) then
-                                playSound("Click")
-                                getCallback(options)(tb.TextBoxOuter.TextBoxHolder.TextBox.Text)
-                            end
-                        end)
-                    end,
-                    AddInput = function(self, options)
-                        options = getOptions(options)
-                        options.Default = typeof(options.Default) == "string" and options.Default or typeof(options.Base) == "string" and options.Base or ""
+							local tb = page.TextBox:Clone()
+							tb.Parent = page
+							tb.Visible = true
+							tb.Name = ""
+							tb:FindFirstChild("Text").Text = getText(options) or "Text Box"
+							tb.TextBoxOuter.TextBoxHolder.TextBox.PlaceholderText = typeof(options.Placeholder) == "string" and options.Placeholder or typeof(options.PlaceholderText) == "string" and options.PlaceholderText or ""
+							tb.TextBoxOuter.TextBoxHolder.TextBox.Text = typeof(options.Default) == "string" and options.Default or typeof(options.Base) == "string" and options.Base or ""
+							cons[#cons+1] = tb.MouseButton1Click:Connect(function()
+								playSound("MouseHover")
+								tb.TextBoxOuter.TextBoxHolder.TextBox:CaptureFocus()
+							end)
+							cons[#cons+1] = tb.TextBoxOuter.TextBoxHolder.TextBox.FocusLost:Connect(function(enter)
+								if (options.Enter or options.NeedEnter or options.NeedsEnter) and enter or not (options.Enter or options.NeedEnter or options.NeedsEnter) then
+									playSound("Click")
+									getCallback(options)(tb.TextBoxOuter.TextBoxHolder.TextBox.Text)
+								end
+							end)
+						end,
+						AddInput = function(self, options)
+							options = getOptions(options)
+							options.Default = typeof(options.Default) == "string" and options.Default or typeof(options.Base) == "string" and options.Base or ""
 
-                        local blockedCodes = {
-                            Enum.KeyCode.Unknown,
-                            Enum.KeyCode.Power,
-                            Enum.KeyCode.Left,
-                            Enum.KeyCode.Right,
-                            Enum.KeyCode.Up,
-                            Enum.KeyCode.Down,
-                            Enum.KeyCode.F11,
-                            Enum.KeyCode.F9,
-                            Enum.KeyCode.CapsLock,
-                            Enum.KeyCode.ScrollLock,
-                            Enum.KeyCode.NumLock
-                        }
-                        local focused = false
-                        local con
-                        local input = page.Input:Clone()
-                        input.Parent = page
-                        input.Visible = not isMobile
-                        input.Name = ""
-                        input:FindFirstChild("Text").Text = getText(options) or "Input"
-                        local inpt = Enum.KeyCode[options.Default]
-                        input.InputOuter.Frame.Input.Text = inpt.Name
-                        cons[#cons+1] = input.MouseButton1Click:Connect(function()
-                            playSound("Click")
-                            focused = not focused
-                            input.InputOuter.Frame.Input.Text = "..."
-                            if focused then
-                                con = game.UserInputService.InputBegan:Connect(function(s, chat)
-                                    if chat or table.find(blockedCodes, s.KeyCode) then return end
-                                    focused = false
-                                    con:Disconnect()
-                                    con = nil
-                                    inpt = s.KeyCode
-                                    input.InputOuter.Frame.Input.Text = inpt.Name
-                                    getCallback(options)(inpt)
-                                end)
-                            else
-                                input.InputOuter.Frame.Input.Text = inpt.Name
-                                if con then
-                                    con:Disconnect()
-                                    con = nil
-                                end
-                            end
-                        end)
-                        cons[#cons+1] = input.MouseEnter:Connect(function()
-                            playSound("MouseHover")
-                        end)
-                    end,
-                    AddColorPicker = function(self, options)
-                        options = getOptions(options)
-                        options.Default = typeof(options.Default) == "Color3" and options.Default or typeof(options.Base) == "Color3" and options.Base or Color3.fromRGB(255, 255, 255)
+							local blockedCodes = {
+								Enum.KeyCode.Unknown,
+								Enum.KeyCode.Power,
+								Enum.KeyCode.Left,
+								Enum.KeyCode.Right,
+								Enum.KeyCode.Up,
+								Enum.KeyCode.Down,
+								Enum.KeyCode.F11,
+								Enum.KeyCode.F9,
+								Enum.KeyCode.CapsLock,
+								Enum.KeyCode.ScrollLock,
+								Enum.KeyCode.NumLock
+							}
+							local focused = false
+							local con
+							local input = page.Input:Clone()
+							input.Parent = page
+							input.Visible = not isMobile
+							input.Name = ""
+							input:FindFirstChild("Text").Text = getText(options) or "Input"
+							local inpt = Enum.KeyCode[options.Default]
+							input.InputOuter.Frame.Input.Text = inpt.Name
+							cons[#cons+1] = input.MouseButton1Click:Connect(function()
+								playSound("Click")
+								focused = not focused
+								input.InputOuter.Frame.Input.Text = "..."
+								if focused then
+									con = game.UserInputService.InputBegan:Connect(function(s, chat)
+										if chat or table.find(blockedCodes, s.KeyCode) then return end
+										focused = false
+										con:Disconnect()
+										con = nil
+										inpt = s.KeyCode
+										input.InputOuter.Frame.Input.Text = inpt.Name
+										getCallback(options)(inpt)
+									end)
+								else
+									input.InputOuter.Frame.Input.Text = inpt.Name
+									if con then
+										con:Disconnect()
+										con = nil
+									end
+								end
+							end)
+							cons[#cons+1] = input.MouseEnter:Connect(function()
+								playSound("MouseHover")
+							end)
+						end,
+						AddColorPicker = function(self, options)
+							options = getOptions(options)
+							options.Default = typeof(options.Default) == "Color3" and options.Default or typeof(options.Base) == "Color3" and options.Base or Color3.fromRGB(255, 255, 255)
 
-                        local cp = page.ColorPicker:Clone()
-                        cp.Parent = page
-                        cp.Visible = true
-                        cp.Name = ""
-                        cp:FindFirstChild("Text").Text = getText(options) or "Color Picker"
+							local cp = page.ColorPicker:Clone()
+							cp.Parent = page
+							cp.Visible = true
+							cp.Name = ""
+							cp:FindFirstChild("Text").Text = getText(options) or "Color Picker"
 
-                        local col = options.Default
-                        cp:FindFirstChild("Text").Color.BackgroundColor3 = col
-                        cp.RGB.RHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(col.R, 0, 0)
-                        cp.RGB.GHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(0, col.G, 0)
-                        cp.RGB.BHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(0, 0, col.B)
-                        local Rs, Gs, Bs = 
-                            setupSlider(cp.RGB.RHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.R * 255), Callback = function(v)
-                                col = Color3.new(v/255, col.G, col.B)
-                                cp:FindFirstChild("Text").Color.BackgroundColor3 = col
-                                cp.RGB.RHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.fromRGB(v, 0, 0)
-                                getCallback(options)(col)
-                            end}),
-                        setupSlider(cp.RGB.GHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.G * 255), Callback = function(v)
-                            col = Color3.new(col.R, v/255, col.B)
-                            cp:FindFirstChild("Text").Color.BackgroundColor3 = col
-                            cp.RGB.GHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.fromRGB(0, v, 0)
-                            getCallback(options)(col)
-                        end}),
-                        setupSlider(cp.RGB.BHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.B * 255), Callback = function(v)
-                            col = Color3.new(col.R, col.G, v/255)
-                            cp:FindFirstChild("Text").Color.BackgroundColor3 = col
-                            cp.RGB.BHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.fromRGB(0, 0, v)
-                            getCallback(options)(col)
-                        end})
-                    end,
-                }
-                pageFuncs.AddSwitch = pageFuncs.AddToggle
-                for i,v in pageFuncs do
-                    if i:sub(1,3) == "Add" then
-                        pageFuncs[i:gsub("Add", "Create")] = v
-                        pageFuncs[i:gsub("Add", "")] = v
-                    end
-                end
+							local col = options.Default
+							cp:FindFirstChild("Text").Color.BackgroundColor3 = col
+							cp.RGB.RHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(col.R, 0, 0)
+							cp.RGB.GHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(0, col.G, 0)
+							cp.RGB.BHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(0, 0, col.B)
+							local Rs, Gs, Bs = 
+								setupSlider(cp.RGB.RHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.R * 255), Callback = function(v)
+									col = Color3.new(v/255, col.G, col.B)
+									cp:FindFirstChild("Text").Color.BackgroundColor3 = col
+									cp.RGB.RHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.fromRGB(v, 0, 0)
+									getCallback(options)(col)
+								end}),
+							setupSlider(cp.RGB.GHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.G * 255), Callback = function(v)
+								col = Color3.new(col.R, v/255, col.B)
+								cp:FindFirstChild("Text").Color.BackgroundColor3 = col
+								cp.RGB.GHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.fromRGB(0, v, 0)
+								getCallback(options)(col)
+							end}),
+							setupSlider(cp.RGB.BHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.B * 255), Callback = function(v)
+								col = Color3.new(col.R, col.G, v/255)
+								cp:FindFirstChild("Text").Color.BackgroundColor3 = col
+								cp.RGB.BHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.fromRGB(0, 0, v)
+								getCallback(options)(col)
+							end})
+						end,
+					}
+					pageFuncs.AddSwitch = pageFuncs.AddToggle
+					for i,v in pageFuncs do
+						if i:sub(1,3) == "Add" then
+							pageFuncs[i:gsub("Add", "Create")] = v
+							pageFuncs[i:gsub("Add", "")] = v
+						end
+					end
 
-                return pageFuncs
-            end,
-        }
-        windowFuncs.Shutdown = windowFuncs.Close
-        windowFuncs.Minimize = windowFuncs.Hide
-        windowFuncs.Maximize = windowFuncs.Show
-        windowFuncs:Show()
-        windowFuncs.InitFireHub = function(self)
-            local page = self:AddPage({Title = "Info"})
-            page:AddLabel({Text = "Fire-Hub version: "..versions.FireHubVersion})
-            page:AddLabel({Text = "Fire-Lib version: "..versions.FireLibraryVersion})
-            local isExec = true
-            local exec, ver
-            if typeof(getfenv().identifyexecutor) == "function" then
-                exec, ver = getfenv().identifyexecutor()
-                if typeof(exec) == "string" and typeof(ver) ~= "string" then
-                    ver = "Unknown"
-                else
-                    isExec = false
-                    ver = getfenv().version()
-                    exec = (game["Run Service"]:IsStudio() and "Studio" or "RobloxApp") .. (game["Run Service"]:IsClient() and "Client" or "Server")
-                end
-            else
-                ver = getfenv().version()
-                exec = (game["Run Service"]:IsStudio() and "Studio" or "RobloxApp") .. (game["Run Service"]:IsClient() and "Client" or "Server")
-                isExec = false
-            end
-            page:AddLabel({Text = "Executor: "..exec..", Version: "..ver})
-            if isExec then
-                page:AddSeparator()
-                page:AddTextBox({Enter = false, Text = "Spoof Executor", Placeholder = "Example: [ExecName, Version]", Default = exec..", "..ver, Callback = function(txt)
-                    local splits = txt:split(", ")
-                    local execu, vers = splits[1], splits[2]
-                    local getgenv = getfenv().getgenv or getfenv
-                    getgenv().identifyexecutor = function()
-                        return execu, vers
-                    end
-                    getgenv().getexecutor = getgenv().identifyexecutor
-                    getgenv().getexecutorname = getgenv().identifyexecutor
-                    getgenv().executor = execu
-                end})
-            end
-        end
+					return pageFuncs
+				end,
+			}
+			windowFuncs.Shutdown = windowFuncs.Close
+			windowFuncs.Minimize = windowFuncs.Hide
+			windowFuncs.Maximize = windowFuncs.Show
+			windowFuncs:Show()
+			windowFuncs.InitFireHub = function(self)
+				local page = self:AddPage({Title = "Info"})
+				page:AddLabel({Text = "Fire-Hub version: "..versions.FireHubVersion})
+				page:AddLabel({Text = "Fire-Lib version: "..versions.FireLibraryVersion})
+				local isExec = true
+				local exec, ver
+				if typeof(getfenv().identifyexecutor) == "function" then
+					exec, ver = getfenv().identifyexecutor()
+					if typeof(exec) == "string" and typeof(ver) ~= "string" then
+						ver = "Unknown"
+					else
+						isExec = false
+						ver = getfenv().version()
+						exec = (game["Run Service"]:IsStudio() and "Studio" or "RobloxApp") .. (game["Run Service"]:IsClient() and "Client" or "Server")
+					end
+				else
+					ver = getfenv().version()
+					exec = (game["Run Service"]:IsStudio() and "Studio" or "RobloxApp") .. (game["Run Service"]:IsClient() and "Client" or "Server")
+					isExec = false
+				end
+				page:AddLabel({Text = "Executor: "..exec..", Version: "..ver})
+				if isExec then
+					page:AddSeparator()
+					page:AddTextBox({Enter = false, Text = "Spoof Executor", Placeholder = "Example: [ExecName, Version]", Default = exec..", "..ver, Callback = function(txt)
+						local splits = txt:split(", ")
+						local execu, vers = splits[1], splits[2]
+						local getgenv = getfenv().getgenv or getfenv
+						getgenv().identifyexecutor = function()
+							return execu, vers
+						end
+						getgenv().getexecutor = getgenv().identifyexecutor
+						getgenv().getexecutorname = getgenv().identifyexecutor
+						getgenv().executor = execu
+					end})
+				end
+				local qotp = getfenv().queue_on_teleport or getfenv().queueonteleport
+				if qotp then
+					local keep = false
+					page:AddToggle({Text = "Keep Fire~Hub on teleport", Callback = function(b)
+						keep = b
+						lib.Notifications:Notification({Title = "Warning", Text = "If you will close Fire~Hub, that setting wont apply!\nYou need to keep Fire~Hub opened!"})
+					end})
+					cons[#cons+1] = game.Players.LocalPlayer.OnTeleport:Connect(function()
+						if keep then
+							qotp([[loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Loader"))()]])
+						end
+					end)
+				end
+			end
 
-        local page = windowFuncs:AddPage({Title = "Main"})
-        local maximizeKey = Enum.KeyCode.LeftAlt
-        page:AddButton({Text = "Hide UI", Callback = function()
-            if windowFuncs:Minimize() then
-                lib.Notifications:Notification({Title = "UI Hidden", Text = "Press "..maximizeKey.Name.." to show the UI"})
-            end
-        end})
-        page:AddInput({Text = "Show UI Key", Default = maximizeKey.Name, Callback = function(kk)
-            maximizeKey = kk
-        end})
-        cons[#cons+1] = game.UserInputService.InputBegan:Connect(function(input)
-            if game.UserInputService:GetFocusedTextBox() or input.KeyCode ~= maximizeKey then return end
-            windowFuncs:Show()
-        end)
-        local closeCallback = function()
-            for i,v in cons do
-                if v and v.Connected then
-                    v:Disconnect()
-                end
-            end;
-            (typeof(options.CloseCallback) == "function" and options.CloseCallback or getCallback(options))()
-        end
-        page:AddButton({Text = "Close UI", Callback = function()
-            lib.Notifications:ChooseNotification({Title = "Are you sure?", Text = "Are you sure that you want to close\n"..window.HolderFrame.Title.Text.."?", Callback = function(b)
-                if b then
-                    windowFuncs:Close()
-                    closeCallback()
-                end
-            end})
-        end})
+			local page = windowFuncs:AddPage({Title = "Main"})
+			local maximizeKey = Enum.KeyCode.LeftAlt
+			page:AddButton({Text = "Hide UI", Callback = function()
+				if windowFuncs:Minimize() then
+					lib.Notifications:Notification({Title = "UI Hidden", Text = "Press "..maximizeKey.Name.." to show the UI"})
+				end
+			end})
+			page:AddInput({Text = "Show UI Key", Default = maximizeKey.Name, Callback = function(kk)
+				maximizeKey = kk
+			end})
+			cons[#cons+1] = game.UserInputService.InputBegan:Connect(function(input)
+				if game.UserInputService:GetFocusedTextBox() or input.KeyCode ~= maximizeKey then return end
+				windowFuncs:Show()
+			end)
+			local closeCallback = function()
+				for i,v in cons do
+					if v and v.Connected then
+						v:Disconnect()
+					end
+				end;
+				(typeof(options.CloseCallback) == "function" and options.CloseCallback or getCallback(options))()
+			end
+			page:AddButton({Text = "Close UI", Callback = function()
+				lib.Notifications:ChooseNotification({Title = "Are you sure?", Text = "Are you sure that you want to close\n"..window.HolderFrame.Title.Text.."?", Callback = function(b)
+					if b then
+						windowFuncs:Close()
+						closeCallback()
+					end
+				end})
+			end})
 
-        return windowFuncs
-    end,
-}
+			return windowFuncs
+		end,
+	}
 
-lib.CreateWindow = lib.MakeWindow
-lib.AddWindow = lib.MakeWindow
-lib.Notifications.Notify = lib.Notifications.Notification
-lib.Notifications.SelectNotification = lib.Notifications.ChooseNotification
-lib.Notifications.SelectionNotification = lib.Notifications.ChooseNotification
+	lib.CreateWindow = lib.MakeWindow
+	lib.AddWindow = lib.MakeWindow
+	lib.Notifications.Notify = lib.Notifications.Notification
+	lib.Notifications.SelectNotification = lib.Notifications.ChooseNotification
+	lib.Notifications.SelectionNotification = lib.Notifications.ChooseNotification
 
-return lib
+	return lib
 end
 
 local oldRequire = getfenv().require
 getfenv().require = function(scr)
-    if typeof(scr) ~= "Instance" or (not scr:IsA("ModuleScript") and not moduleScripts[scr]) then return oldRequire(scr) end
-    if moduleScripts[scr] then
-        return moduleScripts[scr]()
-    else
-        return oldRequire(scr)
-    end
+	if typeof(scr) ~= "Instance" or (not scr:IsA("ModuleScript") and not moduleScripts[scr]) then return oldRequire(scr) end
+	if moduleScripts[scr] then
+		return moduleScripts[scr]()
+	else
+		return oldRequire(scr)
+	end
 end
 
 require = getfenv().require
