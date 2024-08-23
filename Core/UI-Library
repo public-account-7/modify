@@ -3627,6 +3627,9 @@ local lib; lib = {
     },
     Versions = versions,
     MakeWindow = function(self, options)
+        for i=1, 5 do
+            game["Run Service"].RenderStepped:Wait()
+        end
         options = getOptions(options)
         local cons = {}
         local window = script.Parent.Holder.Window:Clone()
