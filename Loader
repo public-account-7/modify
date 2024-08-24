@@ -1,6 +1,3 @@
-local working = true
-if not working then return warn("Fire~Hub is not working right now.") end
-
 local httpGet = function(...)
     local res
     local args = table.pack(...)
@@ -18,6 +15,9 @@ local httpGet = function(...)
 
     return res
 end
+
+local working = httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Version"):split("\n")[3] == "1"
+if not working then return warn("Fire~Hub is not working right now.") end
 
 local supported = httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/SupportedGames")
 if supported then supported = loadstring(supported)() end
