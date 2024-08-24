@@ -3381,6 +3381,9 @@ local require; local moduleScripts = {}
 
 moduleScripts[Instance7] = function()
     local script = Instance7
+    local function getGlobalTable()
+        return typeof(shared) == "table" and shared or typeof(getgenv) == "function" and typeof(getgenv()) == "table" and getgenv() or _G
+    end
     local versions
 if not pcall(function()
         local str = game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Version"):split("\n")
@@ -3921,7 +3924,9 @@ local lib; lib = {
         windowFuncs.Minimize = windowFuncs.Hide
         windowFuncs.Maximize = windowFuncs.Show
         windowFuncs:Show()
+        local fireHubInitDone = false
         windowFuncs.InitFireHub = function(self)
+            fireHubInitDone = true
             local page = self:AddPage({Title = "Info"})
             page:AddLabel({Text = "Fire-Hub version: "..versions.FireHubVersion})
             page:AddLabel({Text = "Fire-Lib version: "..versions.FireLibraryVersion})
@@ -3986,6 +3991,9 @@ local lib; lib = {
             windowFuncs:Show()
         end)
         local closeCallback = function()
+            if fireHubInitDone then
+                getGlobalTable().FireHubLoaded = false
+            end
             for i,v in cons do
                 if v and v.Connected then
                     v:Disconnect()
