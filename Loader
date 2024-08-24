@@ -19,7 +19,7 @@ end
 local working = httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Version"):split("\n")[3] == "1"
 if not working then return warn("Fire~Hub is not working right now.") end
 
-local supported = httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/SupportedGames")
+local supported = httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/SupportedGames.json")
 for i,v in game.HttpService:JSONDecode(supported) do
     local sup = false
     for _,val in pairs(v) do
