@@ -3402,15 +3402,6 @@ local isMobile = game.UserInputService.TouchEnabled and not game.UserInputServic
 local uiHolder = getfenv().gethui and getfenv().gethui() or pcall(function() return game.CoreGui:GetFullName() end) and game.CoreGui:FindFirstChild("RobloxGui") or game.Players.LocalPlayer.PlayerGui
 script.Parent.Parent = uiHolder
 
-local mbtn = Instance.new("TextButton", script.Parent)
-mbtn.Visible = false
-mbtn.Size = UDim2.fromOffset(25, 25)
-mbtn.Text = "FH"
-mbtn.TextScaled = true
-mbtn.Draggable = true
-mbtn.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-mbtn.TextColor3 = Color3.new(1,1,1)
-
 local function playSound(soundName)
     task.spawn(function()
         local sCopy = script.Parent.Sounds.SoundsFolder:FindFirstChild(soundName)
@@ -3639,6 +3630,16 @@ local lib; lib = {
     },
     Versions = versions,
     MakeWindow = function(self, options)
+
+local mbtn = Instance.new("TextButton", script.Parent)
+mbtn.Visible = false
+mbtn.Size = UDim2.fromOffset(25, 25)
+mbtn.Text = "FH"
+mbtn.TextScaled = true
+mbtn.Draggable = true
+mbtn.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+mbtn.TextColor3 = Color3.new(1,1,1)
+
         for i=1, 5 do
             game["Run Service"].RenderStepped:Wait()
         end
