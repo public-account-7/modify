@@ -20,9 +20,7 @@ local working = httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-
 if not working then return warn("Fire~Hub is not working right now.") end
 
 local supported = httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/SupportedGames")
-if supported then supported = loadstring(supported)() end
-
-for i,v in pairs(supported) do
+for i,v in game.HttpService:JSONDecode(supported) do
     local sup = false
     for _,val in pairs(v) do
         if val == game.PlaceId then
