@@ -31,6 +31,6 @@ for i,v in pairs(supported) do
     end
 
     if sup then
-        loadstring(httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Games/"..i.."/Loader"))()
+        loadstring(httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Scripts/"..i.."/Loader.lua"))()
     end
 end
