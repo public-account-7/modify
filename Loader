@@ -1,3 +1,7 @@
+local function getGlobalTable()
+    return typeof(shared) == "table" and shared or typeof(getgenv) == "function" and typeof(getgenv()) == "table" and getgenv() or _G
+end
+
 local httpGet = function(...)
     local res
     local args = table.pack(...)
@@ -18,6 +22,7 @@ end
 
 local working = httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Version"):split("\n")[3] == "1"
 if not working then return warn("Fire~Hub is not working right now.") end
+if getGlobalTable().FireHubLoaded then return warn("Fire~Hub is already loaded!") end
 
 local supported = httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/SupportedGames.json")
 for i,v in game.HttpService:JSONDecode(supported) do
@@ -29,6 +34,7 @@ for i,v in game.HttpService:JSONDecode(supported) do
     end
 
     if sup then
+        getGlobalTable().FireHubLoaded = true
         loadstring(httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Scripts/"..i.."/Loader.lua"))()
     end
 end
