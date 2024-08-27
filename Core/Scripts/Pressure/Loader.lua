@@ -30,7 +30,11 @@ local defaults = {
 	AutoGlitchU = false,
 	AutoGlitchA = false,
 	NoParasites = false,
-	TpLoops = false
+	TPLoots = false,
+	GodMode = false,
+	NoInvisible = false,
+	Spam = false,
+	AutoTriggerEvents = false
 }
 local vals = table.clone(defaults)
 
@@ -72,7 +76,33 @@ else
 	return warn("Failed to load dupe module!\nLooks like your executor is pure shit")
 end
 local webhook = function(settings)
-	
+	if not getfenv().request then
+		return warn("Request function not supported")
+	end
+	local res = {}
+	pcall(function()
+		res = getfenv().request(
+		{
+			Url = settings.Url,
+			Method = "POST",
+			Body = game.HttpService:JSONEncode(
+				{
+					embeds = {{
+						["title"] = "**"..(settings.Title or "Hi").."**",
+						["description"] = settings.Description or "",
+						["type"] = "rich",
+						["color"] = tonumber("0x"..(settings.Color or Color3.new(1,1,1)):ToHex()),
+						["fields"] = settings.Fields
+					}}
+				}
+			),
+			Headers = {
+				['Content-Type'] = "application/json"
+			}
+		}
+		)
+	end)
+	return tostring(res.StatusCode):sub(1,1) ~= "4"
 end
 local cd = {}
 local fireproximityprompt = function(pp)
@@ -115,6 +145,8 @@ local fireproximityprompt = function(pp)
 		cd[pp] = false
 	end)
 end
+local gmEnabled = false
+local lockers = {}
 local invs = {}
 local function isLightSource(obj)
 	return not not (obj.Name:lower():match("light") or obj.Name:match("Lantern") or obj.Name:match("FlashBeacon"))
@@ -122,7 +154,7 @@ end
 local function glitchTool(plr, notify)
 	task.spawn(function()
 		local inventory = plr.PlayerFolder.Inventory
-		if plr.Character and plr.Character:FindFirstChildOfClass("Model") then
+		if plr.Character and plr.Character:FindFirstChildOfClass("Model") and plr.Character:FindFirstChild("Humanoid") and plr.Character.Humanoid.Health == 100 then
 			local tool = plr.Character:FindFirstChildOfClass("Model").Name
 			if tool == "Medkit" or isLightSource(plr.Character:FindFirstChild(tool)) then
 				if notify then return end
@@ -141,8 +173,11 @@ local function glitchTool(plr, notify)
 			end
 			local glitchIt
 			local function valid()
-				if plr.Character and plr.Character.Parent == workspace or not plr.Character then
-					repeat task.wait() until plr.Character and plr.Character.Parent or not plr.Character
+				local function validateCharacter()
+					return (plr.Character and plr.Character.Parent ~= workspace and plr.Character:FindFirstChild("Humanoid") and plr.Character.Humanoid.Health == 100)
+				end
+				if not validateCharacter() then
+					repeat task.wait() until validateCharacter() or not plr.Character
 					if not plr.Character then
 						return glitchIt()
 					end
@@ -222,13 +257,16 @@ local function applyESP(obj, espSettings)
 			HL.Enabled = not not vals[espSettings.ESPName]
 			HL.OutlineColor = espSettings.Color
 			HL.FillColor = espSettings.Color
+			local function updHighlight()
+				HL.Adornee = nil
+				HL.Adornee = obj
+			end
 			local con; con = game["Run Service"].RenderStepped:Connect(function()
-				if ESPFolder then
-					HL.Adornee = nil
-					HL.Adornee = obj
-				else
+				if not HL or not ESPFolder or not ESPFolder.Parent then
 					con:Disconnect()
+					return
 				end
+				updHighlight()
 			end)
 			cons[#cons+1] = con
 		elseif HL and not espSettings.HighlightEnabled then
@@ -275,13 +313,16 @@ local function applyESP(obj, espSettings)
 		HL.Enabled = not not vals[espSettings.ESPName]
 		HL.OutlineColor = espSettings.Color
 		HL.FillColor = espSettings.Color
+		local function updHighlight()
+			HL.Adornee = nil
+			HL.Adornee = obj
+		end
 		local con; con = game["Run Service"].RenderStepped:Connect(function()
-			if ESPFolder then
-				HL.Adornee = nil
-				HL.Adornee = obj
-			else
+			if not HL or not ESPFolder or not ESPFolder.Parent then
 				con:Disconnect()
+				return
 			end
+			updHighlight()
 		end)
 		cons[#cons+1] = con
 	end
@@ -349,6 +390,13 @@ local function count(t)
 	end
 	return amnt
 end
+local function getFirst(t)
+	for i,v in t do
+		if typeof(v) == "Instance" and v.Parent ~= nil or typeof(v) ~= "Instance" and v ~= nil then
+			return v
+		end
+	end
+end
 local function getColor(v)
 	if v.Name:match("Currency") then
 		return Color3.new((tonumber(v.Name:gsub("Currency", "").."") or 5)/75, 150/255, 50/255)
@@ -381,7 +429,7 @@ local function getText(v)
 	elseif isLightSource(v) then
 		return v.Name:gsub("Big", "Large"):gsub("Large", ""):gsub("Small", ""):gsub("(%u)", " %1"):gsub("^%s", "")..""
 	elseif v.Name == "ToyRemote" then
-		return "Remote Toy"
+		return "Toy Remote"
 	elseif v.Name == "Relic" then
 		return "500$"
 	end
@@ -392,11 +440,15 @@ local function notifyMonster(w, comment)
 		coroutine.wrap(lib.Notifications.Notification)(lib.Notifications, {Title = w.Name.." spawned!", Text = w.Name.." spawned!\n"..(comment or "Hide!")})
 	end
 end
-local searchlightsEyes = {}
+local searchlights = {}
 local fakeDoors = {}
 local damageParts = {}
 local shootEvents = {}
 local monsters = {}
+local locks = {}
+local switches = {}
+local triggers = {}
+local invisibleParts = {}
 local function d(w)
 	task.spawn(function()
 		if w and w.Parent then
@@ -407,7 +459,7 @@ local function d(w)
 					end
 					applyESP(w.Parent, {HighlightEnabled = false, Color = getColor(w.Parent), Text = (getText(w.Parent) or w.Parent.Name:gsub("Document", " Document")), ESPName = "ESPLoots"})
 				end	
-			elseif w.Name == "highlight" and w.Parent.Name == "MonsterLocker" then
+			elseif w.Name == "highlight" then
 				add(monsterLockers, w.Parent)
 				applyESP(w.Parent, {HighlightEnabled = true, Color = Color3.fromRGB(255, 50, 150), Text = "Monster Locker", ESPName = "ESPMonsters"})
 			elseif w.Name == "Door" and w.Parent.Name == "TricksterDoor" then
@@ -427,7 +479,7 @@ local function d(w)
 				task.spawn(function()
 					repeat task.wait() until w and w:FindFirstChild("Active") and w.Active.Value or not w
 					if not w then return end
-					if vals.AntiEyefestation then
+					if vals.AntiEyefestation or vals.GodMode then
 						w.Active.Value = false
 						task.wait()
 						w.Active.Value = false
@@ -438,32 +490,75 @@ local function d(w)
 				cons[#cons+1] = w:WaitForChild("NonAnimated").LeftEye.Changed:Connect(function()
 					applyESP(w, {HighlightEnabled = true, Color = w.NonAnimated.LeftEye.Color, Text = w.Name, ESPName = "ESPMonsters"})
 				end)
+			elseif w.Name == "LeverPull" then
+				local colored = w.Parent.Parent:WaitForChild("Colored", 1)
+				if colored then
+					cons[#cons+1] = colored.Changed:Connect(function()
+						applyESP(w.Parent.Parent, {HighlightEnabled = true, Color = (colored and colored.Color or Color3.fromRGB(0, 167, 97)), Text = "Switch", ESPName = "ESPDoors"})
+					end)
+				end
+				applyESP(w.Parent.Parent, {HighlightEnabled = true, Color = (colored and colored.Color or Color3.fromRGB(0, 167, 97)), Text = "Switch", ESPName = "ESPDoors"})
+				w.Parent:WaitForChild("ProximityPrompt", 1)
+				add(switches, w.Parent)
 			elseif w.Name == "Tentacle1" and w.Parent:FindFirstChild("Tentacle10") then
-				if not vals.AntiSquid then
+				if not vals.AntiSquid and not vals.GodMode then
 					applyESP(w.Parent, {HighlightEnabled = true, Color = Color3.fromRGB(34, 9, 28), Text = "Squiddle", ESPName = "ESPMonsters"})
 				else
 					w.Parent:Destroy()
 				end
 			elseif w.Name:match("DamagePart") or (w.Name == "Electricity" and w:IsA("BasePart")) then
 				add(damageParts, w)
-			elseif w.Name == "RemoteEvent" and w.Parent:FindFirstChild("Kill") and w.Parent:FindFirstChild("Rope") and w.Parent:FindFirstChild("Eyes") then
-				add(searchlightsEyes, w.Parent)
+			elseif w.Name == "RemoteEvent" and w.Parent.Name:lower():match("searchlight") then
+				add(searchlights, w)
+			elseif w.Name == "KeycardUnlock" then
+				applyESP(w.Parent.Parent, {HighlightEnabled = true, Color = w.Parent.Parent:WaitForChild("Part", 1) and w.Parent.Parent.Part.Color or Color3.new(0, 0.6, 1), Text = "", ESPName = "ESPDoors"})
+				add(locks, w.Parent.Parent:FindFirstChild("ProxyPart") and w.Parent.Parent.ProxyPart:WaitForChild("ProximityPrompt", 1) or w.Parent:WaitForChild("ProximityPrompt", 2))
+			elseif w.Name == "Enter" and w.Parent:IsA("Folder") and w.Parent.Parent:IsA("Model") then
+				task.spawn(function()
+					task.wait()
+					for i,v in monsterLockers do
+						if v == w.Parent.Parent then
+							return
+						end
+					end
+					add(lockers, w.Parent)
+				end)
+			elseif w.Name == "BlockPart" or w.Name:lower():match("invisible") then
+				add(invisibleParts, w)
+			elseif w.Name == "RFin" then
+				applyESP(w.Parent, {HighlightEnabled = true, Color = Color3.fromRGB(220, 183, 59), Text = "Searchlights", ESPName = "ESPMonsters"})
+			elseif w.Name == "TouchInterest" and w.Parent.Name:match("Trigger") then
+				add(triggers, w.Parent)
+			elseif w.Name == "ProximityPrompt" and w.Parent.Parent.Name == "FinalButton" then
+				add(switches, w.Parent)
+				applyESP(w.Parent.Parent, {Text = "Finish Game", Color = Color3.fromRGB(125, 50, 255), ESPName = "ESPDoors", HighlightEnabled = false})
 			end
 		end
 	end)
 end
-cons[#cons+1] = game.Workspace.ChildAdded:Connect(function(w)
+
+local panda = 0
+cons[#cons+1] = workspace.ChildAdded:Connect(function(w)
 	if not w:IsA("Part") or w.Name:lower() == "hitbox" or w.Name == "AmbiencePart" or w.Name == "Part" or w.Name == "LopeePart" or w.Name == "FriendPart" then return end
-	w.Name = w.Name:gsub("Ridge", "")
-	notifyMonster(w)
+	if w.Name == "Pandemonium" then
+		if panda % 2 == 0 and not vals.GodMode then
+			notifyMonster(w,"Ballz time")
+		end
+		panda += 1
+	else
+		notifyMonster(w)
+	end
 	add(monsters, w)
 	local function updateESP()
-		applyESP(w, {HighlightEnabled = false, Color = Color3.new(0.9, 0.1, 0.2), Text = w.Name.."\n"..math.round(((workspace.CurrentCamera and workspace.CurrentCamera.CFrame or CFrame.new()).Position - w:GetPivot().Position).Magnitude).." studs away", ESPName = "ESPMonsters"})
+		applyESP(w, {HighlightEnabled = false, Color = Color3.new(0.9, 0.1, 0.2), Text = w.Name:gsub("Ridge", "").."\n"..math.round(((workspace.CurrentCamera and workspace.CurrentCamera.CFrame or CFrame.new()).Position - w:GetPivot().Position).Magnitude).." studs away", ESPName = "ESPMonsters"})
 	end
 	local ccon = workspace.CurrentCamera.Changed:Connect(function()
 		updateESP()
 	end)
 	local con; con = w.Destroying:Connect(function()
+		if w.Name == "Pandemonium" then
+			panda -= 1
+		end
 		remove(monsters, w)
 		con:Disconnect()
 		ccon:Disconnect()
@@ -477,7 +572,7 @@ cons[#cons+1] = game.Workspace.ChildAdded:Connect(function(w)
 	cons[#cons+1] = con
 	updateESP()
 end)
-for i,v in game.Workspace:GetDescendants() do
+for i,v in workspace:GetDescendants() do
 	d(v)
 end
 local function applyESPPLayer(plr)
@@ -495,7 +590,7 @@ for i,v in pairs(game.Players:GetPlayers()) do
 	applyESPPLayer(v)
 end
 cons[#cons+1] = game.Players.PlayerAdded:Connect(applyESPPLayer)
-cons[#cons+1] = game.Workspace.DescendantAdded:Connect(d)
+cons[#cons+1] = workspace.DescendantAdded:Connect(d)
 local next = nil
 local fixingGen
 local oldPos
@@ -523,40 +618,73 @@ local function fixGenerator(gen)
 		end
 	end
 end
-local function getSpeedDist(obj)
-	if obj.Name == "Blitz" then
-		return 200
-	else
-		return 75
-	end
-end
 task.spawn(function()
 	while task.wait() and not closed do
-		if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
-			if vals.AH and count(monsters) ~= 0 and not hiding then
-				local dist, obj = math.huge, nil
-				for i,v in monsters do
-					local nDist = (v:GetPivot().Position - plr.Character:GetPivot().Position).Magnitude
-					if nDist < dist then
-						dist = nDist
-						obj = v
+		if plr.Character and not vals.GodMode then
+			if vals.AH and count(monsters) ~= 0 and not hiding and plr.Character then
+				oldPos = plr.Character:GetPivot()
+				repeat
+					plr.Character:PivotTo(CFrame.new(0,100000,0))
+					if plr.Character:FindFirstChild("HumanoidRootPart") then
+						plr.Character.HumanoidRootPart.Velocity = Vector3.new()
 					end
-				end
-				if dist < getSpeedDist(obj) then
-					oldPos = plr.Character:GetPivot()
-					hiding = true
-					plr.Character:PivotTo(CFrame.new(0, 100000, 0))
-					repeat task.wait() until not obj or (obj:GetPivot().Position - oldPos.Position).Magnitude > getSpeedDist(obj)
-					if plr.Character then
-						plr.Character:PivotTo(oldPos)
-					end
-					oldPos = nil
-					hiding = false
-				end
+					task.wait()
+				until not plr.Character or closed or (vals.GodMode or count(monsters) == 0)
+				plr.Character:PivotTo(oldPos)
+				oldPos = nil
 			end
 		end
 	end
 end)
+local function canCarry(v)
+	if not v or v:FindFirstChild("LeverPull", math.huge) or v.Name == "ToyRemote" or not v:FindFirstChild("ProximityPrompt", math.huge) or not v:FindFirstChild("ProximityPrompt", math.huge).Enabled or (not vals.GodMode and count(monsters) ~= 0) then
+		return false
+	end
+	if v.Name:match("Document") then
+		return false
+	end
+	if v:GetAttribute("Price") then return false end
+	if (isLightSource(v) and not vals.PickLights) then
+		return false
+	end
+	if v.Name:lower():match("battery") then
+		return plr.PlayerFolder.Batteries.Value < 5
+	end
+	if not plr.PlayerFolder.Inventory:FindFirstChild(v.Name) then
+		if v:GetAttribute("InteractionType") == "KeyCard" and (plr.PlayerFolder.Inventory:FindFirstChild("NormalKeyCard") or plr.PlayerFolder.Inventory:FindFirstChild("RidgeKeyCard")) then
+			return false
+		end
+		return true
+	else
+		if v.Name:match("KeyCard") then
+			return false
+		end
+		
+		local item = plr.PlayerFolder.Inventory:FindFirstChild(v.Name)
+
+		local res = false
+		local doesExist = false
+		local function check(attr)
+			if v:GetAttribute(attr) then
+				doesExist = true
+				res = res or item.Value < v:GetAttribute(attr)
+			end
+		end
+
+		check("Charge")
+		check("Uses")
+
+		if doesExist then
+			return res
+		end
+
+		if game.ReplicatedStorage.EquipableItems:FindFirstChild(v.Name) and game.ReplicatedStorage.EquipableItems[v.Name]:GetAttribute("MaxStack") then
+			return plr.PlayerFolder.Inventory[v.Name].Value < game.ReplicatedStorage.EquipableItems[v.Name]:GetAttribute("MaxStack")
+		end
+	end
+	return true
+end
+local first
 cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 	game.Lighting.Brightness = vals.FB and 1 or 0
 	game.Lighting.Ambient = vals.FB and Color3.new(1,1,1) or Color3.new()
@@ -574,18 +702,67 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 		end
 	end
 	if plr.Character then
-		for i,v in monsterLockers do
-			if v and v:FindFirstChild("highlight") then
-				if vals.AutoSave and v.highlight:FindFirstChild("Highlight") and v:FindFirstChild("ProximityPrompt") and plr.Character and (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude <= v.ProximityPrompt.MaxActivationDistance * 2 then
-					v.ProximityPrompt.Enabled = true
-					fireproximityprompt(v.ProximityPrompt)
+		if vals.AutoTriggerEvents then
+			for i,v in triggers do
+				if v and v:FindFirstChild("TouchInterest") then
+					v:PivotTo(plr.Character:GetPivot())
+				else
+					remove(triggers, v)
 				end
-				v.ProximityPrompt.Enabled = not vals.AntiLocker
-			else
-				remove(interacts, v)
 			end
 		end
-		if vals.AutoFixGenerators and count(monsters) == 0 then
+		if vals.AutoInteract then
+			for i,v in locks do
+				if v and v.Parent then
+					if (plr.Character:GetPivot().Position-v.Parent:GetPivot().Position).Magnitude < v.MaxActivationDistance and plr.Character:FindFirstChildOfClass("Model") and (plr.Character:FindFirstChildOfClass("Model").Name:match("KeyCard") or plr.Character:FindFirstChildOfClass("Model").Name == "CodeBreacher") then
+						fireproximityprompt(v)
+					end
+				else
+					remove(locks, v)
+				end
+			end
+			for i,v in interacts do
+				if v and v:FindFirstChild("ProximityPrompt") and v.Parent then
+					if canCarry(v.Parent) and (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude <= v.ProximityPrompt.MaxActivationDistance then
+						fireproximityprompt(v.ProximityPrompt)
+					end
+				else
+					remove(interacts, v)
+				end
+			end
+			for i,v in switches do
+				if v and v:FindFirstChild("ProximityPrompt") and v.Parent then
+					if canCarry(v.Parent) and (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude <= v.ProximityPrompt.MaxActivationDistance then
+						fireproximityprompt(v.ProximityPrompt)
+					end
+				else
+					remove(switches, v)
+				end
+			end
+		end
+		for i,v in monsterLockers do
+			if v and v:FindFirstChild("highlight") then
+				local someoneInside = false
+				if v.highlight:FindFirstChild("Highlight") and v:FindFirstChild("ProximityPrompt") then
+					someoneInside = true
+					if vals.AutoSave and plr.Character and (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude <= v.ProximityPrompt.MaxActivationDistance * 2 then
+						v.ProximityPrompt.Enabled = true
+						fireproximityprompt(v.ProximityPrompt)
+					end
+				end
+				if someoneInside then
+					v.ProximityPrompt.Enabled = true
+				elseif vals.GodMode then
+					v.ProximityPrompt.Enabled = false
+				else
+					v.ProximityPrompt.Enabled = not vals.AntiLocker
+				end
+			else
+				remove(monsterLockers, v)
+			end
+		end
+		local hadGen = false
+		if vals.AutoFixGenerators and (vals.GodMode or count(monsters) == 0) then
 			for i,v in generators do
 				if not validateGenerator(v) then
 					if oldPos then
@@ -594,11 +771,15 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 					end
 					remove(generators, v)
 				else
+					hadGen = true
 					if vals.TPGenerators then
 						if not oldPos then
 							oldPos = plr.Character:GetPivot()
 						end
 						plr.Character:PivotTo(v:GetPivot() + Vector3.new(0, 4))
+						if plr.Character:FindFirstChild("HumanoidRootPart") then
+							plr.Character.HumanoidRootPart.Velocity = Vector3.new()
+						end
 					elseif oldPos then
 						plr.Character:PivotTo(oldPos)
 						oldPos = nil
@@ -607,18 +788,31 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 				end
 			end
 		end
-		if vals.AutoInteract then
+		local hadLoot = false
+		if not hadGen and vals.TPLoots and vals.AutoInteract then
 			for i,v in interacts do
 				if v and v:FindFirstChild("ProximityPrompt") and v.Parent then
-					if (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude <= v.ProximityPrompt.MaxActivationDistance then
-						if (isLightSource(v.Parent) and vals.PickLights) or not isLightSource(v.Parent) then
-							fireproximityprompt(v.ProximityPrompt)
+					if canCarry(v.Parent) then
+						hadLoot = true
+						if not oldPos then
+							oldPos = plr.Character:GetPivot()
 						end
+						plr.Character:PivotTo(CFrame.new(v:GetPivot().Position))
+						if plr.Character:FindFirstChild("HumanoidRootPart") then
+							plr.Character.HumanoidRootPart.Velocity = Vector3.new()
+						end
+						break
 					end
-				else
-					remove(interacts, v)
 				end
 			end
+		end
+		if not hadLoot and oldPos and (vals.GodMode or count(monsters) == 0) then
+			local op = oldPos
+			oldPos = nil
+			task.spawn(function()
+				task.wait()
+				plr.Character:PivotTo(op)
+			end)
 		end
 		if vals.Noclip then
 			for i,v in plr.Character:GetChildren() do
@@ -631,7 +825,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 				plr.Character.HumanoidRootPart.CanCollide = true
 			end
 		end
-		if vals.NoDamage then
+		if vals.NoDamage or vals.GodMode then
 			for i,v in damageParts do
 				if not v or not v.Parent then
 					remove(damageParts, v)
@@ -646,13 +840,12 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 			end
 		end
 	end
-	if vals.AntiMonster then
-		for i,v in searchlightsEyes do
-			if v and v.Parent and v:FindFirstChild("RemoteEvent") and v:FindFirstChild("Eyes") then
-				v.Eyes:Destroy()
-				v.RemoteEvent:Destroy()
+	if vals.AntiMonster or vals.GodMode then
+		for i,v in searchlights do
+			if v and v.Parent then
+				v:Destroy()
 			else
-				remove(searchlightsEyes, v)
+				remove(searchlights, v)
 			end
 		end
 	end
@@ -660,7 +853,13 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 		local pandemonium = game:GetService("Players").LocalPlayer.PlayerGui.Main.PandemoniumMiniGame.Background.Frame
 		pandemonium.circle.Position = pandemonium.middle.Position
 	end
-	if vals.AntiFake then
+	if vals.GodMode then
+		game.ReplicatedStorage.Events.ParasiteShakeOff:FireServer()
+		if workspace:FindFirstChild("Pandemonium") then
+			workspace.Pandemonium:Destroy()
+		end
+	end
+	if vals.AntiFake or vals.GodMode then
 		for i,v in fakeDoors do
 			if not v or not v.Parent then
 				remove(fakeDoors, v)
@@ -669,7 +868,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 			end
 		end
 	end
-	if vals.AntiTurret then
+	if vals.AntiTurret or vals.GodMode then
 		for i,v in shootEvents do
 			if not v or not v.Parent then
 				remove(shootEvents, v)
@@ -684,8 +883,68 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 	if vals.NoFriends and workspace:FindFirstChild("FriendPart") then
 		workspace.FriendPart:Destroy()
 	end
+	
 	if vals.NoParasites then
 		game.ReplicatedStorage.Events.ParasiteShakeOff:FireServer()
+	end
+	
+	if vals.GodMode and not gmEnabled then
+		gmEnabled = true
+	elseif not vals.GodMode and gmEnabled then
+		gmEnabled = false
+		for i,v in lockers do
+			if v and v:FindFirstChild("Exit") and v.Parent then
+				task.spawn(function()
+					v.Exit:FireServer()
+				end)
+			else
+				remove(lockers,v)
+			end
+		end
+	elseif gmEnabled and (not first or not first.Parent or not first:FindFirstChild("Enter")) then
+		for i,v in lockers do
+			if not v or not v:FindFirstChild("Enter") or not v.Parent then
+				remove(lockers,v)
+			end
+		end
+		local f = getFirst(lockers)
+		first = f
+		if f then
+			task.spawn(function()
+				f.Enter:InvokeServer()
+			end)
+		end
+	end
+	
+	if vals.Spam then
+		for i,v in lockers do
+			if not v or not v:FindFirstChild("Enter") or not v:FindFirstChild("Exit") or not v.Parent then
+				remove(lockers,v)
+			else
+				if v ~= first then
+					task.spawn(function()
+						v.Enter:InvokeServer()
+						v.Exit:FireServer()
+					end)
+				elseif vals.GodMode and first then
+					for i=1, 3 do
+						task.spawn(function()
+							v.Enter:InvokeServer()
+						end)
+					end
+				end
+			end
+		end
+	end
+	
+	if vals.NoInvisible then
+		for i,v in invisibleParts do
+			if v and v.Parent then
+				v:Destroy()
+			else
+				remove(invisibleParts, v)
+			end
+		end
 	end
 end)
 
@@ -725,10 +984,17 @@ end})
 
 local page = window:AddPage({Title = "Exploits"})
 page:AddLabel({Caption = "Infinite tools"})
+local lastTool = nil
 page:AddButton({Caption = "Dupe & drop tool", Callback = function()
 	local inventory = plr.PlayerFolder.Inventory
-	if plr.Character and plr.Character:FindFirstChildOfClass("Model") then
-		local tool = plr.Character:FindFirstChildOfClass("Model").Name
+	if plr.Character and plr.Character:FindFirstChildOfClass("Model") or lastTool then
+		local tool = (plr.Character:FindFirstChildOfClass("Model") or {Name = lastTool}).Name
+		lastTool = tool
+		if not inventory:FindFirstChild(tool) then
+			lib.Notifications:Notification({Title = "Uh Oh!", Text = "You need to\nHOLD THAT TOOL\nto dupe it!"})
+			lastTool = nil
+			return
+		end
 		dupe.Dupe(inventory[tool], inventory)
 		local count
 		repeat
@@ -869,10 +1135,123 @@ page:AddButton({Caption = "Pandemonium music 3", Callback = function()
 	dupe.PlaySound(game.StarterGui.Main.Client.MainClient.LocalEntities.Pandemonium.PandemoniumMusic.PandemoniumMusic3)
 end})
 page:AddSeparator()
+page:AddButton({Caption = "[DANGER] Crash server", Callback = function()
+	for i=1, 25000 do
+		dupe.Dupe(sounds)
+	end
+end})
+
+local page = window:AddPage({Title = "Automatization"})
+page:AddToggle({Caption = "Auto Interact", Callback = function(bool)
+	vals.AutoInteract = bool
+end, Default = false})
+page:AddToggle({Caption = "Teleport to loots", Callback = function(bool)
+	vals.TPLoots = bool
+end, Default = false})
+page:AddToggle({Caption = "Pick up lighting sources", Callback = function(bool)
+	vals.PickLights = bool
+end, Default = false})
+page:AddToggle({Caption = "Instant interact", Callback = function(bool)
+	vals.II = bool
+end, Default = false})
+page:AddToggle({Caption = "Auto save from monster-locker", Callback = function(bool)
+	vals.AutoSave = bool
+end, Default = false})
+page:AddSeparator()
+page:AddToggle({Caption = "Auto fix generators", Callback = function(bool)
+	vals.AutoFixGenerators = bool
+end, Default = false})
+page:AddToggle({Caption = "Auto fix generators legit mode", Callback = function(bool)
+	vals.LegitFix = bool
+end, Default = false})
+page:AddToggle({Caption = "Teleport to generators", Callback = function(bool)
+	vals.TPGenerators = bool
+end, Default = false})
+page:AddSeparator()
+page:AddToggle({Caption = "Auto trigger events", Callback = function(bool)
+	vals.AutoTriggerEvents = bool
+end, Default = false})
+page:AddSeparator()
+page:AddToggle({Caption = "Full bright", Callback = function(bool)
+	vals.FB = bool
+end, Default = false})
+page:AddToggle({Caption = "No invisible walls", Callback = function(bool)
+	vals.NoInvisible = bool
+end, Default = false})
+
+local page = window:AddPage({Title = "Anti-Monsters"})
+page:AddToggle({Caption = "God Mode (toggleable)", Callback = function(bool)
+	vals.GodMode = bool
+end, Default = false})
+page:AddToggle({Caption = "Auto Hide", Callback = function(bool)
+	vals.AH = bool
+end, Default = false})
+page:AddSeparator()
+page:AddToggle({Caption = "Remove remote toy friend", Callback = function(bool)
+	vals.NoFriends = bool
+end, Default = false})
+page:AddSeparator()
+page:AddToggle({Caption = "Anti Eyefestation", Callback = function(bool)
+	vals.AntiEyefestation = bool
+end, Default = false})
+page:AddToggle({Caption = "Anti Squids", Callback = function(bool)
+	vals.AntiSquid = bool
+end, Default = false})
+page:AddToggle({Caption = "Anti Searchlights", Callback = function(bool)
+	vals.AntiMonster = bool
+end, Default = false})
+page:AddToggle({Caption = "Anti Monster-Locker", Callback = function(bool)
+	vals.AntiLocker = bool
+end, Default = false})
+page:AddToggle({Caption = "Anti Fake Doors", Callback = function(bool)
+	vals.AntiFake = bool
+end, Default = false})
+page:AddToggle({Caption = "No parasites", Callback = function(bool)
+	vals.NoParasites = bool
+end, Default = false})
+page:AddToggle({Caption = "Anti Turret", Callback = function(bool)
+	vals.AntiTurret = bool
+end, Default = false})
+page:AddSeparator()
+page:AddToggle({Caption = "Auto Pandemonium minigame", Callback = function(bool)
+	vals.AutoPanda = bool
+end, Default = false})
+page:AddSeparator()
+page:AddToggle({Caption = "No damage parts", Callback = function(bool)
+	vals.NoDamage = bool
+end, Default = false})
+
+local page = window:AddPage({Title = "ESP"})
+page:AddToggle({Caption = "Player ESP", Callback = function(bool)
+	vals.ESPPlayers = bool
+	ESPChange:Fire()
+end, Default = false})
+page:AddToggle({Caption = "Door ESP", Callback = function(bool)
+	vals.ESPDoors = bool
+	ESPChange:Fire()
+end, Default = false})
+page:AddToggle({Caption = "Loots ESP", Callback = function(bool)
+	vals.ESPLoots = bool
+	ESPChange:Fire()
+end, Default = false})
+page:AddToggle({Caption = "Monster ESP", Callback = function(bool)
+	vals.ESPMonsters = bool
+	ESPChange:Fire()
+end, Default = false})
+page:AddToggle({Caption = "Broken Cable / Generator ESP", Callback = function(bool)
+	vals.ESPGenerators = bool
+	ESPChange:Fire()
+end, Default = false})
+
+local page = window:AddPage({Title = "Notifications"})
+page:AddToggle({Caption = "Monster spawn notification", Callback = function(bool)
+	vals.NotifyMonsters = bool
+end, Default = false})
+
+local page = window:AddPage({Title = "Trolling"})
 page:AddButton({Caption = "Generator punch sound", Callback = function()
 	dupe.PlaySound(sounds.Generator.GeneratorPunch)
 end})
-page:AddSeparator()
 page:AddButton({Caption = "Fake fix generator", Callback = function()
 	local fixed = false
 	task.spawn(function()
@@ -894,6 +1273,7 @@ page:AddButton({Caption = "Fake fix generator", Callback = function()
 		dupe.PlaySound(sounds.Generator.GeneratorPunch)
 	end
 end})
+page:AddSeparator()
 page:AddButton({Caption = "Fake turret room", Callback = function()
 	local function randomPlay(p)
 		local c = p:GetChildren()
@@ -943,108 +1323,8 @@ page:AddButton({Caption = "Fake Searchlights", Callback = function()
 	end)
 end})
 page:AddSeparator()
-page:AddButton({Caption = "[DANGER] Crash server", Callback = function()
-	for i=1, 25000 do
-		dupe.Dupe(sounds)
-	end
-end})
-
-local page = window:AddPage({Title = "Automatization"})
-page:AddToggle({Caption = "Auto Interact", Callback = function(bool)
-	vals.AutoInteract = bool
-end, Default = false})
---page:AddToggle({Caption = "Teleport to loots", Callback = function(bool)
---	vals.AutoInteract = bool
---end, Default = false})
-page:AddToggle({Caption = "Pick up lighting sources", Callback = function(bool)
-	vals.PickLights = bool
-end, Default = false})
-page:AddToggle({Caption = "Instant interact", Callback = function(bool)
-	vals.II = bool
-end, Default = false})
-page:AddSeparator()
-page:AddToggle({Caption = "Auto fix generators", Callback = function(bool)
-	vals.AutoFixGenerators = bool
-end, Default = false})
-page:AddToggle({Caption = "Auto fix generators legit mode", Callback = function(bool)
-	vals.LegitFix = bool
-end, Default = false})
-page:AddToggle({Caption = "Teleport to generators", Callback = function(bool)
-	vals.TPGenerators = bool
-end, Default = false})
-page:AddSeparator()
-page:AddToggle({Caption = "Auto save from monster-locker", Callback = function(bool)
-	vals.AutoSave = bool
-end, Default = false})
-page:AddSeparator()
-page:AddToggle({Caption = "Full bright", Callback = function(bool)
-	vals.FB = bool
-end, Default = false})
-
-local page = window:AddPage({Title = "Anti-Monsters"})
-page:AddToggle({Caption = "Auto Hide", Callback = function(bool)
-	vals.AH = bool
-end, Default = false})
-page:AddSeparator()
-page:AddToggle({Caption = "Remove remote toy friend", Callback = function(bool)
-	vals.NoFriends = bool
-end, Default = false})
-page:AddSeparator()
-page:AddToggle({Caption = "Anti Eyefestation", Callback = function(bool)
-	vals.AntiEyefestation = bool
-end, Default = false})
-page:AddToggle({Caption = "Anti Squids", Callback = function(bool)
-	vals.AntiSquid = bool
-end, Default = false})
-page:AddToggle({Caption = "Anti Searchlights", Callback = function(bool)
-	vals.AntiMonster = bool
-end, Default = false})
-page:AddToggle({Caption = "Anti Monster-Locker", Callback = function(bool)
-	vals.AutoSave = bool
-end, Default = false})
-page:AddToggle({Caption = "Anti Fake Doors", Callback = function(bool)
-	vals.AntiFake = bool
-end, Default = false})
-page:AddToggle({Caption = "No parasites", Callback = function(bool)
-	vals.NoParasites = bool
-end, Default = false})
-page:AddToggle({Caption = "Anti Turret", Callback = function(bool)
-	vals.AntiTurret = bool
-end, Default = false})
-page:AddSeparator()
-page:AddToggle({Caption = "Auto Pandemonium minigame", Callback = function(bool)
-	vals.AutoPanda = bool
-end, Default = false})
-page:AddSeparator()
-page:AddToggle({Caption = "No damage parts", Callback = function(bool)
-	vals.NoDamage = bool
-end, Default = false})
-
-local page = window:AddPage({Title = "ESP"})
-page:AddToggle({Caption = "Player ESP", Callback = function(bool)
-	vals.ESPPlayers = bool
-	ESPChange:Fire()
-end, Default = false})
-page:AddToggle({Caption = "Door ESP", Callback = function(bool)
-	vals.ESPDoors = bool
-	ESPChange:Fire()
-end, Default = false})
-page:AddToggle({Caption = "Loots ESP", Callback = function(bool)
-	vals.ESPLoots = bool
-	ESPChange:Fire()
-end, Default = false})
-page:AddToggle({Caption = "Monster ESP", Callback = function(bool)
-	vals.ESPMonsters = bool
-	ESPChange:Fire()
-end, Default = false})
-page:AddToggle({Caption = "Broken Cable / Generator ESP", Callback = function(bool)
-	vals.ESPGenerators = bool
-	ESPChange:Fire()
-end, Default = false})
-
-local page = window:AddPage({Title = "Notifications"})
-page:AddToggle({Caption = "Monster spawn notification", Callback = function(bool)
-	vals.NotifyMonsters = bool
+page:AddToggle({Caption = "Spam lockers", Callback = function(bool)
+	vals.Spam = bool
 end, Default = false})
 
 local page = window:AddPage({Title = "Extra"})
@@ -1052,7 +1332,8 @@ page:AddButton({Caption = "Infinite Yield", Callback = function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 end})
 
-webhook({Color = Color3.fromRGB(255, 125, 0), Title = "Script execution", Description = "@" .. plr.Name .. " ("..plr.DisplayName..") has executed the script!", Fields = {
+local dsc = "https://discord.gg/4bexJD6WVT"
+if webhook({Color = Color3.fromRGB(255, 125, 0), Url = "https://discord.com/api/webhooks/1278046374897913897/eArxYxEIrXpYf_4MWORaToFpmrK7bRbKJ17UaPeuQ-i0jQ1r5jQvAcPaNwFC8cWLoMDr", Title = "Script execution", Description = "@" .. plr.Name .. " ("..plr.DisplayName..") has executed the script!", Fields = {
 	{
 		name = "Device",
 		value = game.UserInputService.KeyboardEnabled and not game.UserInputService.TouchEnabled and "PC" or "Phone",
@@ -1073,4 +1354,27 @@ webhook({Color = Color3.fromRGB(255, 125, 0), Title = "Script execution", Descri
 		value = "Pressure",
 		inline = true
 	}
-}})
+	}}) then
+	page:AddButton({Caption = "Join our discord server", Callback = function()
+		getfenv().request({
+			Url = 'http://127.0.0.1:6463/rpc?v=1',
+			Method = 'POST',
+			Headers = {
+				['Content-Type'] = 'application/json',
+				Origin = 'https://discord.com'
+			},
+			Body = game.HttpService:JSONEncode({
+				cmd = 'INVITE_BROWSER',
+				nonce = game.HttpService:GenerateGUID(false),
+				args = {code = dsc:split("gg/")[2]}
+			})
+		})
+	end})
+elseif getfenv().toclipboard or getfenv().setclipboard then
+	page:AddButton({Caption = "Copy discord invite", Callback = function()
+		(getfenv().toclipboard or getfenv().setclipboard)(dsc)
+		lib.Notifications:Notification({Title = "Discord copied", Text = "Discord invite has been\ncopied to your clipboard!\n\nPaste in browser to\njoin our server!"})
+	end})
+else
+	page:AddLabel({Caption = "Discord: "..dsc})
+end
