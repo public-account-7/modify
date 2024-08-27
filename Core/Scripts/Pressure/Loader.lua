@@ -29,7 +29,8 @@ local defaults = {
 	u = game.Players.LocalPlayer.DisplayName,
 	AutoGlitchU = false,
 	AutoGlitchA = false,
-	NoParasites = false
+	NoParasites = false,
+	TpLoops = false
 }
 local vals = table.clone(defaults)
 
@@ -952,6 +953,9 @@ local page = window:AddPage({Title = "Automatization"})
 page:AddToggle({Caption = "Auto Interact", Callback = function(bool)
 	vals.AutoInteract = bool
 end, Default = false})
+--page:AddToggle({Caption = "Teleport to loots", Callback = function(bool)
+--	vals.AutoInteract = bool
+--end, Default = false})
 page:AddToggle({Caption = "Pick up lighting sources", Callback = function(bool)
 	vals.PickLights = bool
 end, Default = false})
@@ -970,7 +974,7 @@ page:AddToggle({Caption = "Teleport to generators", Callback = function(bool)
 end, Default = false})
 page:AddSeparator()
 page:AddToggle({Caption = "Auto save from monster-locker", Callback = function(bool)
-	vals.AntiLocker = bool
+	vals.AutoSave = bool
 end, Default = false})
 page:AddSeparator()
 page:AddToggle({Caption = "Full bright", Callback = function(bool)
