@@ -124,7 +124,7 @@ local function glitchTool(plr, notify)
 		if plr.Character and plr.Character:FindFirstChildOfClass("Model") then
 			local tool = plr.Character:FindFirstChildOfClass("Model").Name
 			if tool == "Medkit" or isLightSource(plr.Character:FindFirstChild(tool)) then
-				if not notify then return end
+				if notify then return end
 				return lib.Notifications:Notification({Title = "Oh!", Text = "That tool is not able to\n turn info infinite mode!\n\nUse dupe instead!"})
 			end
 			invs[plr] = invs[plr] or {}
