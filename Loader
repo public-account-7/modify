@@ -31,7 +31,7 @@ for i,v in game.HttpService:JSONDecode(supported) do
 
     if sup then
         getGlobalTable().FireHubLoaded = true
-        message("Loading script for "..i.."...\nPlease expect lags while loading it!")
+        message("Loading script for "..i.."...\nPlease expect lags while loading it!\n\n!!!ROBLOX IS NOT CRASHED, IT IS JUST LOADING!!!")
         task.wait(1)
         return loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Scripts/"..game.HttpService:UrlEncode(i).."/Loader.lua"))()
     end
