@@ -648,9 +648,8 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 	if vals.AntiMonster then
 		for i,v in searchlightsEyes do
 			if v and v.Parent and v:FindFirstChild("RemoteEvent") and v:FindFirstChild("Eyes") then
-				for idx, val in v.Eyes:GetChildren() do
-					v.RemoteEvent:FireServer(val, false)
-				end
+				v.Eyes:Destroy()
+				v.RemoteEvent:Destroy()
 			else
 				remove(searchlightsEyes, v)
 			end
