@@ -1,5 +1,5 @@
 local function getGlobalTable()
-    return typeof(shared) == "table" and shared or typeof(getgenv) == "function" and typeof(getgenv()) == "table" and getgenv() or _G
+    return typeof(getgenv) == "function" and typeof(getgenv()) == "table" and getgenv() or _G
 end
 
 local httpGet = function(...)
@@ -25,6 +25,14 @@ if not working then return warn("Fire~Hub is not working right now.") end
 if getGlobalTable().FireHubLoaded then return warn("Fire~Hub is already loaded!") end
 
 local supported = httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/SupportedGames.json")
+local function message(text)
+    task.spawn(function()
+        local msg = Instance.new("Message", workspace)
+        msg.Text = text
+        task.wait(5)
+        msg:Destroy()
+    end)
+end
 for i,v in game.HttpService:JSONDecode(supported) do
     local sup = false
     for _,val in pairs(v) do
@@ -35,6 +43,9 @@ for i,v in game.HttpService:JSONDecode(supported) do
 
     if sup then
         getGlobalTable().FireHubLoaded = true
-        loadstring(httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Scripts/"..i.."/Loader.lua"))()
+        message("Loading script for "..i.."...\nPlease expect lags while loading it!")
+        task.wait(1)
+        return loadstring(httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Scripts/"..game.HttpService:UrlEncode(i).."/Loader.lua"))()
     end
 end
+message("This game is not supported!")
