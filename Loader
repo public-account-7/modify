@@ -2,37 +2,25 @@ local function getGlobalTable()
     return typeof(getgenv) == "function" and typeof(getgenv()) == "table" and getgenv() or _G
 end
 
+local msg = Instance.new("Message", workspace)
+
 local function message(text)
     task.spawn(function()
-        local msg = Instance.new("Message", workspace)
         msg.Text = text
         task.wait(5)
-        msg:Destroy()
+        if msg.Text == text then
+            msg.Text = ""
+        end
     end)
 end
 
-local httpGet = function(url)
-    local res
-    local function try(obj,name)
-        if res then return end
-        pcall(function()
-            res = res or obj[name](obj, url)
-        end)
-    end
+message("Loading Fire~Hub...")
 
-    try(game,"HttpGet")
-    try(game,"HttpGetAsync")
-
-    try(game:GetService("HttpService"),"GetAsync")
-
-    return res
-end
-
-local working = httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Version"):split("\n")[3] == "1"
+local working = game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Version"):split("\n")[3] == "1"
 if not working then return message("Fire~Hub is not working right now.") end
 if getGlobalTable().FireHubLoaded then return message("Fire~Hub is already loaded!") end
 
-local supported = httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/SupportedGames.json")
+local supported = game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/SupportedGames.json")
 for i,v in game.HttpService:JSONDecode(supported) do
     local sup = false
     for _,val in pairs(v) do
@@ -45,7 +33,7 @@ for i,v in game.HttpService:JSONDecode(supported) do
         getGlobalTable().FireHubLoaded = true
         message("Loading script for "..i.."...\nPlease expect lags while loading it!")
         task.wait(1)
-        return loadstring(httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Scripts/"..game.HttpService:UrlEncode(i).."/Loader.lua"))()
+        return loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Scripts/"..game.HttpService:UrlEncode(i).."/Loader.lua"))()
     end
 end
 message("This game is not supported!")
