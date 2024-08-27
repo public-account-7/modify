@@ -3382,7 +3382,7 @@ local require; local moduleScripts = {}
 moduleScripts[Instance7] = function()
     local script = Instance7
     local function getGlobalTable()
-        return typeof(shared) == "table" and shared or typeof(getgenv) == "function" and typeof(getgenv()) == "table" and getgenv() or _G
+        return typeof(getgenv) == "function" and typeof(getgenv()) == "table" and getgenv() or _G
     end
     local versions
 if not pcall(function()
