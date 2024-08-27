@@ -620,7 +620,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 			end
 		end
 		if vals.Noclip then
-			for i,v in plr.Character:GetDescendants() do
+			for i,v in plr.Character:GetChildren() do
 				if v and v:IsA("BasePart") then
 					v.CanCollide = false
 				end
