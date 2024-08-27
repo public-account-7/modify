@@ -2,13 +2,21 @@ local function getGlobalTable()
     return typeof(getgenv) == "function" and typeof(getgenv()) == "table" and getgenv() or _G
 end
 
-local httpGet = function(...)
+local function message(text)
+    task.spawn(function()
+        local msg = Instance.new("Message", workspace)
+        msg.Text = text
+        task.wait(5)
+        msg:Destroy()
+    end)
+end
+
+local httpGet = function(url)
     local res
-    local args = table.pack(...)
     local function try(obj,name)
         if res then return end
         pcall(function()
-            res = res or obj[name](obj, unpack(args))
+            res = res or obj[name](obj, url)
         end)
     end
 
@@ -21,18 +29,10 @@ local httpGet = function(...)
 end
 
 local working = httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Version"):split("\n")[3] == "1"
-if not working then return warn("Fire~Hub is not working right now.") end
-if getGlobalTable().FireHubLoaded then return warn("Fire~Hub is already loaded!") end
+if not working then return message("Fire~Hub is not working right now.") end
+if getGlobalTable().FireHubLoaded then return message("Fire~Hub is already loaded!") end
 
 local supported = httpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/SupportedGames.json")
-local function message(text)
-    task.spawn(function()
-        local msg = Instance.new("Message", workspace)
-        msg.Text = text
-        task.wait(5)
-        msg:Destroy()
-    end)
-end
 for i,v in game.HttpService:JSONDecode(supported) do
     local sup = false
     for _,val in pairs(v) do
