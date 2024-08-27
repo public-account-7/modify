@@ -971,7 +971,7 @@ page:AddToggle({Caption = "Teleport to generators", Callback = function(bool)
 end, Default = false})
 page:AddSeparator()
 page:AddToggle({Caption = "Auto save from monster-locker", Callback = function(bool)
-	vals.AutoFixGenerators = bool
+	vals.AntiLocker = bool
 end, Default = false})
 page:AddSeparator()
 page:AddToggle({Caption = "Full bright", Callback = function(bool)
@@ -997,7 +997,7 @@ page:AddToggle({Caption = "Anti Searchlights", Callback = function(bool)
 	vals.AntiMonster = bool
 end, Default = false})
 page:AddToggle({Caption = "Anti Monster-Locker", Callback = function(bool)
-	vals.AntiLocker = bool
+	vals.AutoSave = bool
 end, Default = false})
 page:AddToggle({Caption = "Anti Fake Doors", Callback = function(bool)
 	vals.AntiFake = bool
