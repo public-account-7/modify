@@ -437,7 +437,7 @@ end
 local generators = {}
 local function notifyMonster(w, comment)
 	if vals.NotifyMonsters then
-		coroutine.wrap(lib.Notifications.Notification)(lib.Notifications, {Title = w.Name.." spawned!", Text = w.Name.." spawned!\n"..(comment or "Hide!")})
+		coroutine.wrap(lib.Notifications.Notification)(lib.Notifications, {Title = w.Name:gsub("Ridge", "").." spawned!", Text = w.Name:gsub("Ridge", "").." spawned!\n"..(comment or "Hide!")})
 	end
 end
 local searchlights = {}
