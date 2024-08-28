@@ -529,9 +529,14 @@ local function d(w)
 				applyESP(w.Parent, {HighlightEnabled = true, Color = Color3.fromRGB(220, 183, 59), Text = "Searchlights", ESPName = "ESPMonsters"})
 			elseif w.Name == "TouchInterest" and w.Parent.Name:match("Trigger") then
 				add(triggers, w.Parent)
-			elseif w.Name == "ProximityPrompt" and w.Parent.Parent.Name == "FinalButton" then
-				add(switches, w.Parent)
-				applyESP(w.Parent.Parent, {Text = "Finish Game", Color = Color3.fromRGB(125, 50, 255), ESPName = "ESPDoors", HighlightEnabled = false})
+			elseif w.Name == "ProximityPrompt" then
+				if w.Parent.Parent.Name == "FinalButton" then
+					add(switches, w.Parent)
+					applyESP(w.Parent, {Text = "Finish Game", Color = Color3.fromRGB(125, 50, 255), ESPName = "ESPDoors", HighlightEnabled = false})
+				elseif w.Parent.Name == "VentCover" then
+					add(switches, w.Parent)
+					applyESP(w.Parent, {Text = "Vent", Color = Color3.fromRGB(125, 50, 255), ESPName = "ESPDoors", HighlightEnabled = false})
+				end
 			end
 		end
 	end)
