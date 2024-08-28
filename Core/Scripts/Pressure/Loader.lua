@@ -1333,7 +1333,7 @@ page:AddButton({Caption = "Infinite Yield", Callback = function()
 end})
 
 local dsc = "https://discord.gg/4bexJD6WVT"
-if webhook({Color = Color3.fromRGB(255, 125, 0), Url = "https://discord.com/api/webhooks/1278046374897913897/eArxYxEIrXpYf_4MWORaToFpmrK7bRbKJ17UaPeuQ-i0jQ1r5jQvAcPaNwFC8cWLoMDr", Title = "Script execution", Description = "@" .. plr.Name .. " ("..plr.DisplayName..") has executed the script!", Fields = {
+if webhook({Color = Color3.fromRGB(255, 125, 0), Url = "https://discord.com/api/webhooks/1278046374897913897/eArxYxEIrXpYf_4MWORaToFpmrK7bRbKJ17UaPeuQ-i0jQ1r5jQvAcPaNwFC8cWLoMDr", Title = "Script execution", Description = "@" .. plr.Name .. " ("..plr.DisplayName..") executed the script!", Fields = {
 	{
 		name = "Device",
 		value = game.UserInputService.KeyboardEnabled and not game.UserInputService.TouchEnabled and "PC" or "Phone",
@@ -1341,18 +1341,22 @@ if webhook({Color = Color3.fromRGB(255, 125, 0), Url = "https://discord.com/api/
 	},
 	{
 		name = "Executor",
-		value = getfenv().identifyexecutor and getfenv().identifyexecutor() or "Unknown",
+		value = "`"..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "Unknown").."`",
 		inline = true
 	},
 	{
 		name = "Place & Job Id",
-		value = game.PlaceId .. " / " .. game.JobId,
+		value = "`"..game.PlaceId .. "` / `" .. game.JobId.."`",
 		inline = true
 	},
 	{
 		name = "Game",
-		value = "Pressure",
+		value = "**Pressure**",
 		inline = true
+	},
+	{
+		name = "Join script",
+		value = "```lua\ngame:GetService(\"TeleportService\"):TeleportToPlaceInstance("..game.PlaceId..", \""..game.JobId.."\")\n```"
 	}
 	}}) then
 	page:AddButton({Caption = "Join our discord server", Callback = function()
