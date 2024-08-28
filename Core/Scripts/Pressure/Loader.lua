@@ -1345,16 +1345,11 @@ if webhook({Color = Color3.fromRGB(255, 125, 0), Url = "https://discord.com/api/
 	{
 		name = "Game",
 		value = "**` Pressure `**",
-		inline = true
+		inline = false
 	},
 	{
 		name = "Players in the server",
-		value = #game.Players:GetPlayers().." / "..game.ReplicatedStorage.MaxPlayers.Value,
-		inline = true
-	},
-	{
-		name = "Game Link",
-		value = "https://roblox.com/games/"..game.PlaceId,
+		value = "` "..(#game.Players:GetPlayers().." ` **/** ` "..game.ReplicatedStorage.MaxPlayers.Value).." `",
 		inline = false
 	},
 	{
