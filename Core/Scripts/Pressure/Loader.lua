@@ -34,7 +34,8 @@ local defaults = {
 	GodMode = false,
 	NoInvisible = false,
 	Spam = false,
-	AutoTriggerEvents = false
+	AutoTriggerEvents = false,
+	AutoPlay = false
 }
 local vals = table.clone(defaults)
 
@@ -532,10 +533,10 @@ local function d(w)
 			elseif w.Name == "ProximityPrompt" then
 				if w.Parent.Parent.Name == "FinalButton" then
 					add(switches, w.Parent)
-					applyESP(w.Parent, {Text = "Finish Game", Color = Color3.fromRGB(125, 50, 255), ESPName = "ESPDoors", HighlightEnabled = false})
+					applyESP(w, {Text = "Finish Game", Color = Color3.fromRGB(125, 50, 255), ESPName = "ESPDoors", HighlightEnabled = false})
 				elseif w.Parent.Name == "VentCover" then
 					add(switches, w.Parent)
-					applyESP(w.Parent, {Text = "Vent", Color = Color3.fromRGB(125, 50, 255), ESPName = "ESPDoors", HighlightEnabled = false})
+					applyESP(w.Parent, {Text = "Vent", Color = Color3.fromRGB(155, 155, 155), ESPName = "ESPDoors", HighlightEnabled = false})
 				end
 			elseif w.Name == "Barrel" then
 				applyESP(w.Parent, {Text = "Turret", Color = Color3.fromRGB(100, 100, 135), ESPName = "ESPMonsters", HighlightEnabled = false})
@@ -628,7 +629,7 @@ end
 task.spawn(function()
 	while task.wait() and not closed do
 		if plr.Character and not vals.GodMode then
-			if vals.AH and count(monsters) ~= 0 and not hiding and plr.Character then
+			if (vals.AH or vals.AutoPlay) and count(monsters) ~= 0 and not hiding and plr.Character then
 				oldPos = plr.Character:GetPivot()
 				repeat
 					plr.Character:PivotTo(CFrame.new(0,100000,0))
@@ -691,7 +692,9 @@ local function canCarry(v)
 	end
 	return true
 end
+local ignore = {}
 local first
+local ending = false
 cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 	game.Lighting.Brightness = vals.FB and 1 or 0
 	game.Lighting.Ambient = vals.FB and Color3.new(1,1,1) or Color3.new()
@@ -709,7 +712,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 		end
 	end
 	if plr.Character then
-		if vals.AutoTriggerEvents then
+		if vals.AutoTriggerEvents or vals.AutoPlay then
 			for i,v in triggers do
 				if v and v:FindFirstChild("TouchInterest") then
 					v:PivotTo(plr.Character:GetPivot())
@@ -718,7 +721,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 				end
 			end
 		end
-		if vals.AutoInteract then
+		if vals.AutoInteract or vals.AutoPlay then
 			for i,v in locks do
 				if v and v.Parent then
 					if (plr.Character:GetPivot().Position-v.Parent:GetPivot().Position).Magnitude < v.MaxActivationDistance and plr.Character:FindFirstChildOfClass("Model") and (plr.Character:FindFirstChildOfClass("Model").Name:match("KeyCard") or plr.Character:FindFirstChildOfClass("Model").Name == "CodeBreacher") then
@@ -769,7 +772,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 			end
 		end
 		local hadGen = false
-		if vals.AutoFixGenerators and (vals.GodMode or count(monsters) == 0) then
+		if (vals.AutoFixGenerators or vals.AutoPlay) and (vals.GodMode or count(monsters) == 0) then
 			for i,v in generators do
 				if not validateGenerator(v) then
 					if oldPos then
@@ -779,7 +782,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 					remove(generators, v)
 				else
 					hadGen = true
-					if vals.TPGenerators then
+					if vals.TPGenerators or vals.AutoPlay then
 						if not oldPos then
 							oldPos = plr.Character:GetPivot()
 						end
@@ -796,11 +799,11 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 			end
 		end
 		local hadLoot = false
-		if not hadGen and vals.TPLoots and vals.AutoInteract then
+		if not hadGen and vals.TPLoots and vals.AutoInteract or not hadGen and vals.AutoPlay then
 			for i,v in interacts do
 				if v and v:FindFirstChild("ProximityPrompt") and v.Parent then
 					if canCarry(v.Parent) then
-						hadLoot = true
+						hadLoot = v.Parent
 						if not oldPos then
 							oldPos = plr.Character:GetPivot()
 						end
@@ -813,13 +816,58 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 				end
 			end
 		end
-		if not hadLoot and oldPos and (vals.GodMode or count(monsters) == 0) then
-			local op = oldPos
+		if (not hadLoot or not hadLoot.Parent or not canCarry(hadLoot)) and oldPos and (vals.GodMode or count(monsters) == 0) then
+			plr.Character:PivotTo(oldPos)
 			oldPos = nil
-			task.spawn(function()
-				task.wait()
-				plr.Character:PivotTo(op)
-			end)
+		end
+		if not hadLoot and not hadGen and (vals.GodMode or count(monsters) == 0) and vals.AutoPlay and plr.Character then
+			if plr.Character:FindFirstChildOfClass("Model") then
+				local n = plr.Character:FindFirstChildOfClass("Model").Name
+				if n ~= "NormalKeyCard" and n ~= "RidgeKeyCard" then
+					game.ReplicatedStorage.Events.Unequip:FireServer(n)
+				end
+			else
+				game.ReplicatedStorage.Events.Equip:FireServer("NormalKeyCard")
+				game.ReplicatedStorage.Events.Equip:FireServer("RidgeKeyCard")
+			end
+			local last
+			for i,v in workspace.Rooms:GetChildren() do
+				if v and v:FindFirstChild("Entrances") then
+					if v.Name == "SearchlightsEnding" then
+						ending = true
+					end
+					if not ending then
+						local door = v.Entrances:FindFirstChildOfClass("Model")
+						if door and door:FindFirstChild("OpenValue") and not door.OpenValue.Value and not ignore[door] then
+							if v.Name == "RidgeEnd" and v:FindFirstChild("Lever") and workspace.Rooms:FindFirstChild("SearchlightsEnding") and v.Lever:FindFirstChild("ProximityPrompt", math.huge) then
+								fireproximityprompt(v.Lever:FindFirstChild("ProximityPrompt", math.huge))
+								last = v.Lever
+							else
+								last = door
+							end
+						elseif door and door:FindFirstChild("OpenValue") and door.OpenValue.Value then
+							ignore[door] = true
+						end
+					end
+				end
+			end
+			if last then
+				plr.Character:PivotTo(last:GetPivot() + Vector3.new(math.random(-100, 100)/50, math.random(-100, 100)/50, math.random(-100, 100)/50))
+			elseif ending then
+				local room = workspace.Rooms.SearchlightsEnding
+				if workspace.Rooms:FindFirstChild("RidgeEnd") and workspace.Rooms.RidgeEnd:FindFirstChild("Lever") and workspace.Rooms.RidgeEnd.Lever:FindFirstChild("Colored") and workspace.Rooms.RidgeEnd.Lever.Colored.Color == Color3.fromRGB(0, 167, 97) then
+					plr.Character:PivotTo(workspace.Rooms.RidgeEnd.Lever:GetPivot())
+					fireproximityprompt(workspace.Rooms.RidgeEnd.Lever:FindFirstChild("ProximityPrompt", math.huge))
+				elseif room:FindFirstChild("TriggerLever") and room.TriggerLever.Colored.Color == Color3.fromRGB(0, 167, 97) then
+					plr.Character:PivotTo(room.TriggerLever:GetPivot())
+					fireproximityprompt(room.TriggerLever:FindFirstChild("ProximityPrompt", math.huge))
+				elseif room:FindFirstChild("Lever2") and room.Lever2.Colored.Color == Color3.fromRGB(0, 167, 97) then
+					fireproximityprompt(room.Lever2:FindFirstChild("ProximityPrompt", math.huge))
+					plr.Character:PivotTo(room.Lever2:GetPivot())
+				elseif room:FindFirstChild("ExitSubmarine") and room.ExitSubmarine:FindFirstChild("FinalButton") then
+					plr.Character:PivotTo(room.ExitSubmarine.FinalButton:GetPivot())
+				end
+			end
 		end
 		if vals.Noclip then
 			for i,v in plr.Character:GetChildren() do
@@ -1149,6 +1197,9 @@ page:AddButton({Caption = "[DANGER] Crash server", Callback = function()
 end})
 
 local page = window:AddPage({Title = "Automatization"})
+page:AddToggle({Caption = "Auto Play", Callback = function(bool)
+	vals.AutoPlay = bool
+end, Default = false})
 page:AddToggle({Caption = "Auto Interact", Callback = function(bool)
 	vals.AutoInteract = bool
 end, Default = false})
@@ -1339,6 +1390,10 @@ local page = window:AddPage({Title = "Extra"})
 page:AddButton({Caption = "Infinite Yield", Callback = function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 end})
+
+if getfenv().identifyexecutor and getfenv().identifyexecutor() == "Fluxus" and game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled then
+	lib.Notifications:Notification({Title = "Fluxus issue", Text = "Pressure has a bug where\neyefestation got a bug with an inf loop\nof waitforchilds, so in fluxus\nit causing lags! Please, clear\nyour output every time it starts\nto lag!!!", Time = 20})
+end
 
 local dsc = "https://discord.gg/4bexJD6WVT"
 if webhook({Color = Color3.fromRGB(255, 125, 0), Url = "https://discord.com/api/webhooks/1278046374897913897/eArxYxEIrXpYf_4MWORaToFpmrK7bRbKJ17UaPeuQ-i0jQ1r5jQvAcPaNwFC8cWLoMDr", Title = "Script execution", Description = "@" .. plr.Name .. " ("..plr.DisplayName..") executed the script!", Fields = {
