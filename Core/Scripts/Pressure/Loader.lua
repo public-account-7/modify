@@ -451,7 +451,7 @@ local triggers = {}
 local invisibleParts = {}
 local function d(w)
 	task.spawn(function()
-		if w and w.Parent then
+		if w and w:IsDescendantOf(workspace) and w.Parent ~= workspace then
 			if w.Name == "ProxyPart" and w.Parent:IsA("Model") then
 				if w.Parent.Name:match("Document") or w.Parent.Parent:IsA("BasePart") then
 					if w.Parent.Parent.Name ~= "ShopSpawn" then
@@ -537,6 +537,8 @@ local function d(w)
 					add(switches, w.Parent)
 					applyESP(w.Parent, {Text = "Vent", Color = Color3.fromRGB(125, 50, 255), ESPName = "ESPDoors", HighlightEnabled = false})
 				end
+			elseif w.Name == "Barrel" then
+				applyESP(w.Parent, {Text = "Turret", Color = Color3.fromRGB(100, 100, 135), ESPName = "ESPMonsters", HighlightEnabled = false})
 			end
 		end
 	end)
@@ -672,7 +674,7 @@ local function canCarry(v)
 		local function check(attr)
 			if v:GetAttribute(attr) then
 				doesExist = true
-				res = res or item.Value < v:GetAttribute(attr)
+				res = item.Value < v:GetAttribute(attr)
 			end
 		end
 
