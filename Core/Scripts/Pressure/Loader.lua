@@ -1373,3 +1373,4 @@ elseif getfenv().toclipboard or getfenv().setclipboard then
 else
 	page:AddLabel({Caption = "Discord: "..dsc})
 end
+page:AddLabel({Caption = "Owner: xinfernusx (discord)"})
