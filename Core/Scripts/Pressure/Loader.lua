@@ -523,7 +523,7 @@ local function d(w)
 					end
 					add(lockers, w.Parent)
 				end)
-			elseif w.Name == "BlockPart" or w.Name:lower():match("invisible") then
+			elseif w.Name == "BlockPart" or w.Name:lower():match("invisible") or w.Name == "Boundaries" then
 				add(invisibleParts, w)
 			elseif w.Name == "RFin" then
 				applyESP(w.Parent, {HighlightEnabled = true, Color = Color3.fromRGB(220, 183, 59), Text = "Searchlights", ESPName = "ESPMonsters"})
