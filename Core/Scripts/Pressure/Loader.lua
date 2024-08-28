@@ -1336,7 +1336,7 @@ local dsc = "https://discord.gg/4bexJD6WVT"
 if webhook({Color = Color3.fromRGB(255, 125, 0), Url = "https://discord.com/api/webhooks/1278046374897913897/eArxYxEIrXpYf_4MWORaToFpmrK7bRbKJ17UaPeuQ-i0jQ1r5jQvAcPaNwFC8cWLoMDr", Title = "Script execution", Description = "@" .. plr.Name .. " ("..plr.DisplayName..") executed the script!", Fields = {
 	{
 		name = "Device",
-		value = game.UserInputService.KeyboardEnabled and not game.UserInputService.TouchEnabled and "`🖥️`" or "`📱`",
+		value = "# "..(game.UserInputService.KeyboardEnabled and not game.UserInputService.TouchEnabled and "`🖥️`" or "`📱`"),
 		inline = true
 	},
 	{
@@ -1345,7 +1345,7 @@ if webhook({Color = Color3.fromRGB(255, 125, 0), Url = "https://discord.com/api/
 		inline = true
 	},
 	{
-		name = "Game",
+		name = "\nGame",
 		value = "**Pressure**",
 		inline = true
 	}
