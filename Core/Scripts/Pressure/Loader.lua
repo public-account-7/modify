@@ -1180,7 +1180,7 @@ page:AddToggle({Caption = "No invisible walls", Callback = function(bool)
 end, Default = false})
 
 local page = window:AddPage({Title = "Anti-Monsters"})
-page:AddToggle({Caption = "God Mode (toggleable)", Callback = function(bool)
+page:AddToggle({Caption = "God Mode\n(you won't complete no hiding challenge with this one, use auto hide instead)", Callback = function(bool)
 	vals.GodMode = bool
 end, Default = false})
 page:AddToggle({Caption = "Auto Hide", Callback = function(bool)
