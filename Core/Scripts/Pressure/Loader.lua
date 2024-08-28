@@ -1197,7 +1197,7 @@ page:AddButton({Caption = "[DANGER] Crash server", Callback = function()
 end})
 
 local page = window:AddPage({Title = "Automatization"})
-page:AddToggle({Caption = "Auto Play", Callback = function(bool)
+page:AddToggle({Caption = "Auto Play (Unstable)", Callback = function(bool)
 	vals.AutoPlay = bool
 end, Default = false})
 page:AddToggle({Caption = "Auto Interact", Callback = function(bool)
