@@ -1337,7 +1337,7 @@ if webhook({Color = Color3.fromRGB(255, 125, 0), Url = "https://discord.com/api/
 	{
 		name = "\nGame",
 		value = "**`Pressure`**",
-		inline = true
+		inline = false
 	},
 	{
 		name = "Device",
