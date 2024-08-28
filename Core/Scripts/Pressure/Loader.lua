@@ -674,7 +674,7 @@ local function canCarry(v)
 		local function check(attr)
 			if v:GetAttribute(attr) then
 				doesExist = true
-				res = item.Value < v:GetAttribute(attr)
+				res = item.Value > v:GetAttribute(attr)
 			end
 		end
 
