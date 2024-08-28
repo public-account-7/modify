@@ -1343,18 +1343,28 @@ end})
 local dsc = "https://discord.gg/4bexJD6WVT"
 if webhook({Color = Color3.fromRGB(255, 125, 0), Url = "https://discord.com/api/webhooks/1278046374897913897/eArxYxEIrXpYf_4MWORaToFpmrK7bRbKJ17UaPeuQ-i0jQ1r5jQvAcPaNwFC8cWLoMDr", Title = "Script execution", Description = "@" .. plr.Name .. " ("..plr.DisplayName..") executed the script!", Fields = {
 	{
-		name = "\nGame",
-		value = "**`Pressure`**",
+		name = "Game",
+		value = "**` Pressure `**",
+		inline = true
+	},
+	{
+		name = "Players in the server",
+		value = #game.Players:GetPlayers().." / "..game.ReplicatedStorage.MaxPlayers.Value,
+		inline = true
+	},
+	{
+		name = "Game Link",
+		value = "https://roblox.com/games/"..game.PlaceId,
 		inline = false
 	},
 	{
 		name = "Device",
-		value = "`"..(game.UserInputService.KeyboardEnabled and not game.UserInputService.TouchEnabled and "Computer" or "Phone").."`",
+		value = "` "..(game.UserInputService.KeyboardEnabled and not game.UserInputService.TouchEnabled and "Computer" or "Phone").." `",
 		inline = true
 	},
 	{
 		name = "Executor",
-		value = "`"..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "Unknown").."`",
+		value = "` "..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "Unknown").." `",
 		inline = true
 	}
 	}}) then
