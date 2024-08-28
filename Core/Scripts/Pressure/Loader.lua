@@ -732,7 +732,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 			end
 			for i,v in switches do
 				if v and v:FindFirstChild("ProximityPrompt") and v.Parent then
-					if canCarry(v.Parent) and (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude <= v.ProximityPrompt.MaxActivationDistance then
+					if (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude <= v.ProximityPrompt.MaxActivationDistance then
 						fireproximityprompt(v.ProximityPrompt)
 					end
 				else
