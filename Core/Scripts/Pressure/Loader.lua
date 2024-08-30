@@ -1037,7 +1037,7 @@ page:AddButton({Caption = "Kill", Callback = function(bool)
 	plr.Character.Humanoid.Health = -10
 end})
 
-local page = window:AddPage({Title = "Exploits"})
+--[[local page = window:AddPage({Title = "Exploits"})
 page:AddLabel({Caption = "Infinite tools"})
 local lastTool = nil
 page:AddButton({Caption = "Dupe & drop tool", Callback = function()
@@ -1194,7 +1194,7 @@ page:AddButton({Caption = "[DANGER] Crash server", Callback = function()
 	for i=1, 25000 do
 		dupe.Dupe(sounds)
 	end
-end})
+end})]]
 
 local page = window:AddPage({Title = "Automatization"})
 page:AddToggle({Caption = "Auto Play (Unstable)", Callback = function(bool)
@@ -1333,7 +1333,7 @@ page:AddButton({Caption = "Fake fix generator", Callback = function()
 	end
 end})
 page:AddSeparator()
-page:AddButton({Caption = "Fake turret room", Callback = function()
+--[[page:AddButton({Caption = "Fake turret room", Callback = function()
 	local function randomPlay(p)
 		local c = p:GetChildren()
 		local s = c[math.random(1, #c)]
@@ -1381,7 +1381,7 @@ page:AddButton({Caption = "Fake Searchlights", Callback = function()
 		end
 	end)
 end})
-page:AddSeparator()
+page:AddSeparator()]]
 page:AddToggle({Caption = "Spam lockers", Callback = function(bool)
 	vals.Spam = bool
 end, Default = false})
