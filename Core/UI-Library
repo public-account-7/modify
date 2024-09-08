@@ -1,4 +1,4 @@
-local Instance1 = Instance.new("ScreenGui", game.TestService) --FireLib5.0
+local Instance1 = Instance.new("ScreenGui", game.StarterGui) --FireLib5.0
 Instance1.Enabled = true
 Instance1.SafeAreaCompatibility = Enum.SafeAreaCompatibility.FullscreenExtension
 Instance1.IgnoreGuiInset = true
@@ -121,7 +121,7 @@ Instance9.TextYAlignment = Enum.TextYAlignment.Center
 Instance9.TextScaled = false
 Instance9.TextDirection = Enum.TextDirection.Auto
 Instance9.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
-Instance9.Visible = true
+Instance9.Visible = false
 Instance9.BorderMode = Enum.BorderMode.Outline
 Instance9.TextTransparency = 0
 Instance9.FontSize = Enum.FontSize.Size14
@@ -4308,6 +4308,7 @@ local lib; lib = {
         local maximize = script.Parent.Holder.MobileMaximize:Clone()
         maximize.Parent = script.Parent.Holder
         maximize.Name = ""
+        maximize.Visible = isMobile
         makeDraggable(maximize.DragButton)
         makeDraggable(window)
 
@@ -4336,8 +4337,9 @@ local lib; lib = {
                 end)
                 return true
             end,
-            Toggle = function(self)
-                if window.Visible then
+            Toggle = function(self, state)
+                state = state == nil and not window.Visible or not not state
+                if state then
                     return self:Hide()
                 else
                     return self:Show()
@@ -5233,4 +5235,4 @@ require = getfenv().require
 -- Your code down below --
 
 local screenGui = Instance1
-return require(Instance1.ModuleScript)
+return require(screenGui.ModuleScript)
