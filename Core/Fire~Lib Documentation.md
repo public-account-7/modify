@@ -63,7 +63,7 @@ Yeah, yeah, print all button function
 
 ### Toggle
 ```lua
-page:AddToggle({Caption = "Noclip", Callback = function(bool)
+page:AddToggle({Caption = "Toggle", Callback = function(bool)
 	print(bool and "Enabled" or "Disabled")
 end, Default = false})
 ```
@@ -119,4 +119,49 @@ Time: The time (in seconds) for notification to stay on the screen
 lib.Notifications:ChooseNotification({Title = "English (✅) or Spanish (❌)", Text = "ENGLISH OR SPANISH?", Callback = function(bool)
 	print(bool and "English" or "Spanish")
 end, Time = 999})
+```
+
+# Full Example
+```lua
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/UI-Library"))()
+
+local window = lib:MakeWindow({Title = "Fire~Lib: Example", CloseCallback = function()
+	print("Closed!")
+end})
+
+local page = window:AddPage({Title = "Example page!"})
+
+local slider = page:AddSlider({Caption = "Walk Speed", Callback = function(number)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = number
+end, Default = 16, Min = 0, Max = 100, Step = 1})
+
+local button = page:AddButton({Caption = "Kill", Callback = function()
+	plr.Character.Humanoid.Health = 0
+end})
+
+page:AddSeparator()
+
+page:AddToggle({Caption = "Toggle", Callback = function(bool)
+	print(bool and "Enabled" or "Disabled")
+end, Default = false})
+
+page:AddLabel({Caption = "Some text here!"})
+
+page:AddTextBox({Caption = "Print stuff to console", Default = "Nothing!", Callback = function(text)
+	print(text)
+end, NeedEnter = true})
+
+page:AddInput({Text = "Toggle UI Key", Default = toggleKey.Name, Callback = function(kk)
+	toggleKey = kk
+end, IgnoreConfigs = true})
+
+page:AddDropdown({Text = "Dropdown", Default = "First", Rows = {"First", "Second", "Third"}, Callback = function(name)
+	print("You're "..name)
+end})
+
+page:AddColorPicker({Text = "Color Picker", Default = Color3.new(1, 0, 0.5), Callback = function(color)
+	workspace.Baseplate.Color = color
+end})
+
+lib.Notifications:Notification({Title = "Loaded!", Text = "Test UI Loaded!", Time = 20})
 ```
