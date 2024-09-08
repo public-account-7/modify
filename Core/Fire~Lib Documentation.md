@@ -1,5 +1,5 @@
 # Fire~Lib🔥 documentantion
-### Why not?
+Why not?
 
 # Setup
 ```lua
@@ -15,7 +15,7 @@ end})
 ```
 
 After we got a window, we need to put stuff in it
-## Showing / Hiding / Toggling / Closing the window
+### Showing / Hiding / Toggling / Closing the window
 ```lua
 window:Hide() -- Will hide the window
 window:Show() -- Will show the window
@@ -37,7 +37,7 @@ local page = window:AddPage({Title = "Example page!"})
 ```
 Alright, we got a page, now we can add some stuff here!
 
-## Sliders
+### Sliders
 ```lua
 local slider = page:AddSlider({Caption = "Walk Speed", Callback = function(number)
 	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = number
@@ -46,14 +46,14 @@ end, Default = 16, Min = 0, Max = 100, Step = 1})
 ```
 every slider and not only function must be called through ":" - `slider:Destroy()`
 
-# Separator
+### Separator
 ```lua
 page:AddSeparator()
 -- yup, nothing more.
 -- oh, also, you can hide / show it and delete
 ```
 
-## Buttons
+### Buttons
 ```lua
 local button = page:AddButton({Caption = "Kill", Callback = function()
 	plr.Character.Humanoid.Health = 0
@@ -61,19 +61,19 @@ end})
 ```
 Yeah, yeah, print all button function 
 
-## Toggle
+### Toggle
 ```lua
 page:AddToggle({Caption = "Noclip", Callback = function(bool)
 	print(bool and "Enabled" or "Disabled")
 end, Default = false})
 ```
 
-## Label
+### Label
 ```lua
 page:AddLabel({Caption = "Some text here!"})
 ```
 
-## Text Box
+### Text Box
 ```lua
 page:AddTextBox({Caption = "Print stuff to console", Default = "Nothing!", Callback = function(text)
 	print(text)
@@ -81,7 +81,7 @@ end, NeedEnter = true})
 ```
 NeedEnter: If is true, it will require enter be pressed to make the callback work, else it will call callback when textbox focus is lost
 
-## Input
+### Input
 Took that from Fire~Lib source, cuz idk what i can do with it
 ```lua
 page:AddInput({Text = "Toggle UI Key", Default = toggleKey.Name, Callback = function(kk)
@@ -89,7 +89,7 @@ page:AddInput({Text = "Toggle UI Key", Default = toggleKey.Name, Callback = func
 end, IgnoreConfigs = true})
 ```
 
-## Dropdown
+### Dropdown
 I never used dropdown, so the example can be a bit inaccurate
 ```lua
 page:AddDropdown({Text = "Dropdown", Default = "First", Rows = {"First", "Second", "Third"}, Callback = function(name)
@@ -97,7 +97,7 @@ page:AddDropdown({Text = "Dropdown", Default = "First", Rows = {"First", "Second
 end})
 ```
 
-## Color Picker
+### Color Picker
 Same situation as dropdown: I've never used that
 ```lua
 page:AddColorPicker({Text = "Color Picker", Default = Color3.new(1, 0, 0.5), Callback = function(color)
@@ -108,13 +108,13 @@ end})
 # Notifications
 Notifications is really useful stuff, like notify monsters when they spawn!
 
-## Base Notification
+### Base Notification
 ```lua
 lib.Notifications:Notification({Title = "Monster!", Text = "Oh no! The monster has spawned!", Time = 20})
 ```
 Time: The time (in seconds) for notification to stay on the screen
 
-## Choose Notification (Yes/No)
+### Choose Notification (Yes/No)
 ```lua
 lib.Notifications:ChooseNotification({Title = "English (✅) or Spanish (❌)", Text = "ENGLISH OR SPANISH?", Callback = function(bool)
 	print(bool and "English" or "Spanish")
