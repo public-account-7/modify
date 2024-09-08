@@ -3429,7 +3429,7 @@ Instance132.Style = Enum.FrameStyle.Custom
 Instance132.LayoutOrder = 0
 Instance132.SizeConstraint = Enum.SizeConstraint.RelativeXY
 Instance132.ZIndex = 10031
-Instance132.Size = UDim2.new(1, 0, 0.15000000596046448, 0)
+Instance132.Size = UDim2.new(1, 0, 0.11500000208616257, 0)
 Instance132.Draggable = false
 Instance132.Position = UDim2.new(0, 0, 0, 0)
 Instance132.Selectable = false
@@ -3662,10 +3662,10 @@ Instance142.BorderMode = Enum.BorderMode.Outline
 Instance142.Selectable = false
 Instance142.TextDirection = Enum.TextDirection.Auto
 Instance142.Visible = true
-Instance142.FontSize = Enum.FontSize.Size12
+Instance142.FontSize = Enum.FontSize.Size8
 Instance142.AnchorPoint = Vector2.new(0, 0)
 Instance142.TextStrokeColor3 = Color3.new(0, 0, 0)
-Instance142.TextSize = 12
+Instance142.TextSize = 7
 Instance142.AutomaticSize = Enum.AutomaticSize.None
 Instance142.Size = UDim2.new(1, 0, 1, 0)
 Instance142.TextColor3 = Color3.new(1, 1, 1)
@@ -3701,7 +3701,7 @@ Instance144.Style = Enum.FrameStyle.Custom
 Instance144.LayoutOrder = 0
 Instance144.SizeConstraint = Enum.SizeConstraint.RelativeXY
 Instance144.ZIndex = 10031
-Instance144.Size = UDim2.new(1, 0, 0.15000000596046448, 0)
+Instance144.Size = UDim2.new(1, 0, 0.11500000208616257, 0)
 Instance144.Draggable = false
 Instance144.Position = UDim2.new(0, 0, 0, 0)
 Instance144.Selectable = false
@@ -3934,10 +3934,10 @@ Instance154.BorderMode = Enum.BorderMode.Outline
 Instance154.Selectable = false
 Instance154.TextDirection = Enum.TextDirection.Auto
 Instance154.Visible = true
-Instance154.FontSize = Enum.FontSize.Size12
+Instance154.FontSize = Enum.FontSize.Size8
 Instance154.AnchorPoint = Vector2.new(0, 0)
 Instance154.TextStrokeColor3 = Color3.new(0, 0, 0)
-Instance154.TextSize = 12
+Instance154.TextSize = 7
 Instance154.AutomaticSize = Enum.AutomaticSize.None
 Instance154.Size = UDim2.new(1, 0, 1, 0)
 Instance154.TextColor3 = Color3.new(1, 1, 1)
@@ -4372,7 +4372,7 @@ local lib; lib = {
                 pageButton.Visible = true
                 pageButton.Name = ""
                 pageButton:FindFirstChild("Text").Text = text
-                cons[#cons+1] = pageButton.MouseEnter:Connect(function()
+                cons[#cons+1] = pageButton.Trigger.MouseEnter:Connect(function()
                     playSound("MouseHover")
                 end)
                 pageButton.Size = UDim2.fromScale((#pageButton:FindFirstChild("Text").Text / 65) + 0.05, 1)
@@ -4423,11 +4423,6 @@ local lib; lib = {
                         options.Step = tonumber(options.Step) or tonumber(options.Per) or (options.Max - options.Min) / 25
                         options.Default = tonumber(options.Default) or tonumber(options.Base) or options.Min
                         local cb = options.Callback
-                        options.Callback = function(newVal)
-                            funcs.Value = newVal
-                            struct[counterText] = newVal
-                            return cb(newVal)
-                        end
 
                         --
 
@@ -4440,6 +4435,13 @@ local lib; lib = {
 
                         local set = setupSlider(slider, nil, options)
                         set(options.Default)
+                        options.Callback = function(newVal)
+                            if funcs.Value == newVal then return end
+                            funcs.Value = newVal
+                            set(newVal)
+                            struct[counterText] = newVal
+                            return cb(newVal)
+                        end
                         options.Set = set
 
                         --
@@ -4541,7 +4543,7 @@ local lib; lib = {
                         button.Visible = true
                         button.Name = ""
                         button:FindFirstChild("Text").Text = getText(options) or "Button"
-                        cons[#cons+1] = button.MouseEnter:Connect(function()
+                        cons[#cons+1] = button.Trigger.MouseEnter:Connect(function()
                             playSound("MouseHover")
                         end)
                         cons[#cons+1] = button.Trigger.MouseButton1Click:Connect(function()
@@ -4592,7 +4594,7 @@ local lib; lib = {
                         local text = getText(options) or "Toggle"
                         local counterText = count(text, 2)
                         toggle:FindFirstChild("Text").Text = text
-                        cons[#cons+1] = toggle.MouseEnter:Connect(function()
+                        cons[#cons+1] = toggle.Trigger.MouseEnter:Connect(function()
                             playSound("MouseHover")
                         end)
                         local funcs = {Options = options}
@@ -4712,6 +4714,7 @@ local lib; lib = {
                         local funcs = {Value = tb.TextBoxOuter.TextBox.Text}
                         local function cb(txt)
                             funcs.Value = txt
+                            tb.TextBoxOuter.TextBox.Text = txt
                             struct[counterText] = txt
                             getCallback(options)(txt)
                         end
@@ -4796,18 +4799,19 @@ local lib; lib = {
                         local funcs = {}
                         local text = getText(options) or "Input"
                         local counterText = count(text, 2)
+                        local input = page.Input:Clone()
                         local function cb(inpt)
                             if tonumber(inpt) then
                                 inpt = Enum.KeyCode:FromValue(inpt)
                             end
                             funcs.Value = inpt
+                            input.InputOuter.Frame.Input.Text = inpt.Name
                             struct[counterText] = inpt.Value
                             getCallback(options)(inpt)
                         end
                         options.CB = cb
                         local focused = false
                         local con
-                        local input = page.Input:Clone()
                         input.Parent = page
                         input.Visible = not isMobile
                         input.Name = ""
@@ -4825,7 +4829,6 @@ local lib; lib = {
                                     con:Disconnect()
                                     con = nil
                                     inpt = s.KeyCode
-                                    input.InputOuter.Frame.Input.Text = inpt.Name
                                     cb(inpt)
                                 end)
                             else
@@ -4836,7 +4839,7 @@ local lib; lib = {
                                 end
                             end
                         end)
-                        cons[#cons+1] = input.MouseEnter:Connect(function()
+                        cons[#cons+1] = input.Trigger.MouseEnter:Connect(function()
                             playSound("MouseHover")
                         end)
 
@@ -4919,6 +4922,13 @@ local lib; lib = {
                             selected = newVal
                             dd.DropdownOuter.Default.Text = newVal
                             struct[counterText] = newVal
+                            for i,v in dd.DropdownOuter.ContentHolder.Values:GetChildren() do
+                                if v.Text == newVal then
+                                    v.TextColor = Color3.fromRGB(255, 125, 0)
+                                else
+                                    v.TextColor = Color3.new(1,1,1)
+                                end
+                            end
                             getCallback(options)(newVal)
                         end
                         toggle(false)
@@ -4934,11 +4944,11 @@ local lib; lib = {
                                 end
                                 row.MouseButton1Click:Connect(function()
                                     toggle(false)
+                                    coroutine.wrap(cb)(v)
                                     for i,v in row.Parent:GetChildren() do
                                         v.TextColor3 = Color3.new(1,1,1)
                                     end
                                     row.TextColor3 = Color3.fromRGB(255, 125, 0)
-                                    cb(v)
                                 end)
                             end
                         end
