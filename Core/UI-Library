@@ -5193,11 +5193,12 @@ local lib; lib = {
             page:AddTextBox({Text = "Config name", NeedEnter = false, Callback = function(text)
                 currentConfig = text
             end})
+            local suffix = "-FireLib.json"
             page:AddButton({Text = "Save", Callback = function()
-                writefile(currentConfig.."-FireLib.json", game.HttpService:JSONEncode(configStructure))
+                writefile(currentConfig..suffix, game.HttpService:JSONEncode(configStructure))
             end})
             page:AddButton({Text = "Load", Callback = function()
-                local got = readfile(currentConfig)
+                local got = readfile(currentConfig..suffix)
                 if got then
                     got = game.HttpService:JSONDecode(got)
                 end
