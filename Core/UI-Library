@@ -4308,6 +4308,7 @@ local lib; lib = {
         local maximize = script.Parent.Holder.MobileMaximize:Clone()
         maximize.Parent = script.Parent.Holder
         maximize.Name = ""
+        maximize.Visible = false
         makeDraggable(maximize.DragButton)
         makeDraggable(window)
 
@@ -5174,7 +5175,7 @@ local lib; lib = {
             (typeof(options.CloseCallback) == "function" and options.CloseCallback or getCallback(options))()
         end
         maximize.DragButton.MouseButton1Click:Connect(function()
-            windowFuncs:Close()
+            windowFuncs:Show()
             closeCallback()
         end)
         page:AddButton({Text = "Close UI", Callback = function()
