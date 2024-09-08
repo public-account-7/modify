@@ -3662,10 +3662,10 @@ Instance142.BorderMode = Enum.BorderMode.Outline
 Instance142.Selectable = false
 Instance142.TextDirection = Enum.TextDirection.Auto
 Instance142.Visible = true
-Instance142.FontSize = Enum.FontSize.Size8
+Instance142.FontSize = Enum.FontSize.Size9
 Instance142.AnchorPoint = Vector2.new(0, 0)
 Instance142.TextStrokeColor3 = Color3.new(0, 0, 0)
-Instance142.TextSize = 7
+Instance142.TextSize = 9
 Instance142.AutomaticSize = Enum.AutomaticSize.None
 Instance142.Size = UDim2.new(1, 0, 1, 0)
 Instance142.TextColor3 = Color3.new(1, 1, 1)
@@ -3934,10 +3934,10 @@ Instance154.BorderMode = Enum.BorderMode.Outline
 Instance154.Selectable = false
 Instance154.TextDirection = Enum.TextDirection.Auto
 Instance154.Visible = true
-Instance154.FontSize = Enum.FontSize.Size8
+Instance154.FontSize = Enum.FontSize.Size9
 Instance154.AnchorPoint = Vector2.new(0, 0)
 Instance154.TextStrokeColor3 = Color3.new(0, 0, 0)
-Instance154.TextSize = 7
+Instance154.TextSize = 9
 Instance154.AutomaticSize = Enum.AutomaticSize.None
 Instance154.Size = UDim2.new(1, 0, 1, 0)
 Instance154.TextColor3 = Color3.new(1, 1, 1)
@@ -4339,7 +4339,11 @@ local lib; lib = {
                 return true
             end,
             Toggle = function(self, state)
-                state = state == nil and not window.Visible or not not state
+                if state == nil then
+                    state = not window.Visible
+                else
+                    state = not not state
+                end
                 if state then
                     return self:Hide()
                 else
@@ -4600,7 +4604,7 @@ local lib; lib = {
                         local funcs = {Options = options}
                         local cb = function(bool)
                             funcs.Value = bool
-                            toggle.ToggleOuter.Frame.ImageLabel.Visible = state
+                            toggle.ToggleOuter.Frame.ImageLabel.Visible = bool
                             struct[counterText] = bool
                             getCallback(options)(bool)
                         end
