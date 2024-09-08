@@ -1,5 +1,5 @@
 # Fire~Lib🔥 documentantion
--# Why not?
+### Why not?
 
 # Setup
 ```lua
