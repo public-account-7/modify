@@ -459,7 +459,7 @@ Instance21.AutomaticCanvasSize = Enum.AutomaticSize.Y
 Instance21.Selectable = true
 Instance21.AnchorPoint = Vector2.new(0, 0)
 Instance21.Name = "Page"
-Instance21.Visible = true
+Instance21.Visible = false
 Instance21.Size = UDim2.new(1, 0, 1, 0)
 Instance21.ScrollBarImageColor3 = Color3.new(1, 0.333333, 0)
 Instance21.BorderSizePixel = 0
@@ -3242,7 +3242,7 @@ Instance123.AnchorPoint = Vector2.new(0, 0)
 Instance123.Style = Enum.FrameStyle.Custom
 Instance123.LayoutOrder = 0
 Instance123.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance123.ZIndex = 10020
+Instance123.ZIndex = 9520
 Instance123.Size = UDim2.new(1, 0, 1, 0)
 Instance123.Draggable = false
 Instance123.Position = UDim2.new(0, 0, 0, 0)
@@ -4333,6 +4333,7 @@ local lib; lib = {
                     game.TweenService:Create(window.HolderFrame.StarterFade, TweenInfo.new(fadeTime, Enum.EasingStyle.Exponential, Enum.EasingDirection.In), {BackgroundTransparency = 1}):Play()
                     task.wait(fadeTime + 0.01)
                     cd = false
+                    window.HolderFrame.StarterFade.ZIndex -= 1000
                     window.HolderFrame.StarterFade.Visible = false
                 end)
                 return true
@@ -4351,6 +4352,7 @@ local lib; lib = {
                     cd = true
                     maximize.Visible = isMobile
                     window.HolderFrame.StarterFade.Visible = true
+                    window.HolderFrame.StarterFade.ZIndex += 1000
                     game.TweenService:Create(window, TweenInfo.new(fadeTime, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {Size = UDim2.fromScale(0,0)}):Play()
                     game.TweenService:Create(window.HolderFrame.StarterFade, TweenInfo.new(fadeTime / 2.5, Enum.EasingStyle.Exponential, Enum.EasingDirection.In), {BackgroundTransparency = 0}):Play()
                     task.wait(fadeTime + 0.01)
@@ -5176,7 +5178,6 @@ local lib; lib = {
         end
         maximize.DragButton.MouseButton1Click:Connect(function()
             windowFuncs:Show()
-            closeCallback()
         end)
         page:AddButton({Text = "Close UI", Callback = function()
             lib.Notifications:ChooseNotification({Title = "Are you sure?", Text = "Are you sure that you want to close\n"..window.HolderFrame.Title.Text.."?", Callback = function(b)
