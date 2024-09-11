@@ -304,9 +304,9 @@ local lib; lib = {
 			end,
 			Toggle = function(self, state)
 				if state == nil then
-					state = not window.Visible
+					state = window.Visible
 				else
-					state = not not state
+					state = not state
 				end
 				if state then
 					return self:Hide()
