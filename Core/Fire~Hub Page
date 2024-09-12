@@ -37,14 +37,16 @@ return function(self)
 			getgenv().getexecutor = getgenv().identifyexecutor
 			getgenv().getexecutorname = getgenv().identifyexecutor
 			getgenv().executor = execu
-		end, IgnoreConfigs = true})
+		end})
 	end
 	local qotp = getfenv().queue_on_teleport or getfenv().queueonteleport
 	if qotp then
 		local keep = false
 		page:AddToggle({Text = "Keep Fire~Hub on teleport", Callback = function(b)
 			keep = b
-			lib.Notifications:Notification({Title = "Warning", Text = "If you will close Fire~Hub,\nTHAT SETTING WONT APPLY!\n\nYou need to keep Fire~Hub opened!"})
+			if b then
+				lib.Notifications:Notification({Title = "Warning", Text = "If you will close Fire~Hub,\nTHAT SETTING WONT APPLY!\n\nYou need to keep Fire~Hub opened!"})
+			end
 		end, IgnoreConfigs = true})
 		cons[#cons+1] = game.Players.LocalPlayer.OnTeleport:Connect(function()
 			if keep then
