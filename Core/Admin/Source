@@ -51,8 +51,25 @@ local cmds = {
 	}
 }
 
+local function setup(plr:Player)
+	plr.Chatted:Connect(function(msg)
+		local pref = msg:sub(1, #prefix)
+		if pref == prefix then
+			local cmd = msg:sub(#prefix+1, #msg):split(" ")[1]
+			local command = cmds[cmd]
+			if command and (command[1] and table.find(admins, plr.UserId) or not command[1]) then
+				command[2](msg:sub(#prefix+#cmd+2, #msg):split(" "))
+			end
+		end
+	end)
+end
+
 if not getGlobalTable()._RUNNING then
 	getGlobalTable()._RUNNING = true
+	for i,v in game.Players:GetPlayers() do
+		setup(v)
+	end
+	game.Players.PlayerAdded:Connect(setup)
 	while true do
 		if getGlobalTable()._FHCW then
 			local content = readfile(ban)
