@@ -1,0 +1,77 @@
+local files = {}
+local readfile, writefile, deletefile = getfenv().readfile or function(n) return files[n] end, getfenv().writefile or function(n,s) files[n] = s end, getfenv().deletefile or getfenv().delfile if not deletefile then deletefile = function(n) writefile(n, "a") end end
+local admins = game.HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Admins.json"))
+
+local function sendMessage(text)
+	if game.ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents") and game.ReplicatedStorage.DefaultChatSystemChatEvents:FindFirstChild("SayMessageRequest") then
+		game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(text, "all")
+	else
+		if game.TextChatService:FindFirstChild("TextChannels") then
+			(game.TextChatService.TextChannels:FindFirstChild("RBXGeneral") or game.TextChatService.TextChannels:FindFirstChildOfClass("TextChannel")):SendAsync(text)
+		else
+			warn("Couldn't send message",text)
+		end
+	end
+end
+local function getGlobalTable()
+	return typeof(getfenv().getgenv) == "function" and typeof(getfenv().getgenv()) == "table" and getfenv().getgenv() or _G
+end
+
+local prefix = "!"
+
+local ban = "FHB.num"
+local cmds = {
+	ban = {
+		true,
+		function(args)
+			local user = typeof(args[1]) == "string" and args[1] or ""
+			local reason = typeof(args[2]) == "string" and args[2] or "No reason provided"
+			local len =	tonumber(args[3]) or 1
+
+			if game.Players.LocalPlayer.Name:match(user) or game.Players.LocalPlayer.DisplayName:match(user) then
+				local currentTime = os.time()
+				writefile(ban, tostring(currentTime) + (len * 3600))
+				sendMessage("I just got banned")
+				if getGlobalTable()._FHCW then
+					getGlobalTable()._FHCW:Close()
+					getGlobalTable()._FHCW = nil
+				end
+			end
+		end
+	},
+	isfh = {
+		false,
+		function(args)
+			local user = typeof(args[1]) == "string" and args[1] or ""
+
+			if game.Players.LocalPlayer.Name:match(user) or game.Players.LocalPlayer.DisplayName:match(user) then
+				sendMessage("yup")
+			end
+		end,
+	}
+}
+
+if not getGlobalTable()._RUNNING then
+	getGlobalTable()._RUNNING = true
+	while true do
+		if getGlobalTable()._FHCW then
+			local content = readfile(ban)
+			if content and tonumber(content:split(" ")[1]) then
+				local time = tonumber(content:split(" ")[1])
+				local reason = content:split(" ")[2] or "No reason provided"
+				if time > os.time() then
+					getGlobalTable()._FHCW:Close()
+					getGlobalTable()._FHCW = nil
+					if getGlobalTable()._FIRELIB then
+						getGlobalTable()._FIRELIB.Notifications:Notification({Title = "Banned", Text = "You've got banned from Fire~Hub for "..time-os.time().." seconds for:\n\n"..reason})
+					end
+				else
+					deletefile(ban)
+				end
+			elseif content and not tonumber(content) then
+				deletefile(ban)
+			end
+		end
+		task.wait()
+	end
+end
