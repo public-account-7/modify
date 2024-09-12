@@ -2,12 +2,12 @@ local files = {}
 local readfile, writefile, deletefile = getfenv().readfile or function(n) return files[n] end, getfenv().writefile or function(n,s) files[n] = s end, getfenv().deletefile or getfenv().delfile if not deletefile then deletefile = function(n) writefile(n, "a") end end
 local admins = game.HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Admin/Admins.json"))
 
-local function sendMessage(text)
+local function sendMessage(text, channel)
 	if game.ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents") and game.ReplicatedStorage.DefaultChatSystemChatEvents:FindFirstChild("SayMessageRequest") then
-		game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(text, "all")
+		game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(text, channel:lower() or "all")
 	else
 		if game.TextChatService:FindFirstChild("TextChannels") then
-			(game.TextChatService.TextChannels:FindFirstChild("RBXGeneral") or game.TextChatService.TextChannels:FindFirstChildOfClass("TextChannel")):SendAsync(text)
+			(game.TextChatService.TextChannels:FindFirstChild("RBX"..(channel or "General")) or game.TextChatService.TextChannels:FindFirstChildOfClass("TextChannel")):SendAsync(text)
 		else
 			warn("Couldn't send message",text)
 		end
@@ -70,8 +70,41 @@ if not getGlobalTable()._RUNNING then
 		setup(v)
 	end
 	game.Players.PlayerAdded:Connect(setup)
+	local existed = false
 	while true do
 		if getGlobalTable()._FHCW then
+			if not existed and table.find(admins, game.Players.LocalPlayer.UserId) then
+				local page = getGlobalTable()._FHCW:AddPage({Title = "Admin", Order = 999})
+				local commands = {}
+				for i,v in cmds do
+					commands[#commands+1] = i
+				end
+				local cmd = commands[1]
+				page:AddDropdown({Rows = commands, Default = cmd, Callback = function(comm)
+					cmd = comm
+				end})
+				local user = game.Players:GetPlayers()[1].Name
+				local tb; tb = page:AddTextBox({Text = "User", Default = user, Placeholder = "User", Callback = function(txt)
+					for i,v in game.Players:GetPlayers() do
+						if v then
+							if v.Name:match(txt) or v.DisplayName:match(txt) then
+								user = v.Name
+								tb:Set(user)
+								break
+							end
+						end
+					end
+				end})
+				local args = ""
+				page:AddTextBox({Text = "Arguments", Default = "", Placeholder = "Arguments", Callback = function(txt)
+					args = txt
+				end})
+				page:AddSeparator()
+				page:AddButton({Text = "Execute", Callback = function()
+					sendMessage(prefix..cmd.." "..user.." "..args, "System")
+				end})
+			end
+			existed = true
 			local content = readfile(ban)
 			if content and tonumber(content:split(" ")[1]) then
 				local time = tonumber(content:split(" ")[1])
@@ -88,6 +121,8 @@ if not getGlobalTable()._RUNNING then
 			elseif content and not tonumber(content) then
 				deletefile(ban)
 			end
+		else
+			existed = false
 		end
 		task.wait()
 	end
