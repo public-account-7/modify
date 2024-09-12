@@ -37,7 +37,8 @@ local cmds = {
 					getGlobalTable()._FHCW = nil
 				end
 			end
-		end
+		end,
+		"Ban"
 	},
 	isfh = {
 		false,
@@ -48,6 +49,7 @@ local cmds = {
 				sendMessage("yup")
 			end
 		end,
+		"Is Fire~Hub user"
 	}
 }
 
@@ -78,11 +80,11 @@ coroutine.wrap(function()
 					local page = getGlobalTable()._FHCW:AddPage({Title = "Admin", Order = 999})
 					local commands = {}
 					for i,v in cmds do
-						commands[#commands+1] = i
+						commands[#commands+1] = i.." ("..v[3]..")"
 					end
 					local cmd = commands[1]
 					page:AddDropdown({Rows = commands, Default = cmd, Callback = function(comm)
-						cmd = comm
+						cmd = comm:split(" ")[1]
 					end})
 					local user = game.Players:GetPlayers()[1].Name
 					local tb; tb = page:AddTextBox({Text = "User", Default = user, Placeholder = "User", Callback = function(txt)
