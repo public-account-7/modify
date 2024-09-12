@@ -2,7 +2,16 @@ local function getGlobalTable()
     return typeof(getgenv) == "function" and typeof(getgenv()) == "table" and getgenv() or _G
 end
 
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/UI-Library"))()
+local lib
+local s,e = pcall(function()
+    lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/UI-Library"))()
+end)
+if not lib or not s then
+    local msg = Instance.new("Message", workspace)
+    msg.Text = "Fire~Library failed to initilize!\nSend this to developer (@xinfernusx on discord):\n\n"..(not s and e or "Library instance is nil!")
+    task.wait(5)
+    return msg:Destroy()
+end
 
 local function message(text)
     lib.Notifications:Notification({Text = text, Title = "Fire~Hub Initilization"})
