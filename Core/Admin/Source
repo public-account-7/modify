@@ -100,6 +100,7 @@ coroutine.wrap(function()
 					end})
 					local user = game.Players:GetPlayers()[1].Name
 					local tb; tb = page:AddTextBox({Text = "User", Default = user, Placeholder = "User", Callback = function(txt)
+						if txt == user then return end
 						for i,v in game.Players:GetPlayers() do
 							if v then
 								if v.Name:match(txt) or v.DisplayName:match(txt) and v ~= game.Players.LocalPlayer then
