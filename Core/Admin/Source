@@ -64,66 +64,68 @@ local function setup(plr)
 	end)
 end
 
-if not getGlobalTable()._RUNNING then
-	getGlobalTable()._RUNNING = true
-	for i,v in game.Players:GetPlayers() do
-		setup(v)
-	end
-	game.Players.PlayerAdded:Connect(setup)
-	local existed = false
-	while true do
-		if getGlobalTable()._FHCW then
-			if not existed and table.find(admins, game.Players.LocalPlayer.UserId) then
-				local page = getGlobalTable()._FHCW:AddPage({Title = "Admin", Order = 999})
-				local commands = {}
-				for i,v in cmds do
-					commands[#commands+1] = i
-				end
-				local cmd = commands[1]
-				page:AddDropdown({Rows = commands, Default = cmd, Callback = function(comm)
-					cmd = comm
-				end})
-				local user = game.Players:GetPlayers()[1].Name
-				local tb; tb = page:AddTextBox({Text = "User", Default = user, Placeholder = "User", Callback = function(txt)
-					for i,v in game.Players:GetPlayers() do
-						if v then
-							if v.Name:match(txt) or v.DisplayName:match(txt) then
-								user = v.Name
-								tb:Set(user)
-								break
+coroutine.wrap(function()
+	if not getGlobalTable()._RUNNING then
+		getGlobalTable()._RUNNING = true
+		for i,v in game.Players:GetPlayers() do
+			setup(v)
+		end
+		game.Players.PlayerAdded:Connect(setup)
+		local existed = false
+		while true do
+			if getGlobalTable()._FHCW then
+				if not existed and table.find(admins, game.Players.LocalPlayer.UserId) then
+					local page = getGlobalTable()._FHCW:AddPage({Title = "Admin", Order = 999})
+					local commands = {}
+					for i,v in cmds do
+						commands[#commands+1] = i
+					end
+					local cmd = commands[1]
+					page:AddDropdown({Rows = commands, Default = cmd, Callback = function(comm)
+						cmd = comm
+					end})
+					local user = game.Players:GetPlayers()[1].Name
+					local tb; tb = page:AddTextBox({Text = "User", Default = user, Placeholder = "User", Callback = function(txt)
+						for i,v in game.Players:GetPlayers() do
+							if v then
+								if v.Name:match(txt) or v.DisplayName:match(txt) then
+									user = v.Name
+									tb:Set(user)
+									break
+								end
 							end
 						end
+					end})
+					local args = ""
+					page:AddTextBox({Text = "Arguments", Default = "", Placeholder = "Arguments", Callback = function(txt)
+						args = txt
+					end})
+					page:AddSeparator()
+					page:AddButton({Text = "Execute", Callback = function()
+						sendMessage(prefix..cmd.." "..user.." "..args, "System")
+					end})
+				end
+				existed = true
+				local content = readfile(ban)
+				if content and tonumber(content:split(" ")[1]) then
+					local time = tonumber(content:split(" ")[1])
+					local reason = content:split(" ")[2] or "No reason provided"
+					if time > os.time() then
+						getGlobalTable()._FHCW:Close()
+						getGlobalTable()._FHCW = nil
+						if getGlobalTable()._FIRELIB then
+							getGlobalTable()._FIRELIB.Notifications:Notification({Title = "Banned", Text = "You've got banned from Fire~Hub for "..time-os.time().." seconds for:\n\n"..reason})
+						end
+					else
+						deletefile(ban)
 					end
-				end})
-				local args = ""
-				page:AddTextBox({Text = "Arguments", Default = "", Placeholder = "Arguments", Callback = function(txt)
-					args = txt
-				end})
-				page:AddSeparator()
-				page:AddButton({Text = "Execute", Callback = function()
-					sendMessage(prefix..cmd.." "..user.." "..args, "System")
-				end})
-			end
-			existed = true
-			local content = readfile(ban)
-			if content and tonumber(content:split(" ")[1]) then
-				local time = tonumber(content:split(" ")[1])
-				local reason = content:split(" ")[2] or "No reason provided"
-				if time > os.time() then
-					getGlobalTable()._FHCW:Close()
-					getGlobalTable()._FHCW = nil
-					if getGlobalTable()._FIRELIB then
-						getGlobalTable()._FIRELIB.Notifications:Notification({Title = "Banned", Text = "You've got banned from Fire~Hub for "..time-os.time().." seconds for:\n\n"..reason})
-					end
-				else
+				elseif content and not tonumber(content) then
 					deletefile(ban)
 				end
-			elseif content and not tonumber(content) then
-				deletefile(ban)
+			else
+				existed = false
 			end
-		else
-			existed = false
+			task.wait()
 		end
-		task.wait()
 	end
-end
+end)()
