@@ -24,9 +24,10 @@ local cmds = {
 	ban = {
 		true,
 		function(args)
-			local user = typeof(args[1]) == "string" and args[1] or ""
-			local reason = typeof(args[2]) == "string" and args[2] or "No reason provided"
-			local len =	tonumber(args[3]) or 1
+			local user = args[1] or ""
+			local len = tonumber(args[2]) or 1
+			local reason = table.concat(args[3], " ", 3)
+			if reason == "" then reason = "No reason provided" end
 
 			if game.Players.LocalPlayer.Name:match(user) or game.Players.LocalPlayer.DisplayName:match(user) then
 				local currentTime = os.time()
@@ -37,13 +38,12 @@ local cmds = {
 					getGlobalTable()._FHCW = nil
 				end
 			end
-		end,
-		"Ban"
+		end
 	},
 	isfh = {
 		false,
 		function(args)
-			local user = typeof(args[1]) == "string" and args[1] or ""
+			local user = args[1] or ""
 
 			if game.Players.LocalPlayer.Name:match(user) or game.Players.LocalPlayer.DisplayName:match(user) then
 				sendMessage("yup")
@@ -54,9 +54,10 @@ local cmds = {
 	say = {
 		true,
 		function(args)
-			local user = typeof(args[1]) == "string" and args[1] or ""
+			local user = args[1] or ""
 			local message = table.concat(args, " ", 2)
-			
+			if message == "" then message = "Hi" end
+
 			if game.Players.LocalPlayer.Name:match(user) or game.Players.LocalPlayer.DisplayName:match(user) then
 				sendMessage(message)
 			end
