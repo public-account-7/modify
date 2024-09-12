@@ -48,8 +48,8 @@ return function(self)
 				lib.Notifications:Notification({Title = "Warning", Text = "If you will close Fire~Hub,\nTHAT SETTING WONT APPLY!\n\nYou need to keep Fire~Hub opened!"})
 			end
 		end, IgnoreConfigs = true})
-		cons[#cons+1] = game.Players.LocalPlayer.OnTeleport:Connect(function()
-			if keep then
+		game.Players.LocalPlayer.OnTeleport:Connect(function()
+			if self.Opened and keep then
 				qotp([[loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Loader"))()]])
 			end
 		end)
