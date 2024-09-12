@@ -4598,7 +4598,7 @@ local lib; lib = {
                         end
                         toggle(false)
                         dd.Trigger.MouseButton1Click:Connect(toggle)
-                        for i,v in pairs(typeof(options.Selections) == "table" and options.Selections or typeof(options.Rows) == "table" and options.Rows or {}) do
+                        for i,v in typeof(options.Selections) == "table" and options.Selections or typeof(options.Rows) == "table" and options.Rows or {} do
                             if typeof(v) == "string" then
                                 local row = dd.DropdownOuter.ContentHolder.Values.ListButton:Clone()
                                 row.Parent = dd.DropdownOuter.ContentHolder.Values
@@ -4711,7 +4711,7 @@ local lib; lib = {
                         end
                         toggle(false)
                         dd.Trigger.MouseButton1Click:Connect(toggle)
-                        for i,v in pairs(typeof(options.Selections) == "table" and options.Selections or typeof(options.Rows) == "table" and options.Rows or {}) do
+                        for i,v in selected do
                             if typeof(i) == "string" and typeof(v) == "boolean" then
                                 local row = dd.DropdownOuter.ContentHolder.Values.ListButton:Clone()
                                 row.Parent = dd.DropdownOuter.ContentHolder.Values
