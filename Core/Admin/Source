@@ -1,6 +1,6 @@
 local files = {}
 local readfile, writefile, deletefile = getfenv().readfile or function(n) return files[n] end, getfenv().writefile or function(n,s) files[n] = s end, getfenv().deletefile or getfenv().delfile if not deletefile then deletefile = function(n) writefile(n, "a") end end
-local admins = game.HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Admins.json"))
+local admins = game.HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Admin/Admins.json"))
 
 local function sendMessage(text)
 	if game.ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents") and game.ReplicatedStorage.DefaultChatSystemChatEvents:FindFirstChild("SayMessageRequest") then
