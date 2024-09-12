@@ -51,7 +51,7 @@ local cmds = {
 	}
 }
 
-local function setup(plr:Player)
+local function setup(plr)
 	plr.Chatted:Connect(function(msg)
 		local pref = msg:sub(1, #prefix)
 		if pref == prefix then
