@@ -92,10 +92,10 @@ coroutine.wrap(function()
 					local page = getGlobalTable()._FHCW:AddPage({Title = "Admin", Order = 999})
 					local commands = {}
 					for i,v in cmds do
-						commands[#commands+1] = i.." ("..v[3]..")"
+						commands[#commands+1] = i..(v[3] and " ("..v[3]..")" or "")
 					end
 					local cmd = commands[1]
-					page:AddDropdown({Rows = commands, Default = cmd, Callback = function(comm)
+					page:AddDropdown({Rows = commands, Text = "Command", Default = cmd, Callback = function(comm)
 						cmd = comm:split(" ")[1]
 					end})
 					local user = game.Players:GetPlayers()[1].Name
