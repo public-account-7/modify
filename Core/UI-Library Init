@@ -4027,12 +4027,15 @@ local lib; lib = {
                 options = getOptions(options)
                 local text = getText(options) or "Page"
                 local counterTextPage = count(text, 1)
+                local order = math.clamp(tonumber(options.Order) or 1, 1, 999)
                 configStructure[counterTextPage] = {}
                 local struct = configStructure[counterTextPage]
                 local pageButton = window.HolderFrame.PageButtons.PageButton:Clone()
                 pageButton.Parent = window.HolderFrame.PageButtons
                 pageButton.Visible = true
                 pageButton.Name = ""
+                pageButton.LayoutOrder = -order
+                
                 pageButton:FindFirstChild("Text").Text = text
                 cons[#cons+1] = pageButton.Trigger.MouseEnter:Connect(function()
                     playSound("MouseHover")
@@ -4887,7 +4890,7 @@ local lib; lib = {
         windowFuncs.Maximize = windowFuncs.Show
         windowFuncs:Show()
 
-        local page = windowFuncs:AddPage({Title = "Main"})
+        local page = windowFuncs:AddPage({Title = "Main", Order = 999})
         local toggleKey = Enum.KeyCode.LeftAlt
         page:AddButton({Text = "Hide UI", Callback = function()
             if windowFuncs:Minimize() then
