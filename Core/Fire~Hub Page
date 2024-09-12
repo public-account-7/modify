@@ -1,3 +1,8 @@
+local function getGlobalTable()
+	return typeof(getfenv().getgenv) == "function" and typeof(getfenv().getgenv()) == "table" and getfenv().getgenv() or _G
+end
+local versions = getGlobalTable()._FLVersions
+
 return function(self)
 	local page = self:AddPage({Title = "Info"})
 	page:AddLabel({Text = "Fire-Hub version: "..versions.FireHubVersion})
