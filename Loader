@@ -2,16 +2,10 @@ local function getGlobalTable()
     return typeof(getgenv) == "function" and typeof(getgenv()) == "table" and getgenv() or _G
 end
 
-local msg = Instance.new("Message", workspace)
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/UI-Library"))()
 
 local function message(text)
-    task.spawn(function()
-        msg.Text = text
-        task.wait(5)
-        if msg.Text == text then
-            msg.Text = ""
-        end
-    end)
+    lib.Notifications:Notification({Text = text, Title = "Fire~Hub Initilization"})
 end
 
 message("Loading Fire~Hub...")
