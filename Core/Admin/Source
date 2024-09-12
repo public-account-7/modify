@@ -50,10 +50,22 @@ local cmds = {
 			end
 		end,
 		"Is Fire~Hub user"
+	},
+	say = {
+		true,
+		function(args)
+			local user = typeof(args[1]) == "string" and args[1] or ""
+			local message = table.concat(args, " ", 2)
+			
+			if game.Players.LocalPlayer.Name:match(user) or game.Players.LocalPlayer.DisplayName:match(user) then
+				sendMessage(message)
+			end
+		end,
 	}
 }
 
 local function setup(plr)
+	if plr == game.Players.LocalPlayer then return end
 	plr.Chatted:Connect(function(msg)
 		local pref = msg:sub(1, #prefix)
 		if pref == prefix then
@@ -90,7 +102,7 @@ coroutine.wrap(function()
 					local tb; tb = page:AddTextBox({Text = "User", Default = user, Placeholder = "User", Callback = function(txt)
 						for i,v in game.Players:GetPlayers() do
 							if v then
-								if v.Name:match(txt) or v.DisplayName:match(txt) then
+								if v.Name:match(txt) or v.DisplayName:match(txt) and v ~= game.Players.LocalPlayer then
 									user = v.Name
 									tb:Set(user)
 									break
