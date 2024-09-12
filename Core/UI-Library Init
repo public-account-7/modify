@@ -3970,9 +3970,11 @@ local lib; lib = {
 
         local cd = false
         local windowFuncs = {
+            Opened = true,
             Close = function(self)
                 task.spawn(function()
                     while cd and task.wait() do end
+                    self.Opened = false
                     self:Hide()
                     task.wait(fadeTime + 0.01)
                     window:Destroy()
