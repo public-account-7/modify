@@ -4,7 +4,9 @@ end
 local versions = getGlobalTable()._FLVersions
 local lib = getGlobalTable()._FIRELIB
 
-return function(self)
+return function()
+	local self = getGlobalTable()._FHCW
+	if not self then return end
 	local page = self:AddPage({Title = "Info"})
 	page:AddLabel({Text = "Fire-Hub version: "..versions.FireHubVersion})
 	page:AddLabel({Text = "Fire-Lib version: "..versions.FireLibraryVersion})
