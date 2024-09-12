@@ -95,15 +95,22 @@ coroutine.wrap(function()
 						commands[#commands+1] = i..(v[3] and " ("..v[3]..")" or "")
 					end
 					local cmd = commands[1]:split(" ")[1]
-					page:AddDropdown({Rows = commands, Caption = "Command", Default = cmd, Callback = function(comm)
-						cmd = comm:split(" ")[1]
+					local tb; tb = page:AddTextBox({Caption = "Command", Default = cmd, Callback = function(comm)
+						if comm == cmd then return end
+						for i,v in commands do
+							if v:lower():match(comm:lower()) then
+								cmd = v
+								tb:Set(cmd)
+								break
+							end
+						end
 					end})
 					local user = game.Players:GetPlayers()[1].Name
 					local tb; tb = page:AddTextBox({Text = "User", Default = user, Placeholder = "User", Callback = function(txt)
 						if txt == user then return end
 						for i,v in game.Players:GetPlayers() do
 							if v then
-								if v.Name:match(txt) or v.DisplayName:match(txt) and v ~= game.Players.LocalPlayer then
+								if v.Name:lower():match(txt:lower()) or v.DisplayName:match(txt:lower()) and v ~= game.Players.LocalPlayer then
 									user = v.Name
 									tb:Set(user)
 									break
