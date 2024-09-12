@@ -4561,7 +4561,7 @@ local lib; lib = {
                     end,
                     AddDropdown = function(self, options)
                         options = getOptions()
-                        options.Default = tonumber(options.Default) or tonumber(options.Base) or 1
+                        options.Default = typeof(options.Default) == "string" and options.Default or typeof(options.Base) == "string" and options.Base or "None"
                         local dd = page.Dropdown:Clone()
                         dd.Parent = page
                         dd.Visible = true
