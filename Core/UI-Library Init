@@ -4672,7 +4672,7 @@ local lib; lib = {
                         dd.Parent = page
                         dd.Visible = true
                         dd.Name = ""
-                        local text = getText(options) or "Dropdown"
+                        local text = getText(options) or "Toggle Dropdown"
                         local counterText = count(text, 2)
                         dd:FindFirstChild("Text").Text = text
                         local selected = options.Default
@@ -4953,6 +4953,11 @@ lib.AddWindow = lib.MakeWindow
 lib.Notifications.Notify = lib.Notifications.Notification
 lib.Notifications.SelectNotification = lib.Notifications.ChooseNotification
 lib.Notifications.SelectionNotification = lib.Notifications.ChooseNotification
+
+if isMobile then
+    script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Lines['1'].TextSize -= 3
+    script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Lines['1'].TextSize -= 3
+end
 
 getGlobalTable()._FIRELIB = lib
 
