@@ -124,7 +124,7 @@ coroutine.wrap(function()
 					end})
 					page:AddSeparator()
 					page:AddButton({Text = "Execute", Callback = function()
-						sendMessage(prefix..cmd.." "..user.." "..args, "System")
+						sendMessage(prefix..cmd:split(" ")[1].." "..user.." "..args, "System")
 					end})
 				end
 				existed = true
