@@ -94,8 +94,8 @@ coroutine.wrap(function()
 					for i,v in cmds do
 						commands[#commands+1] = i..(v[3] and " ("..v[3]..")" or "")
 					end
-					local cmd = commands[1]
-					page:AddDropdown({Rows = commands, Text = "Command", Default = cmd, Callback = function(comm)
+					local cmd = commands[1]:split(" ")[1]
+					page:AddDropdown({Rows = commands, Caption = "Command", Default = cmd, Callback = function(comm)
 						cmd = comm:split(" ")[1]
 					end})
 					local user = game.Players:GetPlayers()[1].Name
