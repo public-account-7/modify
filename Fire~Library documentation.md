@@ -90,7 +90,7 @@ page:AddInput({Text = "Toggle UI Key", Default = toggleKey.Name, Callback = func
 end, IgnoreConfigs = true})
 ```
 
-### Dropdown
+### Dropdown [BROKEN]
 I never used dropdown, so the example can be a bit inaccurate
 ```lua
 page:AddDropdown({Text = "Dropdown", Default = "First", Rows = {"First", "Second", "Third"}, Callback = function(name)
@@ -98,7 +98,7 @@ page:AddDropdown({Text = "Dropdown", Default = "First", Rows = {"First", "Second
 end})
 ```
 
-### Toggle Dropdown
+### Toggle Dropdown [POSSIBLY BROKEN]
 This one is kinda new, and I think it kinda has some use, so I've added that
 ```lua
 page:AddToggleDropdown({Text = "Toggle Dropdown", Default = {["First"] = false, ["Second"] = true}, Callback = function(new)
