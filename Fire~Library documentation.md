@@ -98,7 +98,7 @@ end})
 ```
 
 ### Toggle Dropdown
-This one is kinda new, and i think it has use, so I've added that
+This one is kinda new, and I think it kinda has some use, so I've added that
 ```lua
 page:AddToggleDropdown({Text = "Toggle Dropdown", Default = {["First"] = false, ["Second"] = true}, Callback = function(new)
 	print("First:",tostring(new.First),"\nSecond:",tostring(new.Second))
