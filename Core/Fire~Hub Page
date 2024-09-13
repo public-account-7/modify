@@ -144,7 +144,7 @@ return function()
 		page:AddLabel({Caption = "Owner: xinfernusx (discord)"})
 		if getGlobalTable()._HttpGood then
 			page:AddSeparator()
-			page:AddLabel({Caption = "Bug Reporting"})
+			page:AddLabel({Caption = "Bug Reporting (english only, please)"})
 			page:AddLabel({Caption = "[WARNING]: If you will send a false or joke report or you will spam it, you will be blacklisted from FireHub for 24 hours!"})
 			local content = ""
 			page:AddTextBox({Caption = "Issue", Placeholder = "Prease provide your issue, or video URL", Multiline = true, NeedEnter = false, Callback = function(txt)
