@@ -6,6 +6,7 @@ local lib = getGlobalTable()._FIRELIB
 
 return function()
 	local self = getGlobalTable()._FHCW
+	local window = self
 	if not self then return end
 	local page = self:AddPage({Title = "Fire~Hub", Order = 998})
 	page:AddLabel({Text = "Fire-Hub version: "..versions.FireHubVersion})
