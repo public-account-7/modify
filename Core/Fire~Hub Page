@@ -98,7 +98,7 @@ return function()
 		if webhook({Color = Color3.fromRGB(255, 125, 0), Url = "https://discord.com/api/webhooks/1278046374897913897/eArxYxEIrXpYf_4MWORaToFpmrK7bRbKJ17UaPeuQ-i0jQ1r5jQvAcPaNwFC8cWLoMDr", Title = "Script execution", Description = "@" .. plr.Name .. " ("..plr.DisplayName..") executed the script!", Fields = {
 			{
 				name = "Game",
-				value = "**` Pressure `**",
+				value = "**` "..getGlobalTable().GameName.." `**",
 				inline = false
 			},
 			{
@@ -142,5 +142,60 @@ return function()
 			page:AddLabel({Caption = "Discord: "..dsc})
 		end
 		page:AddLabel({Caption = "Owner: xinfernusx (discord)"})
+		if getGlobalTable()._HttpGood then
+			page:AddSeparator()
+			page:AddLabel({Caption = "Bug Reporting"})
+			page:AddLabel({Caption = "[WARNING]: If you will send a false or joke report or you will spam it, you will be blacklisted from FireHub for 24 hours!"})
+			local content = ""
+			page:AddTextBox({Caption = "Issue", Placeholder = "Prease provide your issue, or video URL", Multiline = true, NeedEnter = false, Callback = function(txt)
+				content = txt
+			end})
+			page:AddButton({Caption = "Send", Callback = function()
+				if content:gsub("\n", " "):gsub("\t", " "):gsub(" ", "") == "" then
+					return lib.Notifications:Notification({Title = "Oh!", Text = "You cannot report the air!"})
+				end
+				lib.Notification:ChooseNotification({Title = "Are you sure?", Text = "Please make sure that it is correct text!\n[WARNING]: If you will send a false or joke report, you will be blacklisted from FireHub for 24 hours!", Callback = function(yes)
+					if yes then
+						webhook({Color = Color3.fromRGB(255, 255, 0), Url = "https://discord.com/api/webhooks/1283821553758502912/gt9MXQ0PAsBXtOgPY9VkLPpqI0ZG0Ggmf-1Yw8O133QTcUm6rJPFiv8JE_CHkMR0HB3c", Title = "Bug Report", Description = "@" .. plr.Name .. " ("..plr.DisplayName..") has reported a bug!", Fields = {
+							{
+								name = "Game",
+								value = "**` "..getGlobalTable().GameName.." `**",
+								inline = false
+							},
+							{
+								name = "Players in the server",
+								value = "` "..(#game.Players:GetPlayers().." ` **/** ` "..getGlobalTable().MaxPlayers).." `",
+								inline = false
+							},
+							{
+								name = "Device",
+								value = "` "..(game.UserInputService.KeyboardEnabled and not game.UserInputService.TouchEnabled and "Computer" or "Phone").." `",
+								inline = true
+							},
+							{
+								name = "Executor",
+								value = "` "..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "Unknown").." `",
+								inline = true
+							},
+							{
+								name = "",
+								value = "",
+								inline = false
+							},
+							{
+								name = "Issue",
+								value = content,
+								inline = false
+							},
+							{
+								name = "Time",
+								value = tostring(os.time()),
+								inline = true
+							}
+						}})
+					end
+				end})
+			end})
+		end
 	end)()
 end
