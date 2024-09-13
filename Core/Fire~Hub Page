@@ -184,7 +184,7 @@ return function()
 							},
 							{
 								name = "Issue",
-								value = content,
+								value = content:gsub("e", "е"),
 								inline = false
 							},
 							{
