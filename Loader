@@ -18,6 +18,9 @@ local function message(text)
 end
 
 message("Loading Fire~Hub...")
+if game.Players.LocalPlayer.Name == "gubers9389" then
+    return message("I've waaaarned youuuu...")
+end
 
 local working = game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Version"):split("\n")[3] == "1"
 if not working then return message("Fire~Hub is not working right now.") end
