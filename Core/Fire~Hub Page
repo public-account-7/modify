@@ -64,81 +64,83 @@ return function()
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 	end})
 
-	local webhook = function(settings)
-		if not getfenv().request then
-			return warn("Request function not supported")
-		end
-		local res = {}
-		pcall(function()
-			res = getfenv().request(
-			{
-				Url = settings.Url,
-				Method = "POST",
-				Body = game.HttpService:JSONEncode(
-					{
-						embeds = {{
-							["title"] = "**"..(settings.Title or "Hi").."**",
-							["description"] = settings.Description or "",
-							["type"] = "rich",
-							["color"] = tonumber("0x"..(settings.Color or Color3.new(1,1,1)):ToHex()),
-							["fields"] = settings.Fields
-						}}
+	coroutine.wrap(function()
+		local webhook = function(settings)
+			if not getfenv().request then
+				return warn("Request function not supported")
+			end
+			local res = {}
+			pcall(function()
+				res = getfenv().request(
+				{
+					Url = settings.Url,
+					Method = "POST",
+					Body = game.HttpService:JSONEncode(
+						{
+							embeds = {{
+								["title"] = "**"..(settings.Title or "Hi").."**",
+								["description"] = settings.Description or "",
+								["type"] = "rich",
+								["color"] = tonumber("0x"..(settings.Color or Color3.new(1,1,1)):ToHex()),
+								["fields"] = settings.Fields
+							}}
+						}
+					),
+					Headers = {
+						['Content-Type'] = "application/json"
 					}
-				),
-				Headers = {
-					['Content-Type'] = "application/json"
 				}
+				)
+			end)
+			return tostring(res.StatusCode):sub(1,1) ~= "4"
+		end
+		local dsc = "https://discord.gg/4bexJD6WVT"
+		if webhook({Color = Color3.fromRGB(255, 125, 0), Url = "https://discord.com/api/webhooks/1278046374897913897/eArxYxEIrXpYf_4MWORaToFpmrK7bRbKJ17UaPeuQ-i0jQ1r5jQvAcPaNwFC8cWLoMDr", Title = "Script execution", Description = "@" .. plr.Name .. " ("..plr.DisplayName..") executed the script!", Fields = {
+			{
+				name = "Game",
+				value = "**` Pressure `**",
+				inline = false
+			},
+			{
+				name = "Players in the server",
+				value = "` "..(#game.Players:GetPlayers().." ` **/** ` "..getGlobalTable().MaxPlayers).." `",
+				inline = false
+			},
+			{
+				name = "Device",
+				value = "` "..(game.UserInputService.KeyboardEnabled and not game.UserInputService.TouchEnabled and "Computer" or "Phone").." `",
+				inline = true
+			},
+			{
+				name = "Executor",
+				value = "` "..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "Unknown").." `",
+				inline = true
 			}
-			)
-		end)
-		return tostring(res.StatusCode):sub(1,1) ~= "4"
-	end
-	local dsc = "https://discord.gg/4bexJD6WVT"
-	if webhook({Color = Color3.fromRGB(255, 125, 0), Url = "https://discord.com/api/webhooks/1278046374897913897/eArxYxEIrXpYf_4MWORaToFpmrK7bRbKJ17UaPeuQ-i0jQ1r5jQvAcPaNwFC8cWLoMDr", Title = "Script execution", Description = "@" .. plr.Name .. " ("..plr.DisplayName..") executed the script!", Fields = {
-		{
-			name = "Game",
-			value = "**` Pressure `**",
-			inline = false
-		},
-		{
-			name = "Players in the server",
-			value = "` "..(#game.Players:GetPlayers().." ` **/** ` "..getGlobalTable().MaxPlayers).." `",
-			inline = false
-		},
-		{
-			name = "Device",
-			value = "` "..(game.UserInputService.KeyboardEnabled and not game.UserInputService.TouchEnabled and "Computer" or "Phone").." `",
-			inline = true
-		},
-		{
-			name = "Executor",
-			value = "` "..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "Unknown").." `",
-			inline = true
-		}
-		}}) then
-		getGlobalTable()._HttpGood = webhook
-		page:AddButton({Caption = "Join our discord server", Callback = function()
-			getfenv().request({
-				Url = 'http://127.0.0.1:6463/rpc?v=1',
-				Method = 'POST',
-				Headers = {
-					['Content-Type'] = 'application/json',
-					Origin = 'https://discord.com'
-				},
-				Body = game.HttpService:JSONEncode({
-					cmd = 'INVITE_BROWSER',
-					nonce = game.HttpService:GenerateGUID(false),
-					args = {code = dsc:split("gg/")[2]}
+			}}) then
+			getGlobalTable()._HttpGood = webhook
+			page:AddButton({Caption = "Join our discord server", Callback = function()
+				getfenv().request({
+					Url = 'http://127.0.0.1:6463/rpc?v=1',
+					Method = 'POST',
+					Headers = {
+						['Content-Type'] = 'application/json',
+						Origin = 'https://discord.com'
+					},
+					Body = game.HttpService:JSONEncode({
+						cmd = 'INVITE_BROWSER',
+						nonce = game.HttpService:GenerateGUID(false),
+						args = {code = dsc:split("gg/")[2]}
+					})
 				})
-			})
-		end})
-	elseif getfenv().toclipboard or getfenv().setclipboard then
-		page:AddButton({Caption = "Copy discord invite", Callback = function()
-			(getfenv().toclipboard or getfenv().setclipboard)(dsc)
-			lib.Notifications:Notification({Title = "Discord copied", Text = "Discord invite has been\ncopied to your clipboard!\n\nPaste in browser to\njoin our server!"})
-		end})
-	else
-		page:AddLabel({Caption = "Discord: "..dsc})
-	end
-	page:AddLabel({Caption = "Owner: xinfernusx (discord)"})
+			end})
+		elseif getfenv().toclipboard or getfenv().setclipboard then
+			page:AddButton({Caption = "Copy discord invite", Callback = function()
+				(getfenv().toclipboard or getfenv().setclipboard)(dsc)
+				lib.Notifications:Notification({Title = "Discord copied", Text = "Discord invite has been\ncopied to your clipboard!\n\nPaste in browser to\njoin our server!"})
+			end})
+		else
+			page:AddLabel({Caption = "Discord: "..dsc})
+		end
+		page:AddLabel({Caption = "Owner: xinfernusx (discord)"})
+	end)()
 end
