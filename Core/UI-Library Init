@@ -4892,7 +4892,7 @@ local lib; lib = {
                                 val = val[counterText]
                             end
                             if not val then return end
-                            funcs:Set(val)
+                            funcs:Set(Color3.fromRGB(val[1], val[2], val[3]))
                         end)
 
                         return funcs
@@ -4964,10 +4964,10 @@ local lib; lib = {
                 suffix = "-FireLib_Config.json"
             end
             page:AddButton({Text = "Save", Callback = function()
-                writefile(currentConfig..suffix, game.HttpService:JSONEncode(configStructure))
+                writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(configStructure))
             end})
             page:AddButton({Text = "Load", Callback = function()
-                local got = readfile(currentConfig..suffix)
+                local got = readfile(prefix..currentConfig..suffix)
                 if got then
                     got = game.HttpService:JSONDecode(got)
                 end
