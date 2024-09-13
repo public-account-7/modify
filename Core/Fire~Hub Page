@@ -3,6 +3,7 @@ local function getGlobalTable()
 end
 local versions = getGlobalTable()._FLVersions
 local lib = getGlobalTable()._FIRELIB
+local plr = game.Players.LocalPlayer
 
 return function()
 	local self = getGlobalTable()._FHCW
@@ -101,7 +102,7 @@ return function()
 		},
 		{
 			name = "Players in the server",
-			value = "` "..(#game.Players:GetPlayers().." ` **/** ` "..game.ReplicatedStorage.MaxPlayers.Value).." `",
+			value = "` "..(#game.Players:GetPlayers().." ` **/** ` "..getglobalTable().MaxPlayers).." `",
 			inline = false
 		},
 		{
