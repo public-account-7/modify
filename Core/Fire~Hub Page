@@ -102,7 +102,7 @@ return function()
 		},
 		{
 			name = "Players in the server",
-			value = "` "..(#game.Players:GetPlayers().." ` **/** ` "..getglobalTable().MaxPlayers).." `",
+			value = "` "..(#game.Players:GetPlayers().." ` **/** ` "..getGlobalTable().MaxPlayers).." `",
 			inline = false
 		},
 		{
