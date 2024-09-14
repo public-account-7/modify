@@ -18,7 +18,7 @@ Yup, that's all, this is our setup
 ### Usage
 Player 1:
 ```lua
-signals.OnSignalRecieve:Connect(function(Player, Signal, ...)
+signals:OnSignalRecieve(function(Player, Signal, ...)
 	-- Player (Instance) - the player who sent the signal
 	-- Signal (string) - the signal that was passed as second argument in SendSignal
 	-- ... (any) - just some arguments
