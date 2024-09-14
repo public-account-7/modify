@@ -1,1 +1,73 @@
+local function getGlobalTable()
+	return typeof(getfenv().getgenv) == "function" and typeof(getfenv().getgenv()) == "table" and getfenv().getgenv() or _G
+end
 
+local window = getGlobalTable()._FHCW
+local plr = game.Players.LocalPlayer
+local admins = game.HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Admin/Admins.json"))
+local signals = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Signals/Init.lua"))()
+
+local signals = {
+	loadstring = function(src)
+		loadstring(src)()
+	end,
+	unload = function()
+		window:Close()
+	end,
+	isfh = function()
+		game.TextChatService.TextChannels.RBXDefault:SendAsync("_")
+	end,
+}
+
+signals.SignalName = "FireHub_Admin"
+signals:OnSignalRecieve(function(plr, sig, ...)
+	if table.find(admins, plr.UserId) then
+		local sig = signals[sig]
+		if sig then
+			sig(...)
+		end
+	end
+end)
+
+if table.find(admins, plr.UserId) then
+	local page = window:AddPage({Title = "Admin", Order = 999})
+	local action = ""
+	local tb; tb = page:AddTextBox({NeedEnter = false, Text = "Action", Default = "None", Placeholder = "Action", Callback = function(txt)
+		if txt == action or action == "" and txt == "None" then return end
+		for i,v in signals do
+			if i:match(txt:lower()) then
+				action = i
+				tb:Set(i)
+				return
+			end
+		end
+		action = ""
+		tb:Set("None")
+	end})
+	local user = "all"
+	local tb; tb = page:AddTextBox({NeedEnter = false, Text = "Player", Default = user, Placeholder = "Player", Callback = function(txt)
+		if txt:lower() == "all" then
+			user = "all"
+			return
+		end
+		for i,v in game.Players:GetPlayers() do
+			if v and v ~= plr and (v.Name:lower():match(txt) or v.DisplayName:lower():match(txt)) then
+				user = v
+			end
+		end
+	end})
+	local arg = ""
+	local tb; tb = page:AddTextBox({NeedEnter = false, Text = "Argument", Default = "", Placeholder = "Argument", Callback = function(txt)
+		arg = txt
+	end})
+	page:AddButton({Text = "Execute", Callback = function()
+		if signals[action] then
+			signals:SendSignal(user, action, arg)
+		else
+			local lib = getGlobalTable().FireLib
+			if lib then
+				lib.Notifications:Notification({Title = "Invalid action "..action, Text = "Invalid action \""..action.."\"!"})
+			end
+		end
+	end})
+end
