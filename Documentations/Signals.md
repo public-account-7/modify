@@ -10,7 +10,7 @@ Alright, we got the signals library, now let's set it up!
 
 ### Setup
 ```lua
-signals.SignalName = "Smth" -- please, don't leave spacebars in here
+signals.SignalName = "Smth"
 -- SignalName - when we chaning that value, the library will listen only to that name, so there will be no bugs if 2 different players on the server using 2 different scripts with that library (i dont think that it is possible, cuz im not known, lol)
 ```
 Yup, that's all, this is our setup
