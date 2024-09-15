@@ -16,7 +16,7 @@ signals.SignalName = "Smth"
 Yup, that's all, this is our setup
 
 ### Usage
-Player 1:
+**Player 1:**
 ```lua
 signals:OnSignalRecieve(function(Player, Signal, ...)
 	-- Player (Instance) - the player who sent the signal
@@ -30,12 +30,12 @@ end)
 ```
 (The signals cannot return stuff)
 
-Player 2:
+**Player 2:**
 ```lua
 signals:SendSignal(game.Players.PlayerName, "Greet", "yo", "how r u?", true, {"wow"}, false)
 ```
 
-Player 3:
+**Player 3:**
 ```lua
 signals:SendSignal("all", "Greet")
 ```
