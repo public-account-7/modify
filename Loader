@@ -18,7 +18,7 @@ local function message(text)
 end
 
 message("Loading Fire~Hub...")
-if game.Players.LocalPlayer.Name == "gubers9389" then
+if game.Players.LocalPlayer.Name == "kialfoekcnw" then
     return message("I've waaaarned youuuu...")
 end
 
