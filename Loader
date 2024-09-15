@@ -23,10 +23,11 @@ local working = game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/
 if not working then return message("Fire~Hub is not working right now.") end
 if getGlobalTable().FireHubLoaded then return message("Fire~Hub is already loaded!") end
 local bans = game.HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Bans.json"))
-if bans[game.Players.LocalPlayer.UserId] and bans[game.Players.LocalPlayer.UserId] > os.time() then
+if bans[game.Players.LocalPlayer.UserId] and bans[game.Players.LocalPlayer.UserId][1] > os.time() then
     local str = tostring((bans[game.Players.LocalPlayer.UserId] - os.time()) / 3600)
     local hrs = str:split(".")[1].."."..(str:split(".") or {nil, "000"})[2]:sub(1, 3)
-    return message("Whoops!\nYou are banned from FireHub!\n\nHours left: "..hrs)
+    local reason = bans[game.Players.LocalPlayer.UserId][2] or "No reason provided."
+    return message("Whoops!\nYou are banned from FireHub!\n\nHours left: "..hrs.."\nReason: "..reason)
 end
 
 message("Getting supported games list...")
