@@ -47,5 +47,7 @@ boolean, number, nil, string, Instance, table, function (unstable)
 ```
 and some other types that my thing not supports
 if the type is not supported, it works like that:
+```
+```lua
 return typeof(obj)..".new("..tostring(obj)..")"
 ```
