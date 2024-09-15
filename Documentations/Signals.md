@@ -42,7 +42,7 @@ signals:SendSignal("all", "Greet")
 
 ## Types you can recieve or send:
 ```luau
-boolean, number, nil, string, Instance, table, function (unstable)
+boolean, number, nil, string, Instance, table, function (unstable), UDim2
 ```
 ```
 and some other types that my thing not supports
