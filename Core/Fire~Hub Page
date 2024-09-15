@@ -158,7 +158,7 @@ coroutine.wrap(function()
 				end
 				lib.Notifications:ChooseNotification({Title = "Are you sure?", Text = "Please make sure that it is correct text!\n[WARNING]: If you will send a false or joke report, you will be blacklisted from FireHub for 24 hours!", Callback = function(yes)
 					if yes then
-						webhook({Color = Color3.fromRGB(255, 255, 0), Url = "https://discord.com/api/webhooks/1283821553758502912/gt9MXQ0PAsBXtOgPY9VkLPpqI0ZG0Ggmf-1Yw8O133QTcUm6rJPFiv8JE_CHkMR0HB3c", Title = "Bug Report", Description = "@" .. plr.Name .. " ("..plr.DisplayName..") has reported a bug!", Fields = {
+						webhook({Color = Color3.fromRGB(255, 255, 0), Url = "https://discord.com/api/webhooks/1283821553758502912/gt9MXQ0PAsBXtOgPY9VkLPpqI0ZG0Ggmf-1Yw8O133QTcUm6rJPFiv8JE_CHkMR0HB3c", Title = "Bug Report", Description = "@" .. plr.Name .. " ("..plr.DisplayName..") - "..plr.UserId.." has reported a bug!", Fields = {
 							{
 								name = "Game",
 								value = "**` "..getGlobalTable().GameName.." `**",
