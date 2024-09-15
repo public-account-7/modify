@@ -28,7 +28,7 @@ signals:OnSignalRecieve(function(Player, Signal, ...)
 	end
 end)
 ```
-(The signals cannot return stuff, only accept)
+(The signals cannot return stuff, only accept it)
 
 **Player 2:**
 ```lua
