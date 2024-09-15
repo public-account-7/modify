@@ -39,3 +39,11 @@ signals:SendSignal(game.Players.PlayerName, "Greet", "yo", "how r u?", true, {"w
 ```lua
 signals:SendSignal("all", "Greet")
 ```
+
+## Types you can recieve or send:
+```lua
+boolean, number, nil, string, Instance, table, function (unstable), CFrame, Vector3, Vector2, UDim2, UDim
+and some other types that i dont know about
+if the type is not supported, it works like that:
+return typeof(obj)..".new("..tostring(obj)..")"
+```
