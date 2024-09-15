@@ -15,7 +15,7 @@ local funcs = {
 		window:Close()
 	end,
 	isfh = function()
-		game.TextChatService.TextChannels.RBXDefault:SendAsync("_")
+		game.TextChatService.TextChannels.RBXGeneral:SendAsync("_")
 	end,
 }
 
