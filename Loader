@@ -45,7 +45,6 @@ for i,v in game.HttpService:JSONDecode(supported) do
     if sup then
         getGlobalTable().FireHubLoaded = true
         message("Loading script for "..i.."...\nPlease expect lags while loading it!")
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Admin/Source"))()
         return loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Scripts/"..game.HttpService:UrlEncode(i).."/Loader.lua"))()
     end
 end
