@@ -30,6 +30,7 @@ signals:OnSignalRecieve(function(plr, sig, ...)
 end)
 
 if table.find(admins, plr.UserId) then
+	print("is admin")
 	local page = window:AddPage({Title = "Admin", Order = 999})
 	local action = ""
 	local tb; tb = page:AddTextBox({NeedEnter = false, Text = "Action", Default = "None", Placeholder = "Action", Callback = function(txt)
