@@ -19,6 +19,12 @@ if t.FireHubLoaded and not t.EAGLEEEEE then
         repeat task.wait() until t._FHCW
         f()
     end)()
+    local mw = lib.MakeWindow
+    lib.MakeWindow = function(...)
+        local window = mw(...)
+        getGlobalTable()._FHCW = window
+        return window
+    end
 end
 
 return lib
