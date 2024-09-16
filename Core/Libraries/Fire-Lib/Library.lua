@@ -3727,16 +3727,16 @@ local configsEnabled = typeof(writefile) == "function" and typeof(readfile) == "
 
 local versions
 if not pcall(function()
-        local str = game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Version"):split("\n")
-        versions = {
-            ["FireLibraryVersion"] = str[2],
-            ["FireHubVersion"] = str[1]
-        }
-    end) then
-    versions = {
-        ["FireLibraryVersion"] = "5.0",
-        ["FireHubVersion"] = "4.0.1"
-    }
+		local str = game.HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Data/Versions.json"))
+		versions = {
+			["FireLibraryVersion"] = str[2],
+			["FireHubVersion"] = str[1]
+		}
+	end) then
+	versions = {
+		["FireLibraryVersion"] = "5.0",
+		["FireHubVersion"] = "4.0.2"
+	}
 end
 
 getGlobalTable()._FLVersions = versions
