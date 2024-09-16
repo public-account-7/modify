@@ -1,20 +1,20 @@
 local function getGlobalTable()
-    return typeof(getgenv) == "function" and typeof(getgenv()) == "table" and getgenv() or _G
+	return typeof(getfenv().getgenv) == "function" and typeof(getfenv().getgenv()) == "table" and getfenv().getgenv() or _G
 end
 
 local lib
 local s,e = pcall(function()
-    lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/UI-Library"))()
+	lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/UI-Library"))()
 end)
 if not lib or not s then
-    local msg = Instance.new("Message", workspace)
-    msg.Text = "Fire~Library failed to initilize!\nSend this to developer (@xinfernusx on discord):\n\n"..(not s and e or "Library instance is nil!")
-    task.wait(5)
-    return msg:Destroy()
+	local msg = Instance.new("Message", workspace)
+	msg.Text = "Fire~Library failed to initilize!\nSend this to developer (@xinfernusx on discord):\n\n"..(not s and e or "Library instance is nil!")
+	task.wait(5)
+	return msg:Destroy()
 end
 
 local function message(text)
-    lib.Notifications:Notification({Text = text, Title = "Fire~Hub Initilization"})
+	lib.Notifications:Notification({Text = text, Title = "Fire~Hub Initilization"})
 end
 
 message("Loading Fire~Hub:\nChecking status...")
@@ -23,11 +23,11 @@ local working = game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/
 if not working then return message("Fire~Hub is not working right now.") end
 if getGlobalTable().FireHubLoaded then return message("Fire~Hub is already loaded!") end
 local bans = game.HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Bans.json"))
-if bans[tostring(game.Players.LocalPlayer.UserId)] and bans[tostring(game.Players.LocalPlayer.UserId)][1] > os.time() then
-    local str = tostring((bans[tostring(game.Players.LocalPlayer.UserId)] - os.time()) / 3600)
-    local hrs = str:split(".")[1].."."..(str:split(".") or {nil, "000"})[2]:sub(1, 3)
-    local reason = bans[tostring(game.Players.LocalPlayer.UserId)][2] or "No reason provided."
-    return message("Whoops!\nYou are banned from FireHub!\n\nHours left: "..hrs.."\nReason: "..reason)
+if bans[game.Players.LocalPlayer.UserId] and bans[game.Players.LocalPlayer.UserId][1] > os.time() then
+	local str = tostring((bans[game.Players.LocalPlayer.UserId] - os.time()) / 3600)
+	local hrs = str:split(".")[1].."."..(str:split(".") or {nil, "000"})[2]:sub(1, 3)
+	local reason = bans[game.Players.LocalPlayer.UserId][2] or "No reason provided."
+	return message("Whoops!\nYou are banned from FireHub!\n\nHours left: "..hrs.."\nReason: "..reason)
 end
 
 message("Getting supported games list...")
@@ -35,17 +35,17 @@ local supported = game:HttpGet("https://raw.githubusercontent.com/InfernusScript
 message("Searching for a script...")
 
 for i,v in game.HttpService:JSONDecode(supported) do
-    local sup = false
-    for _,val in pairs(v) do
-        if val == game.PlaceId then
-            sup = true
-        end
-    end
+	local sup = false
+	for _,val in pairs(v) do
+		if val == game.PlaceId then
+			sup = true
+		end
+	end
 
-    if sup then
-        getGlobalTable().FireHubLoaded = true
-        message("Loading script for "..i.."...\nPlease expect lags while loading it!")
-        return loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Scripts/"..game.HttpService:UrlEncode(i).."/Loader.lua"))()
-    end
+	if sup then
+		getGlobalTable().FireHubLoaded = true
+		message("Loading script for "..i.."...\nPlease expect lags while loading it!")
+		return loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Scripts/"..game.HttpService:UrlEncode(i).."/Loader.lua"))()
+	end
 end
 message("This game is not supported!")
