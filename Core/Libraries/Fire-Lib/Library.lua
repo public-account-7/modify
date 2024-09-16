@@ -1,4 +1,4 @@
-local Instance1 = Instance.new("ScreenGui", game.StarterGui) --FireLib5.0
+local Instance1 = Instance.new("ScreenGui", game.TestService) --FireLib5.0
 Instance1.Enabled = true
 Instance1.SafeAreaCompatibility = Enum.SafeAreaCompatibility.FullscreenExtension
 Instance1.IgnoreGuiInset = true
