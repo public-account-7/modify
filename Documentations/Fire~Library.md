@@ -3,7 +3,7 @@ Why not?
 
 # Setup
 ```lua
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/UI-Library"))()
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Libraries/Fire-Lib/Main.lua"))()
 ```
 Now we can use the library!
 
