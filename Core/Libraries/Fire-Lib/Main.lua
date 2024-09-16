@@ -8,7 +8,7 @@ if t._FIRELIB then
     return t._FIRELIB
 end
 
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/UI-Library%20Init"))()
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Libraries/Fire-Lib/Library.lua"))()
 if not lib then error("Fatal error while loading UI library: Loadstring did not return anything!") end
 
 t._FIRELIB = t._FIRELIB or lib
