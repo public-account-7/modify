@@ -1,5 +1,6 @@
 {
-  "4254027282":{"Admin":true},
-  "7255149919":{"Admin":true},
-  "1":{"Admin":false,"Ban":[0,"No reason"]}
+  "4254027282": {"Admin":true},
+  "7255149919": {"Admin":true},
+  "4648644022": {"Ban":[4648730422,"Bad report"]}
+  "1": {"Admin":false,"Ban":[0,"No reason"]}
 }
