@@ -12,20 +12,18 @@ local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusS
 if not lib and not t._FIRELIB then error("Fatal error while loading UI library: Loadstring did not return anything!") end
 lib = lib or t._FIRELIB
 
-t._FIRELIB = t._FIRELIB or lib
-if t.FireHubLoaded and not t.EAGLEEEEE then
-    t.EAGLEEEEE = true
-    local f = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Libraries/Fire-Lib/Fire-Hub%20Only%20page.lua"))
-    coroutine.wrap(function()
-        repeat task.wait() until t._FHCW
-        f()
-    end)()
+if not t.EAGLE then
+    t.EAGLE = true
     local mw = lib.MakeWindow
-    lib.MakeWindow = function(...)
-        local window = mw(...)
-        getGlobalTable()._FHCW = window
+    local fhop = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Libraries/Fire-Lib/Fire-Hub%20Only%20page.lua"))()
+    lib.MakeWindow = function(options, fireHubWindow)
+        local window = mw(options)
+        if fireHubWindow then
+            mw(window)
+        end
         return window
     end
 end
+t._FIRELIB = t._FIRELIB or lib
 
 return lib
