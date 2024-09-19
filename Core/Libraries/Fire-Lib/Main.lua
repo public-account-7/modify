@@ -19,7 +19,7 @@ if not t.EAGLE then
     lib.MakeWindow = function(options, fireHubWindow)
         local window = mw(options)
         if fireHubWindow then
-            mw(window)
+            fhop(window)
         end
         return window
     end
