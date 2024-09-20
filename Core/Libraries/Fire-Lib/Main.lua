@@ -17,7 +17,7 @@ if not t.EAGLE then
     local mw = lib.MakeWindow
     local fhop = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Libraries/Fire-Lib/Fire-Hub%20Only%20page.lua"))()
     lib.MakeWindow = function(options, fireHubWindow)
-        local window = mw(options)
+        local window = mw(lib, options)
         if fireHubWindow then
             fhop(window)
         end
