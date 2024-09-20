@@ -4923,7 +4923,7 @@ local lib; lib = {
         end})
         page:AddInput({Text = "Toggle UI Key", Default = toggleKey.Name, Callback = function(kk)
             toggleKey = kk
-        end, IgnoreConfigs = true})
+        end})
         cons[#cons+1] = game.UserInputService.InputBegan:Connect(function(input)
             if game.UserInputService:GetFocusedTextBox() or input.KeyCode ~= toggleKey then return end
             windowFuncs:Toggle()
