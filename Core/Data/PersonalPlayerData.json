@@ -5,5 +5,6 @@
   "5190239375": {"Admin":true, "ReportsAnswered":{"23BDDDBBBFAA4CA494638E7D3FE6B685": "Test answer"}},
   "1": {"Admin":false,"Ban":[0,"No reason"]},
   "7312730861": {"ReportsAnswered":{"318e298fc1a54bb396bf028e58bc6493": "Hello, thank you for reporting that. I tried to fix that, but the new pressure update broke it, so.. yeah :/"}},
-  "937940766": {"ReportsAnswered":{"3c2783b64e1a4f2ea8225348b722c418": "Hello, i don't understand what do you mean by \"spam link\""}}
+  "937940766": {"ReportsAnswered":{"3c2783b64e1a4f2ea8225348b722c418": "Hello, i don't understand what do you mean by \"spam link\""}},
+  "5168573960": {"ReportsAnswered":{"7DABA8A2595B481692C77BC8611737B0": "Hello, i know that godmode cannot be turned off. New pressure update added locker anticheat, so it broke the godmode.", "4FDEF437C5EC46BCA9B44128552E3F59": "Hello, CAN'T YOU READ THAT AUTOPLAY IS UNSTABLE? STOP REPORTING IT :/. Oh, also, you cant open the door if puzzle is not solved"}}
 }
