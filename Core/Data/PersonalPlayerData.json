@@ -1,8 +1,7 @@
 {
   "4254027282": {"Admin":true},
   "7255149919": {"Admin":true},
-  "4648644022": {"Ban":[4648730422,"Bad report"]},
-  "5190239375": {"Admin":true, "ReportsAnswered":{"23BDDDBBBFAA4CA494638E7D3FE6B685": "Test answer"}},
+  "5190239375": {"Admin":true},
   "4854501254": {"ReportsAnswered": {"D19D906C9DB5499AB625522AD34ECB9C": "не говори так, НЕ ГОВОРИ!!!"}},
   "7363152985": {"ReportsAnswered": {"ad92a2f4dbf945f0911cf2cf3129e430": "\"Hello friend\": Hi there! Please, report bugs, don't say \"Hi\""}},
   "5168573960": {"ReportsAnswered":{"7DABA8A2595B481692C77BC8611737B0": "Hello, i know that godmode cannot be turned off. New pressure update added locker anticheat, so it broke the godmode.", "4FDEF437C5EC46BCA9B44128552E3F59": "Hello, CAN'T YOU READ THAT AUTOPLAY IS UNSTABLE? STOP REPORTING IT :/. Oh, also, you cant open the door if puzzle is not solved"}}
