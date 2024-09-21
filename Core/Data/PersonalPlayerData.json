@@ -3,5 +3,6 @@
   "7255149919": {"Admin":true},
   "4648644022": {"Ban":[4648730422,"Bad report"]},
   "5190239375": {"Admin":true, "ReportsAnswered":{"23BDDDBBBFAA4CA494638E7D3FE6B685": "Test answer"}},
-  "1": {"Admin":false,"Ban":[0,"No reason"]}
+  "1": {"Admin":false,"Ban":[0,"No reason"]},
+  "7312730861": {"ReportsAnswered":{"318e298fc1a54bb396bf028e58bc6493": "Hello, thank you for reporting that. I tried to fix that, but the new pressure update broke it, so.. yeah :/"}}
 }
