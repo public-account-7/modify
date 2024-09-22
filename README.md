@@ -2,7 +2,7 @@
 Welcome, welcome! Don't be afraid, im not gonna hurt you!...
 
 So, as you know, Fire\~Hub is a roblox Script\-Hub.
-Has ~weak obfuscation (cuz good obfuscation breaks it), so pls, don't deobfuscate it,
+This one has ~weak obfuscation (cuz good obfuscation breaks it), so pls, don't deobfuscate it,
 and~ good optimization.
 
 ## I hope you will enjoy using that!
