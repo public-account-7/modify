@@ -110,6 +110,7 @@ local function applyESP(obj, espSettings)
 		cons[obj] = {}
 
 		local function doCon3()
+			if con3 then con3:Disconnect() end
 			con3 = game["Run Service"].RenderStepped:Connect(function()
 				if not obj or not obj.Parent or not obj:FindFirstChild("ESPFolder") then
 					con1:Disconnect()
@@ -142,7 +143,7 @@ local function applyESP(obj, espSettings)
 		end)
 		cons[obj][1] = con1
 		cons[obj][2] = con2
-		if espSettings.RGB then
+		if espLib.ESPValues.RGBESP then
 			doCon3()
 		end
 	else
