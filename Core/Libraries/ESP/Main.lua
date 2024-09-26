@@ -21,16 +21,12 @@ local espLib; espLib = {
 }
 local cons = {}
 
-function GetRGBValue(time)
-	local hueRange = 360
-
-	local hue = (time % hueRange) / hueRange
-
-	local r = math.sin(hue * 2 * math.pi) * 0.5 + 0.5
-	local g = math.sin((hue + 1/3) * 2 * math.pi) * 0.5 + 0.5
-	local b = math.sin((hue + 2/3) * 2 * math.pi) * 0.5 + 0.5
-
-	return Color3.new(r, g, b)
+function GetRGBValue()
+	return Color3.new(
+		math.sin((os.clock() % 360) / 360 * 2 * math.pi) * 0.5 + 0.5,
+		math.sin(((os.clock() % 360) / 360 + 1/3) * 2 * math.pi) * 0.5 + 0.5,
+		math.sin(((os.clock() % 360) / 360 + 2/3) * 2 * math.pi) * 0.5 + 0.5
+	)
 end
 
 
@@ -111,7 +107,7 @@ local function applyESP(obj, espSettings)
 				con3:Disconnect()
 				return
 			end
-			col = GetRGBValue(os.clock())
+			col = GetRGBValue()
 			updateESP()
 		end)
 	end
@@ -153,4 +149,4 @@ espLib.DeapplyESP = deapplyESP
 
 getGlobalTable().ESPLib = espLib
 
-return espLib -- not obfuscated, skids ;)
+return espLib
