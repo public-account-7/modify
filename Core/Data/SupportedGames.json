@@ -1,11 +1,11 @@
 {
   "Works": true,
   "Pressure" : [
-      "Disabled during synapse z event",
+      true,
       12552538292
   ],
   "Pressure-Lobby": [
-      "Disabled during synapse z event",
+      true,
       12411473842
   ],
   "Funky-Friday": [
