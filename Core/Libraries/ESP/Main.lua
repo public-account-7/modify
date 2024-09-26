@@ -17,7 +17,8 @@ local espLib; espLib = {
 			ESPChange:Fire()
 		end
 	}),
-	Values = {}
+	Values = {},
+	ESPApplied = {}
 }
 local cons = {}
 
@@ -44,6 +45,11 @@ local function applyESP(obj, espSettings)
 	local col = espSettings.Color
 
 	local function updateESP()
+		local found = table.find(espLib.ESPApplied, obj)
+		if not found then
+			table.insert(espLib.ESPApplied, obj)
+		end
+		
 		local ESPFolder = obj:FindFirstChild("ESPFolder") or Instance.new("Folder", obj)
 		ESPFolder.Name = "ESPFolder"
 
@@ -105,11 +111,13 @@ local function applyESP(obj, espSettings)
 				con1:Disconnect()
 				con2:Disconnect()
 				con3:Disconnect()
+				cons[obj][3] = nil
 				return
 			end
 			col = GetRGBValue()
 			updateESP()
 		end)
+		cons[obj][3] = con3
 	end
 	con1 = ESPChange.Event:Connect(function()
 		updateESP()
@@ -117,6 +125,7 @@ local function applyESP(obj, espSettings)
 			doCon3()
 		elseif not espLib.ESPValues.RGBESP and con3 then
 			con3:Disconnect()
+			cons[obj][3] = nil
 		end
 	end)
 	con2 = obj.Destroying:Connect(function()
@@ -124,8 +133,11 @@ local function applyESP(obj, espSettings)
 		con2:Disconnect()
 		if con3 then
 			con3:Disconnect()
+			cons[obj][3] = nil
 		end
 	end)
+	cons[obj][1] = con1
+	cons[obj][2] = con2
 	if espSettings.RGB then
 		doCon3()
 	end
@@ -133,6 +145,12 @@ end
 local function deapplyESP(obj)
 	if not obj then return end
 	obj = obj:IsA("Model") and obj or obj:FindFirstAncestorOfClass("Model") or obj
+	
+	local found = table.find(espLib.ESPApplied, obj)
+	if found then
+		table.remove(espLib.ESPApplied, found)
+	end
+	
 	for i,v in (cons[obj] or {}) do
 		if v then
 			v:Disconnect()
