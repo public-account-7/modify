@@ -83,7 +83,7 @@ local function applyESP(obj, espSettings)
 
 		local gradient = circle:FindFirstChild("UIGradient") or Instance.new("UIGradient", circle)
 		gradient.Rotation = 90
-		gradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(1,1,1)), ColorSequenceKeypoint.new(1, Color3.new(0.7, 0.7, 0.7))})
+		gradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(1,1,1)), ColorSequenceKeypoint.new(1, Color3.new(0.5, 0.5, 0.5))})
 
 		local stroke = circle:FindFirstChild("UIStroke") or Instance.new("UIStroke", circle)
 		stroke.Thickness = 2.5
