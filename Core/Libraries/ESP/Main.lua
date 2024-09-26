@@ -105,6 +105,9 @@ local function applyESP(obj, espSettings)
 
 	updateESP()
 	local con1, con2, con3;
+	
+	cons[obj] = {}
+	
 	local function doCon3()
 		con3 = game["Run Service"].RenderStepped:Connect(function()
 			if not obj or not obj.Parent or not obj:FindFirstChild("ESPFolder") then
