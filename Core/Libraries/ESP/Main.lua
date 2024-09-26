@@ -53,7 +53,7 @@ local function applyESP(obj, espSettings)
 		local ESPFolder = obj:FindFirstChild("ESPFolder") or Instance.new("Folder", obj)
 		ESPFolder.Name = "ESPFolder"
 
-		local hl = obj:FindFirstChild("Highlight") or Instance.new("Highlight", ESPFolder)
+		local hl = ESPFolder:FindFirstChild("Highlight") or Instance.new("Highlight", ESPFolder)
 		hl.Adornee = obj
 		hl.OutlineColor = col
 		hl.FillColor = col
@@ -65,7 +65,7 @@ local function applyESP(obj, espSettings)
 			hl:Destroy()
 		end
 
-		local bg = obj:FindFirstChild("BillboardGui") or Instance.new("BillboardGui", ESPFolder)
+		local bg = ESPFolder:FindFirstChild("BillboardGui") or Instance.new("BillboardGui", ESPFolder)
 		bg.Adornee = espSettings.Object
 		bg.AlwaysOnTop = true
 		bg.Size = UDim2.fromOffset(100, 100)
