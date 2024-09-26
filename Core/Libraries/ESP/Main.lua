@@ -49,7 +49,7 @@ local function applyESP(obj, espSettings)
 		if not found then
 			table.insert(espLib.ESPApplied, obj)
 		end
-		
+
 		local ESPFolder = obj:FindFirstChild("ESPFolder") or Instance.new("Folder", obj)
 		ESPFolder.Name = "ESPFolder"
 
@@ -103,57 +103,61 @@ local function applyESP(obj, espSettings)
 		stroke.Thickness = 2.5
 	end
 
-	updateESP()
-	local con1, con2, con3;
-	
-	cons[obj] = {}
-	
-	local function doCon3()
-		con3 = game["Run Service"].RenderStepped:Connect(function()
-			if not obj or not obj.Parent or not obj:FindFirstChild("ESPFolder") then
-				con1:Disconnect()
-				con2:Disconnect()
+	if not obj:FindFirstChild("ESPFolder") then
+		updateESP()
+		local con1, con2, con3;
+
+		cons[obj] = {}
+
+		local function doCon3()
+			con3 = game["Run Service"].RenderStepped:Connect(function()
+				if not obj or not obj.Parent or not obj:FindFirstChild("ESPFolder") then
+					con1:Disconnect()
+					con2:Disconnect()
+					con3:Disconnect()
+					cons[obj][3] = nil
+					return
+				end
+				col = GetRGBValue()
+				updateESP()
+			end)
+			cons[obj][3] = con3
+		end
+		con1 = ESPChange.Event:Connect(function()
+			updateESP()
+			if espLib.ESPValues.RGBESP and not con3 then
+				doCon3()
+			elseif not espLib.ESPValues.RGBESP and con3 then
 				con3:Disconnect()
 				cons[obj][3] = nil
-				return
 			end
-			col = GetRGBValue()
-			updateESP()
 		end)
-		cons[obj][3] = con3
-	end
-	con1 = ESPChange.Event:Connect(function()
-		updateESP()
-		if espLib.ESPValues.RGBESP and not con3 then
+		con2 = obj.Destroying:Connect(function()
+			con1:Disconnect()
+			con2:Disconnect()
+			if con3 then
+				con3:Disconnect()
+				cons[obj][3] = nil
+			end
+		end)
+		cons[obj][1] = con1
+		cons[obj][2] = con2
+		if espSettings.RGB then
 			doCon3()
-		elseif not espLib.ESPValues.RGBESP and con3 then
-			con3:Disconnect()
-			cons[obj][3] = nil
 		end
-	end)
-	con2 = obj.Destroying:Connect(function()
-		con1:Disconnect()
-		con2:Disconnect()
-		if con3 then
-			con3:Disconnect()
-			cons[obj][3] = nil
-		end
-	end)
-	cons[obj][1] = con1
-	cons[obj][2] = con2
-	if espSettings.RGB then
-		doCon3()
+	else
+		updateESP()
 	end
 end
 local function deapplyESP(obj)
 	if not obj then return end
 	obj = obj:IsA("Model") and obj or obj:FindFirstAncestorOfClass("Model") or obj
-	
+
 	local found = table.find(espLib.ESPApplied, obj)
 	if found then
 		table.remove(espLib.ESPApplied, found)
 	end
-	
+
 	for i,v in (cons[obj] or {}) do
 		if v then
 			v:Disconnect()
