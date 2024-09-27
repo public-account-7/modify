@@ -25,9 +25,9 @@ local cons = {}
 
 function GetRGBValue()
 	return Color3.new(
-		math.sin(((os.clock() * 6) % 360) / 360 * 2 * math.pi) * 0.5 + 0.5,
-		math.sin((((os.clock() * 6) % 360) / 360 + 1/3) * 2 * math.pi) * 0.5 + 0.5,
-		math.sin((((os.clock() * 6) % 360) / 360 + 2/3) * 2 * math.pi) * 0.5 + 0.5
+		math.sin(((os.clock() * 12) % 360) / 360 * 2 * math.pi) * 0.5 + 0.5,
+		math.sin((((os.clock() * 12) % 360) / 360 + 1/3) * 2 * math.pi) * 0.5 + 0.5,
+		math.sin((((os.clock() * 12) % 360) / 360 + 2/3) * 2 * math.pi) * 0.5 + 0.5
 	)
 end
 
@@ -123,6 +123,8 @@ local function applyESP(obj, espSettings)
 				con3:Disconnect()
 				con3 = nil
 				cons[obj][3] = nil
+				col = espSettings.Color
+				updateESP()
 				return
 			end
 			col = GetRGBValue()
@@ -138,6 +140,8 @@ local function applyESP(obj, espSettings)
 			con3:Disconnect()
 			con3 = nil
 			cons[obj][3] = nil
+			col = espSettings.Color
+			updateESP()
 		end
 	end)
 	con2 = obj.Destroying:Connect(function()
@@ -147,6 +151,8 @@ local function applyESP(obj, espSettings)
 			con3:Disconnect()
 			con3 = nil
 			cons[obj][3] = nil
+			col = espSettings.Color
+			updateESP()
 		end
 	end)
 	cons[obj][1] = con1
