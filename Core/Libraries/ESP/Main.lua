@@ -13,6 +13,7 @@ local espLib; espLib = {
 			return espLib.Values[name]
 		end,
 		__newindex = function(self, name, value)
+			if espLib.Values[name] == value then return end
 			espLib.Values[name] = value
 			ESPChange:Fire()
 		end
@@ -24,9 +25,9 @@ local cons = {}
 
 function GetRGBValue()
 	return Color3.new(
-		math.sin((os.clock() % 360) / 360 * 2 * math.pi) * 0.5 + 0.5,
-		math.sin(((os.clock() % 360) / 360 + 1/3) * 2 * math.pi) * 0.5 + 0.5,
-		math.sin(((os.clock() % 360) / 360 + 2/3) * 2 * math.pi) * 0.5 + 0.5
+		math.sin(((os.clock() * 6) % 360) / 360 * 2 * math.pi) * 0.5 + 0.5,
+		math.sin((((os.clock() * 6) % 360) / 360 + 1/3) * 2 * math.pi) * 0.5 + 0.5,
+		math.sin((((os.clock() * 6) % 360) / 360 + 2/3) * 2 * math.pi) * 0.5 + 0.5
 	)
 end
 
@@ -110,12 +111,17 @@ local function applyESP(obj, espSettings)
 		cons[obj] = {}
 
 		local function doCon3()
-			if con3 then con3:Disconnect() end
+			if con3 then
+				con3:Disconnect()
+				con3 = nil
+				cons[obj][3] = nil
+			end
 			con3 = game["Run Service"].RenderStepped:Connect(function()
 				if not obj or not obj.Parent or not obj:FindFirstChild("ESPFolder") then
 					con1:Disconnect()
 					con2:Disconnect()
 					con3:Disconnect()
+					con3 = nil
 					cons[obj][3] = nil
 					return
 				end
@@ -130,6 +136,7 @@ local function applyESP(obj, espSettings)
 				doCon3()
 			elseif not espLib.ESPValues.RGBESP and con3 then
 				con3:Disconnect()
+				con3 = nil
 				cons[obj][3] = nil
 			end
 		end)
@@ -138,6 +145,7 @@ local function applyESP(obj, espSettings)
 			con2:Disconnect()
 			if con3 then
 				con3:Disconnect()
+				con3 = nil
 				cons[obj][3] = nil
 			end
 		end)
