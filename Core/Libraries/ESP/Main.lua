@@ -104,61 +104,58 @@ local function applyESP(obj, espSettings)
 		stroke.Thickness = 2.5
 	end
 
-	if not obj:FindFirstChild("ESPFolder") then
-		updateESP()
-		local con1, con2, con3;
+	deapplyESP()
+	updateESP()
+	local con1, con2, con3;
 
-		cons[obj] = {}
+	cons[obj] = {}
 
-		local function doCon3()
-			if con3 then
+	local function doCon3()
+		if con3 then
+			con3:Disconnect()
+			con3 = nil
+			cons[obj][3] = nil
+		end
+		con3 = game["Run Service"].RenderStepped:Connect(function()
+			if not obj or not obj.Parent or not obj:FindFirstChild("ESPFolder") then
+				con1:Disconnect()
+				con2:Disconnect()
 				con3:Disconnect()
 				con3 = nil
 				cons[obj][3] = nil
+				return
 			end
-			con3 = game["Run Service"].RenderStepped:Connect(function()
-				if not obj or not obj.Parent or not obj:FindFirstChild("ESPFolder") then
-					con1:Disconnect()
-					con2:Disconnect()
-					con3:Disconnect()
-					con3 = nil
-					cons[obj][3] = nil
-					return
-				end
-				col = GetRGBValue()
-				updateESP()
-			end)
-			cons[obj][3] = con3
-		end
-		con1 = ESPChange.Event:Connect(function()
+			col = GetRGBValue()
 			updateESP()
-			if espLib.ESPValues.RGBESP and not con3 then
-				doCon3()
-			elseif not espLib.ESPValues.RGBESP and con3 then
-				con3:Disconnect()
-				con3 = nil
-				cons[obj][3] = nil
-			end
 		end)
-		con2 = obj.Destroying:Connect(function()
-			con1:Disconnect()
-			con2:Disconnect()
-			if con3 then
-				con3:Disconnect()
-				con3 = nil
-				cons[obj][3] = nil
-			end
-		end)
-		cons[obj][1] = con1
-		cons[obj][2] = con2
-		if espLib.ESPValues.RGBESP then
-			doCon3()
-		end
-	else
+		cons[obj][3] = con3
+	end
+	con1 = ESPChange.Event:Connect(function()
 		updateESP()
+		if espLib.ESPValues.RGBESP and not con3 then
+			doCon3()
+		elseif not espLib.ESPValues.RGBESP and con3 then
+			con3:Disconnect()
+			con3 = nil
+			cons[obj][3] = nil
+		end
+	end)
+	con2 = obj.Destroying:Connect(function()
+		con1:Disconnect()
+		con2:Disconnect()
+		if con3 then
+			con3:Disconnect()
+			con3 = nil
+			cons[obj][3] = nil
+		end
+	end)
+	cons[obj][1] = con1
+	cons[obj][2] = con2
+	if espLib.ESPValues.RGBESP then
+		doCon3()
 	end
 end
-local function deapplyESP(obj)
+function deapplyESP(obj)
 	if not obj then return end
 	obj = obj:IsA("Model") and obj or obj:FindFirstAncestorOfClass("Model") or obj
 
