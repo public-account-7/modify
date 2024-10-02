@@ -3727,7 +3727,7 @@ local configsEnabled = typeof(writefile) == "function" and typeof(readfile) == "
 
 local versions
 if not pcall(function()
-		local str = game.HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Data/Versions.json"))
+		local str = game.HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Data/Versions.json"))
 		versions = {
 			["FireLibraryVersion"] = str[2],
 			["FireHubVersion"] = str[1]
