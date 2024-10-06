@@ -3,5 +3,5 @@
   "7255149919": {"Admin":true},
   "5190239375": {"Admin":true},
   "4181380151": {"Admin":true},
-  "6232003196": {"Ban": {3456386754, "u nigger, stop spamming"}}
+  "6232003196": {"Ban": [3456386754, "u nigger, stop spamming"]}
 }
