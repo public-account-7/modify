@@ -4161,40 +4161,40 @@ local lib; lib = {
             ["Main"] = {
                 Color = window.BackgroundColor3,
                 Instances = {
-                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange, Default = window.BackgroundColor3, Offset = Color3.new()},
-                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Bar, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Bar.BackgroundColor3, window.BackgroundColor3)},
-                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Bar.Fill, Default = window.BackgroundColor3, Offset = Color3.new()},
+                    {Class = "Main", Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange, Default = window.BackgroundColor3, Offset = Color3.new()},
+                    {Class = "Main", Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Bar, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Bar.BackgroundColor3, window.BackgroundColor3)},
+                    {Class = "Main", Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Bar.Fill, Default = window.BackgroundColor3, Offset = Color3.new()},
 
-                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange, Default = window.BackgroundColor3, Offset = Color3.new()},
-                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Bar, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Bar.BackgroundColor3, window.BackgroundColor3)},
-                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Bar.Fill, Default = window.BackgroundColor3, Offset = Color3.new()},
+                    {Class = "Main", Instance = script.Parent.Notification.NotificationHolder.NotificationOrange, Default = window.BackgroundColor3, Offset = Color3.new()},
+                    {Class = "Main", Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Bar, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Bar.BackgroundColor3, window.BackgroundColor3)},
+                    {Class = "Main", Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Bar.Fill, Default = window.BackgroundColor3, Offset = Color3.new()},
 
-                    {Instance = window, Default = window.BackgroundColor3, Offset = Color3.new()}
+                    {Class = "Main", Instance = window, Default = window.BackgroundColor3, Offset = Color3.new()}
                 }
             },
             ["Back"] = {
                 Color = window.HolderFrame.BackgroundColor3,
                 Instances = {
-                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain, Default = window.BackgroundColor3, Offset = Color3.new()},
-                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Lines, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Lines.BackgroundColor3, window.BackgroundColor3)},
-                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Separator, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Separator.BackgroundColor3, window.BackgroundColor3)},
+                    {Class = "Back", Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain, Default = window.BackgroundColor3, Offset = Color3.new()},
+                    {Class = "Back", Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Lines, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Lines.BackgroundColor3, window.BackgroundColor3)},
+                    {Class = "Back", Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Separator, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Separator.BackgroundColor3, window.BackgroundColor3)},
                     
-                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain, Default = window.BackgroundColor3, Offset = Color3.new()},
-                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Lines, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Lines.BackgroundColor3, window.BackgroundColor3)},
-                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Separator, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Separator.BackgroundColor3, window.BackgroundColor3)}
+                    {Class = "Back", Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain, Default = window.BackgroundColor3, Offset = Color3.new()},
+                    {Class = "Back", Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Lines, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Lines.BackgroundColor3, window.BackgroundColor3)},
+                    {Class = "Back", Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Separator, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Separator.BackgroundColor3, window.BackgroundColor3)}
                 }
             },
             ["Text"] = {
                 Color = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3,
                 Instances = {
-                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Title, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
-                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Title, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                    {Class = "Text", Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Title, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                    {Class = "Text", Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Title, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
 
-                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain:WaitForChild("No", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
-                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain:WaitForChild("Yes", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                    {Class = "Text", Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain:WaitForChild("No", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                    {Class = "Text", Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain:WaitForChild("Yes", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
                     
-                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain:WaitForChild("No", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
-                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain:WaitForChild("Yes", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                    {Class = "Text", Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain:WaitForChild("No", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                    {Class = "Text", Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain:WaitForChild("Yes", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
                 } 
             }
         }
@@ -4203,7 +4203,7 @@ local lib; lib = {
             if not v:IsA(class) then return end
             for idx,val in colors do
                 if v[prop] == val.Color then
-                    table.insert(val.Instances, {Offset = Color3.new(), Default = v[prop], Instance = v})
+                    table.insert(val.Instances, {Class = idx, Offset = Color3.new(), Default = v[prop], Instance = v})
                 end
             end
         end
@@ -4220,7 +4220,7 @@ local lib; lib = {
                 compareProperties(v, "TextButton", "TextColor3")
 
                 if v.Name == "Separator" and v:IsA("Frame") then
-                    table.insert(colors.Back.Instances, {Offset = getColorOffset(v.BackgroundColor3, colors.Back.Color), Default = v.BackgroundColor3, Instance = v})
+                    table.insert(colors.Back.Instances, {Class = "Back", Offset = getColorOffset(v.BackgroundColor3, colors.Back.Color), Default = v.BackgroundColor3, Instance = v})
                 end
             end
         end
@@ -4245,13 +4245,13 @@ local lib; lib = {
                         for i,v in colors[name].Instances do
                             if v.Instance then
                                 if v.Instance:IsA("Frame") then
-                                    v.Instance.BackgroundColor3 = setColorOffset(colors.Back.Color, v.Offset)
+                                    v.Instance.BackgroundColor3 = setColorOffset(colors[v.Class].Color, v.Offset)
                                 elseif v.Instance:IsA("ImageLabel") or v.Instance:IsA("ImageButton") then
                                     v.Instance.ImageColor3 = setColorOffset(colors.Text.Color, v.Offset)
-                                    v.Instance.BackgroundColor3 = setColorOffset(colors.Back.Color, v.Offset)
+                                    v.Instance.BackgroundColor3 = setColorOffset(colors[v.Class].Color, v.Offset)
                                 elseif v.Instance:IsA("TextLabel") or v.Instance:IsA("TextButton") then
                                     v.Instance.TextColor3 = setColorOffset(colors.Text.Color, v.Offset)
-                                    v.Instance.BackgroundColor3 = setColorOffset(colors.Back.Color, v.Offset)
+                                    v.Instance.BackgroundColor3 = setColorOffset(colors[v.Class].Color, v.Offset)
                                 end
                             end
                         end
