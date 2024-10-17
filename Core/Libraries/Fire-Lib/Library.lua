@@ -4183,11 +4183,11 @@ local lib; lib = {
                     {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Title, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
                     {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Title, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
 
-                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.No, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
-                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Yes, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain:WaitForChild("No", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain:WaitForChild("Yes", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
                     
-                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.No, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
-                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Yes, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain:WaitForChild("No", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain:WaitForChild("Yes", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
                 } 
             }
         }
