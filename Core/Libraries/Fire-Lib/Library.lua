@@ -4768,7 +4768,6 @@ local lib; lib = {
                             struct[counterText] = inpt.Value
                             getCallback(options)(inpt)
                         end
-                        cb(options.Default)
                         options.CB = cb
                         local focused = false
                         local con
@@ -4777,6 +4776,7 @@ local lib; lib = {
                         input.Name = ""
                         input:FindFirstChild("Text").Text = text
                         local inpt = Enum.KeyCode:FromName(options.Default) or Enum.KeyCode:FromValue(options.Default)
+                        cb(inpt)
                         input.InputOuter.Frame.Input.Text = inpt.Name
                         cons[#cons+1] = input.Trigger.MouseButton1Click:Connect(function()
                             playSound("Click")
