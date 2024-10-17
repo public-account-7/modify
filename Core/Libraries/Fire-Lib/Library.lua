@@ -4024,25 +4024,13 @@ local function getOptions(options) -- cuz i was lazy to always insert the same l
     return typeof(options) == "table" and options or {}
 end
 local function getCallback(options)
-    return typeof(options.Function) == "function" and options.Function or typeof(options.Callback) == "function" and options.Callback or function() end
+    return coroutine.wrap(typeof(options.Function) == "function" and options.Function or typeof(options.Callback) == "function" and options.Callback or function() end)
 end
 local function getText(options)
     return typeof(options.Title) == "string" and options.Title or typeof(options.Caption) == "string" and options.Caption or typeof(options.Name) == "string" and options.Name or typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content
 end
 
 local lib; lib = {
-    SetThemeColor = setmetatable({}, {
-        __call = function(self, themeId, themeCol)
-            themeId = tostring(themeId)
-        end,
-        __newindex = function(self, themeId, themeCol)
-            themeId = tostring(themeId)
-
-        end,
-        __index = function(self, themeId)
-            themeId = tostring(themeId)
-        end,
-    }),
     Notifications = {
         _AnimateNotification = {
             In = function(notification)
