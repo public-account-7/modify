@@ -4758,6 +4758,10 @@ local lib; lib = {
                         local function cb(inpt)
                             if tonumber(inpt) then
                                 inpt = Enum.KeyCode:FromValue(inpt)
+                            else
+                                pcall(function()
+                                    inpt = Enum.KeyCode[inpt]
+                                end)
                             end
                             funcs.Value = inpt
                             input.InputOuter.Frame.Input.Text = inpt.Name
