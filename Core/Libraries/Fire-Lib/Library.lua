@@ -4024,7 +4024,7 @@ local function getOptions(options) -- cuz i was lazy to always insert the same l
     return typeof(options) == "table" and options or {}
 end
 local function getCallback(options)
-    return coroutine.wrap(typeof(options.Function) == "function" and options.Function or typeof(options.Callback) == "function" and options.Callback or function() end)
+    return typeof(options.Function) == "function" and options.Function or typeof(options.Callback) == "function" and options.Callback or function() end
 end
 local function getText(options)
     return typeof(options.Title) == "string" and options.Title or typeof(options.Caption) == "string" and options.Caption or typeof(options.Name) == "string" and options.Name or typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content
@@ -4556,7 +4556,7 @@ local lib; lib = {
                             struct[counterText] = bool
                             getCallback(options)(bool)
                         end
-                        cb(state)
+                        coroutine.wrap(cb)(state)
                         options.CB = cb
                         toggle.ToggleOuter.Frame.ImageLabel.Visible = state
                         cons[#cons+1] = toggle.Trigger.MouseButton1Click:Connect(function()
@@ -4671,7 +4671,7 @@ local lib; lib = {
                             struct[counterText] = txt
                             getCallback(options)(txt)
                         end
-                        cb(tb.TextBoxOuter.TextBox.Text)
+                        coroutine.wrap(cb)(tb.TextBoxOuter.TextBox.Text)
                         options.CB = cb
                         cons[#cons+1] = tb.TextBoxOuter.TextBox.FocusLost:Connect(function(enter)
                             if (options.Enter or options.NeedEnter or options.NeedsEnter) and enter or not (options.Enter or options.NeedEnter or options.NeedsEnter) then
@@ -4776,7 +4776,7 @@ local lib; lib = {
                         input.Name = ""
                         input:FindFirstChild("Text").Text = text
                         local inpt = Enum.KeyCode:FromName(options.Default) or Enum.KeyCode:FromValue(options.Default)
-                        cb(inpt)
+                        coroutine.wrap(cb)(inpt)
                         input.InputOuter.Frame.Input.Text = inpt.Name
                         cons[#cons+1] = input.Trigger.MouseButton1Click:Connect(function()
                             playSound("Click")
@@ -5098,7 +5098,7 @@ local lib; lib = {
                             struct[counterText] = {col.R * 255, col.G * 255, col.B * 255}
                             getCallback(options)(col)
                         end
-                        cb(col)
+                        coroutine.wrap(cb)(col)
                         options.CB = cb
                         Rs, Gs, Bs = 
                             setupSlider(cp.RGB.RHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.R * 255), Callback = function(v)
@@ -5150,7 +5150,7 @@ local lib; lib = {
                             if not self or not self.Object then return end
                             self.Options.Callback = function(newVal)
                                 funcs.Value = newVal
-                                struct[counterText] = newVal
+                                struct[counterText] = {newVal.R * 255, newVal.G * 255, newVal.B * 255}
                                 return cb(newVal)
                             end
                         end
