@@ -5231,18 +5231,22 @@ local lib; lib = {
         end})
         if configsEnabled then
             page:AddSeparator()
+            page:AddLabel({Text = "Congigs"})
+            page:AddSeparator()
             local currentConfig = ""
             page:AddTextBox({Text = "Config name", NeedEnter = false, Callback = function(text)
                 currentConfig = text
             end, IgnoreConfigs = true})
             local suffix = ""
             local prefix = ""
+            local format = "json"
+            local folder = "FireLib"
             if makefolder then
-                makefolder("FireLib")
-                prefix = "FireLib\\"
-                suffix = "-Config.json"
+                makefolder(folder)
+                prefix = folder.."\\"
+                suffix = "-Config."..format
             else
-                suffix = "-FireLib_Config.json"
+                suffix = "-FireLib_Config."..format
             end
             suffix = "-"..game.HttpService:UrlEncode(window.HolderFrame.Title.Text)..suffix
             page:AddButton({Text = "Save", Callback = function()
@@ -5257,12 +5261,49 @@ local lib; lib = {
                 configStructure = got
                 configEvent:Fire(got)
             end})
-            page:AddSeparator()
-            for i,v in colors do
-                page:AddColorPicker({Text = i, Default = v.Color, Callback = function(col)
-                    windowFuncs.ThemeColors[i] = col
-                end})
+        end
+        page:AddSeparator()
+        page:AddLabel({Text = "Themes"})
+        page:AddSeparator()
+        for i,v in colors do
+            page:AddColorPicker({Text = i, Default = v.Color, Callback = function(col)
+                windowFuncs.ThemeColors[i] = col
+            end})
+        end
+        if configsEnabled then
+            local currentConfig = ""
+            page:AddTextBox({Text = "Theme name", NeedEnter = false, Callback = function(text)
+                currentConfig = text
+            end, IgnoreConfigs = true})
+            local suffix = ""
+            local prefix = ""
+            local format = "wave"
+            local folder = "FireLib_Themes"
+            if makefolder then
+                makefolder(folder)
+                prefix = folder.."\\"
+                suffix = "-Theme."..format
+            else
+                suffix = "-"..folder.."."..format
             end
+            suffix = "-"..game.HttpService:UrlEncode(window.HolderFrame.Title.Text)..suffix
+            page:AddButton({Text = "Save", Callback = function()
+                local colorsT = {}
+                for i,v in colors do
+                    colorsT[i] = {R = v.Color.R, G = v.Color.G, B = v.Color.B}
+                end
+                writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(colorsT))
+            end})
+            page:AddButton({Text = "Load", Callback = function()
+                local got = readfile(prefix..currentConfig..suffix)
+                if got then
+                    got = game.HttpService:JSONDecode(got)
+                end
+                if not got then return end
+                for i,v in got do
+                    windowFuncs.ThemeColors[i] = Color3.fromRGB(v.R, v.G, v.B)
+                end
+            end})
         end
 
         return windowFuncs
