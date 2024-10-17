@@ -4122,6 +4122,9 @@ local lib; lib = {
     Versions = versions,
     MakeWindow = function(self, options)
         local configStructure = {}
+        
+        getGlobalTable().Struct = configStructure
+        
         local configEvent = Instance.new("BindableEvent")
         local counter = {}
         local function count(name, layer)
@@ -4152,8 +4155,119 @@ local lib; lib = {
         makeDraggable(maximize.DragButton)
         makeDraggable(window)
 
+        local function getColorOffset(a,b)
+            return Color3.new(math.clamp(a.R - b.R, 0, 1),math.clamp(a.G - b.G, 0, 1),math.clamp(a.B - b.B, 0, 1))
+        end
+        local function setColorOffset(a,b)
+            return Color3.new(math.clamp(a.R + b.R, 0, 1),math.clamp(a.G + b.G, 0, 1),math.clamp(a.B + b.B, 0, 1))
+        end
+
+        local colors = {
+            ["Main"] = {
+                Color = window.BackgroundColor3,
+                Instances = {
+                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange, Default = window.BackgroundColor3, Offset = Color3.new()},
+                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Bar, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Bar.BackgroundColor3, window.BackgroundColor3)},
+                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Bar.Fill, Default = window.BackgroundColor3, Offset = Color3.new()},
+
+                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange, Default = window.BackgroundColor3, Offset = Color3.new()},
+                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Bar, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Bar.BackgroundColor3, window.BackgroundColor3)},
+                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Bar.Fill, Default = window.BackgroundColor3, Offset = Color3.new()},
+
+                    {Instance = window, Default = window.BackgroundColor3, Offset = Color3.new()}
+                }
+            },
+            ["Back"] = {
+                Color = window.HolderFrame.BackgroundColor3,
+                Instances = {
+                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain, Default = window.BackgroundColor3, Offset = Color3.new()},
+                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Lines, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Lines.BackgroundColor3, window.BackgroundColor3)},
+                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Separator, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Separator.BackgroundColor3, window.BackgroundColor3)},
+                    
+                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain, Default = window.BackgroundColor3, Offset = Color3.new()},
+                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Lines, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Lines.BackgroundColor3, window.BackgroundColor3)},
+                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Separator, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Separator.BackgroundColor3, window.BackgroundColor3)}
+                }
+            },
+            ["Text"] = {
+                Color = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3,
+                Instances = {
+                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Title, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Title, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+
+                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.No, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                    {Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Yes, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                    
+                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.No, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                    {Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Yes, Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
+                } 
+            }
+        }
+
+        local function compareProperties(v,class,prop)
+            if not v:IsA(class) then return end
+            for idx,val in colors do
+                if v[prop] == val.Color then
+                    table.insert(val.Instances, {Offset = Color3.new(), Default = v[prop], Instance = v})
+                end
+            end
+        end
+
+        local function updateThemeTable(v)
+            if v and v:IsA("GuiObject") then
+                compareProperties(v, "Frame", "BackgroundColor3")
+                compareProperties(v, "TextButton", "BackgroundColor3")
+
+                compareProperties(v, "ImageLabel", "ImageColor3")
+                compareProperties(v, "ImageButton", "ImageColor3")
+
+                compareProperties(v, "TextLabel", "TextColor3")
+                compareProperties(v, "TextButton", "TextColor3")
+
+                if v.Name == "Separator" and v:IsA("Frame") then
+                    table.insert(colors.Back.Instances, {Offset = getColorOffset(v.BackgroundColor3, colors.Back.Color), Default = v.BackgroundColor3, Instance = v})
+                end
+            end
+        end
+
+        for i,v in window:GetDescendants() do
+            updateThemeTable(v)
+        end
+        window.DescendantAdded:Connect(function(v)
+            updateThemeTable(v)
+        end)
+        for i,v in maximize:GetDescendants() do
+            updateThemeTable(v)
+        end
+        updateThemeTable(maximize)
+
         local cd = false
         local windowFuncs = {
+            ThemeColors = setmetatable({}, {
+                __newindex = function(self, name, newVal)
+                    if colors[name] and typeof(newVal) == "Color3" then
+                        colors[name].Color = newVal
+                        for i,v in colors[name].Instances do
+                            if v.Instance then
+                                if v.Instance:IsA("Frame") then
+                                    v.Instance.BackgroundColor3 = setColorOffset(colors.Back.Color, v.Offset)
+                                elseif v.Instance:IsA("ImageLabel") or v.Instance:IsA("ImageButton") then
+                                    v.Instance.ImageColor3 = setColorOffset(colors.Text.Color, v.Offset)
+                                    v.Instance.BackgroundColor3 = setColorOffset(colors.Back.Color, v.Offset)
+                                elseif v.Instance:IsA("TextLabel") or v.Instance:IsA("TextButton") then
+                                    v.Instance.TextColor3 = setColorOffset(colors.Text.Color, v.Offset)
+                                    v.Instance.BackgroundColor3 = setColorOffset(colors.Back.Color, v.Offset)
+                                end
+                            end
+                        end
+                    end
+                end,
+                __index = function(self, name)
+                    if colors[name] then
+                        return colors[name].Color
+                    end
+                end,    
+            }),
             Opened = true,
             Close = function(self)
                 task.spawn(function()
@@ -4319,6 +4433,7 @@ local lib; lib = {
                             if not self or not self.Object then return end
                             self.Options.Callback = function(newVal)
                                 funcs.Value = newVal
+                                struct[counterText] = newVal
                                 return cb(newVal)
                             end
                         end
@@ -4420,9 +4535,8 @@ local lib; lib = {
                         end
                         function funcs:SetCallback(cb)
                             if not self or not self.Object then return end
-                            self.Options.Callback = function(newVal)
-                                funcs.Value = newVal
-                                return cb(newVal)
+                            self.Options.Callback = function()
+                                return cb()
                             end
                         end
                         function funcs:SetText(txt)
@@ -4490,6 +4604,7 @@ local lib; lib = {
                             if not self or not self.Object then return end
                             self.Options.Callback = function(newVal)
                                 funcs.Value = newVal
+                                struct[counterText] = newVal
                                 return cb(newVal)
                             end
                         end
@@ -4561,13 +4676,14 @@ local lib; lib = {
                             playSound("MouseHover")
                             tb.TextBoxOuter.TextBox:CaptureFocus()
                         end)
-                        local funcs = {Value = tb.TextBoxOuter.TextBox.Text}
+                        local funcs = {}
                         local function cb(txt)
                             funcs.Value = txt
                             tb.TextBoxOuter.TextBox.Text = txt
                             struct[counterText] = txt
                             getCallback(options)(txt)
                         end
+                        cb(tb.TextBoxOuter.TextBox.Text)
                         options.CB = cb
                         cons[#cons+1] = tb.TextBoxOuter.TextBox.FocusLost:Connect(function(enter)
                             if (options.Enter or options.NeedEnter or options.NeedsEnter) and enter or not (options.Enter or options.NeedEnter or options.NeedsEnter) then
@@ -4608,6 +4724,7 @@ local lib; lib = {
                             if not self or not self.Object then return end
                             self.Options.Callback = function(newVal)
                                 funcs.Value = newVal
+                                struct[counterText] = newVal
                                 return cb(newVal)
                             end
                         end
@@ -4659,6 +4776,7 @@ local lib; lib = {
                             struct[counterText] = inpt.Value
                             getCallback(options)(inpt)
                         end
+                        cb(options.Default)
                         options.CB = cb
                         local focused = false
                         local con
@@ -4724,6 +4842,7 @@ local lib; lib = {
                             if not self or not self.Object then return end
                             self.Options.Callback = function(newVal)
                                 funcs.Value = newVal
+                                struct[counterText] = newVal
                                 return cb(newVal)
                             end
                         end
@@ -4977,7 +5096,7 @@ local lib; lib = {
                         cp.RGB.RHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(col.R, 0, 0)
                         cp.RGB.GHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(0, col.G, 0)
                         cp.RGB.BHolder.SliderOuter.Bar.Fill.BackgroundColor3 = Color3.new(0, 0, col.B)
-                        local funcs = {Value = col}
+                        local funcs = {}
                         local Rs, Gs, Bs
                         local function cb(col)
                             funcs.Value = col
@@ -4987,6 +5106,7 @@ local lib; lib = {
                             struct[counterText] = {col.R * 255, col.G * 255, col.B * 255}
                             getCallback(options)(col)
                         end
+                        cb(col)
                         options.CB = cb
                         Rs, Gs, Bs = 
                             setupSlider(cp.RGB.RHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.R * 255), Callback = function(v)
@@ -5038,6 +5158,7 @@ local lib; lib = {
                             if not self or not self.Object then return end
                             self.Options.Callback = function(newVal)
                                 funcs.Value = newVal
+                                struct[counterText] = newVal
                                 return cb(newVal)
                             end
                         end
@@ -5133,8 +5254,15 @@ local lib; lib = {
                     got = game.HttpService:JSONDecode(got)
                 end
                 if not got then return end
+                configStructure = got
                 configEvent:Fire(got)
             end})
+            page:AddSeparator()
+            for i,v in colors do
+                page:AddColorPicker({Text = i, Default = v.Color, Callback = function(col)
+                    windowFuncs.ThemeColors[i] = col
+                end})
+            end
         end
 
         return windowFuncs
