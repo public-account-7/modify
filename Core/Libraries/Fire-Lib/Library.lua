@@ -5233,6 +5233,7 @@ local lib; lib = {
             else
                 suffix = "-FireLib_Config.json"
             end
+            suffix = "-"..game.HttpService:UrlEncode(window.HolderFrame.Title.Text)..suffix
             page:AddButton({Text = "Save", Callback = function()
                 writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(configStructure))
             end})
