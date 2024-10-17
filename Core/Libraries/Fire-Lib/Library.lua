@@ -5268,6 +5268,11 @@ local lib; lib = {
         for i,v in colors do
             page:AddColorPicker({Text = i, Default = v.Color, Callback = function(col)
                 windowFuncs.ThemeColors[i] = col
+                for idx,val in colors do
+                    if idx ~= i then
+                        windowFuncs.ThemeColors[idx] = windowFuncs.ThemeColors[idx]
+                    end
+                end
             end})
         end
         if configsEnabled then
