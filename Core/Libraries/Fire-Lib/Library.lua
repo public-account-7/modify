@@ -3920,6 +3920,13 @@ local function playSound(soundName)
     end)
 end
 
+local function safeCall(f)
+    return coroutine.wrap(function(...)
+        local args = {...}
+        pcall(f, unpack(args))
+    end)
+end
+
 local function setupSlider(slider, holder, options)
     local val = options.Default
     local prevVal = val
@@ -3962,8 +3969,8 @@ local function setupSlider(slider, holder, options)
             val = newVal
             sliderBar.Parent.Progress.Text = customTextDisplay(val, options.Max)
             if newVal ~= prevVal then
-                coroutine.wrap(playSound)("MouseHover")
-                coroutine.wrap(options.Callback)(newVal)
+                safeCall(playSound)("MouseHover")
+                safeCall(options.Callback)(newVal)
                 prevVal = newVal
                 newVal = nil
             end
@@ -4069,11 +4076,11 @@ local lib; lib = {
                 notification.NotificationOrange.NotificationMain.Title.Text = typeof(options.Title) == "string" and options.Title or typeof(options.Name) == "string" and options.Name or "Notification"
                 local text = typeof(options.Text) == "string" and options.Text or typeof(options.Description) == "string" and options.Description or typeof(options.Content) == "string" and options.Content or ""
                 notification.NotificationOrange.NotificationMain.Lines["1"].Text = text
-                coroutine.wrap(self._AnimateNotification.In)(notification)
+                safeCall(self._AnimateNotification.In)(notification)
                 local time = tonumber(options.Time) or tonumber(options.Delay) or tonumber(options.Length) or 5
                 notification.NotificationOrange.NotificationMain.Bar.Fill:TweenSizeAndPosition(UDim2.fromScale(0, 1), UDim2.fromScale(1, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, time, true)
                 task.wait(time)
-                coroutine.wrap(self._AnimateNotification.Out)(notification)
+                safeCall(self._AnimateNotification.Out)(notification)
             end)
         end,
         ChooseNotification = function(self, options)
@@ -4089,21 +4096,21 @@ local lib; lib = {
                 local done = false
                 notification.NotificationOrange.NotificationMain.Yes.MouseButton1Click:Connect(function()
                     if done then return end
-                    coroutine.wrap(self._AnimateNotification.Out)(notification)
+                    safeCall(self._AnimateNotification.Out)(notification)
                     done = true
                     getCallback(options)(true)
                 end)
                 notification.NotificationOrange.NotificationMain.No.MouseButton1Click:Connect(function()
                     if done then return end
-                    coroutine.wrap(self._AnimateNotification.Out)(notification)
+                    safeCall(self._AnimateNotification.Out)(notification)
                     done = true
                     getCallback(options)(false)
                 end)
-                coroutine.wrap(self._AnimateNotification.In)(notification)
+                safeCall(self._AnimateNotification.In)(notification)
                 local time = tonumber(options.Time) or tonumber(options.Delay) or tonumber(options.Length) or 5
                 notification.NotificationOrange.NotificationMain.Bar.Fill:TweenSizeAndPosition(UDim2.fromScale(0, 1), UDim2.fromScale(1, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, time, true)
                 task.wait(time)
-                coroutine.wrap(self._AnimateNotification.Out)(notification)
+                safeCall(self._AnimateNotification.Out)(notification)
             end)
         end
     },
@@ -4556,7 +4563,7 @@ local lib; lib = {
                             struct[counterText] = bool
                             getCallback(options)(bool)
                         end
-                        coroutine.wrap(cb)(state)
+                        safeCall(cb)(state)
                         options.CB = cb
                         toggle.ToggleOuter.Frame.ImageLabel.Visible = state
                         cons[#cons+1] = toggle.Trigger.MouseButton1Click:Connect(function()
@@ -4671,7 +4678,7 @@ local lib; lib = {
                             struct[counterText] = txt
                             getCallback(options)(txt)
                         end
-                        coroutine.wrap(cb)(tb.TextBoxOuter.TextBox.Text)
+                        safeCall(cb)(tb.TextBoxOuter.TextBox.Text)
                         options.CB = cb
                         cons[#cons+1] = tb.TextBoxOuter.TextBox.FocusLost:Connect(function(enter)
                             if (options.Enter or options.NeedEnter or options.NeedsEnter) and enter or not (options.Enter or options.NeedEnter or options.NeedsEnter) then
@@ -4776,7 +4783,7 @@ local lib; lib = {
                         input.Name = ""
                         input:FindFirstChild("Text").Text = text
                         local inpt = Enum.KeyCode:FromName(options.Default) or Enum.KeyCode:FromValue(options.Default)
-                        coroutine.wrap(cb)(inpt)
+                        safeCall(cb)(inpt)
                         input.InputOuter.Frame.Input.Text = inpt.Name
                         cons[#cons+1] = input.Trigger.MouseButton1Click:Connect(function()
                             playSound("Click")
@@ -4906,7 +4913,7 @@ local lib; lib = {
                                 end
                                 row.MouseButton1Click:Connect(function()
                                     toggle(false)
-                                    coroutine.wrap(cb)(v)
+                                    safeCall(cb)(v)
                                     for i,v in row.Parent:GetChildren() do
                                         v.TextColor3 = Color3.new(1,1,1)
                                     end
@@ -5020,7 +5027,7 @@ local lib; lib = {
                                     state = not state
                                     row.TextColor3 = state and Color3.fromRGB(255, 125, 0) or not Color3.fromRGB(255, 255, 255)
                                     selected[i] = state
-                                    coroutine.wrap(cb)(selected)
+                                    safeCall(cb)(selected)
                                 end)
                             end
                         end
@@ -5098,7 +5105,7 @@ local lib; lib = {
                             struct[counterText] = {col.R * 255, col.G * 255, col.B * 255}
                             getCallback(options)(col)
                         end
-                        coroutine.wrap(cb)(col)
+                        safeCall(cb)(col)
                         options.CB = cb
                         Rs, Gs, Bs = 
                             setupSlider(cp.RGB.RHolder, nil, {Min = 0, Max = 255, Step = 1, Default = math.round(col.R * 255), Callback = function(v)
