@@ -5231,7 +5231,7 @@ local lib; lib = {
         end})
         if configsEnabled then
             page:AddSeparator()
-            page:AddLabel({Text = "Congigs"})
+            page:AddLabel({Text = "Configs"})
             page:AddSeparator()
             local currentConfig = ""
             page:AddTextBox({Text = "Config name", NeedEnter = false, Callback = function(text)
@@ -5301,7 +5301,7 @@ local lib; lib = {
                 end
                 if not got then return end
                 for i,v in got do
-                    windowFuncs.ThemeColors[i] = Color3.fromRGB(v.R, v.G, v.B)
+                    windowFuncs.ThemeColors[i] = Color3.new(v.R, v.G, v.B)
                 end
             end})
         end
