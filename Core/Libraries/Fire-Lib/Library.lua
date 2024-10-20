@@ -5248,7 +5248,7 @@ local lib; lib = {
             else
                 suffix = "-FireLib_Config."..format
             end
-            suffix = "-"..game.HttpService:UrlEncode(window.HolderFrame.Title.Text)..suffix
+            suffix = "-"..suffix
             page:AddButton({Text = "Save", Callback = function()
                 writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(configStructure))
             end})
