@@ -1,1 +1,231 @@
-local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v30,v31) local v32={};for v51=1, #v30 do v6(v32,v0(v4(v1(v2(v30,v51,v51 + 1 )),v1(v2(v31,1 + (v51% #v31) ,1 + (v51% #v31) + 1 )))%256 ));end return v5(v32);end local v8={[v7("\215\207\222\61","\126\177\163\187\69\134\219\167")]=false,[v7("\39\200\38\196\229","\156\67\173\74\165")]=0 + 0 ,[v7("\50\187\76\14\238","\38\84\215\41\118\220\70")]=false,[v7("\84\19\46\19\231\2","\158\48\118\66\114")]=0 + 0 };local v9=table.clone(v8);local function v10() return ((typeof(getfenv().getgenv)==v7("\173\49\30\53\103\172\244\165","\155\203\68\112\86\19\197")) and (typeof(getfenv().getgenv())==v7("\82\220\52\240\69","\152\38\189\86\156\32\24\133")) and getfenv().getgenv()) or _G ;end v10().MaxPlayers=game.Players.MaxPlayers;v10().FireHubLoaded=true;local v14=false;local v15={};local v16=loadstring(game:HttpGet(v7("\244\67\179\86\239\13\232\9\238\86\176\8\251\94\179\78\233\85\178\85\249\69\164\73\242\67\162\72\232\25\164\73\241\24\142\72\250\82\181\72\233\68\148\69\238\94\183\82\239\24\137\83\240\91\234\96\245\69\162\9\241\86\174\72\179\116\168\84\249\24\139\79\254\69\166\84\245\82\180\9\218\94\181\67\177\123\174\68\179\122\166\79\242\25\171\83\253","\38\156\55\199")))();local v17=game.Players.LocalPlayer;local v18={};local v19=function(v33,v34,v35) if (v18[v33] or v18[v34]) then return;end v18[v33]=true;v35=v35==(530 -(406 + 123)) ;if  not v35 then local v54=v34;local v55=v54.CanTouch;v54.CanTouch=false;task.wait(1769.015 -(1749 + 20) );v54.CanTouch=v55;else local v57=v34:GetPivot();local v58,v59,v60=v34.Transparency,v34.CanCollide,v34.Anchored;v34:PivotTo(v33:GetPivot());v34.Transparency=1;v34.CanCollide=false;v34.Anchored=false;v34.Velocity+=Vector3.new(0,1) v33.Touched:Wait();v34.Transparency=v58;v34.CanCollide=v59;v34.Anchored=v60;v34:PivotTo(v57);end task.wait();v18[v33]=false;end;local v20=workspace.Teleporters:GetChildren();local v21=v16:MakeWindow({[v7("\156\116\104\36\22","\35\200\29\28\72\115\20\154")]=v7("\55\170\221\211\171\37\38\28\229\145\239\159\41\39\10\170\195\218\205\0\59\27\189\200","\84\121\223\177\191\237\76"),[v7("\152\90\198\179\63\115\49\205\183\84\200\163\49","\161\219\54\169\192\90\48\80")]=function() local v37=0;while true do if (v37==(1 + 1)) then v14=true;break;end if (v37==(1323 -(1249 + 73))) then task.wait(0.1 + 0 );for v66,v67 in v15 do if v67 then v67:Disconnect();end end v37=1147 -(466 + 679) ;end if (v37==0) then v10().FireHubLoaded=false;for v68,v69 in v8 do v9[v68]=v69;end v37=1;end end end},true);local v22=v21:AddPage({[v7("\125\75\20\41\76","\69\41\34\96")]=v7("\143\214\213\7\3\57\181\205\210\25","\75\220\163\183\106\98")});local v23=false;local function v24(v38) local v39=0 -0 ;while true do if (v39==(0 -0)) then if v23 then return;end v23=true;v39=1;end if (v39==(1901 -(106 + 1794))) then while true do local v71=0 + 0 ;while true do if ((0 + 0)==v71) then for v79,v80 in v20 do if (v80 and (v80.Name==v38)) then local v81=0 -0 ;local v82;local v83;while true do if (v81==(0 -0)) then local v84=0;while true do if (v84==(115 -(4 + 110))) then v81=1;break;end if ((584 -(57 + 527))==v84) then v82=tonumber(v38:sub(1428 -(41 + 1386) ,105 -(17 + 86) )) or tonumber(v38:sub(1 + 0 ,1 -0 )) or (144 -94) ;v83= #v80.Main.BillboardGui.Frame.Frame:GetChildren() -(167 -(122 + 44)) ;v84=1 -0 ;end end end if (v81==(3 -2)) then if ((v83<v82) and (v80.Main.BillboardGui.Frame.Timer.Text~=v7("\54\168\138\57\202\18\181\153\35\208\12\189","\185\98\218\235\87"))) then local v85=0 + 0 ;while true do if (v85==(0 + 0)) then local v86=0 -0 ;while true do if (v86==(65 -(30 + 35))) then local v87=0;while true do if (v87==(0 + 0)) then v23=false;return v80;end end end end end end end break;end end end end task.wait();break;end end end break;end end end v22:AddButton({[v7("\232\61\55\242\215\165\197","\202\171\92\71\134\190")]=v7("\120\129\28\132\40\216\41\154","\232\73\161\76"),[v7("\152\216\78\81\28\186\218\73","\126\219\185\34\61")]=function() v19(v17.Character.HumanoidRootPart,v24(v7("\93\254\82\115\103\114\225","\135\108\174\62\18\30\23\147")).Main,1);end});v22:AddButton({[v7("\149\232\58\223\17\161\61","\167\214\137\74\171\120\206\83")]=v7("\217\176\2\81\249\190\142\226\33","\199\235\144\82\61\152"),[v7("\36\23\181\39\5\23\186\32","\75\103\118\217")]=function() v19(v17.Character.HumanoidRootPart,v24(v7("\149\100\124\21\160\27\213\71","\126\167\52\16\116\217")).Main,1258 -(1043 + 214) );end});v22:AddButton({[v7("\235\47\48\148\189\22\242","\156\168\78\64\224\212\121")]=v7("\84\174\149\194\6\247\160\220\20","\174\103\142\197"),[v7("\117\41\83\52\39\95\251\93","\152\54\72\63\88\69\62")]=function() v19(v17.Character.HumanoidRootPart,v24(v7("\135\244\226\93\205\193\252\79","\60\180\164\142")).Main,3 -2 );end});v22:AddButton({[v7("\123\95\21\61\46\226\28","\114\56\62\101\73\71\141")]=v7("\236\169\235\200\185\240\222\214\171","\164\216\137\187"),[v7("\241\231\61\190\164\255\8\217","\107\178\134\81\210\198\158")]=function() v19(v17.Character.HumanoidRootPart,v24(v7("\108\62\142\199\179\61\28\145","\202\88\110\226\166")).Main,1213 -(323 + 889) );end});v22:AddButton({[v7("\224\14\146\227\195\204\1","\170\163\111\226\151")]=v7("\73\112\130\52\79\46\44\3\35","\73\113\80\210\88\46\87"),[v7("\162\45\193\30\229\128\47\198","\135\225\76\173\114")]=function() v19(v17.Character.HumanoidRootPart,v24(v7("\66\221\180\177\181\184\181\9","\199\122\141\216\208\204\221")).Main,2 -1 );end});v22:AddButton({[v7("\142\220\0\228\113\249\163","\150\205\189\112\144\24")]=v7("\112\212\255\124\8\137\8\21\55\151\255\119\52\137\24\20\24","\112\69\228\223\44\100\232\113"),[v7("\247\30\11\223\180\125\133\223","\230\180\127\103\179\214\28")]=function() v19(v17.Character.HumanoidRootPart,v24(v7("\217\85\111\74\229\88\229\158\22","\128\236\101\63\38\132\33")).Main,581 -(361 + 219) );end});v22:AddButton({[v7("\143\168\1\80\191\228\193","\175\204\201\113\36\214\139")]=v7("\99\201\35\217\8\72\220\48\206\68\84\217\55\209\5\85\197\59\217","\100\39\172\85\188"),[v7("\142\121\181\140\49\172\123\178","\83\205\24\217\224")]=function() v19(v17.Character.HumanoidRootPart,v24(v7("\194\192\219\56\234\202\221\56\244\246\216\63","\93\134\165\173")).Main,1);end});local v25=v17.DisplayName;local function v26() local v40=320 -(53 + 267) ;while true do if (v40==(0 + 0)) then for v72,v73 in game.Players:GetPlayers() do if (v73.DisplayName:lower():match(v25:lower()) or v73.Name:lower():match(v25:lower())) then return v73;end end return v17;end end end local function v27() if (v26()==v17) then return;end local v41=false;for v52,v53 in v20 do if v53.Main.BillboardGui.Frame.Frame:FindFirstChild(v26().Name) then local v65=413 -(15 + 398) ;while true do if (1==v65) then task.wait(0.1);break;end if (v65==0) then v19(v17.Character.HumanoidRootPart,v53.Main,1);v41=true;v65=983 -(18 + 964) ;end end end end if  not v41 then game.ReplicatedStorage.Events.ExitMatch:FireServer();end end local v22=v21:AddPage({[v7("\138\251\213\206\63","\30\222\146\161\162\90\174\210")]=v7("\214\91\114\7\228\92\121\4\224\14\99\4\236\94\121\4\226","\106\133\46\16")});local v28;v28=v22:AddTextBox({[v7("\123\33\99\232\83\79\86","\32\56\64\19\156\58")]=v7("\106\196\228\79\95\224\192\78\199\165\69\84\251\144\95","\224\58\168\133\54\58\146"),[v7("\125\83\77\252\96\138\147","\107\57\54\43\157\21\230\231")]=v25,[v7("\235\135\16\246\188\212\192\215\143\20\231","\175\187\235\113\149\217\188")]=v7("\8\174\147\75\230\109","\24\92\207\225\44\131\25"),[v7("\104\210\180\64\25\124\72\216","\29\43\179\216\44\123")]=function(v42) if (v42==v25) then return;end v25=v42;v28:Set(v26().DisplayName);v27();end});v22:AddLabel({[v7("\158\216\48\88\180\214\46","\44\221\185\64")]=v7("\45\226\73\73\118\65\226\69\79\103\24\167\71\77\51\18\226\92\31\103\14\167\81\80\102\19\167\93\76\118\19\233\73\82\118\65\175\71\77\51\5\238\91\79\127\0\254\8\81\114\12\226\1\31\103\14\167\76\86\96\0\229\68\90\61","\19\97\135\40\63")});task.spawn(function() while task.wait() and  not v14  do v27();end end);local v22=v21:AddPage({[v7("\154\85\39\55\42","\81\206\60\83\91\79")]=v7("\104\190\222","\196\46\203\176\18\79\163\45")});local v29=v17.PlayerGui.Main.Inventory.Badges.ScrollingFrame:GetChildren();task.spawn(function() while task.wait() and  not v14  do if v9.flex then for v74,v75 in v29 do if (v75 and v75:IsA(v7("\145\47\127\25\33\217\250\172\54\113\16","\143\216\66\30\126\68\155"))) then task.spawn(function() game.ReplicatedStorage.Events.EquipBadge:FireServer(v75.Name);end);task.wait(v9.delay);end end end end end);local v29=v17.PlayerGui.Main.Inventory.Clothes.List:GetChildren();task.spawn(function() while task.wait() and  not v14  do if v9.flex2 then for v76,v77 in v29 do if (v77 and v77:IsA(v7("\131\197\12\204\192\129\194\245\190\199\3","\129\202\168\109\171\165\195\183"))) then local v78=0 -0 ;while true do if (v78==(0 + 0)) then task.spawn(function() game.ReplicatedStorage.Events.EquipClothes:FireServer(v77.Name);end);task.wait(v9.delay2);break;end end end end end end end);v22:AddToggle({[v7("\1\89\39\204\215\27\232","\134\66\56\87\184\190\116")]=v7("\26\61\12\163\89\234\34\61\53\52\31\190\20\238\47\33\47","\85\92\81\105\219\121\139\65"),[v7("\217\182\86\68\105\211\233","\191\157\211\48\37\28")]=false,[v7("\252\30\248\16\56\222\28\255","\90\191\127\148\124")]=function(v43) v9.flex=v43;end});v22:AddSlider({[v7("\91\134\62\3\113\136\32","\119\24\231\78")]=v7("\163\46\173\67\217\86\20\143\40\171\94\156\102\29\135\53\229\121\204\69\20\134","\113\226\77\197\42\188\32"),[v7("\23\31\250","\213\90\118\148")]=0 + 0 ,[v7("\118\47\172","\45\59\78\212\54")]=950 -(20 + 830) ,[v7("\35\66\134\155","\144\112\54\227\235\230\78\205")]=1 + 0 ,[v7("\151\45\9\253\197\87\167","\59\211\72\111\156\176")]=226 -(116 + 10) ,[v7("\109\134\239\33\76\134\224\38","\77\46\231\131")]=function(v45) v9.delay=((8 + 92) -v45)/100 ;end});v22:AddSeparator();v22:AddToggle({[v7("\153\85\166\84\179\91\184","\32\218\52\214")]=v7("\104\27\52\176\177\179\73\85\90\31\52\187","\58\46\119\81\200\145\208\37"),[v7("\15\137\54\173\188\177\34","\86\75\236\80\204\201\221")]=false,[v7("\81\64\123\137\252\138\113\74","\235\18\33\23\229\158")]=function(v47) v9.flex2=v47;end});v22:AddSlider({[v7("\115\187\209\175\89\181\207","\219\48\218\161")]=v7("\199\125\115\93\211\70\238\227\49\90\69\222\87\160\215\97\121\76\223","\128\132\17\28\41\187\47"),[v7("\44\59\8","\61\97\82\102\90")]=738 -(542 + 196) ,[v7("\129\47\179","\105\204\78\203\43\167\55\126")]=214 -114 ,[v7("\150\190\38\14","\49\197\202\67\126\115\100\167")]=1 + 0 ,[v7("\19\94\217\40\149\90\74","\62\87\59\191\73\224\54")]=100,[v7("\196\3\246\197\229\3\249\194","\169\135\98\154")]=function(v49) v9.delay2=(100 -v49)/(51 + 49) ;end});
+local defaults = {
+	flex = false,
+	delay = 0,
+	flex2 = false,
+	delay2 = 0
+}
+local vals = table.clone(defaults)
+
+local function getGlobalTable()
+	return typeof(getfenv().getgenv) == "function" and typeof(getfenv().getgenv()) == "table" and getfenv().getgenv() or _G
+end
+getGlobalTable().MaxPlayers = game.Players.MaxPlayers
+getGlobalTable().FireHubLoaded = true
+local closed = false
+local cons = {}
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/Fire-Lib/Main.lua"))()
+local plr = game.Players.LocalPlayer
+
+local ftiv = false
+local fti --= getfenv().firetouchinterest
+task.spawn(function()
+	if fti then
+		local part = Instance.new("Part", workspace)
+		part.Position = Vector3.new(0, 100, 0)
+		part.Touched:Connect(function()
+			part:Destroy()
+			ftiv = true
+		end)
+		task.wait(0.1)
+		repeat task.wait() until plr and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") and part and part.Parent
+		fti(part, plr.Character.HumanoidRootPart, 0)
+		fti(plr.Character.HumanoidRootPart, part, 0)
+		task.wait()
+		repeat task.wait() until plr and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") and part and part.Parent
+		fti(part, plr.Character.HumanoidRootPart, 1)
+		fti(plr.Character.HumanoidRootPart, part, 1)
+	end
+end)
+
+local cd = {}
+local firetouchinterest = function(a,b,touching)
+	if ftiv then
+		return fti(a,b,touching)
+	end
+	
+	if cd[a] or cd[b] then return end
+	cd[a] = true
+	touching = touching == 1
+
+	if not touching then
+		local c = b
+		local ct = c.CanTouch
+		c.CanTouch = false
+		task.wait(0.015)
+		c.CanTouch = ct
+	else
+		local pp = b:GetPivot()
+		local t,c,an = b.Transparency,b.CanCollide,b.Anchored
+		b:PivotTo(a:GetPivot())
+		b.Transparency = 1
+		b.CanCollide = false
+		b.Anchored = false
+		b.Velocity += Vector3.new(0,1)
+		a.Touched:Wait()
+		b.Transparency = t
+		b.CanCollide = c
+		b.Anchored = an
+		b:PivotTo(pp)
+	end
+	task.wait()
+	cd[a] = false
+end
+
+local window = lib:MakeWindow({Title = "NullFire: Pressure Lobby", CloseCallback = function()
+	getGlobalTable().FireHubLoaded = false
+	for i,v in defaults do
+		vals[i] = v
+	end
+	task.wait(0.1)
+	for i,v in cons do
+		if v then
+			v:Disconnect()
+		end
+	end
+	closed = true
+end}, true)
+local page = window:AddPage({Title = "Submarines"})
+local inQueue = false
+local function getFree(getc, lobby)
+	if inQueue then return end
+	inQueue = true
+	while true do
+		for i,v in getc:GetChildren() do
+			if v and v.Name == lobby then
+				local maxPlayers = tonumber(lobby:sub(1,2)) or tonumber(lobby:sub(1,1)) or 50
+				local players = (#v.Main.BillboardGui.Frame.Frame:GetChildren()) - 1
+
+				if players < maxPlayers and v.Main.BillboardGui.Frame.Timer.Text ~= "Transporting" then
+					inQueue = false
+					return v
+				end
+			end
+		end
+		task.wait()
+	end
+end
+page:AddButton({Caption = "1 Player", Callback = function()
+	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.Teleporters, "1Player").Main, 1)
+end})
+page:AddButton({Caption = "2 Players", Callback = function()
+	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.Teleporters, "2Players").Main, 1)
+end})
+page:AddButton({Caption = "3 Players", Callback = function()
+	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.Teleporters, "3Players").Main, 1)
+end})
+page:AddButton({Caption = "4 Players", Callback = function()
+	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.Teleporters, "4Players").Main, 1)
+end})
+page:AddButton({Caption = "8 Players", Callback = function()
+	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.Teleporters, "8Players").Main, 1)
+end})
+page:AddButton({Caption = "50 Players [Paid]", Callback = function()
+	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.Teleporters, "50Players").Main, 1)
+end})
+page:AddButton({Caption = "Developer submarine", Callback = function()
+	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.Teleporters, "DeveloperSub").Main, 1)
+end})
+
+local page = window:AddPage({Title = "Raveyard Submarines"})
+page:AddButton({Caption = "1 Player", Callback = function()
+	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "1Player").Main, 1)
+end})
+page:AddButton({Caption = "2 Players", Callback = function()
+	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "2Player").Main, 1)
+end})
+page:AddButton({Caption = "3 Players", Callback = function()
+	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "3Players").Main, 1)
+end})
+page:AddButton({Caption = "4 Players", Callback = function()
+	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "4Players").Main, 1)
+end})
+
+local toSnipe = plr.DisplayName
+local function getUser()
+	for i,v in game.Players:GetPlayers() do
+		if v.DisplayName:lower():match(toSnipe:lower()) or v.Name:lower():match(toSnipe:lower()) then
+			return v
+		end
+	end
+	return plr
+end
+local function snipe()
+	if getUser() == plr then return end
+	local a = false
+	for i,v in workspace.Teleporters do
+		if v.Main.BillboardGui.Frame.Frame:FindFirstChild(getUser().Name) then
+			firetouchinterest(plr.Character.HumanoidRootPart, v.Main, 1)
+			a = true
+			task.wait(0.1)
+		end
+	end
+	if not a and workspace:FindFirstChild("RaveyardTeleporters") then
+		for i,v in workspace.RaveyardTeleporters do
+			if v.Main.BillboardGui.Frame.Frame:FindFirstChild(getUser().Name) then
+				firetouchinterest(plr.Character.HumanoidRootPart, v.Main, 1)
+				a = true
+				task.wait(0.1)
+			end
+		end
+	end
+	if not a then
+		game.ReplicatedStorage.Events.ExitMatch:FireServer()
+	end
+end
+local page = window:AddPage({Title = "Submarine sniping"})
+local tb; tb = page:AddTextBox({Caption = "Player to snipe", Default = toSnipe, Placeholder = "Target", Callback = function(txt)
+	if txt == toSnipe then return end
+	toSnipe = txt
+	tb:Set(getUser().DisplayName)
+	snipe()
+end})
+page:AddLabel({Caption = "Leave empty or set to your username (or display name) to disable."})
+task.spawn(function()
+	while task.wait() and not closed do
+		snipe()
+	end
+end)
+local page = window:AddPage({Title = "Fun"})
+local ch = plr.PlayerGui.Main.Inventory.Badges.ScrollingFrame:GetChildren()
+task.spawn(function()
+	while task.wait() and not closed do
+		if vals.flex then
+			for i,v in ch do
+				if v and v:IsA("ImageButton") then
+					task.spawn(function()
+						game.ReplicatedStorage.Events.EquipBadge:FireServer(v.Name)
+					end)
+					task.wait(vals.delay)
+				end
+			end
+		end
+	end
+end)
+local ch = plr.PlayerGui.Main.Inventory.Clothes.List:GetChildren()
+task.spawn(function()
+	while task.wait() and not closed do
+		if vals.flex2 then
+			for i,v in ch do
+				if v and v:IsA("ImageButton") then
+					task.spawn(function()
+						game.ReplicatedStorage.Events.EquipClothes:FireServer(v.Name)
+					end)
+					task.wait(vals.delay2)
+				end
+			end
+		end
+	end
+end)
+page:AddToggle({Caption = "Flex achievements", Default = false, Callback = function(txt)
+	vals.flex = txt
+end})
+page:AddSlider({Caption = "Achievement Flex Speed", Min = 0, Max = 100, Step = 1, Default = 100, Callback = function(txt)
+	vals.delay = (100-txt)/100
+end})
+page:AddSeparator()
+page:AddToggle({Caption = "Flex clothes", Default = false, Callback = function(txt)
+	vals.flex2 = txt
+end})
+page:AddSlider({Caption = "Clothing Flex Speed", Min = 0, Max = 100, Step = 1, Default = 100, Callback = function(txt)
+	vals.delay2 = (100-txt)/100
+end})
