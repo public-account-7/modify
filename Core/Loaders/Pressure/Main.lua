@@ -1,3 +1,6 @@
+-- obfuscation sucks, can be deobfuscated + makes the script laggier.
+-- skids, it is shine time for ya'll
+
 local defaults = {
 	AntiEyefestation = false,
 	AntiSquid = false,
@@ -17,7 +20,9 @@ local defaults = {
 		LeverESP = false,
 		SquiddleESP = false,
 		["Wall DwellerESP"] = false,
-		LootsESP = false
+		LootsESP = false,
+		RachjumperESP = false,
+		["Other MonstersESP"] = false
 	},
 	FB = false,
 	II = false,
@@ -26,8 +31,11 @@ local defaults = {
 	PickDocuments = false,
 	AutoPande = false,
 	AntiTurret = false,
+	AntiBouncer = false,
 	AntiPande = false,
+	AntiSkeleton = false,
 	AntiSearchlights = false,
+	AntiMonsterStatue = false,
 	NoFriends = false,
 	AutoCard = false,
 	AntiFake = false,
@@ -37,6 +45,7 @@ local defaults = {
 	NotifyChatF = "Chainsmoker=Chain;Wall Dweller=Dweller",
 	NotifyChat = false,
 	AntiParasite = false,
+	AntiSkelepede = false,
 	AutoTrigger = false,
 	NoDMG = false,
 	Noclip = false,
@@ -48,6 +57,10 @@ vals.ESP = table.clone(defaults.ESP)
 
 local function getGlobalTable()
 	return typeof(getfenv().getgenv) == "function" and typeof(getfenv().getgenv()) == "table" and getfenv().getgenv() or _G
+end
+
+if game.PlaceId == 12411473842 then
+	return loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/refs/heads/main/Core/Loaders/Pressure-Lobby/Main.lua"))()
 end
 
 getGlobalTable().MaxPlayers = game.ReplicatedStorage.MaxPlayers.Value
@@ -241,7 +254,7 @@ end
 
 local function getColor(v)
 	if v.Name:match("Currency") then
-		return Color3.new((tonumber(v.Name:gsub("Currency", "").."") or 5)/75, 150/255, 50/255)
+		return Color3.new((v:GetAttribute("Amount") or 5)/75, 150/255, 50/255)
 	elseif v.Name:lower():match("keycard") then
 		local type = v.Name:lower():gsub("keycard","")
 		return type == "normal" and Color3.new(0, 1-(1/3), 1) or type == "inner" and Color3.new(1-(1/3), 1/3, 0.5) or Color3.new(1, 1-(1/3), 0)
@@ -257,11 +270,13 @@ local function getColor(v)
 		return Color3.new(1, 1, 0.5)
 	elseif v.Name == "Relic" then
 		return Color3.new(1, 0.1, 0.4)
+	elseif v.Name:sub(1,2) == "GY" then
+		return Color3.new(150/255, (v:GetAttribute("Amount") or 5)/75, 50/255)
 	end
 end
 local function getText(v)
-	if v.Name:match("Currency") then
-		return v.Name:gsub("Currency", "$")..""
+	if v.Name:match("Currency") or v.Name:sub(1,2) == "GY" then
+		return v:GetAttribute("Amount").."$"
 	elseif v.Name:lower():match("keycard") then
 		return "Keycard"
 	elseif v.Name == "CodeBreacher" then
@@ -415,6 +430,9 @@ local function d(w)
 				task.wait()
 				applyESP(w.Parent, {Text = "Valve", HighlightEnabled = false, Color = Color3.new(0.7, 0.7, 0.7), ESPName = "DoorESP"})
 				add(switches, w.Parent)
+			elseif w.Parent == workspace.Monsters then
+				applyESP(w, {Text = w.Name:gsub("H", " H"):gsub("Root", ""), HighlightEnabled = true, Color = Color3.new(0.9, 0.1, 0.2), ESPName = "Other MonstersESP"})
+				notifyMonster(w.Name:gsub("H", " H"):gsub("Root", "").."", w.Name:gsub("H", " H"):gsub("Root", "").." has spawned!\nI dunno who is tat :sob:")
 			elseif w:IsA("Beam") and w.Parent:IsA("Part") then
 				task.wait(0.05)
 				if w and w.Parent and w.Parent:FindFirstChildOfClass("Sound") and w.Parent:FindFirstChildOfClass("Attachment") and w.Parent.Parent == workspace and not applied[w.Parent] then
@@ -432,6 +450,14 @@ local function d(w)
 						end)
 					end
 				end
+			elseif w.Name == "SkeletonDancer" and vals.AntiSkeleton then
+				task.wait()
+				w:Destroy()
+			elseif w.Name == "rachjumper" then
+				if vals.Notify then
+					lib.Notifications:Notification({Title = "Let's go gambling!", Text = "Heeey, look who is here!!"})
+				end
+				applyESP(w, {Text = "Rachjumper", HighlightEnabled = true, Color = Color3.new(0.44, 0, 0.66), ESPName = "RachjumperESP"})
 			end
 		end
 	end)
@@ -661,6 +687,27 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 			end
 		end
 	end
+	if vals.AntiSkelepede or vals.GodMode then
+		if workspace:FindFirstChild("SkelepedeBody") then
+			workspace.SkelepedeBody:Destroy()
+		end
+		if workspace:FindFirstChild("SkeletonTail") then
+			workspace.SkeletonTail:Destroy()
+		end
+		if workspace:FindFirstChild("Monsters") and workspace.Monsters:FindFirstChild("SkeletonHead") then
+			workspace.Monsters.SkeletonHead:Destroy()
+		end
+	end
+	if vals.AntiBouncer or vals.GodMode then
+		if workspace:FindFirstChild("Monsters") and workspace.Monsters:FindFirstChild("Bouncer") then
+			workspace.Monsters.Bouncer:Destroy()
+		end
+	end
+	if vals.AntiMonsterStatue or vals.GodMode then
+		if workspace:FindFirstChild("Monsters") and workspace.Monsters:FindFirstChild("StatueRoot") then
+			workspace.Monsters.StatueRoot:Destroy()
+		end
+	end
 	if vals.AntiSearchlight or vals.GodMode then
 		for i,v in searchlights do
 			if v then
@@ -818,6 +865,16 @@ end})
 page:AddToggle({Caption = "Anti damage parts", Default = false, Callback = function(b)
 	vals.NoDMG = b
 end})
+page:AddSeparator()
+page:AddToggle({Caption = "Anti Skelepede (Skeleton head; HALOWEEN)", Default = false, Callback = function(b)
+	vals.AntiSkelepede = b
+end})
+page:AddToggle({Caption = "Anti Bouncer (Skeleton room 2; HALOWEEN)", Default = false, Callback = function(b)
+	vals.AntiBouncer = b
+end})
+page:AddToggle({Caption = "Anti Statue-Monster (HALOWEEN)", Default = false, Callback = function(b)
+	vals.AntiMonsterStatue = b
+end})
 
 local page = window:AddPage({Title = "Auto interact"})
 page:AddToggle({Caption = "Auto pick up loots", Default = false, Callback = function(b)
@@ -882,5 +939,10 @@ for i,v in vals.ESP do
 		espLib.ESPValues[i] = b
 	end})
 end
+
+local page = window:AddPage({Title = "Anti lag"})
+page:AddToggle({Caption = "Anti dancing skeletons (HALOWEEN)", Default = false, Callback = function(b)
+	vals.AntiSkeleton = b
+end})
 
 lib.Notifications:Notification({Title = "Hey!", Text = "More is coming soon! (like autoplay)", Time = 10})
