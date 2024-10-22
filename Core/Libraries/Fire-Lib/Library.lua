@@ -5258,12 +5258,12 @@ local lib; lib = {
                     lib.Notifications:ChooseNotification({Callback = function(b)
                         if b then
                             writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(configStructure))
-                            lib.Notifications:Notification({Title = "Success", "Theme \""..currentConfig.."\" has been created!"})
+                            lib.Notifications:Notification({Title = "Success", Text = "Theme \""..currentConfig.."\" has been created!"})
                         end
                     end, Title = "Wait!", Text = "Theme called \""..currentConfig.."\" already exist, do you want to rewrite it?"})
                 else
                     writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(configStructure))
-                    lib.Notifications:Notification({Title = "Success", "Theme \""..currentConfig.."\" has been created!"})
+                    lib.Notifications:Notification({Title = "Success", Text = "Theme \""..currentConfig.."\" has been created!"})
                 end
             end})
             page:AddButton({Text = "Load", Callback = function()
@@ -5277,7 +5277,7 @@ local lib; lib = {
                 if not got then return end
                 configStructure = got
                 configEvent:Fire(got)
-                lib.Notifications:Notification({Title = "Success", "Config \""..currentConfig.."\" has been loaded!"})
+                lib.Notifications:Notification({Title = "Success", Text = "Config \""..currentConfig.."\" has been loaded!"})
             end})
         end
         page:AddSeparator()
@@ -5322,7 +5322,7 @@ local lib; lib = {
                                 colorsT[i] = {R = v.Color.R, G = v.Color.G, B = v.Color.B}
                             end
                             writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(colorsT))
-                            lib.Notifications:Notification({Title = "Success", "Theme \""..currentConfig.."\" has been created!"})
+                            lib.Notifications:Notification({Title = "Success", Text = "Theme \""..currentConfig.."\" has been created!"})
                         end
                     end, Title = "Wait!", Text = "Theme called \""..currentConfig.."\" already exist, do you want to rewrite it?"})
                 else
@@ -5331,7 +5331,7 @@ local lib; lib = {
                         colorsT[i] = {R = v.Color.R, G = v.Color.G, B = v.Color.B}
                     end
                     writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(colorsT))
-                    lib.Notifications:Notification({Title = "Success", "Theme \""..currentConfig.."\" has been created!"})
+                    lib.Notifications:Notification({Title = "Success", Text = "Theme \""..currentConfig.."\" has been created!"})
                 end
             end})
             page:AddButton({Text = "Load", Callback = function()
@@ -5346,7 +5346,7 @@ local lib; lib = {
                 for i,v in got do
                     windowFuncs.ThemeColors[i] = Color3.new(v.R, v.G, v.B)
                     themeColorPickers[i]:Set(windowFuncs.ThemeColors[i])
-                    lib.Notifications:Notification({Title = "Success", "Theme \""..currentConfig.."\" has been loaded!"})
+                    lib.Notifications:Notification({Title = "Success", Text = "Theme \""..currentConfig.."\" has been loaded!"})
                 end
             end})
         end
