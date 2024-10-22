@@ -23,7 +23,7 @@ Instance4.PlaybackSpeed = 1
 Instance4.RollOffMaxDistance = 10000
 Instance4.Volume = 0.5
 Instance4.PlaybackRegion = NumberRange.new(0, 60000)
-Instance4.SoundId = "rbxassetid://18783839518"
+Instance4.SoundId = "rbxassetid://4590657391"
 Instance4.Playing = false
 Instance4.Name = "Notification"
 Instance4.RollOffMinDistance = 10
@@ -3888,21 +3888,21 @@ local configsEnabled = typeof(writefile) == "function" and typeof(readfile) == "
 
 local versions
 if not pcall(function()
-        local str = game.HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Data/Versions.json"))
+        local str = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Data/Versions.json"))
         versions = {
             ["FireLibraryVersion"] = str[2],
             ["FireHubVersion"] = str[1]
         }
     end) then
     versions = {
-        ["FireLibraryVersion"] = "5.0",
+        ["FireLibraryVersion"] = "5.1",
         ["FireHubVersion"] = "4.0.2"
     }
 end
 
 getGlobalTable()._FLVersions = versions
-local isMobile = game.UserInputService.TouchEnabled and not game.UserInputService.KeyboardEnabled
-local uiHolder = getfenv().gethui and getfenv().gethui() or pcall(function() return game.CoreGui:GetFullName() end) and game.CoreGui:FindFirstChild("RobloxGui") or game.Players.LocalPlayer.PlayerGui
+local isMobile = game:GetService("UserInputService").TouchEnabled and not game:GetService("UserInputService").KeyboardEnabled
+local uiHolder = getfenv().gethui and getfenv().gethui() or pcall(function() return game.CoreGui:GetFullName() end) and game.CoreGui:FindFirstChild("RobloxGui") or game:GetService("Players").LocalPlayer.PlayerGui
 script.Parent.Parent = uiHolder
 
 local function playSound(soundName)
@@ -3977,7 +3977,7 @@ local function setupSlider(slider, holder, options)
         end
     end
 
-    game.UserInputService.InputChanged:Connect(function(input)
+    game:GetService("UserInputService").InputChanged:Connect(function(input)
         if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or Enum.UserInputType.Touch) then 
             local sizeScale = math.clamp((input.Position.X - sliderBar.Parent.AbsolutePosition.X) / sliderBar.Parent.AbsoluteSize.X, 0, 1)
             set(options.Min + ((options.Max - options.Min) * sizeScale)) 
@@ -4019,7 +4019,7 @@ local function makeDraggable(gui)
         end
     end)
 
-    game.UserInputService.InputChanged:Connect(function(input)
+    game:GetService("UserInputService").InputChanged:Connect(function(input)
         if input == dragInput and dragging then
             update(input, gui, dragStart, startPos)
         end
@@ -4790,7 +4790,7 @@ local lib; lib = {
                             focused = not focused
                             input.InputOuter.Frame.Input.Text = "..."
                             if focused then
-                                con = game.UserInputService.InputBegan:Connect(function(s, chat)
+                                con = game:GetService("UserInputService").InputBegan:Connect(function(s, chat)
                                     if chat or table.find(blockedCodes, s.KeyCode) then return end
                                     focused = false
                                     con:Disconnect()
@@ -5205,8 +5205,8 @@ local lib; lib = {
         page:AddInput({Text = "Toggle UI Key", Default = toggleKey.Name, Callback = function(kk)
             toggleKey = kk
         end, IgnoreConfigs = true})
-        cons[#cons+1] = game.UserInputService.InputBegan:Connect(function(input)
-            if game.UserInputService:GetFocusedTextBox() or input.KeyCode ~= toggleKey then return end
+        cons[#cons+1] = game:GetService("UserInputService").InputBegan:Connect(function(input)
+            if game:GetService("UserInputService"):GetFocusedTextBox() or input.KeyCode ~= toggleKey then return end
             windowFuncs:Toggle()
         end)
         local closeCallback = function()
@@ -5229,6 +5229,9 @@ local lib; lib = {
                 end
             end})
         end})
+        page:AddSeparator()
+        page:AddLabel({Text = "NullFire Version: "..versions.FireHubVersion})
+        page:AddLabel({Text = "FireLib Version: "..versions.FireLibraryVersion})
         if configsEnabled then
             page:AddSeparator()
             page:AddLabel({Text = "Configs"})
@@ -5248,25 +5251,42 @@ local lib; lib = {
             else
                 suffix = "-FireLib_Config."..format
             end
-            suffix = "-"..suffix
+            suffix = "-"..game.HttpService:UrlEncode(window.HolderFrame.Title.Text)..suffix
             page:AddButton({Text = "Save", Callback = function()
-                writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(configStructure))
+                local s,got = pcall(readfile,prefix..currentConfig..suffix)
+                if s then
+                    lib.Notifications:ChooseNotification({Callback = function(b)
+                        if b then
+                            writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(configStructure))
+                            lib.Notifications:Notification({Title = "Success", "Theme \""..currentConfig.."\" has been created!"})
+                        end
+                    end, Title = "Wait!", Text = "Theme called \""..currentConfig.."\" already exist, do you want to rewrite it?"})
+                else
+                    writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(configStructure))
+                    lib.Notifications:Notification({Title = "Success", "Theme \""..currentConfig.."\" has been created!"})
+                end
             end})
             page:AddButton({Text = "Load", Callback = function()
-                local got = readfile(prefix..currentConfig..suffix)
+                local s,got = pcall(readfile,prefix..currentConfig..suffix)
+                if not s then
+                    return lib.Notifications:Notification({Title = "Uh oh!", Text = "Config called \""..currentConfig.."\" not found!"})
+                end
                 if got then
                     got = game.HttpService:JSONDecode(got)
                 end
                 if not got then return end
                 configStructure = got
                 configEvent:Fire(got)
+                lib.Notifications:Notification({Title = "Success", "Config \""..currentConfig.."\" has been loaded!"})
             end})
         end
         page:AddSeparator()
         page:AddLabel({Text = "Themes"})
         page:AddSeparator()
+        
+        local themeColorPickers = {}
         for i,v in colors do
-            page:AddColorPicker({Text = i, Default = v.Color, Callback = function(col)
+            themeColorPickers[i] = page:AddColorPicker({Text = i, Default = v.Color, Callback = function(col)
                 windowFuncs.ThemeColors[i] = col
                 for idx,val in colors do
                     if idx ~= i then
@@ -5291,22 +5311,42 @@ local lib; lib = {
             else
                 suffix = "-"..folder.."."..format
             end
-            suffix = "-"..game.HttpService:UrlEncode(window.HolderFrame.Title.Text)..suffix
+            suffix = "-"..suffix
             page:AddButton({Text = "Save", Callback = function()
-                local colorsT = {}
-                for i,v in colors do
-                    colorsT[i] = {R = v.Color.R, G = v.Color.G, B = v.Color.B}
+                local s,got = pcall(readfile,prefix..currentConfig..suffix)
+                if s then
+                    lib.Notifications:ChooseNotification({Callback = function(b)
+                        if b then
+                            local colorsT = {}
+                            for i,v in colors do
+                                colorsT[i] = {R = v.Color.R, G = v.Color.G, B = v.Color.B}
+                            end
+                            writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(colorsT))
+                            lib.Notifications:Notification({Title = "Success", "Theme \""..currentConfig.."\" has been created!"})
+                        end
+                    end, Title = "Wait!", Text = "Theme called \""..currentConfig.."\" already exist, do you want to rewrite it?"})
+                else
+                    local colorsT = {}
+                    for i,v in colors do
+                        colorsT[i] = {R = v.Color.R, G = v.Color.G, B = v.Color.B}
+                    end
+                    writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(colorsT))
+                    lib.Notifications:Notification({Title = "Success", "Theme \""..currentConfig.."\" has been created!"})
                 end
-                writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(colorsT))
             end})
             page:AddButton({Text = "Load", Callback = function()
-                local got = readfile(prefix..currentConfig..suffix)
+                local s,got = pcall(readfile,prefix..currentConfig..suffix)
+                if not s then
+                    return lib.Notifications:Notification({Title = "Uh oh!", Text = "Theme called \""..currentConfig.."\" not found!"})
+                end
                 if got then
                     got = game.HttpService:JSONDecode(got)
                 end
                 if not got then return end
                 for i,v in got do
                     windowFuncs.ThemeColors[i] = Color3.new(v.R, v.G, v.B)
+                    themeColorPickers[i]:Set(windowFuncs.ThemeColors[i])
+                    lib.Notifications:Notification({Title = "Success", "Theme \""..currentConfig.."\" has been loaded!"})
                 end
             end})
         end
