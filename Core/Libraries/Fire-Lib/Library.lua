@@ -3895,7 +3895,7 @@ if not pcall(function()
         }
     end) then
     versions = {
-        ["FireLibraryVersion"] = "5.1",
+        ["FireLibraryVersion"] = "5.2",
         ["FireHubVersion"] = "4.0.2"
     }
 end
@@ -5230,8 +5230,24 @@ local lib; lib = {
             end})
         end})
         page:AddSeparator()
+        local execName = "RobloxClient"
+        local execVersion = getfenv().version()
+        
+        if getfenv().identifyexecutor then
+            local s, en, ev = pcall(getfenv().identifyexecutor)
+            if s then
+                if en then
+                    execName = tostring(en)
+                    if ev then
+                        execVersion = tostring(ev)
+                    end
+                end
+            end
+        end
+        
         page:AddLabel({Text = "NullFire Version: "..versions.FireHubVersion})
         page:AddLabel({Text = "FireLib Version: "..versions.FireLibraryVersion})
+        page:AddLabel({Text = "Executor Name & Version: " .. execName .. "; " .. execVersion})
         if configsEnabled then
             page:AddSeparator()
             page:AddLabel({Text = "Configs"})
@@ -5258,12 +5274,12 @@ local lib; lib = {
                     lib.Notifications:ChooseNotification({Callback = function(b)
                         if b then
                             writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(configStructure))
-                            lib.Notifications:Notification({Title = "Success", Text = "Theme \""..currentConfig.."\" has been created!"})
+                            lib.Notifications:Notification({Title = "Success", Text = "Config \""..currentConfig.."\" has been created!"})
                         end
-                    end, Title = "Wait!", Text = "Theme called \""..currentConfig.."\" already exist, do you want to rewrite it?"})
+                    end, Title = "Wait!", Text = "Config called \""..currentConfig.."\" already exist, do you want to rewrite it?"})
                 else
                     writefile(prefix..currentConfig..suffix, game.HttpService:JSONEncode(configStructure))
-                    lib.Notifications:Notification({Title = "Success", Text = "Theme \""..currentConfig.."\" has been created!"})
+                    lib.Notifications:Notification({Title = "Success", Text = "Config \""..currentConfig.."\" has been created!"})
                 end
             end})
             page:AddButton({Text = "Load", Callback = function()
@@ -5335,7 +5351,7 @@ local lib; lib = {
                 end
             end})
             page:AddButton({Text = "Load", Callback = function()
-                local s,got = pcall(readfile,prefix..currentConfig..suffix)
+                local s,got = pcall(readfile, prefix..currentConfig..suffix)
                 if not s then
                     return lib.Notifications:Notification({Title = "Uh oh!", Text = "Theme called \""..currentConfig.."\" not found!"})
                 end
