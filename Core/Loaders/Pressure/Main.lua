@@ -1,6 +1,3 @@
--- obfuscations only for scared kids
--- skids, take my source and stop making laggy shit (don't be rude, leave a credit atleast)
-
 local defaults = {
 	AntiEyefestation = false,
 	AntiSquid = false,
@@ -622,6 +619,7 @@ task.spawn(function()
 			while count(monsters) ~= 0 and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") do
 				plr.Character:PivotTo(old + Vector3.new(0, 100))
 				plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 5)
+				task.wait()
 			end
 			task.wait(0.5)
 			if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
@@ -776,7 +774,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 	if vals.AutoPick or vals.AutoPlay then
 		for i,v in interacts do
 			if v and v.Parent then
-				if v:FindFirstChild("ProximityPrompt") and canCarry(v.Parent) and (vals.AutoPlay and vals.AutoPlayTools or vals.AutoPlay and getText(v.Parent):match("%$") or vals.AutoPlay and not isLightSource(v.Parent) or not vals.AutoPlay) or v.Parent.Name:lower():match("keycard") then
+				if v:FindFirstChild("ProximityPrompt") and canCarry(v.Parent) and (vals.AutoPlay and vals.AutoPlayTools or vals.AutoPlay and getText(v.Parent):match("%$") or vals.AutoPlay and not isLightSource(v.Parent) or not vals.AutoPlay) or canCarry(v.Parent) and v.Parent.Name:lower():match("keycard") then
 					fireproximityprompt(v.ProximityPrompt)
 				end
 			else
