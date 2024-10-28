@@ -1,5 +1,5 @@
--- obfuscation for kids
--- heeey, skids, take my source and stop making laggy shit
+-- obfuscations only for scared kids
+-- skids, take my source and stop making laggy shit (don't be rude, leave a credit atleast)
 
 local defaults = {
 	AntiEyefestation = false,
@@ -376,17 +376,22 @@ local function d(w)
 			elseif w.Name == "OpenValue" and w.Parent.Parent:IsA("Folder") and w.Parent.Parent.Name == "Entrances" then
 				applyESP(w.Parent:FindFirstChild("Door") or w.Parent, {HighlightEnabled = true, Color = Color3.new(0, 0.6, 1), Text = "Door", ESPName = "DoorESP"})
 			elseif w.Name == "Fixed" and w:IsA("IntValue") and w.Parent:IsA("Model") then
-				if w.Value ~= 100 then
+				task.wait(0.1)
+				if w and w.Parent and w.Value ~= 100 then
 					local mod = w.Parent:FindFirstChild("Model") or w.Parent
-					applyESP(mod, {HighlightEnabled = true, Object = w.Parent:FindFirstChild("Model"), Color = Color3.new(0.7, 0.5, 1), Text = (w.Parent.Name == "BrokenCables" and "Broken Cables" or "Broken Generator") .. "\n[" .. string.format("%03d", w.Value) .. "]", ESPName = "GeneratorESP"})
-					add(generators, w.Parent)
-					w.Changed:Connect(function(val)
-						if val ~= 100 then
-							applyESP(mod, {HighlightEnabled = true, Object = w.Parent:FindFirstChild("Model"), Color = Color3.new(0.7, 0.5, 1), Text = (w.Parent.Name == "BrokenCables" and "Broken Cables" or "Broken Generator") .. "\n[" .. string.format("%03d", w.Value) .. "]", ESPName = "GeneratorESP"})
-						else
-							espLib.DeapplyESP(mod)
-						end
-					end)
+					if w.Value == 100 or not w or not w.Parent or not w.Parent:FindFirstChild("ProxyPart") then
+						espLib.DeapplyESP(mod)	
+					else
+						applyESP(mod, {HighlightEnabled = true, Object = w.Parent:FindFirstChild("Model"), Color = Color3.new(0.7, 0.5, 1), Text = (w.Parent.Name == "BrokenCables" and "Broken Cables" or "Broken Generator") .. "\n[" .. string.format("%03d", w.Value):gsub("", " "):sub(2):sub(0, 5) .. "]", ESPName = "GeneratorESP"})
+						add(generators, w.Parent)
+						w.Changed:Connect(function(val)
+							if val == 100 or not w or not w.Parent  or not w.Parent:FindFirstChild("ProxyPart") or not w.Parent.ProxyPart:FindFirstChild("ProximityPrompt") then
+								espLib.DeapplyESP(mod)	
+							else
+								applyESP(mod, {HighlightEnabled = true, Object = w.Parent:FindFirstChild("Model"), Color = Color3.new(0.7, 0.5, 1), Text = (w.Parent.Name == "BrokenCables" and "Broken Cables" or "Broken Generator") .. "\n[" .. string.format("%03d", w.Value):gsub("", " "):sub(2):sub(0, 5) .. "]", ESPName = "GeneratorESP"})
+							end
+						end)
+					end
 				end
 			elseif w.Name == "Eyefestation" and (w.Parent.Name == "EyefestationSpawn" or w.Parent.Name == "EyefestationRoot") then
 				notifyMonster("Eyefestation", "Eyefestation has spawned!\nAvoid looking at it!")
@@ -661,6 +666,8 @@ task.spawn(function()
 end)
 
 local doorsHistory = {}
+local blockLevers = {}
+
 function autoPlayLoop()
 	if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") and plr.Character:FindFirstChild("Humanoid") then
 		if vals.AutoPlay then
@@ -668,7 +675,7 @@ function autoPlayLoop()
 			for i,v in interacts do
 				if v and v.Parent then
 					if v:FindFirstChild("ProximityPrompt") and canCarry(v.Parent) then
-						if v and v.Parent and ((getText(v.Parent):match("%$") and vals.AutoPlayMoney or not getText(v.Parent):match("%$")) or (not v.Parent.Name:lower():match("keycard") and vals.AutoPlayTools or v.Parent.Name:lower():match("keycard"))) then
+						if v and v.Parent and not isLightSource(v.Parent) and ((getText(v.Parent):match("%$") and vals.AutoPlayMoney or not getText(v.Parent):match("%$")) or (not v.Parent.Name:lower():match("keycard") and vals.AutoPlayTools or v.Parent.Name:lower():match("keycard"))) then
 							plr.Character:PivotTo(v:GetPivot())
 							plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 5)
 							pickedUp = true
@@ -702,8 +709,13 @@ function autoPlayLoop()
 						if not table.find(doorsHistory, door.Parent.Parent) then
 							doorsHistory[#doorsHistory+1] = door.Parent.Parent
 						end
-						if doorsHistory[#doorsHistory-1] and doorsHistory[#doorsHistory-1]:FindFirstChild("Lever") and doorsHistory[#doorsHistory-1].Lever:FindFirstChild("Colored") and doorsHistory[#doorsHistory-1].Lever.Colored.Color == Color3.fromRGB(0, 167, 97) then
+						if doorsHistory[#doorsHistory-1] and doorsHistory[#doorsHistory-1]:FindFirstChild("Lever") and doorsHistory[#doorsHistory-1].Lever:FindFirstChild("Colored") and doorsHistory[#doorsHistory-1].Lever.Colored.Color == Color3.fromRGB(0, 167, 97) and not blockLevers[doorsHistory[#doorsHistory-1].Lever] then
 							door = doorsHistory[#doorsHistory-1].Lever
+						elseif doorsHistory[#doorsHistory-1]:FindFirstChild("Lever") then
+							task.spawn(function()
+								task.wait(3.5)
+								blockLevers[doorsHistory[#doorsHistory-1].Lever] = true
+							end)
 						end
 						plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 50)
 						plr.Character:PivotTo(door:GetPivot() + Vector3.new(math.random(-100, 100),math.random(-100, 100),math.random(-100, 100))/20)
@@ -764,7 +776,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 	if vals.AutoPick or vals.AutoPlay then
 		for i,v in interacts do
 			if v and v.Parent then
-				if v:FindFirstChild("ProximityPrompt") and canCarry(v.Parent) then
+				if v:FindFirstChild("ProximityPrompt") and canCarry(v.Parent) and (vals.AutoPlay and vals.AutoPlayTools or vals.AutoPlay and getText(v.Parent):match("%$") or vals.AutoPlay and not isLightSource(v.Parent) or not vals.AutoPlay) or v.Parent.Name:lower():match("keycard") then
 					fireproximityprompt(v.ProximityPrompt)
 				end
 			else
@@ -972,18 +984,9 @@ page:AddSlider({Caption = "Speed boost", Default = 0, Min = 0, Max = 100, Step =
 end})
 page:AddToggle({Caption = "Noclip", Default = false, Callback = function(b)
 	vals.Noclip = b
-	game["Run Service"].RenderStepped:Wait()
-	task.wait(0.5)
-	game["Run Service"].RenderStepped:Wait()
-	if plr.Character and plr.Character:FindFirstChildOfClass("Humanoid") then
-		plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-		game["Run Service"].RenderStepped:Wait()
-		task.wait(0.5)
-		game["Run Service"].RenderStepped:Wait()
-		if plr.Character and plr.Character:FindFirstChildOfClass("Humanoid") then
-			plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-		end
-	end
+	plr.Crouching.Value = not plr.Crouching.Value
+	task.wait(0.2)
+	plr.Crouching.Value = not plr.Crouching.Value
 end})
 page:AddToggle({Caption = "Anti invisible walls", Default = false, Callback = function(b)
 	vals.NoInvisible = b
@@ -997,7 +1000,7 @@ function getLastDoor()
 	for i,v in rooms do
 		if v and v:FindFirstChild("Entrances") and v:FindFirstChild("Lights") and v.Lights:FindFirstChild("Sign") then
 			local door = v.Entrances:FindFirstChildOfClass("Model")
-			if door and door:FindFirstChild("OpenValue") and not door.OpenValue.Value then
+			if door and door:FindFirstChild("OpenValue") and not door.OpenValue.Value and door:FindFirstChild("Exit") and door.Exit.Value and door.Exit.Value:IsDescendantOf(workspace.Rooms) then
 				local thatRoomNum
 				for idx,val in v.Lights:GetChildren() do
 					if val and val.Name == "Sign" and val:FindFirstChild("SurfaceGui") and val.SurfaceGui:FindFirstChild("TextLabel") and not goodColors[val.SurfaceGui.TextLabel.TextColor3] then
@@ -1018,7 +1021,7 @@ function getLastDoor()
 	for i,v in rooms do
 		if v and v:FindFirstChild("Entrances") then
 			local door = v.Entrances:FindFirstChildOfClass("Model")
-			if door and door:FindFirstChild("OpenValue") and not door.OpenValue.Value then
+			if door and door:FindFirstChild("OpenValue") and not door.OpenValue.Value and door:FindFirstChild("Exit") and door.Exit.Value and door.Exit.Value:IsDescendantOf(workspace.Rooms) then
 				local found = table.find(doorsHistory, door)
 				if not found then
 					return door
@@ -1032,7 +1035,18 @@ function getLastDoor()
 		end
 	end
 	
-	return top or rooms[#rooms]
+	if top then
+		return top
+	end
+	
+	for i,v in rooms do
+		if v and v:FindFirstChild("Entrances") then
+			local door = v.Entrances:FindFirstChildOfClass("Model")
+			if door and door:FindFirstChild("OpenValue") and not door.OpenValue.Value and door:FindFirstChild("Exit") and door.Exit.Value and door.Exit.Value:IsDescendantOf(workspace.Rooms) then
+				return door
+			end
+		end
+	end
 end
 page:AddButton({Caption = "Teleport to the door", Callback = function()
 	plr.Character:PivotTo(getLastDoor():GetPivot())
@@ -1060,13 +1074,13 @@ if health then
 			setHealth(100)
 		end
 	end
-	page:AddToggle({Caption = "Infinite health [Can crash Roblox]", Default = false, Callback = function(b)
+	page:AddToggle({Caption = "Infinite health", Default = false, Callback = function(b)
 		task.spawn(healthFunc, b)
 	end})
-	page:AddButton({Caption = "Regenerate health [Can crash Roblox]", Default = true, Callback = function(b)
+	page:AddButton({Caption = "Regenerate health", Default = true, Callback = function(b)
 		setHealth(bool and inf or 100)
 	end})
-	page:AddButton({Caption = "Kill [Can crash Roblox]", Default = true, Callback = function(b)
+	page:AddButton({Caption = "Kill", Default = true, Callback = function(b)
 		setHealth(0)
 	end})
 else
