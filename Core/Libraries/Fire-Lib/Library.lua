@@ -3895,7 +3895,7 @@ if not pcall(function()
         }
     end) then
     versions = {
-        ["FireLibraryVersion"] = "5.2",
+        ["FireLibraryVersion"] = "5.1",
         ["FireHubVersion"] = "4.0.2"
     }
 end
@@ -5292,6 +5292,21 @@ local lib; lib = {
                 end
                 if not got then return end
                 configStructure = got
+                for i,v in got do
+                    if typeof(v) == "table" then
+                        for idx, val in v do
+                            if typeof(val) == "table" then
+                                for index, value in val do
+                                    configStructure[i][idx][index] = value
+                                end
+                            else
+                                configStructure[i][idx] = val
+                            end
+                        end
+                    else
+                        configStructure[i] = v
+                    end
+                end
                 configEvent:Fire(got)
                 lib.Notifications:Notification({Title = "Success", Text = "Config \""..currentConfig.."\" has been loaded!"})
             end})
