@@ -5332,7 +5332,7 @@ local lib; lib = {
                 configEvent:Fire(got)
                 lib.Notifications:Notification({Title = "Success", Text = "Config \""..currentConfig.."\" has been loaded!"})
             end})
-            page:AddTextBox({Text = "Config name [leave empty to disable]", NeedEnter = false, Default = "", Callback = function(text)
+            local tb = page:AddTextBox({Text = "Config name [leave empty to disable]", NeedEnter = false, Default = "", Callback = function(text)
                 writefile("AutoLoad"..suffix..".skibidi", text)
             end})
             pcall(function()
@@ -5340,7 +5340,8 @@ local lib; lib = {
                 content = content:gsub("\n", "")
                 
                 if content:gsub(" ", ""):gsub("\r", ""):gsub("\t", "") == "" then return end
-                
+
+                tb:Set(content)
                 local s,got = pcall(readfile, content)
                 if not s then
                     return lib.Notifications:Notification({Title = "Uh oh!", Text = "Config called \""..currentConfig.."\" not found!"})
