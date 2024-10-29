@@ -4237,7 +4237,7 @@ local lib; lib = {
         updateThemeTable(maximize)
 
         local cd = false
-        local windowFuncs = {
+        local windowFuncs; windowFuncs = {
             ThemeColors = setmetatable({}, {
                 __newindex = function(self, name, newVal)
                     if colors[name] and typeof(newVal) == "Color3" then
@@ -4357,6 +4357,8 @@ local lib; lib = {
                         pageButton.Selection.Visible = true
                     end
                 end)
+                
+                windowFuncs.Tabs[counterTextPage] = {}
 
                 local pageFuncs = {
                     AddSlider = function(self, options)
@@ -4403,7 +4405,8 @@ local lib; lib = {
                         options.Set = set
 
                         --
-
+                        
+                        windowFuncs.Tabs[counterTextPage][counterText] = funcs
                         function funcs:Set(value)
                             if not self or not self.Object then return end
                             self.Options.Set(tonumber(value) or self.Value)
@@ -4475,6 +4478,8 @@ local lib; lib = {
 
                         local funcs = {}
                         funcs.Object = sep
+                        
+                        windowFuncs.Tabs[counterTextPage][count(getText({Text = "Separator"}), 2)] = funcs
                         function funcs:Destroy()
                             if not self or not self.Object then return end
                             self.Object:Destroy()
@@ -4512,6 +4517,7 @@ local lib; lib = {
                         local funcs = {}
                         funcs.Object = button
 
+                        windowFuncs.Tabs[counterTextPage][count(getText(options, 2))] = funcs
                         function funcs:Destroy()
                             if not self or not self.Object then return end
                             self.Object:Destroy()
@@ -4574,6 +4580,7 @@ local lib; lib = {
 
                         funcs.Object = toggle
 
+                        windowFuncs.Tabs[counterTextPage][counterText] = funcs
                         function funcs:Destroy()
                             if not self or not self.Object then return end
                             self.Object:Destroy()
@@ -4632,6 +4639,7 @@ local lib; lib = {
                         local funcs = {}
                         funcs.Object = label
 
+                        windowFuncs.Tabs[counterTextPage][count(getText(options), 2)] = funcs
                         function funcs:Destroy()
                             if not self or not self.Object then return end
                             self.Object:Destroy()
@@ -4690,6 +4698,7 @@ local lib; lib = {
                         funcs.Object = tb
                         funcs.Options = options
 
+                        windowFuncs.Tabs[counterTextPage][counterText] = funcs
                         function funcs:Destroy()
                             if not self or not self.Object then return end
                             self.Object:Destroy()
@@ -4812,6 +4821,7 @@ local lib; lib = {
 
                         funcs.Object = input
 
+                        windowFuncs.Tabs[counterTextPage][counterText] = funcs
                         function funcs:Destroy()
                             if not self or not self.Object then return end
                             self.Object:Destroy()
@@ -4927,6 +4937,7 @@ local lib; lib = {
                         funcs.TGL = toggle
                         funcs.CB = cb
 
+                        windowFuncs.Tabs[counterTextPage][counterText] = funcs
                         function funcs:Destroy()
                             if not self or not self.Object then return end
                             self.Object:Destroy()
@@ -5037,6 +5048,7 @@ local lib; lib = {
                         funcs.TGL = toggle
                         funcs.CB = cb
 
+                        windowFuncs.Tabs[counterTextPage][counterText] = funcs
                         function funcs:Destroy()
                             if not self or not self.Object then return end
                             self.Object:Destroy()
@@ -5133,6 +5145,7 @@ local lib; lib = {
                         funcs.Object = cp
                         funcs.Options = options
 
+                        windowFuncs.Tabs[counterTextPage][counterText] = funcs
                         function funcs:Destroy()
                             if not self or not self.Object then return end
                             self.Object:Destroy()
@@ -5190,9 +5203,18 @@ local lib; lib = {
                 return pageFuncs
             end,
         }
+        
+        windowFuncs.Tabs = windowFuncs.Tabs or {}
+        windowFuncs.Pages = windowFuncs.Tabs
+        
+        windowFuncs.CreatePage = windowFuncs.AddPage
+        windowFuncs.AddTab = windowFuncs.AddPage
+        windowFuncs.CreateTab = windowFuncs.AddPage
+        
         windowFuncs.Shutdown = windowFuncs.Close
         windowFuncs.Minimize = windowFuncs.Hide
         windowFuncs.Maximize = windowFuncs.Show
+        
         windowFuncs:Show()
 
         local page = windowFuncs:AddPage({Title = "Main", Order = 999})
