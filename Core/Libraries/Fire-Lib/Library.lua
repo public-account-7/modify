@@ -5332,43 +5332,44 @@ local lib; lib = {
                 configEvent:Fire(got)
                 lib.Notifications:Notification({Title = "Success", Text = "Config \""..currentConfig.."\" has been loaded!"})
             end})
-            local tb = page:AddTextBox({Text = "Config name [leave empty to disable]", NeedEnter = false, Default = "", Callback = function(text)
+            local tb = page:AddTextBox({Text = "Auto load config [leave empty to disable]", NeedEnter = false, Default = "", Callback = function(text)
                 writefile("AutoLoad"..suffix..".skibidi", text)
             end, IgnoreConfigs = true})
-            pcall(function()
-                local content = readfile("AutoLoad"..suffix..".skibidi")
-                content = content:gsub("\n", "")
-                
-                if content:gsub(" ", ""):gsub("\r", ""):gsub("\t", "") == "" then return end
-
-                tb:Set(content)
-                local s,got = pcall(readfile, content)
-                if not s then
-                    return lib.Notifications:Notification({Title = "Uh oh!", Text = "Config called \""..currentConfig.."\" not found!"})
-                end
-                if got then
-                    got = game.HttpService:JSONDecode(got)
-                end
-                if not got then return end
-                --configStructure = got
-                for i,v in got do
-                    if typeof(v) == "table" then
-                        for idx, val in v do
-                            if typeof(val) == "table" then
-                                for index, value in val do
-                                    configStructure[i][idx][index] = value
-                                end
-                            else
-                                configStructure[i][idx] = val
-                            end
-                        end
-                    else
-                        configStructure[i] = v
-                    end
-                end
-                configEvent:Fire(got)
-                lib.Notifications:Notification({Title = "Success", Text = "Config \""..currentConfig.."\" has been loaded!"})
-            end)
+			local s,e = pcall(function()
+				local content = readfile("AutoLoad"..suffix..".skibidi")
+				content = content:gsub("\n", "")
+				
+				if content:gsub(" ", ""):gsub("\r", ""):gsub("\t", "") == "" then return end
+				tb:Set(content)
+				
+				local s,got = pcall(readfile, content)
+				if not s then
+					return lib.Notifications:Notification({Title = "Uh oh!", Text = "Config called \""..currentConfig.."\" not found!"})
+				end
+				if got then
+					got = game.HttpService:JSONDecode(got)
+				end
+				if not got then return end
+				--configStructure = got
+				for i,v in got do
+					if typeof(v) == "table" then
+						for idx, val in v do
+							if typeof(val) == "table" then
+								for index, value in val do
+									configStructure[i][idx][index] = value
+								end
+							else
+								configStructure[i][idx] = val
+							end
+						end
+					else
+						configStructure[i] = v
+					end
+				end
+				configEvent:Fire(got)
+				lib.Notifications:Notification({Title = "Success", Text = "Config \""..currentConfig.."\" has been loaded!"})
+			end)
+			if not s then warn(e) end
         end
         
         page:AddSeparator()
