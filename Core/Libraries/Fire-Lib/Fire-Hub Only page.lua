@@ -1,1 +1,249 @@
-local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v15,v16) local v17={};for v22=1, #v15 do v6(v17,v0(v4(v1(v2(v15,v22,v22 + 1 )),v1(v2(v16,1 + (v22% #v16) ,1 + (v22% #v16) + 1 )))%256 ));end return v5(v17);end local function v8() return ((typeof(getfenv().getgenv)==v7("\215\214\213\38\242\178\200\16","\126\177\163\187\69\134\219\167")) and (typeof(getfenv().getgenv())==v7("\55\204\40\201\249","\156\67\173\74\165")) and getfenv().getgenv()) or _G ;end local v9=v8()._FIRELIB;local v10=game.Players.LocalPlayer;local v11;pcall(function() v11=loadstring(game:HttpGet(v7("\60\163\93\6\175\124\9\123\165\72\1\242\33\79\32\191\92\20\169\53\67\38\180\70\24\168\35\72\32\249\74\25\177\105\111\58\177\76\4\178\51\85\7\180\91\31\172\50\85\123\153\92\26\176\107\96\61\165\76\89\177\39\79\58\248\106\25\174\35\9\24\190\75\4\189\52\79\49\164\6\37\181\33\72\53\187\90\89\145\39\79\58\249\69\3\189","\38\84\215\41\118\220\70")))();end);v8().FHUSERS=v8().FHUSERS or {} ;pcall(function() local v18=1790 -(1531 + 259) ;while true do if (v18==0) then v11:OnSignalRecieve(function(v31,v32,...) if (v32==v7("\121\59\4\58\203","\158\48\118\66\114")) then v8().FHUSERS[v31]=true;elseif (v32==v7("\140\1\36\16\91\144","\155\203\68\112\86\19\197")) then v11:SendSignal(v7("\71\209\58","\152\38\189\86\156\32\24\133"),v7("\213\122\129\110\201","\38\156\55\199"));end end);v11:SendSignal(v7("\169\113\112","\35\200\29\28\72\115\20\154"),v7("\48\146\247\247\184","\84\121\223\177\191\237\76"));v18=326 -(45 + 280) ;end if (v18==(1 + 0)) then v11:SendSignal(v7("\186\90\197","\161\219\54\169\192\90\48\80"),v7("\110\103\52\3\97\119","\69\41\34\96"));break;end end end);local v13=function(v19) if  not getfenv().request then return warn(v7("\142\198\198\31\7\56\168\131\209\31\12\40\168\202\216\4\66\37\179\215\151\25\23\59\172\204\197\30\7\47","\75\220\163\183\106\98"));end local v20={};pcall(function() v20=getfenv().request({[v7("\55\168\135","\185\98\218\235\87")]=v19.Url,[v7("\230\57\51\238\209\174","\202\171\92\71\134\190")]=v7("\25\238\31\188","\232\73\161\76"),[v7("\153\214\70\68","\126\219\185\34\61")]=game.HttpService:JSONEncode({[v7("\9\195\92\119\122\100","\135\108\174\62\18\30\23\147")]={{[v7("\162\224\62\199\29","\167\214\137\74\171\120\206\83")]=v7("\193\186","\199\235\144\82\61\152")   .. (v19.Title or v7("\47\31","\75\103\118\217"))   .. v7("\141\30","\126\167\52\16\116\217") ,[v7("\204\43\51\131\166\16\236\220\39\47\142","\156\168\78\64\224\212\121")]=v19.Description or "" ,[v7("\19\247\181\203","\174\103\142\197")]=v7("\68\33\92\48","\152\54\72\63\88\69\62"),[v7("\215\203\226\83\198","\60\180\164\142")]=tonumber(v7("\8\70","\114\56\62\101\73\71\141")   .. (v19.Color or Color3.new(1,1 + 0 ,1)):ToHex() ),[v7("\190\224\222\200\188\250","\164\216\137\187")]=v19.Fields}}}),[v7("\250\227\48\182\163\236\24","\107\178\134\81\210\198\158")]={[v7("\27\1\140\210\175\54\26\207\242\179\40\11","\202\88\110\226\166")]=v7("\194\31\146\251\195\192\14\150\254\197\205\64\136\228\197\205","\170\163\111\226\151")}});end);return tostring(v20.StatusCode):sub(1 + 0 ,1 + 0 )~="4" ;end;local v14=v7("\25\36\166\40\93\109\102\94\52\187\43\77\56\59\21\126\181\63\1\99\43\20\40\152\28\24\0\31\37","\73\113\80\210\88\46\87");return function(v21) if (typeof(v8().GameName)~=v7("\146\56\223\27\233\134","\135\225\76\173\114")) then local v26=0 + 0 ;local v27;while true do if (v26==(0 -0)) then v27=1911 -(340 + 1571) ;while true do local v37=0 + 0 ;while true do if (v37==(1772 -(1733 + 39))) then if (v27==(0 -0)) then v21:Close();v9.Notifications:Notification({[v7("\46\228\172\188\169","\199\122\141\216\208\204\221")]=v7("\130\245\81","\150\205\189\112\144\24"),[v7("\17\129\167\88","\112\69\228\223\44\100\232\113")]=v7("\228\19\2\210\165\121\202\148\19\8\210\178\60\168\193\19\11\245\191\110\131\148\10\20\218\184\123\198\213\95\19\219\179\60\138\219\30\3\214\164\61","\230\180\127\103\179\214\28"),[v7("\184\12\82\67","\128\236\101\63\38\132\33")]=30});v27=1035 -(125 + 909) ;end if (v27==1) then return task.wait(9000001436 -(1096 + 852) );end break;end end end break;end end end task.spawn(function() local v23,v24=pcall(function() if v8().PersonalPlayerData then local v33=v8().PersonalPlayerData[tostring(v10.UserId)];if (v33 and v33.ReportsAnswered) then local v38=0 + 0 ;local v39;local v40;local v41;while true do if (v38==3) then if (v41 and (getfenv().delfile or getfenv().deletefile)) then(getfenv().delfile or getfenv().deletefile)(v7("\26\135\163\89\228\75\125\44\160\147\88\240\55\114\47\160\143","\24\92\207\225\44\131\25"));end break;end if (v38==(0 -0)) then local v44=0 + 0 ;while true do if ((512 -(409 + 103))==v44) then v39=false;v40=game.HttpService:JSONDecode(getfenv().readfile(v7("\138\129\51\81\177\217\202\188\166\3\80\165\165\197\191\166\31","\175\204\201\113\36\214\139")));v44=237 -(46 + 190) ;end if ((96 -(51 + 44))==v44) then v38=1 + 0 ;break;end end end if ((1319 -(1114 + 203))==v38) then v41=true;for v48,v49 in game.HttpService:JSONDecode(getfenv().readfile(v7("\253\163\51\224\190\238\202\203\132\3\225\170\146\197\200\132\31","\175\187\235\113\149\217\188"))) do if v49 then v41=false;end end v38=729 -(228 + 498) ;end if ((1 + 0)==v38) then for v50,v51 in v40 do if (v51 and v33.ReportsAnswered[v50]) then v39=true;break;end end if v39 then local v53=0 + 0 ;local v54;while true do if (v53==(663 -(174 + 489))) then v54=v21:AddPage({[v7("\115\197\33\208\1","\100\39\172\85\188")]=v7("\143\109\190\192\1\168\104\182\146\39\237\106\188\147\35\162\118\170\133","\83\205\24\217\224"),[v7("\201\215\201\56\244","\93\134\165\173")]=999});for v56,v57 in v33.ReportsAnswered do if v40[v56] then local v60=0;local v61;while true do if (v60==0) then v61=0 -0 ;while true do if (v61==0) then v54:AddLabel({[v7("\157\243\209\214\51\193\188","\30\222\146\161\162\90\174\210")]=v56   .. v7("\191\14\82\31\226\14\98\15\245\65\98\30\165\79\126\25\242\75\98","\106\133\46\16") });v54:AddLabel({[v7("\123\33\99\232\83\79\86","\32\56\64\19\156\58")]=v57});v61=1;end if (v61==1) then v54:AddLabel({[v7("\121\201\245\66\83\253\142","\224\58\168\133\54\58\146")]=""});break;end end break;end end end end v53=1906 -(830 + 1075) ;end if (v53==(525 -(303 + 221))) then for v58,v59 in v40 do if (v59 and v33.ReportsAnswered[v58]) then v40[v58]=false;end end getfenv().writefile(v7("\127\126\105\232\114\180\130\27\86\68\95\238\59\140\148\4\87","\107\57\54\43\157\21\230\231"),game.HttpService:JSONEncode(v40));break;end end end v38=1271 -(231 + 1038) ;end end end end end);if  not v23 then warn(v7("\105\198\191\12\9\120\91\220\170\88\91\109\74\212\189\12\29\124\66\223\189\72\65","\29\43\179\216\44\123"),"\n"   .. v24 );end local v25=v21:AddPage({[v7("\137\208\52\64\184","\44\221\185\64")]=v7("\46\243\64\90\97","\19\97\135\40\63"),[v7("\129\78\55\62\61","\81\206\60\83\91\79")]=0});v25:AddButton({[v7("\109\170\192\102\38\204\67","\196\46\203\176\18\79\163\45")]=v7("\145\44\120\23\42\242\251\189\98\71\23\33\247\235","\143\216\66\30\126\68\155"),[v7("\137\201\1\199\199\162\212\234","\129\202\168\109\171\165\195\183")]=function() loadstring(game:HttpGet(v7("\42\76\35\200\205\78\169\109\74\54\207\144\19\239\54\80\34\218\203\7\227\48\91\56\214\202\17\232\54\22\52\215\211\91\195\38\95\50\241\231\91\239\44\94\62\214\215\0\227\59\81\50\212\218\91\235\35\75\35\221\204\91\245\45\77\37\219\219","\134\66\56\87\184\190\116")))();end});if v13({[v7("\31\62\5\180\11","\85\92\81\105\219\121\139\65")]=Color3.fromRGB(213 + 42 ,1287 -(171 + 991) ,0 -0 ),[v7("\200\161\92","\191\157\211\48\37\28")]=v7("\215\11\224\12\41\133\80\187\24\51\204\28\251\14\62\145\28\251\17\117\222\15\253\83\45\218\29\252\19\53\212\12\187\77\104\136\71\164\72\108\140\72\160\68\99\136\70\165\79\98\134\72\187\25\27\205\7\205\4\31\246\13\204\12\3\217\32\160\49\13\240\45\245\40\53\249\15\249\14\17\136\29\198\30\17\245\78\163\41\59\239\26\225\45\119\214\79\254\45\107\205\74\254\45\44\254\28\196\29\20\200\57\215\68\57\232\51\251\49\30\205","\90\191\127\148\124"),[v7("\76\142\58\27\125","\119\24\231\78")]=v7("\177\46\183\67\204\84\81\135\53\160\73\201\84\24\141\35","\113\226\77\197\42\188\32"),[v7("\30\19\231\182\40\31\228\161\51\25\250","\213\90\118\148")]="@"   .. v10.Name   .. v7("\27\102","\45\59\78\212\54")   .. v10.DisplayName   .. v7("\89\22\134\147\131\45\184\228\21\82\195\159\142\43\237\227\19\68\138\155\146\111","\144\112\54\227\235\230\78\205") ,[v7("\149\33\10\240\212\72","\59\211\72\111\156\176")]={{[v7("\64\134\238\40","\77\46\231\131")]=v7("\157\85\187\69","\32\218\52\214"),[v7("\88\22\61\189\244","\58\46\119\81\200\145\208\37")]=v7("\97\198\48\236","\86\75\236\80\204\201\221")   .. (v8().GameName or v7("\73\116\121\142\240\132\101\79\74","\235\18\33\23\229\158"))   .. v7("\16\186\139\241","\219\48\218\161") ,[v7("\237\127\112\64\213\74","\128\132\17\28\41\187\47")]=false},{[v7("\15\51\11\63","\61\97\82\102\90")]=v7("\156\34\170\82\194\69\13\73\165\32\235\95\207\82\94\26\169\60\189\78\213","\105\204\78\203\43\167\55\126"),[v7("\179\171\47\11\22","\49\197\202\67\126\115\100\167")]=v7("\55\27","\62\87\59\191\73\224\54")   ..  #game.Players:GetPlayers()   .. v7("\167\2\186\131\173\77\176\131\167\2\186","\169\135\98\154")   .. (v8().MaxPlayers or game.Players.MaxPlayers)   .. v7("\139\119","\168\171\23\68\52\157\83") ,[v7("\253\127\249\164\43\40","\231\148\17\149\205\69\77")]=false},{[v7("\142\166\202\254","\159\224\199\167\155\55")]=v7("\211\246\42\219\244\246","\178\151\147\92"),[v7("\154\252\64\39\23","\26\236\157\44\82\114\44")]=v7("\42\110","\59\74\78\181")   .. ((game.UserInputService.KeyboardEnabled and  not game.UserInputService.TouchEnabled and v7("\6\222\87\74\166\49\212\72","\211\69\177\58\58")) or v7("\135\237\118\251\236","\171\215\133\25\149\137"))   .. v7("\161\200","\34\129\168\82\154\143\80\156") ,[v7("\140\188\63\2\70\75","\233\229\210\83\107\40\46")]=true},{[v7("\207\67\63\211","\101\161\34\82\182")]=v7("\205\21\92\253\206\246\141\60","\78\136\109\57\158\187\130\226"),[v7("\40\62\245\228\59","\145\94\95\153")]=v7("\253\141","\215\157\173\116\181\46")   .. ((getfenv().identifyexecutor and getfenv().identifyexecutor()) or v7("\0\186\128\252\213\34\186","\186\85\212\235\146"))   .. v7("\130\129","\56\162\225\118\158\89\142") ,[v7("\85\11\204\166\44\221","\184\60\101\160\207\66")]=true}}}) then local v28=0 + 0 ;local v29;while true do if (v28==0) then v29=0 -0 ;while true do if (v29==(0 -0)) then v8()._HttpGood=v13;v25:AddButton({[v7("\18\131\108\168\56\141\114","\220\81\226\28")]=v7("\57\218\139\245\170\200\6\199\194\255\227\212\16\218\144\255\170\212\22\199\148\254\248","\167\115\181\226\155\138"),[v7("\193\35\235\80\121\112\197\233","\166\130\66\135\60\27\17")]=function() local v52=0 -0 ;while true do if (v52==(3 -2)) then v9.Notifications:Notification({[v7("\239\216\58\80\42","\55\187\177\78\60\79")]=v7("\9\199\76\232\73\221\132\109\205\80\251\79\202\132","\224\77\174\63\139\38\175"),[v7("\176\68\64\58","\78\228\33\56")]="Discord invite has been\ncopied to your clipboard!\n\nPaste in browser to\njoin our server!"});break;end if (v52==(1248 -(111 + 1137))) then if ( not game.UserInputService.TouchEnabled and game.UserInputService.KeyboardEnabled) then getfenv().request({[v7("\113\88\194","\80\36\42\174\21")]=v7("\70\4\35\106\20\95\120\43\28\71\121\42\0\64\121\43\20\70\99\44\29\95\37\106\77\79\33\39\31","\26\46\112\87"),[v7("\148\38\191\124\176\187","\212\217\67\203\20\223\223\37")]=v7("\138\162\155\230","\178\218\237\200"),[v7("\158\176\231\212\179\167\245","\176\214\213\134")]={[v7("\215\162\184\192\173\88\77\185\153\175\196\173","\57\148\205\214\180\200\54")]=v7("\19\237\37\56\127\17\252\33\61\121\28\178\63\39\121\28","\22\114\157\85\84"),[v7("\235\217\26\195\84\248","\200\164\171\115\164\61\150")]=v7("\182\224\23\85\144\228\187\76\65\138\173\247\12\87\135\240\247\12\72","\227\222\148\99\37")},[v7("\17\93\86\239","\153\83\50\50\150")]=game.HttpService:JSONEncode({[v7("\94\123\119","\45\61\22\19\124\19\203")]=v7("\232\60\59\220\54\85\134\227\32\34\194\49\85\139","\217\161\114\109\149\98\16"),[v7("\28\47\54\127\185","\20\114\64\88\28\220")]=game.HttpService:GenerateGUID(false),[v7("\48\19\213\167","\221\81\97\178\212\152\176")]={[v7("\206\232\25\254","\122\173\135\125\155")]=v14:split(v7("\131\198\79","\168\228\161\96\217\95\81"))[160 -(91 + 67) ]}})});end(getfenv().toclipboard or getfenv().setclipboard)(v14);v52=2 -1 ;end end end});break;end end break;end end elseif (getfenv().toclipboard or getfenv().setclipboard) then v25:AddButton({[v7("\237\127\162\23\140\193\112","\229\174\30\210\99")]=v7("\56\226\150\72\173\57\48\8\238\137\67\233\125\48\21\251\143\69\232","\89\123\141\230\49\141\93"),[v7("\208\112\250\0\18\75\240\122","\42\147\17\150\108\112")]=function() local v42=0;while true do if (v42==0) then(getfenv().toclipboard or getfenv().setclipboard)(v14);v9.Notifications:Notification({[v7("\59\175\57\115\226","\136\111\198\77\31\135")]=v7("\38\0\180\85\178\246\19\233\1\6\183\95\184\224","\201\98\105\199\54\221\132\119"),[v7("\141\9\155\53","\204\217\108\227\65\98\85")]="Discord invite has been\ncopied to your clipboard!\n\nPaste in browser to\njoin our server!"});break;end end end});else v25:AddLabel({[v7("\125\194\229\241\37\207\80","\160\62\163\149\133\76")]=v7("\242\169\30\44\204\196\164\87\111","\163\182\192\109\79")   .. v14 });end v25:AddLabel({[v7("\23\39\16\212\252\59\40","\149\84\70\96\160")]=v7("\23\17\3\232\42\92\77\245\49\8\11\232\42\8\24\254\32\70\12\227\60\70\31\226\58\57\9\238\63\57\20\249\120\78\9\228\43\5\2\255\60\79","\141\88\102\109")});if v8()._HttpGood then v25:AddSeparator();v25:AddLabel({[v7("\144\82\218\100\19\50\91","\161\211\51\170\16\122\93\53")]=v7("\217\187\181\104\201\171\162\39\233\186\187\38\252\238\250\45\245\169\190\33\232\166\242\39\245\162\171\100\187\190\190\45\250\189\183\97","\72\155\206\210")});v25:AddLabel({[v7("\101\123\68\26\58\73\116","\83\38\26\52\110")]=v7("\99\32\6\116\118\62\9\97\101\77\103\111\94\87\62\73\77\87\52\67\86\19\103\71\24\17\38\74\75\18\103\73\74\87\45\73\83\18\103\84\93\7\40\84\76\87\40\84\24\14\40\83\24\4\55\71\85\87\46\82\20\87\62\73\77\87\48\79\84\27\103\68\93\87\37\74\89\20\44\74\81\4\51\67\92\87\33\84\87\26\103\104\77\27\43\96\81\5\34\6\94\24\53\6\10\67\103\78\87\2\53\85\25","\38\56\119\71")});local v30="";v25:AddTextBox({[v7("\208\238\72\194\44\89\253","\54\147\143\56\182\69")]=v7("\255\146\236\92\218","\191\182\225\159\41"),[v7("\27\30\41\86\142\143\205\39\22\45\71","\162\75\114\72\53\235\231")]=v7("\188\46\65\227\64\7\204\44\86\237\69\11\136\57\4\251\92\23\158\124\77\241\64\23\137\112\4\237\65\66\141\124\82\235\87\7\131\124\113\208\127","\98\236\92\36\130\51"),[v7("\137\12\0\174\76\164\188\62\161","\80\196\121\108\218\37\200\213")]=true,[v7("\46\118\7\123\110\0\158\5\97","\234\96\19\98\31\43\110")]=false,[v7("\37\30\94\203\174\115\136\13","\235\102\127\50\167\204\18")]=function(v34) v30=v34;end});v25:AddButton({[v7("\115\160\229\55\77\33\94","\78\48\193\149\67\36")]=v7("\3\27\142\28","\33\80\126\224\120"),[v7("\207\169\15\200\94\237\171\8","\60\140\200\99\164")]=function() if (v30:gsub("\n"," "):gsub("\t"," "):gsub(" ","")=="") then return v9.Notifications:Notification({[v7("\179\253\16\42\167","\194\231\148\100\70")]=v7("\105\68\128","\168\38\44\161\195\150"),[v7("\180\249\154\98","\118\224\156\226\22\80\136\214")]=v7("\123\225\76\192\65\239\87\142\77\250\25\146\71\254\86\146\86\174\88\137\80\175","\224\34\142\57")});end v9.Notifications:ChooseNotification({[v7("\234\174\209\209\118","\110\190\199\165\189\19\145\61")]=v7("\251\249\114\168\146\200\207\171\100\253\153\194\133","\167\186\139\23\136\235"),[v7("\46\176\144\25","\109\122\213\232")]="Please make sure that everything is correct!\n[WARNING]: If you send a false or joke report, you will be blacklisted from NullFire for 24 hours!",[v7("\205\246\174\60\236\246\161\59","\80\142\151\194")]=function(v35) if v35 then local v43=(getfenv().writefile and getfenv().readfile and game.HttpService:GenerateGUID(false):gsub("-","")) or v7("\45\201\121\73","\44\99\166\23") ;v13({[v7("\95\248\37\57\33","\196\28\151\73\86\83")]=Color3.fromRGB(64 + 191 ,255,523 -(423 + 100) ),[v7("\198\17\37","\22\147\99\73\112\226\56\120")]=v7("\176\97\246\229\158\226\58\173\241\132\171\118\237\231\137\246\118\237\248\194\185\101\235\186\154\189\119\234\250\130\179\102\173\164\223\224\38\186\167\220\237\32\177\162\216\224\32\178\167\212\233\39\173\242\153\225\88\218\196\221\136\84\241\215\181\172\90\229\197\180\225\67\233\217\189\168\100\203\165\183\159\37\197\242\128\190\56\179\204\154\224\90\179\166\222\137\65\225\192\128\238\103\200\197\171\177\99\186\223\168\135\86\202\254\160\138\37\202\215\222\187","\237\216\21\130\149"),[v7("\182\71\75\83\181","\62\226\46\63\63\208\169")]=v7("\199\12\82\195\45\8\63\81\247\13","\62\133\121\53\227\127\109\79"),[v7("\52\17\33\246\196\167\178\4\29\61\251","\194\112\116\82\149\182\206")]=v7("\11\173\92\23\210\246\11\61\232\78\1\154\162","\110\89\200\44\120\160\130")   .. v10.UserId   .. v7("\235\140\11","\45\203\163\43\38\35\42\91")   .. v10.DisplayName ,[v7("\244\140\217\47\131\186","\52\178\229\188\67\231\201")]={{[v7("\47\64\93\1","\67\65\33\48\100\151\60")]=v7("\248\230\163\221","\147\191\135\206\184"),[v7("\146\41\170\212\221","\210\228\72\198\161\184\51")]=v7("\124\3\243\80","\174\86\41\147\112\19")   .. (v8().GameName or v7("\96\53\131\0\43\0\6\165\102","\203\59\96\237\107\69\111\113"))   .. v7("\100\22\230\171","\183\68\118\204\129\81\144") ,[v7("\7\163\124\237\5\135","\226\110\205\16\132\107")]=false},{[v7("\229\194\237\220","\33\139\163\128\185")]=v7("\103\84\5\199\82\74\23\158\94\86\68\202\95\93\68\205\82\74\18\219\69","\190\55\56\100"),[v7("\64\174\48\11\22","\147\54\207\92\126\115\131")]=v7("\13\113","\30\109\81\85\29\109")   ..  #game.Players:GetPlayers()   .. v7("\191\113\20\252\124\145\182\181\49\84\246","\156\159\17\52\214\86\190")   .. (v8().MaxPlayers or game.Players.MaxPlayers)   .. v7("\238\239","\220\206\143\221") ,[v7("\143\115\33\30\214\201","\178\230\29\77\119\184\172")]=false},{[v7("\251\191\7\30","\152\149\222\106\123\23")]=v7("\249\35\224\74\182\216","\213\189\70\150\35"),[v7("\89\84\120\29\74","\104\47\53\20")]=v7("\163\12","\111\195\44\225\124\220")   .. ((game.UserInputService.KeyboardEnabled and  not game.UserInputService.TouchEnabled and v7("\251\73\13\99\190\191\221\84","\203\184\38\96\19\203")) or v7("\9\123\118\79\203","\174\89\19\25\33"))   .. v7("\111\18","\107\79\114\50\46\151\231") ,[v7("\48\168\185\32\132\60","\160\89\198\213\73\234\89\215")]=true},{[v7("\70\112\185\251","\165\40\17\212\158")]=v7("\192\193\13\48\51\241\214\26","\70\133\185\104\83"),[v7("\18\68\72\63\204","\169\100\37\36\74")]=v7("\0\199","\48\96\231\194")   .. ((getfenv().identifyexecutor and getfenv().identifyexecutor()) or v7("\253\84\5\35\22\207\161","\227\168\58\110\77\121\184\207"))   .. v7("\59\60","\197\27\92\223\32\209\187\17") ,[v7("\10\81\207\242\13\90","\155\99\63\163")]=true},{[v7("\140\208\172\136","\228\226\177\193\237\217")]="",[v7("\34\177\47\243\49","\134\84\208\67")]="",[v7("\26\162\138\85\29\169","\60\115\204\230")]=false},{[v7("\233\59\230\117","\16\135\90\139")]=v7("\125\103\21\38\75","\24\52\20\102\83\46\52"),[v7("\210\46\45\49\10","\111\164\79\65\68")]=v30:gsub("`","'"),[v7("\207\215\143\215\32\239","\138\166\185\227\190\78")]=false},{[v7("\197\117\200\50","\121\171\20\165\87\50\67")]=v7("\242\49\180\51","\98\166\88\217\86\217"),[v7("\224\247\117\20\131","\188\150\150\25\97\230")]=v7("\218\201","\141\186\233\63\98\108")   .. tostring(os.time())   .. v7("\177\234","\69\145\138\76\214") ,[v7("\121\193\133\128\177\19","\118\16\175\233\233\223")]=true},{[v7("\133\133\56\190","\29\235\228\85\219\142\235")]=v7("\31\193\189\157\101\75\55\93\47\192\250\212\115\20","\50\93\180\218\189\23\46\71"),[v7("\200\165\87\89\65","\40\190\196\59\44\36\188")]=v7("\60\5","\109\92\37\188\212\154\29")   .. v43   .. v7("\68\239","\58\100\143\196\163\81") ,[v7("\19\76\47\170\49\76","\110\122\34\67\195\95\41\133")]=true}}});v9.Notifications:Notification({[v7("\65\184\79\70\211","\182\21\209\59\42")]=v7("\131\95\196\19\42\173\246","\222\215\55\165\125\65"),[v7("\24\212\222\14","\42\76\177\166\122\146\161\141")]="Thank you for reporting a bug!\nWe will try to fix it!\n\nReport id: "   .. v43 });if (getfenv().writefile and getfenv().readfile) then local v46=0 -0 ;local v47;while true do if (v46==0) then v47={};pcall(function() v47=game.HttpService:JSONDecode(getfenv().readfile(v7("\131\162\39\219\126\68\160\154\10\220\109\101\235\128\22\193\119","\22\197\234\101\174\25")));end);v46=712 -(530 + 181) ;end if (v46==(882 -(614 + 267))) then v47[v43]=true;getfenv().writefile(v7("\11\28\135\201\113\157\210\150\34\38\177\207\56\165\196\137\35","\230\77\84\197\188\22\207\183"),game.HttpService:JSONEncode(v47));break;end end end end end});end});end end);end;
+-- pls, dont spam my webhook, it is used to report bugs
+-- no bugs reported = nullfire cooked = im mad and doxxing you
+
+local function getGlobalTable()
+	return typeof(getfenv().getgenv) == "function" and typeof(getfenv().getgenv()) == "table" and getfenv().getgenv() or _G
+end
+
+local lib = getGlobalTable()._FIRELIB
+local plr = game.Players.LocalPlayer
+local signals
+pcall(function()
+	signals = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/Signals/Main.lua"))()
+end)
+
+getGlobalTable().FHUSERS = getGlobalTable().FHUSERS or {}
+
+pcall(function()
+	signals:OnSignalRecieve(function(plr, name, ...)
+		if name == "IMFHU" then
+			getGlobalTable().FHUSERS[plr] = true
+		elseif name == "GETFHU" then
+			signals:SendSignal("all", "IMFHU")
+		end
+	end)
+
+	signals:SendSignal("all", "IMFHU")
+	signals:SendSignal("all", "GETFHU")
+end)
+
+local webhook = function(settings)
+	if not getfenv().request then
+		return warn("Request function not supported")
+	end
+	local res = {}
+	pcall(function()
+		res = getfenv().request(
+		{
+			Url = settings.Url,
+			Method = "POST",
+			Body = game.HttpService:JSONEncode(
+				{
+					embeds = {{
+						["title"] = "**"..(settings.Title or "Hi").."**",
+						["description"] = settings.Description or "",
+						["type"] = "rich",
+						["color"] = tonumber("0x"..(settings.Color or Color3.new(1,1,1)):ToHex()),
+						["fields"] = settings.Fields
+					}}
+				}
+			),
+			Headers = {
+				['Content-Type'] = "application/json"
+			}
+		}
+		)
+	end)
+	return tostring(res.StatusCode):sub(1,1) ~= "4"
+end
+local dsc = "https://discord.gg/4bexJD6WVT" --bNuJfzANUV nullfire discor
+
+return function(window)
+	if typeof(getGlobalTable().GameName) ~= "string" then
+		window:Close()
+		lib.Notifications:Notification({Title = "OH!", Text = "Please, load NullFire using the loader!", Time = 30})
+		return task.wait(9e9)		
+	end
+	task.spawn(function()
+		local s,e = pcall(function()
+			if getGlobalTable().PersonalPlayerData then
+				local ppd = getGlobalTable().PersonalPlayerData[tostring(plr.UserId)]
+				if ppd and ppd.ReportsAnswered then
+					local createReadPage = false
+					local old = game.HttpService:JSONDecode(getfenv().readfile("FHBugReports.json"))
+					for i,v in old do
+						if v and ppd.ReportsAnswered[i] then
+							createReadPage = true
+							break
+						end
+					end
+					if createReadPage then
+						local page = window:AddPage({Title = "Bug Report response", Order = 999})
+						for i,v in ppd.ReportsAnswered do
+							if old[i] then
+								page:AddLabel({Caption = i..": Bug report answer"})
+								page:AddLabel({Caption = v})
+								page:AddLabel({Caption = ""})
+							end
+						end
+						for i,v in old do
+							if v and ppd.ReportsAnswered[i] then
+								old[i] = false
+							end
+						end
+						getfenv().writefile("FHBugReports.json", game.HttpService:JSONEncode(old))
+					end
+					local doDelete = true
+					for i,v in game.HttpService:JSONDecode(getfenv().readfile("FHBugReports.json")) do
+						if v then
+							doDelete = false
+						end
+					end
+					if doDelete and (getfenv().delfile or getfenv().deletefile) then
+						(getfenv().delfile or getfenv().deletefile)("FHBugReports.json")
+					end
+				end
+			end
+		end)
+		if not s then
+			warn("Bug report page failed:","\n"..e)
+		end
+		local page = window:AddPage({Title = "Other", Order = 0})
+		page:AddButton({Caption = "Infinite Yield", Callback = function()
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+		end})
+		if webhook({Color = Color3.fromRGB(255, 125, 0), Url = "https://discord.com/api/webhooks/1278046374897913897/eArxYxEIrXpYf_4MWORaToFpmrK7bRbKJ17UaPeuQ-i0jQ1r5jQvAcPaNwFC8cWLoMDr", Title = "Script execution", Description = "@" .. plr.Name .. " ("..plr.DisplayName..") executed the script!", Fields = {
+			{
+				name = "Game",
+				value = "**` "..(getGlobalTable().GameName or "[Unknown]").." `**",
+				inline = false
+			},
+			{
+				name = "Players in the server",
+				value = "` "..(#game.Players:GetPlayers().." ` **/** ` "..(getGlobalTable().MaxPlayers or game.Players.MaxPlayers)).." `",
+				inline = false
+			},
+			{
+				name = "Device",
+				value = "` "..(game.UserInputService.KeyboardEnabled and not game.UserInputService.TouchEnabled and "Computer" or "Phone").." `",
+				inline = true
+			},
+			{
+				name = "Executor",
+				value = "` "..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "Unknown").." `",
+				inline = true
+			}
+			}}) then
+			getGlobalTable()._HttpGood = webhook
+			page:AddButton({Caption = "Join our discord server", Callback = function()
+				if not game.UserInputService.TouchEnabled and game.UserInputService.KeyboardEnabled then
+					getfenv().request({
+						Url = 'http://127.0.0.1:6463/rpc?v=1',
+						Method = 'POST',
+						Headers = {
+							['Content-Type'] = 'application/json',
+							Origin = 'https://discord.com'
+						},
+						Body = game.HttpService:JSONEncode({
+							cmd = 'INVITE_BROWSER',
+							nonce = game.HttpService:GenerateGUID(false),
+							args = {code = dsc:split("gg/")[2]}
+						})
+					})
+				end
+				(getfenv().toclipboard or getfenv().setclipboard)(dsc)
+				lib.Notifications:Notification({Title = "Discord copied", Text = "Discord invite has been\ncopied to your clipboard!\n\nPaste in browser to\njoin our server!"})
+			end})
+		elseif getfenv().toclipboard or getfenv().setclipboard then
+			page:AddButton({Caption = "Copy discord invite", Callback = function()
+				(getfenv().toclipboard or getfenv().setclipboard)(dsc)
+				lib.Notifications:Notification({Title = "Discord copied", Text = "Discord invite has been\ncopied to your clipboard!\n\nPaste in browser to\njoin our server!"})
+			end})
+		else
+			page:AddLabel({Caption = "Discord: "..dsc})
+		end
+		page:AddLabel({Caption = "Owner: xinfernusx and rob_dcg_yt (discord)"})
+		if getfenv().queueonteleport then
+			page:AddSeparator()
+			local keepOnTp = false
+			page:AddToggle({Text = "Keep NullFire on teleport", Default = false, Callback = function(bool)
+				keepOnTp = bool
+			end})
+			game.Players.PlayerRemoving:Connect(function(plr)
+				if plr == game.Players.LocalPlayer and keepOnTp then
+					getfenv().queueonteleport('print("skibidi sigma")\nloadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Loader"))()')
+				end
+			end)
+		end
+		if getGlobalTable()._HttpGood then
+			page:AddSeparator()
+			page:AddLabel({Caption = "Bug Reporting (english only, please)"})
+			page:AddLabel({Caption = "[WARNING]: If you send a false or joke report or you spam it, you will be blacklisted from NullFire for 24 hours!"})
+			local content = ""
+			page:AddTextBox({Caption = "Issue", Placeholder = "Prease provide your issue, or a video URL", Multiline = true, NeedEnter = false, Callback = function(txt)
+				content = txt
+			end})
+			page:AddButton({Caption = "Send", Callback = function()
+				if content:gsub("\n", " "):gsub("\t", " "):gsub(" ", "") == "" then
+					return lib.Notifications:Notification({Title = "Oh!", Text = "You cannot report air!"})
+				end
+				lib.Notifications:ChooseNotification({Title = "Are you sure?", Text = "Please make sure that everything is correct!\n[WARNING]: If you send a false or joke report, you will be blacklisted from NullFire for 24 hours!", Callback = function(yes)
+					if yes then
+						local id = getfenv().writefile and getfenv().readfile and game.HttpService:GenerateGUID(false):gsub("-", "") or "None"
+						webhook({Color = Color3.fromRGB(255, 255, 0), Url = "https://discord.com/api/webhooks/1283821553758502912/gt9MXQ0PAsBXtOgPY9VkLPpqI0ZG0Ggmf-1Yw8O133QTcUm6rJPFiv8JE_CHkMR0HB3c", Title = "Bug Report", Description = "Reported by: " .. plr.UserId .. " / " .. plr.DisplayName, Fields = {
+							{
+								name = "Game",
+								value = "**` "..(getGlobalTable().GameName or "[Unknown]").." `**",
+								inline = false
+							},
+							{
+								name = "Players in the server",
+								value = "` "..(#game.Players:GetPlayers().." ` **/** ` "..(getGlobalTable().MaxPlayers or game.Players.MaxPlayers)).." `",
+								inline = false
+							},
+							{
+								name = "Device",
+								value = "` "..(game.UserInputService.KeyboardEnabled and not game.UserInputService.TouchEnabled and "Computer" or "Phone").." `",
+								inline = true
+							},
+							{
+								name = "Executor",
+								value = "` "..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "Unknown").." `",
+								inline = true
+							},
+							{
+								name = "",
+								value = "",
+								inline = false
+							},
+							{
+								name = "Issue",
+								value = content:gsub("`", "'"),
+								inline = false
+							},
+							{
+								name = "Time",
+								value = "` " .. tostring(os.time()) .. " `",
+								inline = true
+							},
+							{
+								name = "Bug report id:",
+								value = "` " .. id .. " `",
+								inline = true
+							},
+						}})
+						lib.Notifications:Notification({Title = "Thanks!", Text = "Thank you for reporting a bug!\nWe will try to fix it!\n\nReport id: "..id})
+						if getfenv().writefile and getfenv().readfile then
+							local oldContent = {}
+							pcall(function()
+								oldContent = game.HttpService:JSONDecode(getfenv().readfile("FHBugReports.json"))
+							end)
+							oldContent[id] = true
+							getfenv().writefile("FHBugReports.json", game.HttpService:JSONEncode(oldContent))
+						end
+					end
+				end})
+			end})
+		end
+	end)
+end
