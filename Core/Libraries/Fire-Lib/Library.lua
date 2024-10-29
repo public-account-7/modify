@@ -4517,7 +4517,7 @@ local lib; lib = {
                         local funcs = {}
                         funcs.Object = button
 
-                        windowFuncs.Tabs[counterTextPage][count(getText(options, 2))] = funcs
+                        windowFuncs.Tabs[counterTextPage][count(getText(options), 2)] = funcs
                         function funcs:Destroy()
                             if not self or not self.Object then return end
                             self.Object:Destroy()
