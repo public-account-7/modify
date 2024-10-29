@@ -3,7 +3,7 @@ Why not?
 
 # Setup
 ```lua
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Libraries/Fire-Lib/Main.lua"))()
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/Fire-Lib/Main.lua"))()
 ```
 Now we can use the library!
 
@@ -132,7 +132,7 @@ end, Time = 999})
 
 # Full Example
 ```lua
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/UI-Library"))()
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/UI-Library"))()
 
 local window = lib:MakeWindow({Title = "Fire~Lib: Example", CloseCallback = function()
 	print("Closed!")
