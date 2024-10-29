@@ -4,7 +4,7 @@
 First of all, to use signals, we need to get the script!
 ### Getting the library
 ```lua
-local signals = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Libraries/Signals/Main.lua"))()
+local signals = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/Signals/Main.lua"))()
 ```
 Alright, we got the signals library, now let's set it up!
 
