@@ -5334,7 +5334,7 @@ local lib; lib = {
             end})
             local tb = page:AddTextBox({Text = "Config name [leave empty to disable]", NeedEnter = false, Default = "", Callback = function(text)
                 writefile("AutoLoad"..suffix..".skibidi", text)
-            end})
+            end, IgnoreConfigs = true})
             pcall(function()
                 local content = readfile("AutoLoad"..suffix..".skibidi")
                 content = content:gsub("\n", "")
