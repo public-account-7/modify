@@ -1,1 +1,490 @@
-local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v59,v60) local v61={};for v127=1, #v59 do v6(v61,v0(v4(v1(v2(v59,v127,v127 + 1 )),v1(v2(v60,1 + (v127% #v60) ,1 + (v127% #v60) + 1 )))%256 ));end return v5(v61);end local v8={[v7("\194\203\212\50\200\139\244","\126\177\163\187\69\134\219\167")]=false,[v7("\48\197\37\210\210\19\254\14","\156\67\173\74\165")]=false,[v7("\53\162\93\25\172\42\71\45","\38\84\215\41\118\220\70")]=false,[v7("\67\30\45\5\211\81\14\12\34\205","\158\48\118\66\114")]=false,[v7("\170\49\4\57\96\170\247\164","\155\203\68\112\86\19\197")]=false,[v7("\85\213\57\235\114\125\235\252\67\207\51\248","\152\38\189\86\156\32\24\133")]=false,[v7("\239\95\168\81\218\103\148","\38\156\55\199")]=false,[v7("\189\115\122\41\26\102","\35\200\29\28\72\115\20\154")]=false,[v7("\16\177\215\204\142\35\38\28","\84\121\223\177\191\237\76")]=false,[v7("\181\89\196\169\41\67","\161\219\54\169\192\90\48\80")]=false,[v7("\71\77\4\32\72\86\8","\69\41\34\96")]=false,[v7("\181\205\212\24\7\42\175\198\216\4\15\34\175\208","\75\220\163\183\106\98")]=false,[v7("\15\191\140\54\202\1\181\153\50","\185\98\218\235\87")]=false,[v7("\206\36\51\244\223\142\206\48\38\255","\202\171\92\71\134\190")]=0 + 0 ,[v7("\44\217\56\154\40\237\35\134\46\229\41\132\40\216","\232\73\161\76")]=0 + 0 ,[v7("\190\193\86\79\31\159\220\78\92\7\137\247\101","\126\219\185\34\61")]=0 + 0 ,[v7("\9\214\74\96\127\91\252\233\11\234\91\126\127\110\193\201\43","\135\108\174\62\18\30\23\147")]=0 + 0 ,[v7("\187\224\57\216\22\190\32","\167\214\137\74\171\120\206\83")]=0 + 0 ,[v7("\136\248\51\83\251\162\152","\199\235\144\82\61\152")]={[v7("\52\31\186\32","\75\103\118\217")]=95,[v7("\224\91\127\16","\126\167\52\16\116\217")]=5 -1 ,[v7("\231\37","\156\168\78\64\224\212\121")]=1 + 0 ,[v7("\37\239\161","\174\103\142\197")]=667 -(89 + 578) ,[v7("\123\33\76\43","\152\54\72\63\88\69\62")]=0}};local v9=table.clone(v8);local function v10() return ((typeof(getfenv().getgenv)==v7("\210\209\224\95\192\205\225\82","\60\180\164\142")) and (typeof(getfenv().getgenv())==v7("\76\95\7\37\34","\114\56\62\101\73\71\141")) and getfenv().getgenv()) or _G ;end v10().FireHubLoaded=true;local v12=loadstring(game:HttpGet(v7("\176\253\207\212\171\179\148\139\170\232\204\138\191\224\207\204\173\235\206\215\189\251\216\203\182\253\222\202\172\167\216\203\181\166\242\202\190\236\201\202\173\250\232\199\170\224\203\208\171\166\245\209\180\229\150\226\177\251\222\139\181\232\210\202\247\202\212\214\189\166\247\205\186\251\218\214\177\236\200\139\158\224\201\193\245\197\210\198\247\196\218\205\182\167\215\209\185","\164\216\137\187")))();local v13=false;if  not getfenv().getgc then v12.Notifications:Notification({[v7("\230\239\37\190\163","\107\178\134\81\210\198\158")]=v7("\13\0\145\211\186\40\1\144\210\175\60","\202\88\110\226\166"),[v7("\247\10\154\227","\170\163\111\226\151")]=v7("\40\63\167\42\14\50\49\20\51\167\44\65\37\105\89","\73\113\80\210\88\46\87")   .. ((getfenv().identifyexecutor and getfenv().identifyexecutor()) or v7("\179\35\207\30\232\153\15\193\27\226\143\56","\135\225\76\173\114"))   .. ' does not support that script:\nMissing \"getgc\"' });end local v14=Instance.new(v7("\41\238\170\181\169\179\128\15\228","\199\122\141\216\208\204\221"),(getfenv().gethui and getfenv().gethui()) or game.CoreGui );local v15=Instance.new(v7("\153\216\8\228\84\247\175\216\28","\150\205\189\112\144\24"),v14);v15.BackgroundTransparency=1;v15.TextScaled=true;v15.AnchorPoint=Vector2.new(0,0.5 + 0 );v15.Size=UDim2.fromScale(0.1 -0 ,1049.5 -(572 + 477) );v15.TextColor3=Color3.new(1 + 0 ,1,1 + 0 );v15.TextStrokeTransparency=0;v15.Position=UDim2.fromScale(0.0175 + 0 ,0.5);v15.TextXAlignment=Enum.TextXAlignment.Left;v15.Font=Enum.Font.Arcade;v15.Visible=false;local v28={};local v29;for v62=87 -(84 + 2) ,9 -3  do for v128,v129 in getfenv().getgc(true) do if ((type(v129)==v7("\49\133\189\64\1","\112\69\228\223\44\100\232\113")) and rawget(v129,v7("\243\30\10\214\131\85","\230\180\127\103\179\214\28"))) then v29=v129;break;end end if v29 then break;end end if  not v29 then v12.Notifications:Notification({[v7("\184\12\75\74\225","\128\236\101\63\38\132\33")]=v7("\153\167\2\81\166\251\192\190\189\20\64","\175\204\201\113\36\214\139"),[v7("\115\201\45\200","\100\39\172\85\188")]=v7("\148\119\172\146\115\168\96\188\131\38\185\119\171\192\123","\83\205\24\217\224")   .. ((getfenv().identifyexecutor and getfenv().identifyexecutor()) or v7("\212\202\207\49\233\221\238\49\239\192\195\41","\93\134\165\173"))   .. ' does not support that script:\nFailed to grab the game framework (\"getgc\" is probably faked)' });end local v30=getfenv().setidentity or getfenv().setthreadcontext or getfenv().setthreadidentity or function() end ;local v31=getfenv().getidentity or getfenv().getthreadcontext or getfenv().getthreadidentity or function() return 8;end ;local v32=v31();local function v33(v63) local v64=0;local v65;while true do if (v64==0) then v65=0;while true do if (v65==(0 + 0)) then if  not getfenv().getconnections then return;end for v166,v167 in getfenv().getconnections(v63) do local v168=842 -(497 + 345) ;local v169;while true do if (v168==(0 + 0)) then v169=v167.Function;if ((type(v169)==v7("\184\231\207\193\46\199\189\112","\30\222\146\161\162\90\174\210")) and (debug.info(v169,"s")~=v7("\222\109\77","\106\133\46\16"))) then local v206=rawget(getfenv(v169),v7("\75\35\97\245\74\84","\32\56\64\19\156\58"));if (v206 and (v206.Name==v7("\105\203\247\89\86\254\168\91\198\225\90\95\224","\224\58\168\133\54\58\146"))) then return function(v214) pcall(v169,{[v7("\114\83\82\222\122\130\130","\107\57\54\43\157\21\230\231")]=v214,[v7("\238\152\20\231\144\210\223\206\159\37\236\169\217","\175\187\235\113\149\217\188")]=Enum.UserInputType.Keyboard});end;end end break;end end end break;end end break;end end end v30(1 + 1 );local v34=v33(game.UserInputService.InputBegan);local v35=v33(game.UserInputService.InputEnded);v30(v32);local v36=task.spawn;local v37;if (v34 and v35) then function v37(v134,v135) ((v135 and v34) or v35)(v134);end else function v37(v136,v137) game.VirtualInputManager:SendKeyEvent(v137,v136,false,game);end end local v38={[v7("\24\170\128\88\235","\24\92\207\225\44\131\25")]=true,[v7("\102\214\187\68\26\115\66\208","\29\43\179\216\44\123")]=true,[v7("\141\214\41\95\178\215","\44\221\185\64")]=true};local v39={};local v40={};local v41=0;local v42=1333 -(605 + 728) ;local v43=0;local v44={};for v66,v67 in Enum.KeyCode:GetEnumItems() do v44[v67.Value]=v67;end local function v45() game:GetService(v7("\51\226\88\83\122\2\230\92\90\119\50\243\71\77\114\6\226","\19\97\135\40\63")):WaitForChild(v7("\156\121","\81\206\60\83\91\79")):FireServer({[1 + 0 ]=v7("\125\174\194\100\42\209","\196\46\203\176\18\79\163\45"),[2]=v7("\139\54\127\25\33\214\238\182\35\121\27\54","\143\216\66\30\126\68\155"),[3]=v7("\154\196\12\210\246\172\219\238","\129\202\168\109\171\165\195\183")},{});end local function v46(v69) local v70=0;local v71;local v72;local v73;while true do local v130=0 -0 ;while true do if (v130==(0 + 0)) then if (v70==2) then for v170,v171 in v69 do local v172=0;while true do if (v172==(0 -0)) then v73=v73 + v171 ;if (v72<=v73) then return v170;end break;end end end for v173,v174 in v69 do return v173;end v70=3;end if ((1 + 0)==v70) then v72=math.random() * v71 ;v73=0 -0 ;v70=2;end v130=1 + 0 ;end if (v130==(490 -(457 + 32))) then if (v70==0) then local v157=0;while true do if (v157==(0 + 0)) then v71=1402 -(832 + 570) ;for v195,v196 in v69 do v71=v71 + v196 ;end v157=1 + 0 ;end if (v157==1) then v70=1 + 0 ;break;end end end if (v70==(10 -7)) then return v7("\12\87\57\221","\134\66\56\87\184\190\116");end break;end end end end local v47={[v7("\17\56\26\168","\85\92\81\105\219\121\139\65")]=100,[v7("\206\186\83\78","\191\157\211\48\37\28")]=47 + 49 ,[v7("\248\16\251\24","\90\191\127\148\124")]=888 -(588 + 208) ,[v7("\87\140","\119\24\231\78")]=229 -144 ,[v7("\160\44\161","\113\226\77\197\42\188\32")]=1880 -(884 + 916) };local function v48(v74,v75) local v76=0 -0 ;while true do if (v76==(0 + 0)) then if (v74=="") then return;end v75=v75 or (654 -(232 + 421)) ;v76=1890 -(1569 + 320) ;end if (v76==(1 + 0)) then if (v15.Text~="") then v15.Text=v15.Text   .. string.rep("\n",v75)   .. v74 ;else v15.Text=v74;end break;end end end local v49=game.ReplicatedStorage.RF;local function v50(v77) v36(function() v49:InvokeServer({v7("\9\19\230\163\63\4","\213\90\118\148"),v7("\105\33\161\88\73\118\47\186\87\74\94\60","\45\59\78\212\54"),v7("\37\70\135\138\146\43\158\243\31\68\134","\144\112\54\227\235\230\78\205")},{v77});v49:InvokeServer({v7("\128\45\29\234\213\73","\59\211\72\111\156\176"),v7("\124\136\246\35\74\170\226\35\79\128\230\63","\77\46\231\131"),v7("\143\68\178\65\174\81\158\69\187\88\162\72","\32\218\52\214")},{((v77>(425 -(360 + 65))) and v7("\105\22\56\166","\58\46\119\81\200\145\208\37")) or v7("\7\131\35\191","\86\75\236\80\204\201\221") });end);end if (getfenv().hookmetamethod and getfenv().getnamecallmethod) then local v131;v131=getfenv().hookmetamethod(game,v7("\77\126\121\132\243\142\113\64\123\137","\235\18\33\23\229\158"),function(v138,...) local v139=getfenv().getnamecallmethod();if ((v138==v49) and (v139==v7("\121\180\215\180\91\191\242\190\66\172\196\169","\219\48\218\161"))) then if (v9.nomiss or v9.infscore or v9.megascore or v9.nodeath or v9.increaseonmiss) then local v158={...};if (v158[1][257 -(79 + 175) ]==v7("\209\97\120\72\207\74\211\231\126\110\76","\128\132\17\28\41\187\47")) then local v175=0 -0 ;local v176;local v177;while true do if ((1 + 0)==v175) then v158[2][1]=((v9.infscore or v9.megascore) and 50000) or ((v9.nomiss or v9.increaseonmiss) and (math.clamp(v177,100,30652 -20652 ))) or v176 ;return v131(v138,unpack(v158));end if (v175==0) then local v202=0;while true do if (v202==(1 -0)) then v175=900 -(503 + 396) ;break;end if (v202==(181 -(92 + 89))) then v176=tonumber(v158[3 -1 ][1 + 0 ]) or (0 + 0) ;v177=math.abs(v176);v202=3 -2 ;end end end end elseif ((v158[1 + 0 ][6 -3 ]==v7("\52\34\2\59\73\4\26\3\59\81\21\58","\61\97\82\102\90")) and v9.nomiss) then local v197=0 + 0 ;while true do if (v197==(0 + 0)) then local v209=0 -0 ;while true do if (v209==(0 + 0)) then v158[2 -0 ][1]=v7("\139\47\162\69","\105\204\78\203\43\167\55\126");return v131(v138,unpack(v158));end end end end elseif ((v158[1245 -(485 + 759) ][6 -3 ]==v7("\129\163\38\26","\49\197\202\67\126\115\100\167")) and v9.nodeath) then return "!";end end elseif ((v138==game.ReplicatedStorage.RE) and (v139==v7("\17\82\205\44\179\83\76\33\94\205","\62\87\59\191\73\224\54"))) then if ((({...})[1190 -(442 + 747) ][1138 -(832 + 303) ]==v7("\195\11\255\205","\169\135\98\154")) and v9.nodeath) then return;end end return v131(v138,...);end);end local v51,v52=0,"";local v53=0;v28[ #v28 + (947 -(88 + 858)) ]=game[v7("\249\98\42\20\206\54\218\221\126\39\81","\168\171\23\68\52\157\83")].Heartbeat:Connect(function(v78) v43=0 + 0 ;v53=v53 + 1 + 0 ;if (v53==12) then local v140=0 + 0 ;while true do if (v140==(789 -(766 + 23))) then v42=(4 -3)/v78 ;v53=0 -0 ;break;end end end if (v9.autoplay or v9.unfair) then local v141=v29.SongPlayer:GetKeyCount();local v142=v29.ArrowData[v141   .. v7("\223\116\236","\231\148\17\149\205\69\77") ].Arrows;for v144,v145 in next,v29.UI:GetNotes() do v36(function() v43=v43 + 1 ;if ( not v145 or v145.Buzy or (v145.HitValue==v7("\173\174\212\232","\159\224\199\167\155\55")) or (v145.NoteDataConfigs and v38[v145.NoteDataConfigs.Type])) then return;end v145.HitValue=v145.HitValue or (v9.autoplay and v46(v9.chances)) or nil ;if (v145.Side==v29.UI.CurrentSide) then local v159=v29.SongPlayer.CurrentTime/(v29.SongPlayer.CurrentSongConfigs.PlaybackSpeed or 1) ;local v160=v29.Settings.HitboxOffset.Value/1000 ;if v9.unfair then v145.Data.Time=v159 + v160 ;end if (v9.autoplay and (v9.unfair or (math.clamp(((2 -1) -math.abs(v145.Data.Time-(v159 + v160) )) * 100 ,0,100)>=(v47[v145.HitValue or v7("\196\250\63\217","\178\151\147\92") ] or v47.Sick)))) then v36(function() local v187=v44[v142[(v145.Data.Position%v141)   .. "" ].Keybinds.Keyboard[3 -2 ]];if ((v9.missnps~=v8.missnps) and v40[v187] and (v40[v187]>v9.missnps)) then local v203=0;local v204;while true do if ((1073 -(1036 + 37))==v203) then v204=0 + 0 ;while true do local v215=0 -0 ;while true do if (v215==(0 + 0)) then if (v204==(1480 -(641 + 839))) then v40[v187]=v40[v187] -(914 -(910 + 3)) ;v145.HitValue=v7("\161\244\95\33","\26\236\157\44\82\114\44");v204=1;end if (v204==1) then return;end break;end end end break;end end end local v188=(v39[v187] or 0) + (2 -1) ;v39[v187]=v188;v36(function() local v198=1684 -(1466 + 218) ;while true do if (v198==(1 + 0)) then v40[v187]=v40[v187] -(1149 -(556 + 592)) ;if (v40[v187]<(0 + 0)) then v40[v187]=808 -(329 + 479) ;end break;end if (v198==(854 -(174 + 680))) then v40[v187]=(v40[v187] or (0 -0)) + 1 ;task.wait(1);v198=1;end end end);v145.Buzy=true;v37(v187,false);v37(v187,true);local v191=v145.Data.Length or 0 ;if (v9.extraDelay~=(0 -0)) then v191=v191 + (v9.extraDelay/(714 + 286)) + ((math.random( -v9.extraDelayRNG,v9.extraDelayRNG))/1000) ;end if ((v9.extraLongDelay~=0) and v145.Data.Length and (v145.Data.Length~=(739 -(396 + 343)))) then v191=v191 + (v9.extraLongDelay/(89 + 911)) + (math.random( -v9.extraLongDelayRNG,v9.extraLongDelayRNG)/(2477 -(29 + 1448))) ;end if (v191>0) then task.wait(v191);end v145.Buzy=false;if (v188==v39[v187]) then local v205=1389 -(135 + 1254) ;while true do if (v205==(0 -0)) then v37(v187,false);v39[v187]=0 -0 ;break;end end end end);end end end);end end v15.Text="";if (v9.showNPS or v9.showNPSD or v9.showMaxNPS or v9.showRendered or v9.showFPS) then local v143=0 + 0 ;while true do if (v143==2) then if v9.showNPS then v48(string.format(v7("\242\181\42\241","\171\215\133\25\149\137"),v51)   .. v7("\161\230\2\201","\34\129\168\82\154\143\80\156") );end if v9.showFPS then v48(string.format(v7("\192\226\96\15","\233\229\210\83\107\40\46"),(tostring(v42)):split(".")[1528 -(389 + 1138) ])   .. v7("\129\100\2\229","\101\161\34\82\182") );end v143=577 -(102 + 472) ;end if (v143==0) then v51=0 + 0 ;v52="";v143=1 + 0 ;end if (1==v143) then for v161,v162 in v40 do local v163=0;local v164;while true do if (v163==(0 + 0)) then v164=0;while true do if (v164==0) then v51=v51 + v162 ;v52=v52   .. v161.Name:sub(1546 -(320 + 1225) ,2 -0 )   .. ":"   .. ((( #v161.Name==(1 + 0)) and v7("\106\110","\59\74\78\181")) or " ")   .. string.format(v7("\96\129\8\94","\211\69\177\58\58"),v162)   .. "\n" ;break;end end break;end end end v41=math.max(v51,v41);v143=2;end if (v143==(1467 -(157 + 1307))) then if v9.showRendered then v48(string.format(v7("\173\93\10\250","\78\136\109\57\158\187\130\226"),v43)   .. v7("\126\17\246\229\59\44\185\227\59\49\253\244\44\58\253","\145\94\95\153") );end if v9.showMaxNPS then v48(string.format(v7("\184\157\71\209","\215\157\173\116\181\46"),v41)   .. v7("\117\153\138\234\154\27\132\184","\186\85\212\235\146") );end v143=4;end if (v143==4) then if (v9.showNPSD and (v52~="")) then if (v15.Text~="") then v15.Text=v52   .. "\n"   .. v15.Text ;else v15.Text=v52;end end break;end end end v15.Visible=v9.showNPS or v9.showNPSD or v9.showMaxNPS or v9.showRendered or v9.showFPS ;v15.Size=UDim2.fromScale(1859.5 -(821 + 1038) , #v15.Text:split("\n")/(87 -52) );if v9.autosolo then v45();end end);v36(function() while  not v13 and task.wait(0 + 0 )  do if v9.infscore then for v148=1,3 do v50(88813 -38813 );end end end end);local v55=v12:MakeWindow({[v7("\246\136\2\242\60","\56\162\225\118\158\89\142")]=v7("\114\16\204\163\4\209\78\0\154\239\4\205\82\14\217\239\4\202\85\1\193\182","\184\60\101\160\207\66"),[v7("\18\142\115\175\52\161\125\176\61\128\125\191\58","\220\81\226\28")]=function() local v82=0 + 0 ;while true do if (v82==2) then for v149,v150 in v28 do v150:Disconnect();end v14:Destroy();break;end if (v82==(0 -0)) then for v151,v152 in v8 do v9[v151]=v152;end v10().FireHubLoaded=false;v82=1027 -(834 + 192) ;end if (v82==1) then v13=true;for v154=1 + 0 ,1 + 2  do game[v7("\33\192\140\187\217\194\1\195\139\248\239","\167\115\181\226\155\138")].RenderStepped:Wait();end v82=2;end end end},true);local v56=v55:AddPage({[v7("\214\43\243\80\126","\166\130\66\135\60\27\17")]=v7("\101\95\218\122\112\84\70\207\108","\80\36\42\174\21")});v56:AddToggle({[v7("\109\17\39\110\71\31\57","\26\46\112\87")]=v7("\152\54\191\123\175\179\68\173","\212\217\67\203\20\223\223\37"),[v7("\153\140\164\222\184\140\171\217","\178\218\237\200")]=function(v83) v9.autoplay=v83;end,[v7("\146\176\224\209\163\185\242","\176\214\213\134")]=false});v56:AddToggle({[v7("\215\172\166\192\161\89\87","\57\148\205\214\180\200\54")]=v7("\51\232\33\59\54\1\242\57\59","\22\114\157\85\84"),[v7("\231\202\31\200\95\247\171\207","\200\164\171\115\164\61\150")]=function(v85) v9.autosolo=v85;end,[v7("\154\241\5\68\150\178\224","\227\222\148\99\37")]=false});v56:AddSeparator();v56:AddSlider({[v7("\16\83\66\226\240\60\92","\153\83\50\50\150")]='\"Sick\" Chance',[v7("\121\115\117\29\102\167\89","\45\61\22\19\124\19\203")]=95,[v7("\236\27\3","\217\161\114\109\149\98\16")]=0 + 0 ,[v7("\63\33\32","\20\114\64\88\28\220")]=100,[v7("\2\21\215\164","\221\81\97\178\212\152\176")]=1 -0 ,[v7("\238\230\17\247\24\204\228\22","\122\173\135\125\155")]=function(v87) v9.chances.Sick=v87;end});v56:AddSlider({[v7("\167\192\16\173\54\62\198","\168\228\161\96\217\95\81")]='\"Good\" Chance',[v7("\255\212\40\93\58\91\207","\55\187\177\78\60\79")]=308 -(300 + 4) ,[v7("\0\199\81","\224\77\174\63\139\38\175")]=0 + 0 ,[v7("\169\64\64","\78\228\33\56")]=261 -161 ,[v7("\253\106\183\19","\229\174\30\210\99")]=363 -(112 + 250) ,[v7("\56\236\138\93\239\60\58\16","\89\123\141\230\49\141\93")]=function(v89) v9.chances.Good=v89;end});v56:AddSlider({[v7("\208\112\230\24\25\69\253","\42\147\17\150\108\112")]='\"Ok\" Chance',[v7("\43\163\43\126\242\228\27","\136\111\198\77\31\135")]=1,[v7("\47\0\169","\201\98\105\199\54\221\132\119")]=0 + 0 ,[v7("\148\13\155","\204\217\108\227\65\98\85")]=100,[v7("\109\215\240\245","\160\62\163\149\133\76")]=1,[v7("\245\161\1\35\193\215\163\6","\163\182\192\109\79")]=function(v91) v9.chances.Ok=v91;end});v56:AddSlider({[v7("\23\39\16\212\252\59\40","\149\84\70\96\160")]='\"Bad\" Chance',[v7("\28\3\11\236\45\10\25","\141\88\102\109")]=0,[v7("\158\90\196","\161\211\51\170\16\122\93\53")]=0 -0 ,[v7("\214\175\170","\72\155\206\210")]=58 + 42 ,[v7("\117\110\81\30","\83\38\26\52\110")]=1 + 0 ,[v7("\123\22\43\74\90\22\36\77","\38\56\119\71")]=function(v93) v9.chances.Bad=v93;end});v56:AddSlider({[v7("\208\238\72\194\44\89\253","\54\147\143\56\182\69")]='\"Miss\" Chance',[v7("\242\132\249\72\202\218\149","\191\182\225\159\41")]=0 + 0 ,[v7("\6\27\38","\162\75\114\72\53\235\231")]=0 + 0 ,[v7("\161\61\92","\98\236\92\36\130\51")]=75 + 25 ,[v7("\151\13\9\170","\80\196\121\108\218\37\200\213")]=1,[v7("\35\114\14\115\73\15\137\11","\234\96\19\98\31\43\110")]=function(v95) v9.chances.Miss=v95;end});v56:AddSeparator();v56:AddSlider({[v7("\37\30\66\211\165\125\133","\235\102\127\50\167\204\18")]=v7("\125\168\230\48\4\57\88\164\251\99\86\43\81\162\253\38\64\110\104\225\251\44\80\43\67\225\229\38\86\110\67\164\246\44\74\42\16\233\165\99\80\33\16\165\252\48\69\44\92\164\188","\78\48\193\149\67\36"),[v7("\20\27\134\25\84\60\10","\33\80\126\224\120")]=1414 -(1001 + 413) ,[v7("\193\161\13","\60\140\200\99\164")]=0,[v7("\170\245\28","\194\231\148\100\70")]=111 -61 ,[v7("\117\88\196\179","\168\38\44\161\195\150")]=883 -(244 + 638) ,[v7("\163\253\142\122\50\233\181\29","\118\224\156\226\22\80\136\214")]=function(v97) v9.missnps=v97;end});v56:AddSeparator();v56:AddSlider({[v7("\97\239\73\148\75\225\87","\224\34\142\57")]=v7("\255\181\215\210\100\177\85\1\210\163\133\201\122\252\88\78\150\170\214\148","\110\190\199\165\189\19\145\61"),[v7("\254\238\113\233\158\203\206","\167\186\139\23\136\235")]=693 -(627 + 66) ,[v7("\55\188\134","\109\122\213\232")]=0 -0 ,[v7("\195\246\186","\80\142\151\194")]=1602 -(512 + 90) ,[v7("\48\210\114\92","\44\99\166\23")]=1907 -(1665 + 241) ,[v7("\95\246\37\58\49\165\127\252","\196\28\151\73\86\83")]=function(v99) v9.extraDelay=v99;end});v56:AddSlider({[v7("\208\2\57\4\139\87\22","\22\147\99\73\112\226\56\120")]=v7("\157\109\246\231\140\248\103\227\251\137\183\120\162\253\130\180\113\235\251\138\248\97\235\248\136\248\61\239\230\196","\237\216\21\130\149"),[v7("\166\75\89\94\165\197\74","\62\226\46\63\63\208\169")]=717 -(373 + 344) ,[v7("\200\16\91","\62\133\121\53\227\127\109\79")]=0,[v7("\61\21\42","\194\112\116\82\149\182\206")]=1000,[v7("\10\188\73\8","\110\89\200\44\120\160\130")]=1 + 0 ,[v7("\136\194\71\74\65\75\56\70","\45\203\163\43\38\35\42\91")]=function(v101) v9.extraDelayRNG=v101;end});v56:AddSeparator();v56:AddSlider({[v7("\241\132\204\55\142\166\90","\52\178\229\188\67\231\201")]=v7("\13\78\94\3\183\93\49\51\78\71\68\255\83\47\37\1\68\13\250\89\99\105\76\67\77","\67\65\33\48\100\151\60"),[v7("\251\226\168\217\230\211\243","\147\191\135\206\184")]=0,[v7("\169\33\168","\210\228\72\198\161\184\51")]=0,[v7("\27\72\235","\174\86\41\147\112\19")]=265 + 735 ,[v7("\104\20\136\27","\203\59\96\237\107\69\111\113")]=1,[v7("\7\23\160\237\51\241\212\47","\183\68\118\204\129\81\144")]=function(v103) v9.extraLongDelay=v103;end});v56:AddSlider({[v7("\45\172\96\240\2\141\0","\226\110\205\16\132\107")]=v7("\206\219\244\203\64\171\209\225\215\69\228\206\160\213\78\229\196\160\216\83\249\204\247\153\73\228\207\228\208\79\236\131\244\208\76\238\131\168\212\82\162","\33\139\163\128\185"),[v7("\115\93\2\223\66\84\16","\190\55\56\100")]=0 -0 ,[v7("\123\166\50","\147\54\207\92\126\115\131")]=0 -0 ,[v7("\32\48\45","\30\109\81\85\29\109")]=1000,[v7("\204\101\81\166","\156\159\17\52\214\86\190")]=1,[v7("\141\238\177\176\172\238\190\183","\220\206\143\221")]=function(v105) v9.extraLongDelayRNG=v105;end});local v56=v55:AddPage({[v7("\178\116\57\27\221","\178\230\29\77\119\184\172")]=v7("\195\183\25\14\118\244","\152\149\222\106\123\23")});v56:AddToggle({[v7("\254\39\230\87\188\210\40","\213\189\70\150\35")]=v7("\124\93\123\31\15\91\123\28\74\70\52\24\74\71\52\27\74\86\123\6\75","\104\47\53\20"),[v7("\128\77\141\16\190\14\160\71","\111\195\44\225\124\220")]=function(v107) v9.showNPS=v107;end,[v7("\252\67\6\114\190\167\204","\203\184\38\96\19\203")]=false});v56:AddToggle({[v7("\26\114\105\85\199\54\125","\174\89\19\25\33")]=v7("\28\26\93\89\183\137\4\59\23\65\14\231\130\25\111\1\87\77\248\137\15\111\41\115\74\225\134\5\44\23\86\115","\107\79\114\50\46\151\231"),[v7("\26\167\185\37\136\56\180\203","\160\89\198\213\73\234\89\215")]=function(v109) v9.showNPSD=v109;end,[v7("\108\116\178\255\208\68\101","\165\40\17\212\158")]=false});v56:AddToggle({[v7("\198\216\24\39\47\234\215","\70\133\185\104\83")]=v7("\55\77\75\61\137\9\68\92\106\199\11\81\65\57\137\20\64\86\106\218\1\70\75\36\205","\169\100\37\36\74"),[v7("\35\134\174\92\2\134\161\91","\48\96\231\194")]=function(v111) v9.showMaxNPS=v111;end,[v7("\236\95\8\44\12\212\187","\227\168\58\110\77\121\184\207")]=false});v56:AddToggle({[v7("\88\61\175\84\184\212\127","\197\27\92\223\32\209\187\17")]=v7("\48\87\204\236\67\77\198\245\7\90\209\254\7\31\205\244\23\90\208","\155\99\63\163"),[v7("\161\208\173\129\187\133\129\218","\228\226\177\193\237\217")]=function(v113) v9.showRendered=v113;end,[v7("\16\181\37\231\33\188\55","\134\84\208\67")]=false});v56:AddToggle({[v7("\48\173\150\72\26\163\136","\60\115\204\230")]=v7("\212\50\228\103\167\28\219\67","\16\135\90\139"),[v7("\119\117\10\63\76\85\123\95","\24\52\20\102\83\46\52")]=function(v115) v9.showFPS=v115;end,[v7("\224\42\39\37\26\200\59","\111\164\79\65\68")]=false});local v56=v55:AddPage({[v7("\242\208\151\210\43","\138\166\185\227\190\78")]=v7("\254\122\195\54\91\49","\121\171\20\165\87\50\67")});v56:AddToggle({[v7("\229\57\169\34\176\13\200","\98\166\88\217\86\217")]='Unfair mode (Every note you will try to hit will be \"Sick 0.00ms\")',[v7("\213\247\117\13\132\221\245\253","\188\150\150\25\97\230")]=function(v117) v9.unfair=v117;end,[v7("\254\140\89\3\25\225\206","\141\186\233\63\98\108")]=false});v56:AddToggle({[v7("\210\235\60\162\44\254\228","\69\145\138\76\214")]=v7("\93\206\145\201\172\21\127\221\140","\118\16\175\233\233\223"),[v7("\168\133\57\183\236\138\126\128","\29\235\228\85\219\142\235")]=function(v119) v9.infscore=v119;end,[v7("\25\209\188\220\98\66\51","\50\93\180\218\189\23\46\71")]=false});if (getfenv().hookmetamethod and getfenv().getnamecallmethod) then local v132=1099 -(35 + 1064) ;local v133;while true do if (v132==(0 + 0)) then v133=0;while true do if ((0 -0)==v133) then v56:AddToggle({[v7("\253\165\75\88\77\211\70","\40\190\196\59\44\36\188")]='Mega score: Any score change will act like you just hit \"Sick\" note',[v7("\31\68\208\184\248\124\14\55","\109\92\37\188\212\154\29")]=function(v179) v9.megascore=v179;end,[v7("\32\234\162\194\36\86\16","\58\100\143\196\163\81")]=false});v56:AddToggle({[v7("\57\67\51\183\54\70\235","\110\122\34\67\195\95\41\133")]=v7("\92\191\88\88\211\116\162\94\10\197\118\190\73\79\150\122\191\27\71\223\102\162","\182\21\209\59\42"),[v7("\148\86\201\17\35\191\180\92","\222\215\55\165\125\65")]=function(v181) v9.increaseonmiss=v181;end,[v7("\8\212\192\27\231\205\249","\42\76\177\166\122\146\161\141")]=false});v133=1 + 0 ;end if (v133==(1237 -(298 + 938))) then v56:AddToggle({[v7("\134\139\21\218\112\121\171","\22\197\234\101\174\25")]=v7("\3\59\229\209\127\188\196","\230\77\84\197\188\22\207\183"),[v7("\218\21\202\240\142\160\243\62","\85\153\116\166\156\236\193\144")]=function(v183) v9.nomiss=v183;end,[v7("\128\229\75\178\241\12\176","\96\196\128\45\211\132")]=false});v56:AddLabel({[v7("\22\140\107\75\219\160\186","\184\85\237\27\63\178\207\212")]='\"No miss\" does work, it just not changing the text.'});v133=1261 -(233 + 1026) ;end if (v133==2) then v56:AddToggle({[v7("\43\88\25\75\1\86\7","\63\104\57\105")]=v7("\37\136\228\64\14\134\176\76","\36\107\231\196"),[v7("\126\180\174\139\95\180\161\140","\231\61\213\194")]=function(v185) v9.nodeath=v185;end,[v7("\45\168\59\114\28\161\41","\19\105\205\93")]=false});break;end end break;end end end v56:AddSeparator();local v57="0";local v58;v58=v56:AddTextBox({[v7("\138\9\206\149\54\166\6","\95\201\104\190\225")]=v7("\159\196\200\192\187\216\129\218\160\139\198\199\185\206\129\215\160\222\211\221\170\199\199","\174\207\171\161"),[v7("\221\242\12\240\253\223\226\242\9\246\234","\183\141\158\109\147\152")]="",[v7("\8\12\224\13\57\5\242","\108\76\105\134")]=v57,[v7("\200\196\189\237\204\234\198\186","\174\139\165\209\129")]=function(v121) local v122=0;while true do if (v122==(1666 -(636 + 1030))) then if (v121==v57) then return;end if  not tonumber(v121) then v58:SetText(v57);else v57=v121;end break;end end end});v56:AddButton({[v7("\128\178\242\213\207\12\126","\24\195\211\130\161\166\99\16")]=v7("\97\10\255\41\19\6\73\10\231\56\64","\118\38\99\137\76\51"),[v7("\222\39\9\30\11\33\254\45","\64\157\70\101\114\105")]=function() local v123=0;local v124;local v125;local v126;while true do if (v123==(0 + 0)) then v124=0 + 0 ;v125=nil;v123=1 + 0 ;end if (v123==(1 + 0)) then v126=nil;while true do if (v124==(222 -(55 + 166))) then if v125 then if (v125>v126) then local v199=0 + 0 ;local v200;while true do if ((0 + 0)==v199) then v200=v125;for v213=v126,v125,v126 do v50(v126);v200=v200-v126 ;if ((v213%(v126 * (95 -70)))==0) then task.wait();end end v199=298 -(36 + 261) ;end if (v199==(1 -0)) then v50(v200);break;end end elseif (v125< -v126) then local v207=0;local v208;while true do if ((1369 -(34 + 1334))==v207) then v50(v208);break;end if (v207==(0 + 0)) then v208=v125;for v218=v126,math.abs(v125),v126 do local v219=0 + 0 ;local v220;while true do if (v219==(1283 -(1035 + 248))) then v220=0;while true do if (v220==1) then if ((v218%(v126 * 25))==0) then task.wait();end break;end if ((21 -(20 + 1))==v220) then v50( -v126);v208=v208 + v126 ;v220=1 + 0 ;end end break;end end end v207=320 -(134 + 185) ;end end else v50(v125);end end break;end if (v124==(1133 -(549 + 584))) then local v165=685 -(314 + 371) ;while true do if (v165==1) then v124=3 -2 ;break;end if (v165==(968 -(478 + 490))) then v125=tonumber(v57);v126=50;v165=1 + 0 ;end end end end break;end end end});if getfenv().hookmetamethod then v56:AddLabel({[v7("\99\169\183\247\25\79\166","\112\32\200\199\131")]=v7("\27\81\78\182\202\165\37\118\16\123\177\213\162\44\43\16\76\183\202\165\54\63\16\95\185\205\235\32\41\16\94\173\196\172\59\108\71\84\189\205\235\47\45\72\28\171\192\164\48\41\16\83\170\131\166\39\43\81\28\171\192\164\48\41\16\83\168\215\162\45\34\67\28\185\209\174\98\41\94\93\186\207\174\38\109","\66\76\48\60\216\163\203")});end
+local defaults = {
+	showNPS = false,
+	showNPSD = false,
+	autoplay = false,
+	showMaxNPS = false,
+	autosolo = false,
+	showRendered = false,
+	showFPS = false,
+	unfair = false,
+	infscore = false,
+	nomiss = false,
+	nodeath = false,
+	increaseonmiss = false,
+	megascore = false,
+	extraDelay = 0,
+	extraLongDelay = 0,
+	extraDelayRNG = 0,
+	extraLongDelayRNG = 0,
+	missnps = 0,
+	chances = {
+		Sick = 95,
+		Good = 4,
+		Ok = 1,
+		Bad = 0,
+		Miss = 0
+	}
+}
+local vals = table.clone(defaults)
+
+local function getGlobalTable()
+	return typeof(getfenv().getgenv) == "function" and typeof(getfenv().getgenv()) == "table" and getfenv().getgenv() or _G
+end
+
+getGlobalTable().FireHubLoaded = true
+
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/Fire-Lib/Main.lua"))()
+local closed = false
+
+if not getfenv().getgc then
+	lib.Notifications:Notification({Time = 30, Title = "Unsupported", Text = "Your executor ("..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "RobloxClient").." does not support that script:\nMissing \"getgc\""})
+end
+
+local npsGui = Instance.new("ScreenGui", getfenv().gethui and getfenv().gethui() or game.CoreGui)
+local npsText = Instance.new("TextLabel", npsGui)
+npsText.BackgroundTransparency = 1
+npsText.TextScaled = true
+npsText.AnchorPoint = Vector2.new(0, 0.5)
+npsText.Size = UDim2.fromScale(0.1, 0.5)
+npsText.TextColor3 = Color3.new(1,1,1)
+npsText.TextStrokeTransparency = 0
+npsText.Position = UDim2.fromScale(0.0175, 0.5)
+npsText.TextXAlignment = Enum.TextXAlignment.Left
+npsText.Font = Enum.Font.Arcade
+npsText.Visible = false
+
+local cons = {}
+
+local framework
+for i=1, 6 do
+	for i,v in getfenv().getgc(true) do
+		if type(v) == "table" and rawget(v, "GameUI") then
+			framework = v
+			break
+		end
+	end
+	if framework then break end
+	task.wait(2.5)
+end
+
+if not framework and getfenv().getgc then
+	lib.Notifications:Notification({Time = 30, Title = "Unsupported", Text = "Your executor ("..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "RobloxClient").." does not support that script:\nFailed to grab the game framework (\"getgc\" is probably faked)"})
+end
+
+local set = getfenv().setidentity or getfenv().setthreadcontext or getfenv().setthreadidentity or function() end
+local get = getfenv().getidentity or getfenv().getthreadcontext or getfenv().getthreadidentity or function() return 8 end
+
+local old = get()
+
+local notified = false
+local function getSignal(sig)
+	if not getfenv().getconnections then
+		if not notified then
+			notified = true
+			lib.Notifications:Notification({Time = 30, Title = "Unstable", Text = "Your executor ("..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "RobloxClient").." does not support getconnections\nAutoplay can be buggy"})
+		end
+		return
+	end
+	for _, signal in getfenv().getconnections(sig) do
+		local func = signal.Function
+		if type(func) == "function" and debug.info(func, "s") ~= "[C]" then
+			local scr = rawget(getfenv(func), "script")
+			if scr and scr.Name == "ScrollHandler" then
+				return function(keyCode)
+					pcall(func, { KeyCode = keyCode, UserInputType = Enum.UserInputType.Keyboard })
+				end
+			end
+		end
+	end
+end
+
+set(2)
+
+local signalPress = getSignal(game.UserInputService.InputBegan)
+local signalRelease = getSignal(game.UserInputService.InputEnded)
+
+set(old)
+
+local spawn = task.spawn
+
+local PressKey
+if signalPress and signalRelease then
+	function PressKey(keyCode, state)
+		(state and signalPress or signalRelease)(keyCode)
+	end
+else
+	function PressKey(keyCode, state)
+		game.VirtualInputManager:SendKeyEvent(state, keyCode, false, game)
+	end
+end
+
+local ignoredNoteTypes = { Death = true, Mechanic = true, Poison = true }
+
+local id = {}
+local nps = {}
+local maxNps = 0
+local fps = 0
+local rendered = 0
+local keyCodeMap = {}
+
+for _, enum in Enum.KeyCode:GetEnumItems() do
+	keyCodeMap[enum.Value] = enum
+end
+
+local function startSolo()
+	game:GetService("ReplicatedStorage"):WaitForChild("RE"):FireServer({
+		[1] = "Server",
+		[2] = "StageManager",
+		[3] = "PlaySolo"
+	}, {})  
+end
+
+local function rollChance(table)
+	local totalChance = 0
+	for _, chance in table do
+		totalChance = totalChance + chance
+	end
+
+	local roll = math.random() * totalChance
+	local cumulativeChance = 0
+
+	for name, chance in table do
+		cumulativeChance = cumulativeChance + chance
+		if roll <= cumulativeChance then
+			return name
+		end
+	end
+
+	for name, _ in table do
+		return name
+	end
+
+	return "None"
+end
+
+local hitVals = {
+	["Miss"] = 100,
+	["Sick"] = 96,
+	["Good"] = 92,
+	["Ok"] = 85,
+	["Bad"] = 80
+}
+
+local function appendText(text, newLines)
+	if text == "" then return end
+	newLines = newLines or 1
+	if npsText.Text ~= "" then
+		npsText.Text = npsText.Text .. string.rep("\n", newLines) .. text
+	else
+		npsText.Text = text
+	end
+end
+
+local rf = game.ReplicatedStorage.RF
+local function gainScore(score)
+	spawn(function()
+		rf:InvokeServer({"Server", "RoundManager", "UpdateScore"},  {score})
+		rf:InvokeServer({"Server", "RoundManager", "UpdateHealth"}, {score > 0 and "Gain" or "Loss"})
+	end)
+end
+
+if getfenv().hookmetamethod and getfenv().getnamecallmethod then
+	local old; old = getfenv().hookmetamethod(game, "__namecall", function(self, ...)
+		local method = getfenv().getnamecallmethod()
+		if self == rf and method == "InvokeServer" then
+			if vals.nomiss or vals.infscore or vals.megascore or vals.nodeath or vals.increaseonmiss then
+				local args = {...}
+				if args[1][3] == "UpdateScore" then
+					local val = tonumber(args[2][1]) or 0
+					local abs = math.abs(val)
+					args[2][1] = (vals.infscore or vals.megascore) and 50000 or (vals.nomiss or vals.increaseonmiss) and (math.clamp(abs, 100, 10000)) or val
+					return old(self, unpack(args))
+				elseif args[1][3] == "UpdateHealth" and vals.nomiss then
+					args[2][1] = "Gain"
+					return old(self, unpack(args))
+				elseif args[1][3] == "Died" and vals.nodeath then
+					return "!"
+				end
+			end
+		elseif self == game.ReplicatedStorage.RE and method == "FireServer" then
+			if ({...})[1][3] == "Died" and vals.nodeath then
+				return
+			end
+		end
+
+		return old(self, ...)
+	end)
+end
+
+local NPS, s = 0, ""
+local framesPassed = 0
+
+cons[#cons+1] = game["Run Service"].Heartbeat:Connect(function(delta)
+	rendered = 0
+	framesPassed = framesPassed + 1
+	if framesPassed == 12 then
+		fps = 1 / delta
+		framesPassed = 0
+	end
+
+	if vals.autoplay or vals.unfair then
+		local count = framework.SongPlayer:GetKeyCount()
+
+		local arrowData = framework.ArrowData[count .. 'Key'].Arrows
+		for i, arrow in next, framework.UI:GetNotes() do
+			spawn(function()
+				rendered = rendered + 1
+
+				if not arrow or arrow.Buzy or arrow.HitValue == "Miss" or arrow.NoteDataConfigs and ignoredNoteTypes[arrow.NoteDataConfigs.Type] then return end
+
+				arrow.HitValue = arrow.HitValue or vals.autoplay and rollChance(vals.chances) or nil
+
+				if arrow.Side == framework.UI.CurrentSide then
+					local songTime = framework.SongPlayer.CurrentTime / (framework.SongPlayer.CurrentSongConfigs.PlaybackSpeed or 1)
+					local hitboxOffset = framework.Settings.HitboxOffset.Value / 1000
+
+					if vals.unfair then
+						arrow.Data.Time = songTime + hitboxOffset
+					end
+
+					if vals.autoplay and (vals.unfair or math.clamp((1 - math.abs(arrow.Data.Time - (songTime + hitboxOffset))) * 100, 0, 100) >= (hitVals[arrow.HitValue or "Sick"] or hitVals.Sick)) then
+						spawn(function()	
+							local keyCode = keyCodeMap[arrowData[(arrow.Data.Position % count) .. ''].Keybinds.Keyboard[1] ]
+
+							if vals.missnps ~= defaults.missnps and nps[keyCode] and nps[keyCode] > vals.missnps then
+								nps[keyCode] = nps[keyCode] - 1
+								arrow.HitValue = "Miss"
+								return
+							end
+							local arrowId = (id[keyCode] or 0) + 1
+
+							id[keyCode] = arrowId
+							spawn(function()
+								nps[keyCode] = (nps[keyCode] or 0) + 1
+								task.wait(1)
+								nps[keyCode] = nps[keyCode] - 1
+								if nps[keyCode] < 0 then
+									nps[keyCode] = 0
+								end
+							end)
+							arrow.Buzy = true
+
+							PressKey(keyCode, false)
+							PressKey(keyCode, true)
+
+							local arrowLen = (arrow.Data.Length or 0)
+							if vals.extraDelay ~= 0 then
+								arrowLen = arrowLen + ((vals.extraDelay/1000) + (math.random(-vals.extraDelayRNG, vals.extraDelayRNG))/1000)
+							end
+							if vals.extraLongDelay ~= 0 and arrow.Data.Length and arrow.Data.Length ~= 0 then
+								arrowLen = arrowLen + (vals.extraLongDelay/1000) + (math.random(-vals.extraLongDelayRNG, vals.extraLongDelayRNG)/1000)
+							end
+
+							if arrowLen > 0 then
+								task.wait(arrowLen)
+							end
+
+							arrow.Buzy = false
+
+							if arrowId == id[keyCode] then
+								PressKey(keyCode, false)
+								id[keyCode] = 0
+							end
+						end)
+					end
+				end
+			end)
+		end
+	end
+	npsText.Text = ""
+	if vals.showNPS or vals.showNPSD or vals.showMaxNPS or vals.showRendered or vals.showFPS then
+		NPS = 0
+		s = ""
+
+		for i,v in nps do
+			NPS = NPS + v
+			s = s .. i.Name:sub(1,2) .. ":" .. (#i.Name == 1 and "  " or " ") .. string.format("%02d", v) .. "\n"
+		end
+
+		maxNps = math.max(NPS, maxNps)
+
+		if vals.showNPS then
+			appendText(string.format("%03d", NPS).." NPS")
+		end
+		if vals.showFPS then
+			appendText(string.format("%03d", (tostring(fps)):split(".")[1]).." FPS")
+		end
+		if vals.showRendered then
+			appendText(string.format("%03d", rendered).." Notes rendered")
+		end
+		if vals.showMaxNPS then
+			appendText(string.format("%03d", maxNps).." Max NPS")
+		end
+		if vals.showNPSD and s ~= "" then
+			if npsText.Text ~= "" then
+				npsText.Text = s .. "\n" .. npsText.Text
+			else
+				npsText.Text = s
+			end
+		end
+	end
+	npsText.Visible = vals.showNPS or vals.showNPSD or vals.showMaxNPS or vals.showRendered or vals.showFPS
+	npsText.Size = UDim2.fromScale(
+		0.5,
+		(#npsText.Text:split("\n"))/35
+	)
+	if vals.autosolo then
+		startSolo()
+	end
+end)
+spawn(function()
+	while not closed and task.wait(0) do
+		if vals.infscore then
+			for i=1, 3 do
+				gainScore(50000)
+			end
+		end
+	end
+end)
+
+local window = lib:MakeWindow({Title = "NullFire: Funky Friday", CloseCallback = function()
+	for i,v in defaults do
+		vals[i] = v
+	end
+	getGlobalTable().FireHubLoaded = false
+	closed = true
+	for i=1, 3 do
+		game["Run Service"].RenderStepped:Wait()
+	end
+	for i,v in cons do
+		v:Disconnect()
+	end
+	npsGui:Destroy()
+end}, true)
+if framework then
+	local page = window:AddPage({Title = "Auto play"})
+	page:AddToggle({Caption = "Autoplay", Callback = function(bool)
+		vals.autoplay = bool
+	end, Default = false})
+	page:AddToggle({Caption = "Auto solo", Callback = function(bool)
+		vals.autosolo = bool
+	end, Default = false})
+	page:AddSeparator()
+	page:AddSlider({Caption = "\"Sick\" Chance", Default = 95, Min = 0, Max = 100, Step = 1, Callback = function(v)
+		vals.chances.Sick = v
+	end})
+	page:AddSlider({Caption = "\"Good\" Chance", Default = 4, Min = 0, Max = 100, Step = 1, Callback = function(v)
+		vals.chances.Good = v
+	end})
+	page:AddSlider({Caption = "\"Ok\" Chance", Default = 1, Min = 0, Max = 100, Step = 1, Callback = function(v)
+		vals.chances.Ok = v
+	end})
+	page:AddSlider({Caption = "\"Bad\" Chance", Default = 0, Min = 0, Max = 100, Step = 1, Callback = function(v)
+		vals.chances.Bad = v
+	end})
+	page:AddSlider({Caption = "\"Miss\" Chance", Default = 0, Min = 0, Max = 100, Step = 1, Callback = function(v)
+		vals.chances.Miss = v
+	end})
+	page:AddSeparator()
+	page:AddSlider({Caption = "Miss when reached X notes per second (0 to disable)", Default = 0, Min = 0, Max = 50, Step = 1, Callback = function(v)
+		vals.missnps = v
+	end})
+	page:AddSeparator()
+	page:AddSlider({Caption = "Arrow hold time (ms)", Default = 0, Min = 0, Max = 1000, Step = 1, Callback = function(v)
+		vals.extraDelay = v
+	end})
+	page:AddSlider({Caption = "Extra random holding time (ms)", Default = 0, Min = 0, Max = 1000, Step = 1, Callback = function(v)
+		vals.extraDelayRNG = v
+	end})
+	page:AddSeparator()
+	page:AddSlider({Caption = "Long arrow hold time (ms)", Default = 0, Min = 0, Max = 1000, Step = 1, Callback = function(v)
+		vals.extraLongDelay = v
+	end})
+	page:AddSlider({Caption = "Extra random long arrow holding time (ms)", Default = 0, Min = 0, Max = 1000, Step = 1, Callback = function(v)
+		vals.extraLongDelayRNG = v
+	end})
+end
+
+local page = window:AddPage({Title = "Visual"})
+if framework then
+	page:AddToggle({Caption = "Show notes per second", Callback = function(bool)
+		vals.showNPS = bool
+	end, Default = false})
+	page:AddToggle({Caption = "Show notes per second [Advanced]", Callback = function(bool)
+		vals.showNPSD = bool
+	end, Default = false})
+	page:AddToggle({Caption = "Show max notes per second", Callback = function(bool)
+		vals.showMaxNPS = bool
+	end, Default = false})
+	page:AddToggle({Caption = "Show rendered notes", Callback = function(bool)
+		vals.showRendered = bool
+	end, Default = false})
+end
+page:AddToggle({Caption = "Show FPS", Callback = function(bool)
+	vals.showFPS = bool
+end, Default = false})
+
+local page = window:AddPage({Title = "Unfair"})
+page:AddToggle({Caption = "Unfair mode (Every note you will try to hit will be \"Sick 0.00ms\")", Callback = function(bool)
+	vals.unfair = bool
+end, Default = false})
+page:AddToggle({Caption = "Max score", Callback = function(bool)
+	vals.infscore = bool
+end, Default = false})
+if getfenv().hookmetamethod and getfenv().getnamecallmethod then
+	page:AddToggle({Caption = "Mega score: Any score change will act like you just hit \"Sick\" note", Callback = function(bool)
+		vals.megascore = bool
+	end, Default = false})
+	page:AddToggle({Caption = "Increase score on miss", Callback = function(bool)
+		vals.increaseonmiss = bool
+	end, Default = false})
+	page:AddToggle({Caption = "No miss", Callback = function(bool)
+		vals.nomiss = bool
+	end, Default = false})
+	page:AddLabel({Caption = "\"No miss\" does work, it just not changing the text."})
+	page:AddToggle({Caption = "No death", Callback = function(bool)
+		vals.nodeath = bool
+	end, Default = false})
+end
+page:AddSeparator()
+local grant = "0"
+local tb; tb = page:AddTextBox({Caption = "Score to give yourself", Placeholder = "", Default = grant, Callback = function(txt)
+	if txt == grant then return end
+	if not tonumber(txt) then
+		tb:SetText(grant)
+	else
+		grant = txt
+	end
+end})
+page:AddButton({Caption = "Give score", Callback = function()
+	local num = tonumber(grant)
+	local step = 50
+	if num then
+		if num > step then
+			local leftover = num
+			for i = step, num, step do
+				gainScore(step)
+				leftover = leftover - step
+				if i % (step * 25) == 0 then
+					task.wait()
+				end
+			end
+			gainScore(leftover)
+		elseif num < -step then
+			local leftover = num
+			for i = step, math.abs(num), step do
+				gainScore(-step)
+				leftover = leftover + step
+				if i % (step * 25) == 0 then
+					task.wait()
+				end
+			end
+			gainScore(leftover)
+		else
+			gainScore(num)
+		end
+	end
+end})
+if getfenv().hookmetamethod then
+	page:AddLabel({Caption = "Warning: Giving score can be buggy when max score or mega score options are enabled.\nAlso breaks on multiplayer"})
+end
