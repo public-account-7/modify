@@ -26,10 +26,13 @@ local defaults = {
 	AutoFixGenerators = false,
 	TeleportToGenerators = false,
 	StopAutoplayOnGambling = false,
+	DropTool = false,
+	StopAutoplayOnPS = false,
 	PickDocuments = false,
 	AutoPande = false,
 	AntiTurret = false,
 	NoDamage = false,
+	SpoofRoom = false,
 	FlashSeb = false,
 	CumDist = 0,
 	AntiBouncer = false,
@@ -82,14 +85,13 @@ local espLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Infern
 
 espLib.Values = vals.ESP
 local applyESP = function(...)
-	local args = {...}
-	task.spawn(function()
+	task.spawn(function(...)
 		task.wait()
 		game["Run Service"].RenderStepped:Wait()
 		task.wait()
 		game["Run Service"].RenderStepped:Wait()
-		espLib.ApplyESP(unpack(args))
-	end)
+		espLib.ApplyESP(...)
+	end, ...)
 end
 
 local plr = game.Players.LocalPlayer
@@ -222,9 +224,12 @@ task.spawn(function()
 	end
 end)
 
+local Not = {}
 local function notifyMonster(monster, text)
 	if vals.Notify then
-		lib.Notifications:Notification({Title = monster, Text = text, Time = 5})
+		Not.Title = monster
+		Not.Text = text
+		lib.Notifications:Notification(Not)
 	end
 	if vals.NotifyChat then
 		local formatted = vals.NotifyChatM:gsub("{monster}", monster)
@@ -346,6 +351,22 @@ local documents = {}
 
 local applied = {}
 
+-- esp is creating too much tables, fixing that ;)
+
+local ps = {Text = "Party Special", HighlightEnabled = true, Color = Color3.new(0.44, 0.11, 0.66), ESPName = "Party SpecialESP"}
+local ml = {HighlightEnabled = true, Color = Color3.fromRGB(255, 50, 150), Text = "Monster Locker", ESPName = "Fake LockerESP"}
+local fd = {HighlightEnabled = true, Color = Color3.new(0.9, 0.1, 0.2), Text = "Fake Door", ESPName = "Fake DoorESP"}
+local te = {HighlightEnabled = true, Color = Color3.new(0.7, 0.7, 0.8), Text = "Turret", ESPName = "TurretESP"}
+local de = {HighlightEnabled = true, Color = Color3.new(0, 0.6, 1), Text = "Door", ESPName = "DoorESP"}
+local omg = {}
+local ef = {HighlightEnabled = true, Text = "Eyefestation", ESPName = "EyefestationESP"}
+local sq = {HighlightEnabled = true, Color = Color3.fromRGB(34, 9, 28), Text = "Squiddle", ESPName = "SquiddleESP"}
+local sl = {HighlightEnabled = true, Color = Color3.fromRGB(220, 183, 59), Text = "Searchlights", ESPName = "SearchlightsESP"}
+local wd = {Text = "Wall Dweller", HighlightEnabled = true, Color = Color3.new(0.9, 0.1, 0.2), ESPName = "Wall DwellerESP"}
+local vt = {Text = "Valve", HighlightEnabled = false, Color = Color3.new(0.7, 0.7, 0.7), ESPName = "DoorESP"}
+
+--
+
 local function d(w)
 	task.spawn(function()
 		if w and w:IsDescendantOf(workspace) and w.Parent ~= workspace and w.Parent then
@@ -359,19 +380,28 @@ local function d(w)
 							add(documents, w)
 						end
 					end
-					applyESP(w.Parent, {HighlightEnabled = false, Color = getColor(w.Parent), Text = (getText(w.Parent) or w.Parent.Name:gsub("Document", " Document")), ESPName = w.Parent.Name:match("Document") and "DocumentESP" or "LootsESP"})
+					local txt = (getText(w.Parent) or w.Parent.Name:gsub("Document", " Document"))
+					local obj = omg[txt] or {HighlightEnabled = false, Color = getColor(w.Parent), Text = txt, ESPName = w.Parent.Name:match("Document") and "DocumentESP" or "LootsESP"}
+					omg[txt] = obj
+					
+					applyESP(w.Parent, obj)
+				elseif w.Parent.Name == "Drink" then
+					applyESP(w, ps)
+					if vals.StopAutoplayOnPS then
+						ap:Set(false)
+					end
 				end	
 			elseif w.Name == "highlight" then
 				add(monsterLockers, w.Parent)
-				applyESP(w.Parent, {HighlightEnabled = true, Color = Color3.fromRGB(255, 50, 150), Text = "Monster Locker", ESPName = "Fake LockerESP"})
+				applyESP(w.Parent, ml)
 			elseif w.Name == "Door" and w.Parent.Name == "TricksterDoor" then
 				add(fakeDoors, w.Parent.Parent:FindFirstChild("RemoteEvent"))
-				applyESP(w, {HighlightEnabled = true, Color = Color3.new(0.9, 0.1, 0.2), Text = "Fake Door", ESPName = "Fake DoorESP"})
+				applyESP(w, fd)
 			elseif w.Name == "Shoot" and w.Parent.Name:match("TurretSpawn") and not w:GetAttribute("Fake") then
 				add(shootEvents, w)
-				applyESP(w.Parent:FindFirstChild("Turret"), {HighlightEnabled = true, Color = Color3.new(0.7, 0.7, 0.8), Text = "Turret", ESPName = "TurretESP"})
+				applyESP(w.Parent:FindFirstChild("Turret"), te)
 			elseif w.Name == "OpenValue" and w.Parent.Parent:IsA("Folder") and w.Parent.Parent.Name == "Entrances" then
-				applyESP(w.Parent:FindFirstChild("Door") or w.Parent, {HighlightEnabled = true, Color = Color3.new(0, 0.6, 1), Text = "Door", ESPName = "DoorESP"})
+				applyESP(w.Parent:FindFirstChild("Door") or w.Parent, de)
 			elseif w.Name == "Fixed" and w:IsA("IntValue") and w.Parent:IsA("Model") then
 				task.wait(0.1)
 				if w and w.Parent and w.Value ~= 100 then
@@ -392,7 +422,8 @@ local function d(w)
 				end
 			elseif w.Name == "Eyefestation" and (w.Parent.Name == "EyefestationSpawn" or w.Parent.Name == "EyefestationRoot") then
 				notifyMonster("Eyefestation", "Eyefestation has spawned!\nAvoid looking at it!")
-				applyESP(w, {HighlightEnabled = true, Color = w.NonAnimated.LeftEye.Color, Text = w.Name, ESPName = "EyefestationESP"})
+				ef.Color = w.NonAnimated.LeftEye.Color
+				applyESP(w, ef)
 				task.spawn(function()
 					repeat task.wait() until w and w:FindFirstChild("Active") and w.Active.Value or not w
 					if not w then return end
@@ -412,7 +443,8 @@ local function d(w)
 				noAnim:WaitForChild("LeftEye", 1)
 				if not noAnim or not noAnim:FindFirstChild("LeftEye") then return fake() end
 				cons[#cons+1] = noAnim.LeftEye.Changed:Connect(function()
-					applyESP(w, {HighlightEnabled = true, Color = w.NonAnimated.LeftEye.Color, Text = w.Name, ESPName = "EyefestationESP"})
+					ef.Color = w.NonAnimated.LeftEye.Color
+					applyESP(w, ef)
 				end)
 			elseif w.Name == "LeverPull" then
 				local colored = w.Parent.Parent:WaitForChild("Colored", 1)
@@ -426,7 +458,7 @@ local function d(w)
 				add(switches, w.Parent)
 			elseif w.Name == "Tentacle1" and w.Parent:FindFirstChild("Tentacle10") then
 				if not vals.AntiSquid then
-					applyESP(w.Parent, {HighlightEnabled = true, Color = Color3.fromRGB(34, 9, 28), Text = "Squiddle", ESPName = "SquiddleESP"})
+					applyESP(w.Parent, sq)
 				else
 					w.Parent:Destroy()
 				end
@@ -450,7 +482,7 @@ local function d(w)
 			elseif w.Name == "BlockPart" or w.Name:lower():match("invisible") or w.Name == "Boundaries" then
 				add(invisibleParts, w)
 			elseif w.Name == "RFin" then
-				applyESP(w.Parent, {HighlightEnabled = true, Color = Color3.fromRGB(220, 183, 59), Text = "Searchlights", ESPName = "SearchlightsESP"})
+				applyESP(w.Parent, sl)
 			elseif w.Name == "TouchInterest" and w.Parent.Name:match("Trigger") then
 				add(triggers, w.Parent)
 			elseif w.Name == "ProximityPrompt" then
@@ -465,7 +497,7 @@ local function d(w)
 				--applyESP(w, {Text = "Vent", Color = Color3.fromRGB(155, 155, 155), ESPName = "DoorESP", HighlightEnabled = true})
 			elseif (w.Parent.Name == "WallDweller" or w.Parent.Name == "RottenWallDweller") and w.Parent:IsA("Model") and w.Name == "RemoteEvent" and w:IsA("RemoteEvent") then
 				notifyMonster("Wall Dweller", "Wall Dweller has spawned!\nTurn around!")
-				applyESP(w.Parent, {Text = "Wall Dweller", HighlightEnabled = true, Color = Color3.new(0.9, 0.1, 0.2), ESPName = "Wall DwellerESP"})
+				applyESP(w.Parent, wd)
 				add(dwellers, w)
 			elseif w.Name == "puzzle" then
 				if vals.Notify then
@@ -474,7 +506,7 @@ local function d(w)
 				add(puzzles, w)
 			elseif w.Name == "ValveTurn" then
 				task.wait()
-				applyESP(w.Parent, {Text = "Valve", HighlightEnabled = false, Color = Color3.new(0.7, 0.7, 0.7), ESPName = "DoorESP"})
+				applyESP(w.Parent, vt)
 				add(switches, w.Parent)
 			elseif w.Parent == workspace.Monsters and w.Name ~= "WallDweller" then
 				applyESP(w, {Text = w.Name:gsub("H", " H"):gsub("Root", ""), HighlightEnabled = true, Color = Color3.new(0.9, 0.1, 0.2), ESPName = "Other MonstersESP"})
@@ -586,7 +618,7 @@ end
 local function fixGenerator(gen)
 	if fixing or not (vals.AutoFixGenerators or vals.AutoPlay) then return false end
 	if not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") then return end
-	if gen.Fixed.Value == 100 then return true end
+	if gen.Fixed.Value >= 87 then return true end
 	gen.RemoteFunction:InvokeServer()
 	local i = 0
 	repeat
@@ -601,7 +633,7 @@ local function fixGenerator(gen)
 	until not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") or gen.Fixed.Value == 100 or not (vals.AutoFixGenerators or vals.AutoPlay)
 	if fixing or not (vals.AutoFixGenerators or vals.AutoPlay) then return false end
 	if not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") then return end
-	if gen.Fixed.Value == 100 then return true end
+	if gen.Fixed.Value >= 87 then return true end
 end
 
 local cool = game:GetService("Players").LocalPlayer.PlayerGui.Main.FixMinigame.Background.Frame.Middle
@@ -659,7 +691,7 @@ task.spawn(function()
 			end
 		end
 		pcall(autoPlayLoop)
-		task.wait(0.5)
+		task.wait(0.4)
 	end
 end)
 
@@ -750,7 +782,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 			plr.Character.Humanoid.WalkSpeed = (16 + vals.Speed) / (plr.Crouching.Value and 1.6 or 1)
 		end
 		if plr.Character:FindFirstChild("HumanoidRootPart") and plr.Character.HumanoidRootPart:FindFirstChild("LinearVelocity") and plr.Character.HumanoidRootPart.LinearVelocity.VectorVelocity.Magnitude <= 28 then
-			plr.Character.HumanoidRootPart.LinearVelocity.VectorVelocity = plr.Character.HumanoidRootPart.LinearVelocity.VectorVelocity * (vals.Speed + 10) / 17.5
+			plr.Character.HumanoidRootPart.LinearVelocity.VectorVelocity = plr.Character.HumanoidRootPart.LinearVelocity.VectorVelocity * (vals.Speed + 22.5) / 22.5
 		end
 		if vals.Noclip or vals.AutoPlay then
 			for i,v in plr.Character:GetDescendants() do
@@ -838,6 +870,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 			end
 		end
 	end
+	dropBtn.Visible = vals.DropTool
 	if vals.AntiTurret or vals.GodMode or vals.AutoPlay then
 		for i,v in shootEvents do
 			if v and v.Parent then
@@ -895,6 +928,10 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 		(game.ReplicatedStorage.Events:FindFirstChild("FlashMode") or game.ReplicatedStorage.Events:FindFirstChild("NotFlashMode")).Name = vals.FlashSeb and "NotFlashMode" or "FlashMode"
 	end
 	game.Lighting.Ambient = vals.FB and Color3.new(1,1,1) or Color3.new()
+	if vals.SpoofRoom then
+		local rooms = workspace.Rooms:GetChildren()
+		game.ReplicatedStorage.Events.ZoneChange:FireServer(rooms[#rooms-3] or rooms[#rooms-2] or rooms[1])
+	end
 	roomNum = game.ReplicatedStorage.Events.CurrentRoomNumber:InvokeServer()
 end)
 
@@ -947,13 +984,9 @@ cons[#cons+1] = game.LogService.MessageOut:Connect(function(msg)
 end)
 
 local bool = false
-local setHealth
-function setHealth(h)
-	local o = vals.NoDamage
-	vals.NoDamage = false
+local function setHealth(h)
 	health.CurrentHealth = h
-	health.TakeDamage(h, 100)
-	vals.NoDamage = o
+	health.Heal(h)
 end
 local window = lib:MakeWindow({Title = "NullFire: Pressure", CloseCallback = function()
 	if bool then
@@ -1187,6 +1220,11 @@ page:AddToggle({Caption = "Anti damage parts", Default = false, Callback = funct
 	vals.NoDMG = b
 end})
 page:AddSeparator()
+page:AddToggle({Caption = "Spoof current room", Default = false, Callback = function(b)
+	vals.SpoofRoom = b
+end})
+page:AddLabel({Caption = "PLEASE, use room spoof only if you have godmode enabled"})
+page:AddSeparator()
 page:AddToggle({Caption = "Anti Skelepede (HALOWEEN)", Default = false, Callback = function(b)
 	vals.AntiSkelepede = b
 end})
@@ -1196,6 +1234,7 @@ end})
 page:AddToggle({Caption = "Anti Candlebearer (HALOWEEN)", Default = false, Callback = function(b)
 	vals.AntiMonsterStatue = b
 end})
+page:AddSeparator()
 
 local page = window:AddPage({Title = "Auto interact"})
 page:AddToggle({Caption = "Auto pick up loots", Default = false, Callback = function(b)
@@ -1227,8 +1266,11 @@ end})
 page:AddToggle({Caption = "Pick up loots", Default = false, Callback = function(b)
 	vals.AutoPlayTools = b
 end})
-ap = page:AddToggle({Caption = "Stop autoplay on gambling room", Default = false, Callback = function(b)
+page:AddToggle({Caption = "Stop autoplay on gambling room", Default = false, Callback = function(b)
 	vals.StopAutoplayOnGambling = b
+end})
+page:AddToggle({Caption = "Stop autoplay on party special", Default = false, Callback = function(b)
+	vals.StopAutoplayOnPS = b
 end})
 page:AddSeparator()
 page:AddToggle({Caption = "Auto fix generator minigame", Default = false, Callback = function(b)
@@ -1267,6 +1309,11 @@ page:AddToggle({Caption = "Full bright", Default = false, Callback = function(b)
 end})
 page:AddSeparator()
 local activated = false
+if game.UserInputService.TouchEnabled and not game.UserInputService.MouseEnabled then
+	page:AddToggle({Caption = "Mobile drop tool button", Default = false, Callback = function(b)
+		vals.DropTool = b
+	end})
+end
 page:AddToggle({Caption = "RGB ESP", Default = false, Callback = function(b)
 	if not activated then activated = true return end
 	espLib.ESPValues.RGBESP = b
