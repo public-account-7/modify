@@ -170,7 +170,7 @@ return function(window)
 				keepOnTp = bool
 			end})
 			game.Players.PlayerRemoving:Connect(function(plr)
-				if plr == game.Players.LocalPlayer and keepOnTp then
+				if plr == game.Players.LocalPlayer and keepOnTp and window.Opened then
 					getfenv().queueonteleport('print("skibidi sigma")\nloadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Loader"))()')
 				end
 			end)
