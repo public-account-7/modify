@@ -5332,7 +5332,10 @@ local lib; lib = {
                 configEvent:Fire(got)
                 lib.Notifications:Notification({Title = "Success", Text = "Config \""..currentConfig.."\" has been loaded!"})
             end})
+
+            local first = true
             local tb = page:AddTextBox({Text = "Auto load config [leave empty to disable]", NeedEnter = false, Default = "", Callback = function(text)
+		if first then first = false return end
                 writefile("AutoLoad"..suffix..".skibidi", text)
             end, IgnoreConfigs = true})
 			local s,e = pcall(function()
