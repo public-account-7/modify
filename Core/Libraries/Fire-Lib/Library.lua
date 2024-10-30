@@ -5332,48 +5332,51 @@ local lib; lib = {
                 configEvent:Fire(got)
                 lib.Notifications:Notification({Title = "Success", Text = "Config \""..currentConfig.."\" has been loaded!"})
             end})
-
+            
             local first = true
             local tb = page:AddTextBox({Text = "Auto load config [leave empty to disable]", NeedEnter = false, Default = "", Callback = function(text)
-		if first then first = false return end
+                if first then first = false return end
                 writefile("AutoLoad"..suffix..".skibidi", text)
             end, IgnoreConfigs = true})
-			local s,e = pcall(function()
-				local content = readfile("AutoLoad"..suffix..".skibidi")
-				content = content:gsub("\n", "")
-				
-				if content:gsub(" ", ""):gsub("\r", ""):gsub("\t", "") == "" then return print("not skibidi") end
-				tb:Set(content)
-				print("skibidi", content)
-				
-				local s,got = pcall(readfile, content)
-				if not s then
-					return lib.Notifications:Notification({Title = "Uh oh!", Text = "Config called \""..currentConfig.."\" not found!"})
-				end
-				if got then
-					got = game.HttpService:JSONDecode(got)
-				end
-				if not got then return end
-				--configStructure = got
-				for i,v in got do
-					if typeof(v) == "table" then
-						for idx, val in v do
-							if typeof(val) == "table" then
-								for index, value in val do
-									configStructure[i][idx][index] = value
-								end
-							else
-								configStructure[i][idx] = val
-							end
-						end
-					else
-						configStructure[i] = v
-					end
-				end
-				configEvent:Fire(got)
-				lib.Notifications:Notification({Title = "Success", Text = "Config \""..currentConfig.."\" has been loaded!"})
-			end)
-			if not s then warn(e) end
+            local s,e = pcall(function()
+                local content = readfile("AutoLoad"..suffix..".skibidi")
+                content = content:gsub("\n", "")
+                
+                if content:gsub(" ", ""):gsub("\r", ""):gsub("\t", "") == "" then return print("not skibidi") end
+                tb:Set(content)
+                print("skibidi", content)
+                
+                local s,got = pcall(readfile, content)
+                if not s then
+                    return lib.Notifications:Notification({Title = "Uh oh!", Text = "Config called \""..currentConfig.."\" not found!"})
+                end
+                if got then
+                    got = game.HttpService:JSONDecode(got)
+                end
+                if not got then return end
+                task.spawn(function()
+                    task.wait(2.5)
+                    --configStructure = got
+                    for i,v in got do
+                        if typeof(v) == "table" then
+                            for idx, val in v do
+                                if typeof(val) == "table" then
+                                    for index, value in val do
+                                        configStructure[i][idx][index] = value
+                                    end
+                                else
+                                    configStructure[i][idx] = val
+                                end
+                            end
+                        else
+                            configStructure[i] = v
+                        end
+                    end
+                    configEvent:Fire(got)
+                    lib.Notifications:Notification({Title = "Success", Text = "Config \""..currentConfig.."\" has been loaded!"})
+                end)
+            end)
+            if not s then warn(e) end
         end
         
         page:AddSeparator()
