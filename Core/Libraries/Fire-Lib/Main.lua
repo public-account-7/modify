@@ -1,3 +1,5 @@
+repeat task.wait() until game:IsLoaded()
+
 local function getGlobalTable()
     return typeof(getgenv) == "function" and typeof(getgenv()) == "table" and getgenv() or _G
 end
