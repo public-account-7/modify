@@ -5339,8 +5339,9 @@ local lib; lib = {
 				local content = readfile("AutoLoad"..suffix..".skibidi")
 				content = content:gsub("\n", "")
 				
-				if content:gsub(" ", ""):gsub("\r", ""):gsub("\t", "") == "" then return end
+				if content:gsub(" ", ""):gsub("\r", ""):gsub("\t", "") == "" then return print("not skibidi") end
 				tb:Set(content)
+				print("skibidi", content)
 				
 				local s,got = pcall(readfile, content)
 				if not s then
