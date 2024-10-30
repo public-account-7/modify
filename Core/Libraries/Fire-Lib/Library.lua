@@ -5348,7 +5348,7 @@ local lib; lib = {
                 
                 local s,got = pcall(readfile, content)
                 if not s then
-                    return lib.Notifications:Notification({Title = "Uh oh!", Text = "Config called \""..currentConfig.."\" not found!"})
+                    return lib.Notifications:Notification({Title = "Uh oh!", Text = "Config called \""..content.."\" not found!"})
                 end
                 if got then
                     got = game.HttpService:JSONDecode(got)
@@ -5373,7 +5373,7 @@ local lib; lib = {
                         end
                     end
                     configEvent:Fire(got)
-                    lib.Notifications:Notification({Title = "Success", Text = "Config \""..currentConfig.."\" has been loaded!"})
+                    lib.Notifications:Notification({Title = "Success", Text = "Config \""..content.."\" has been loaded!"})
                 end)
             end)
             if not s then warn(e) end
