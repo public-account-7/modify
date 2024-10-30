@@ -41,7 +41,7 @@ local function applyESP(obj, espSettings)
 	espSettings.HighlightEnabled = type(espSettings.HighlightEnabled) ~= "nil" and espSettings.HighlightEnabled or type(espSettings.HighlightEnabled) == "nil"
 	espSettings.Text = espSettings.Text or obj.Name
 	espSettings.ESPName = espSettings.ESPName or ""
-	espSettings.Object = espSettings.Object or obj
+	--espSettings.Object = espSettings.Object or obj
 
 	local col = espSettings.Color
 
@@ -67,7 +67,7 @@ local function applyESP(obj, espSettings)
 		end
 
 		local bg = ESPFolder:FindFirstChild("BillboardGui") or Instance.new("BillboardGui", ESPFolder)
-		bg.Adornee = espSettings.Object
+		bg.Adornee = espSettings.Object or obj
 		bg.AlwaysOnTop = true
 		bg.Size = UDim2.fromOffset(100, 100)
 		bg.MaxDistance = math.huge
