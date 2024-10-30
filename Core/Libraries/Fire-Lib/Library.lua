@@ -4117,9 +4117,9 @@ local lib; lib = {
     Versions = versions,
     MakeWindow = function(self, options)
         local configStructure = {}
-        
+
         getGlobalTable().Struct = configStructure
-        
+
         local configEvent = Instance.new("BindableEvent")
         local counter = {}
         local function count(name, layer)
@@ -4178,7 +4178,7 @@ local lib; lib = {
                     {Class = "Back", Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain, Default = window.BackgroundColor3, Offset = Color3.new()},
                     {Class = "Back", Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Lines, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Lines.BackgroundColor3, window.BackgroundColor3)},
                     {Class = "Back", Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Separator, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Separator.BackgroundColor3, window.BackgroundColor3)},
-                    
+
                     {Class = "Back", Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain, Default = window.BackgroundColor3, Offset = Color3.new()},
                     {Class = "Back", Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Lines, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Lines.BackgroundColor3, window.BackgroundColor3)},
                     {Class = "Back", Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain.Separator, Default = window.BackgroundColor3, Offset = getColorOffset(script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain.Separator.BackgroundColor3, window.BackgroundColor3)}
@@ -4192,7 +4192,7 @@ local lib; lib = {
 
                     {Class = "Text", Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain:WaitForChild("No", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
                     {Class = "Text", Instance = script.Parent.Notification.NotificationHolder.NotificationOrange.NotificationMain:WaitForChild("Yes", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
-                    
+
                     {Class = "Text", Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain:WaitForChild("No", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
                     {Class = "Text", Instance = script.Parent.Notification.ChooseNotificationHolder.NotificationOrange.NotificationMain:WaitForChild("Yes", 0.1), Default = window.HolderFrame.PageDisplay.Page.Label.Text.TextColor3, Offset = Color3.new()},
                 } 
@@ -4328,7 +4328,7 @@ local lib; lib = {
                 pageButton.Visible = true
                 pageButton.Name = ""
                 pageButton.LayoutOrder = -order
-                
+
                 pageButton:FindFirstChild("Text").Text = text
                 cons[#cons+1] = pageButton.Trigger.MouseEnter:Connect(function()
                     playSound("MouseHover")
@@ -4357,7 +4357,7 @@ local lib; lib = {
                         pageButton.Selection.Visible = true
                     end
                 end)
-                
+
                 windowFuncs.Tabs[counterTextPage] = {}
 
                 local pageFuncs = {
@@ -4405,7 +4405,7 @@ local lib; lib = {
                         options.Set = set
 
                         --
-                        
+
                         windowFuncs.Tabs[counterTextPage][counterText] = funcs
                         function funcs:Set(value)
                             if not self or not self.Object then return end
@@ -4478,7 +4478,7 @@ local lib; lib = {
 
                         local funcs = {}
                         funcs.Object = sep
-                        
+
                         windowFuncs.Tabs[counterTextPage][count(getText({Text = "Separator"}), 2)] = funcs
                         function funcs:Destroy()
                             if not self or not self.Object then return end
@@ -5203,18 +5203,18 @@ local lib; lib = {
                 return pageFuncs
             end,
         }
-        
+
         windowFuncs.Tabs = windowFuncs.Tabs or {}
         windowFuncs.Pages = windowFuncs.Tabs
-        
+
         windowFuncs.CreatePage = windowFuncs.AddPage
         windowFuncs.AddTab = windowFuncs.AddPage
         windowFuncs.CreateTab = windowFuncs.AddPage
-        
+
         windowFuncs.Shutdown = windowFuncs.Close
         windowFuncs.Minimize = windowFuncs.Hide
         windowFuncs.Maximize = windowFuncs.Show
-        
+
         windowFuncs:Show()
 
         local page = windowFuncs:AddPage({Title = "Main", Order = 999})
@@ -5254,7 +5254,7 @@ local lib; lib = {
         page:AddSeparator()
         local execName = "RobloxClient"
         local execVersion = getfenv().version()
-        
+
         if getfenv().identifyexecutor then
             local s, en, ev = pcall(getfenv().identifyexecutor)
             if s then
@@ -5266,7 +5266,7 @@ local lib; lib = {
                 end
             end
         end
-        
+
         page:AddLabel({Text = "NullFire Version: "..versions.FireHubVersion})
         page:AddLabel({Text = "FireLib Version: "..versions.FireLibraryVersion})
         page:AddLabel({Text = "Executor Name & Version: " .. execName .. "; " .. execVersion})
@@ -5332,20 +5332,21 @@ local lib; lib = {
                 configEvent:Fire(got)
                 lib.Notifications:Notification({Title = "Success", Text = "Config \""..currentConfig.."\" has been loaded!"})
             end})
-            
+
             local first = true
             local tb = page:AddTextBox({Text = "Auto load config [leave empty to disable]", NeedEnter = false, Default = "", Callback = function(text)
                 if first then first = false return end
                 writefile("AutoLoad"..suffix..".skibidi", text)
             end, IgnoreConfigs = true})
-            local s,e = pcall(function()
+            local s,e = task.spawn(function()
+                task.wait(2.5)
                 local content = readfile("AutoLoad"..suffix..".skibidi")
                 content = content:gsub("\n", "")
-                
+
                 if content:gsub(" ", ""):gsub("\r", ""):gsub("\t", "") == "" then return print("not skibidi") end
                 tb:Set(content)
                 print("skibidi", content)
-                
+
                 local s,got = pcall(readfile, content)
                 if not s then
                     return lib.Notifications:Notification({Title = "Uh oh!", Text = "Config called \""..content.."\" not found!"})
@@ -5354,35 +5355,31 @@ local lib; lib = {
                     got = game.HttpService:JSONDecode(got)
                 end
                 if not got then return end
-                task.spawn(function()
-                    task.wait(2.5)
-                    --configStructure = got
-                    for i,v in got do
-                        if typeof(v) == "table" then
-                            for idx, val in v do
-                                if typeof(val) == "table" then
-                                    for index, value in val do
-                                        configStructure[i][idx][index] = value
-                                    end
-                                else
-                                    configStructure[i][idx] = val
+                for i,v in got do
+                    if typeof(v) == "table" then
+                        for idx, val in v do
+                            if typeof(val) == "table" then
+                                for index, value in val do
+                                    configStructure[i][idx][index] = value
                                 end
+                            else
+                                configStructure[i][idx] = val
                             end
-                        else
-                            configStructure[i] = v
                         end
+                    else
+                        configStructure[i] = v
                     end
-                    configEvent:Fire(got)
-                    lib.Notifications:Notification({Title = "Success", Text = "Config \""..content.."\" has been loaded!"})
-                end)
+                end
+                configEvent:Fire(got)
+                lib.Notifications:Notification({Title = "Success", Text = "Config \""..content.."\" has been loaded!"})
             end)
             if not s then warn(e) end
         end
-        
+
         page:AddSeparator()
         page:AddLabel({Text = "Themes"})
         page:AddSeparator()
-        
+
         local themeColorPickers = {}
         for i,v in colors do
             themeColorPickers[i] = page:AddColorPicker({Text = i, Default = v.Color, Callback = function(col)
