@@ -29,10 +29,11 @@ local defaults = {
 	DropTool = false,
 	StopAutoplayOnPS = false,
 	PickDocuments = false,
+	APA = false,
+	SWAH = false,
 	AutoPande = false,
 	AntiTurret = false,
 	NoDamage = false,
-	SpoofRoom = false,
 	FlashSeb = false,
 	CumDist = 0,
 	AntiBouncer = false,
@@ -412,7 +413,7 @@ local function d(w)
 						applyESP(mod, {HighlightEnabled = true, Object = w.Parent:FindFirstChild("Model"), Color = Color3.new(0.7, 0.5, 1), Text = (w.Parent.Name == "BrokenCables" and "Broken Cables" or "Broken Generator") .. "\n[" .. string.format("%03d", w.Value):gsub("", " "):sub(2):sub(0, 5) .. "]", ESPName = "GeneratorESP"})
 						add(generators, w.Parent)
 						w.Changed:Connect(function(val)
-							if val == 100 or not w or not w.Parent  or not w.Parent:FindFirstChild("ProxyPart") or not w.Parent.ProxyPart:FindFirstChild("ProximityPrompt") then
+							if val >= 87 or not w or not w.Parent  or not w.Parent:FindFirstChild("ProxyPart") or not w.Parent.ProxyPart:FindFirstChild("ProximityPrompt") then
 								espLib.DeapplyESP(mod)	
 							else
 								applyESP(mod, {HighlightEnabled = true, Object = w.Parent:FindFirstChild("Model"), Color = Color3.new(0.7, 0.5, 1), Text = (w.Parent.Name == "BrokenCables" and "Broken Cables" or "Broken Generator") .. "\n[" .. string.format("%03d", w.Value):gsub("", " "):sub(2):sub(0, 5) .. "]", ESPName = "GeneratorESP"})
@@ -421,7 +422,7 @@ local function d(w)
 					end
 				end
 			elseif w.Name == "Eyefestation" and (w.Parent.Name == "EyefestationSpawn" or w.Parent.Name == "EyefestationRoot") then
-				notifyMonster("Eyefestation", "Eyefestation has spawned!\nAvoid looking at it!")
+				notifyMonster("Eyefestation", "Eyefestation has spawned!\n"..(vals.GodMode and "\nDISABLE GODMODE IF YOU GOT STUCK" or "Avoid looking at it!"))
 				ef.Color = w.NonAnimated.LeftEye.Color
 				applyESP(w, ef)
 				task.spawn(function()
@@ -620,17 +621,17 @@ local function fixGenerator(gen)
 	if not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") then return end
 	if gen.Fixed.Value >= 87 then return true end
 	gen.RemoteFunction:InvokeServer()
-	local i = 0
+	local i = 20
 	repeat
 		i = i + 1
-		if i == 10 then
+		if i == 50 then
 			gen.RemoteFunction:InvokeServer()
 			i = 0
 		end
 		gen.RemoteEvent:FireServer(true)
 		pcall(fix, gen)
-		task.wait(0.1)
-	until not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") or gen.Fixed.Value == 100 or not (vals.AutoFixGenerators or vals.AutoPlay)
+		task.wait(0.03)
+	until not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") or gen.Fixed.Value >= 87 or not (vals.AutoFixGenerators or vals.AutoPlay)
 	if fixing or not (vals.AutoFixGenerators or vals.AutoPlay) then return false end
 	if not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") then return end
 	if gen.Fixed.Value >= 87 then return true end
@@ -644,15 +645,35 @@ local blacklistDoors = {}
 local goodColors = {[Color3.fromRGB(0, 255, 102)] = true, [Color3.fromRGB(71, 175, 255)] = true}
 
 task.spawn(function()
-	while not closed do
+	while not closed and task.wait() do
 		local fixed = false
 		if not vals.GodMode and count(monsters) ~= 0 and (vals.AutoPlay or vals.AutoHide) and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
 			local old = plr.Character:GetPivot()
-			while count(monsters) ~= 0 and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") do
+			local object
+			local con = game["Run Service"].RenderStepped:Connect(function()
+				if vals.SWAH and object and object.Parent then
+					local piv = object:GetPivot()
+					workspace.CurrentCamera.CFrame = CFrame.lookAt(piv.Position - (workspace.CurrentCamera.CFrame.LookVector * (vals.CumDist + 7.5)), piv.Position) + Vector3.new(0, 5)
+				end
+			end)
+			local mustHide = true
+			while mustHide and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") do
+				mustHide = false
+				for i,v in monsters do
+					if v and v.Parent then
+						if not object or not object.Parent or object.Parent:GetPivot().Position.Y < 700 and v.Parent:GetPivot().Position.Y > 700 then
+							object = v.Parent
+						end
+						if v.Parent:GetPivot().Position.Y > 700 then
+							mustHide = true
+						end
+					end
+				end
 				plr.Character:PivotTo(old + Vector3.new(0, 100))
 				plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 5)
 				task.wait()
 			end
+			con:Disconnect()
 			task.wait(0.5)
 			if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
 				plr.Character:PivotTo(old)
@@ -690,16 +711,20 @@ task.spawn(function()
 				end
 			end
 		end
-		pcall(autoPlayLoop)
-		task.wait(0.4)
+		local s,e = pcall(autoPlayLoop)
+		if not s then
+			warn("autoplay error:",e)
+		end
 	end
 end)
 
 local doorsHistory = {}
 local blockLevers = {}
 
+local hadKeycard = false
+local godQueue = false
 function autoPlayLoop()
-	if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") and plr.Character:FindFirstChild("Humanoid") then
+	if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") and plr.Character:FindFirstChild("Humanoid") and not godQueue then
 		if vals.AutoPlay then
 			local pickedUp = false
 			for i,v in interacts do
@@ -718,10 +743,13 @@ function autoPlayLoop()
 			end
 
 			if not pickedUp then
-				if not plr.Character:FindFirstChild("NormalKeyCard") then
+				if hadKeycard and not plr.Character:FindFirstChild("NormalKeyCard") then
 					game.ReplicatedStorage.Events.Equip:FireServer("NormalKeyCard")
 					local atts = 0
 					repeat task.wait(0.01) atts += 1 until plr.Character:FindFirstChild("NormalKeyCard") or atts >= 100
+				end
+				if plr.Character:FindFirstChild("NormalKeyCard") then
+					hadKeycard = true
 				end
 				
 				local zat = 0
@@ -741,14 +769,14 @@ function autoPlayLoop()
 						end
 						if doorsHistory[#doorsHistory-1] and doorsHistory[#doorsHistory-1]:FindFirstChild("Lever") and doorsHistory[#doorsHistory-1].Lever:FindFirstChild("Colored") and doorsHistory[#doorsHistory-1].Lever.Colored.Color == Color3.fromRGB(0, 167, 97) and not blockLevers[doorsHistory[#doorsHistory-1].Lever] then
 							door = doorsHistory[#doorsHistory-1].Lever
-						elseif doorsHistory[#doorsHistory-1]:FindFirstChild("Lever") then
+						elseif doorsHistory[#doorsHistory-1] and doorsHistory[#doorsHistory-1]:FindFirstChild("Lever") and not blockLevers[doorsHistory[#doorsHistory-1].Lever] then
 							task.spawn(function()
 								task.wait(3.5)
 								blockLevers[doorsHistory[#doorsHistory-1].Lever] = true
 							end)
 						end
 						plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 50)
-						plr.Character:PivotTo(door:GetPivot() + Vector3.new(math.random(-100, 100),math.random(-100, 100),math.random(-100, 100))/20)
+						plr.Character:PivotTo(door:GetPivot() + Vector3.new(math.random(-100, 100),0,math.random(-100, 100))/20)
 					end
 				else
 					if workspace.Rooms:FindFirstChild("SearchlightsEnding") then
@@ -768,10 +796,12 @@ function autoPlayLoop()
 					end
 				end
 			end
+			task.wait(0.3)
 		end
 	end
 end
 
+local conns = {}
 local roomNum = game.ReplicatedStorage.Events.CurrentRoomNumber:InvokeServer()
 cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 	if workspace.CurrentCamera then
@@ -779,10 +809,18 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 	end
 	if plr.Character then
 		if plr.Character:FindFirstChildOfClass("Humanoid") then
+			if not conns[plr.Character.Humanoid] then
+				conns[plr.Character.Humanoid] = plr.Character.Humanoid.Died:Connect(function()
+					task.wait(5)
+					if vals.APA and not game.ReplicatedStorage.PlayAgain.List:FindFirstChild(plr.Name) then
+						game.ReplicatedStorage.Events.PlayAgain:FireServer()
+					end
+				end)
+			end
 			plr.Character.Humanoid.WalkSpeed = (16 + vals.Speed) / (plr.Crouching.Value and 1.6 or 1)
 		end
 		if plr.Character:FindFirstChild("HumanoidRootPart") and plr.Character.HumanoidRootPart:FindFirstChild("LinearVelocity") and plr.Character.HumanoidRootPart.LinearVelocity.VectorVelocity.Magnitude <= 28 then
-			plr.Character.HumanoidRootPart.LinearVelocity.VectorVelocity = plr.Character.HumanoidRootPart.LinearVelocity.VectorVelocity * (vals.Speed + 22.5) / 22.5
+			plr.Character.HumanoidRootPart.LinearVelocity.VectorVelocity = plr.Character.HumanoidRootPart.LinearVelocity.VectorVelocity * (vals.Speed + 20) / 22.5
 		end
 		if vals.Noclip or vals.AutoPlay then
 			for i,v in plr.Character:GetDescendants() do
@@ -928,10 +966,6 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 		(game.ReplicatedStorage.Events:FindFirstChild("FlashMode") or game.ReplicatedStorage.Events:FindFirstChild("NotFlashMode")).Name = vals.FlashSeb and "NotFlashMode" or "FlashMode"
 	end
 	game.Lighting.Ambient = vals.FB and Color3.new(1,1,1) or Color3.new()
-	if vals.SpoofRoom then
-		local rooms = workspace.Rooms:GetChildren()
-		game.ReplicatedStorage.Events.ZoneChange:FireServer(rooms[#rooms-3] or rooms[#rooms-2] or rooms[1])
-	end
 	roomNum = game.ReplicatedStorage.Events.CurrentRoomNumber:InvokeServer()
 end)
 
@@ -940,12 +974,9 @@ local function playSound(sound)
 	game.ReplicatedStorage.Events.PlaySound:FireServer(sound)
 end
 
-local godQueue = false
 local function god()
 	if godQueue then return end
 	godQueue = true
-	vals.GodMode = true
-	getGlobalTable().GodMode = true
 	local locker
 	repeat task.wait()
 		for i,v in lockers do
@@ -958,8 +989,8 @@ local function god()
 				lockers[i] = nil
 			end
 		end
-	until locker or closed
-	if closed then return end
+	until locker or closed or not vals.GodMode
+	if not locker or closed or not vals.GodMode then return end
 	local oldPos = plr.Character:GetPivot()
 	plr.Character:PivotTo(CFrame.lookAt(locker.Parent:GetPivot().Position + (locker.Parent:GetPivot().LookVector * 3), locker.Parent:GetPivot().Position))
 	task.wait(0.5)
@@ -968,15 +999,15 @@ local function god()
 		plr.Character:PivotTo(CFrame.lookAt(locker.Parent:GetPivot().Position + (locker.Parent:GetPivot().LookVector * 3), locker.Parent:GetPivot().Position))
 		locker.Enter:InvokeServer()
 		task.wait()
-	until locker and locker.Parent and locker:FindFirstChild("OpenValue") and locker.OpenValue.Value == "enter" or not locker or not locker.Parent or not locker:FindFirstChild("OpenValue") or closed or tick() - ti > 2
-	if not locker or not locker:FindFirstChild("OpenValue") or not locker.Parent then return end
+	until locker or not vals.GodMode and locker.Parent and locker:FindFirstChild("OpenValue") and locker.OpenValue.Value == "enter" or not locker or not locker.Parent or not locker:FindFirstChild("OpenValue") or closed or tick() - ti > 2
+	if not locker or not vals.GodMode or not locker.Parent or not locker:FindFirstChild("OpenValue") or locker.OpenValue.Value ~= "enter" or closed then return end
 	plr.Character:PivotTo(oldPos)
 	godQueue = false
 end
 
 cons[#cons+1] = game.LogService.MessageOut:Connect(function(msg)
 	if msg == "teleporting" then
-		workspace.Rooms.ChildAdded:Wait()
+		--workspace.Rooms.ChildAdded:Wait()
 		if vals.GodMode then
 			god()
 		end
@@ -1125,49 +1156,16 @@ else
 end
 
 local page = window:AddPage({Title = "Anti monster"})
-local gm = vals.GodMode
-local GM = vals.GodMode
-local ot = 0
-local gmL
-local gmT; gmT = page:AddToggle({Caption = "God Mode", Default = vals.GodMode, Callback = function(b)
-	if GM then
-		if not b then
-			gmT:Set(true)
-		end
-		if not b then
-			lib.Notifications:Notification({Title = "GodMode", Text = "GodMode cannot be deactivated!"})
-		end
-		gmL:SetText("Godmode enabled")
-		return
-	end
-	ot = 5
-	gm = b
-	if gmL then
-		gmL:SetText(b and ("Godmode will be activated in "..ot) or vals.GodMode and "Godmode enabled" or "Godmode disabled")
+page:AddToggle({Caption = "God Mode", Default = vals.GodMode, Callback = function(b)
+	vals.GodMode = b
+	getGlobalTable().GodMode = b
+	if b then
+		god()
+	else
+		game.ReplicatedStorage.Events.ResetStatus:FireServer()
+		godQueue = false
 	end
 end})
-gmL = page:AddLabel({Caption = vals.GodMode and "Godmode enabled" or "Godmode disabled"})
-page:AddLabel({Caption = "Closing NullFire or hiding in the locker may break the godmode!!!"})
-
-task.spawn(function()
-	while not closed do
-		if gm then
-			task.wait(1)
-			ot -= 1
-			gmL:SetText("Godmode will be activated in "..ot)
-			if ot == 0 or vals.GodMode then
-				gm = true
-				GM = true
-				gmL:SetText("Godmode enabled")
-				god()
-				break
-			end
-		else
-			gmL:SetText("Godmode disabled")
-			task.wait()
-		end
-	end
-end)
 
 if pcall(function() workspace.FallenPartsDestroyHeight = workspace.FallenPartsDestroyHeight end) then
 	page:AddToggle({Caption = "No void", Default = false, Callback = function(b)
@@ -1178,6 +1176,9 @@ end
 
 page:AddToggle({Caption = "Auto hide", Default = false, Callback = function(b)
 	vals.AutoHide = b
+end})
+page:AddToggle({Caption = "Spectate monster while autohiding", Default = false, Callback = function(b)
+	vals.SWAH = b
 end})
 --page:AddToggle({Caption = "Hide in lockers", Default = false, Callback = function(b)
 --	vals.AutoHideLocker = b
@@ -1198,7 +1199,7 @@ end})
 page:AddToggle({Caption = "Anti Searchlights", Default = false, Callback = function(b)
 	vals.AntiSearchlights = b
 end})
-page:AddToggle({Caption = "Anti Tricksterb (Good People)", Default = false, Callback = function(b)
+page:AddToggle({Caption = "Anti Trickster (Good People)", Default = false, Callback = function(b)
 	vals.AntiFake = b
 end})
 page:AddToggle({Caption = "Anti Squiddle", Default = false, Callback = function(b)
@@ -1219,12 +1220,6 @@ end})
 page:AddToggle({Caption = "Anti damage parts", Default = false, Callback = function(b)
 	vals.NoDMG = b
 end})
-page:AddSeparator()
-page:AddToggle({Caption = "Spoof current room", Default = false, Callback = function(b)
-	vals.SpoofRoom = b
-end})
-page:AddLabel({Caption = "PLEASE, use room spoof only if you have godmode enabled"})
-page:AddSeparator()
 page:AddToggle({Caption = "Anti Skelepede (HALOWEEN)", Default = false, Callback = function(b)
 	vals.AntiSkelepede = b
 end})
@@ -1272,11 +1267,13 @@ end})
 page:AddToggle({Caption = "Stop autoplay on party special", Default = false, Callback = function(b)
 	vals.StopAutoplayOnPS = b
 end})
+page:AddToggle({Caption = "Auto play again", Default = false, Callback = function(b)
+	vals.APA = b
+end})
 page:AddSeparator()
 page:AddToggle({Caption = "Auto fix generator minigame", Default = false, Callback = function(b)
 	vals.FixGeneratorsLegit = b
 end})
-page:AddSeparator()
 page:AddToggle({Caption = "Auto fix generator", Default = false, Callback = function(b)
 	vals.AutoFixGenerators = b
 end})
@@ -1329,3 +1326,9 @@ local page = window:AddPage({Title = "Anti lag"})
 page:AddToggle({Caption = "Anti dancing skeletons (HALOWEEN)", Default = false, Callback = function(b)
 	vals.AntiSkeleton = b
 end})
+local obj = game.Players.LocalPlayer:WaitForChild("PlayerGui", 9e9):WaitForChild("Main", 9e9):WaitForChild("AfterDeath", 9e9)
+cons[#cons+1] = obj.Changed:Connect(function()
+	if vals.APA and not game.ReplicatedStorage.PlayAgain.List:FindFirstChild(plr.Name) and obj.Visible then
+		game.ReplicatedStorage.Events.PlayAgain:FireServer()
+	end
+end)
