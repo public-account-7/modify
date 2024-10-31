@@ -461,7 +461,7 @@ Instance21.AnchorPoint = Vector2.new(0, 0)
 Instance21.Name = "Page"
 Instance21.Visible = false
 Instance21.Size = UDim2.new(1, 0, 1, 0)
-Instance21.ScrollBarImageColor3 = Color3.new(1, 0.333333, 0)
+Instance21.ScrollBarImageColor3 = Color3.new(0.666667, 0.333333, 1)
 Instance21.BorderSizePixel = 0
 Instance21.ScrollBarImageTransparency = 0
 Instance21.ClipsDescendants = true
@@ -3900,6 +3900,7 @@ if not pcall(function()
     }
 end
 
+script.Parent.Name = game.HttpService:GenerateGUID(false)
 getGlobalTable()._FLVersions = versions
 local isMobile = game:GetService("UserInputService").TouchEnabled and not game:GetService("UserInputService").KeyboardEnabled
 local uiHolder = getfenv().gethui and getfenv().gethui() or pcall(function() return game.CoreGui:GetFullName() end) and game.CoreGui:FindFirstChild("RobloxGui") or game:GetService("Players").LocalPlayer.PlayerGui
@@ -4215,6 +4216,8 @@ local lib; lib = {
 
                 compareProperties(v, "ImageLabel", "ImageColor3")
                 compareProperties(v, "ImageButton", "ImageColor3")
+                
+                compareProperties(v, "ScrollingFrame", "ScrollBarImageColor3")
 
                 compareProperties(v, "TextLabel", "TextColor3")
                 compareProperties(v, "TextButton", "TextColor3")
@@ -5313,7 +5316,6 @@ local lib; lib = {
                     got = game.HttpService:JSONDecode(got)
                 end
                 if not got then return end
-                --configStructure = got
                 for i,v in got do
                     if typeof(v) == "table" then
                         for idx, val in v do
@@ -5341,13 +5343,13 @@ local lib; lib = {
             local s,e = task.spawn(function()
                 task.wait(2.5)
                 local content = readfile("AutoLoad"..suffix..".skibidi")
-                content = content:gsub("\n", "")
+                content = content:gsub("\n", ""):gsub("\r", "")
 
-                if content:gsub(" ", ""):gsub("\r", ""):gsub("\t", "") == "" then return print("not skibidi") end
+                if content:gsub(" ", ""):gsub("\t", "") == "" then return print("not skibidi") end
                 tb:Set(content)
                 print("skibidi", content)
 
-                local s,got = pcall(readfile, content)
+                local s,got = pcall(readfile, prefix..content..suffix)
                 if not s then
                     return lib.Notifications:Notification({Title = "Uh oh!", Text = "Config called \""..content.."\" not found!"})
                 end
