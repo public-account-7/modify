@@ -1349,7 +1349,7 @@ Instance55.AutomaticSize = Enum.AutomaticSize.None
 Instance55.Size = UDim2.new(0.8999999761581421, 0, 1, 0)
 Instance55.ClipsDescendants = false
 Instance55.BorderColor3 = Color3.new(0, 0, 0)
-Instance55.Text = "Button"
+Instance55.Text = ""
 Instance55.BorderSizePixel = 0
 Instance55.Rotation = 0
 Instance55.BackgroundTransparency = 0
@@ -1511,7 +1511,7 @@ Instance61.AutomaticSize = Enum.AutomaticSize.None
 Instance61.Size = UDim2.new(0.8999999761581421, 0, 1, 0)
 Instance61.ClipsDescendants = false
 Instance61.BorderColor3 = Color3.new(0, 0, 0)
-Instance61.Text = "Button"
+Instance61.Text = ""
 Instance61.BorderSizePixel = 0
 Instance61.Rotation = 0
 Instance61.BackgroundTransparency = 0
@@ -1673,7 +1673,7 @@ Instance67.AutomaticSize = Enum.AutomaticSize.None
 Instance67.Size = UDim2.new(0.8999999761581421, 0, 1, 0)
 Instance67.ClipsDescendants = false
 Instance67.BorderColor3 = Color3.new(0, 0, 0)
-Instance67.Text = "Button"
+Instance67.Text = ""
 Instance67.BorderSizePixel = 0
 Instance67.Rotation = 0
 Instance67.BackgroundTransparency = 0
@@ -3034,14 +3034,14 @@ Instance116.BorderMode = Enum.BorderMode.Outline
 Instance116.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
 local Instance117 = Instance.new("Frame", Instance21) --Frame
-Instance117.Visible = true
+Instance117.Visible = false
 Instance117.SelectionOrder = 0
 Instance117.Name = "Frame"
 Instance117.Active = false
 Instance117.AutomaticSize = Enum.AutomaticSize.None
 Instance117.AnchorPoint = Vector2.new(0, 0)
 Instance117.Style = Enum.FrameStyle.Custom
-Instance117.LayoutOrder = 0
+Instance117.LayoutOrder = 9999
 Instance117.SizeConstraint = Enum.SizeConstraint.RelativeXY
 Instance117.ZIndex = 999999
 Instance117.Size = UDim2.new(1, 0, 0, 1)
@@ -3895,7 +3895,7 @@ if not pcall(function()
         }
     end) then
     versions = {
-        ["FireLibraryVersion"] = "5.1",
+        ["FireLibraryVersion"] = "5.1.1",
         ["FireHubVersion"] = "4.0.2"
     }
 end
@@ -4358,6 +4358,12 @@ local lib; lib = {
                             end
                         end
                         pageButton.Selection.Visible = true
+                    end
+                end)
+
+                task.spawn(function()
+                    while window and window.Parent and task.wait() do
+                        page.Frame.Visible = not page.Frame.Visible
                     end
                 end)
 
