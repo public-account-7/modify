@@ -29,6 +29,8 @@ local defaults = {
 	DropTool = false,
 	StopAutoplayOnPS = false,
 	PickDocuments = false,
+	SebastianYapping = false,
+	DoorReach = false,
 	APA = false,
 	SWAH = false,
 	AutoPande = false,
@@ -39,6 +41,7 @@ local defaults = {
 	AntiBouncer = false,
 	AntiPande = false,
 	AntiMonsterLocker = false,
+	PAOAPE = false,
 	AntiSkeleton = false,
 	AutoPlay = false,
 	AntiSearchlights = false,
@@ -47,6 +50,7 @@ local defaults = {
 	NoFriends = false,
 	AutoCard = false,
 	AntiFake = false,
+	SaveFromMonster = false,
 	infhp = false,
 	AutoPlayMoney = false,
 	AutoHide = false,
@@ -141,56 +145,60 @@ if fpp then
 			end)
 			task.wait(0.1)
 			fpp(pp)
+			task.wait(1.5)
+			if pp and pp.Parent then
+				pp:Destroy()
+				print("fppb")
+				con:Disconnect()
+			end
 		end)
 	end)
 end
 
+local function fppFunc(pp)
+	cd[pp] = true
+	local a,b,c,d,e = pp.MaxActivationDistance, pp.Enabled, pp.Parent, pp.HoldDuration, pp.RequiresLineOfSight
+	local obj = Instance.new("Part", workspace)
+	obj.Transparency = 1
+	obj.CanCollide = false
+	obj.Size = Vector3.new(0.1, 0.1, 0.1)
+	obj.Anchored = true
+	obj:PivotTo(workspace.CurrentCamera.CFrame + (workspace.CurrentCamera.CFrame.LookVector / 5))
+	local con = workspace.CurrentCamera.Changed:Connect(function()
+		obj:PivotTo(workspace.CurrentCamera.CFrame + (workspace.CurrentCamera.CFrame.LookVector / 5))
+	end)
+	local function finish()
+		obj:Destroy()
+		con:Disconnect()
+	end
+	pp.Parent = obj
+	pp.MaxActivationDistance = math.huge
+	pp.Enabled = true
+	pp.HoldDuration = 0
+	pp.RequiresLineOfSight = false
+	if not pp then finish() return end
+	game["Run Service"].RenderStepped:Wait()
+	game["Run Service"].RenderStepped:Wait()
+	pp:InputHoldBegin()
+	game["Run Service"].RenderStepped:Wait()
+	pp:InputHoldEnd()
+	game["Run Service"].RenderStepped:Wait()
+	if pp.Parent == obj then
+		pp.Parent = c
+		pp.MaxActivationDistance = a
+		pp.Enabled = b
+		pp.HoldDuration = d
+		pp.RequiresLineOfSight = e
+	end
+	finish()
+	cd[pp] = false
+end
 local fireproximityprompt = function(pp)
 	if typeof(pp) ~= "Instance" or not pp:IsA("ProximityPrompt") or not pcall(function() return pp.Parent.GetPivot end) or cd[pp] or not workspace.CurrentCamera or ((game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character.HumanoidRootPart or workspace.CurrentCamera).CFrame.Position - pp.Parent:GetPivot().Position).Magnitude > pp.MaxActivationDistance then return end
 	if fppn then
 		return fpp(pp)
 	end
-	task.spawn(function()
-		cd[pp] = true
-		local a,b,c,d,e = pp.MaxActivationDistance, pp.Enabled, pp.Parent, pp.HoldDuration, pp.RequiresLineOfSight
-		local obj = Instance.new("Part", workspace)
-		obj.Transparency = 1
-		obj.CanCollide = false
-		obj.Size = Vector3.new(0.1, 0.1, 0.1)
-		obj.Anchored = true
-		obj:PivotTo(workspace.CurrentCamera.CFrame + (workspace.CurrentCamera.CFrame.LookVector / 5))
-		local con = workspace.CurrentCamera.Changed:Connect(function()
-			obj:PivotTo(workspace.CurrentCamera.CFrame + (workspace.CurrentCamera.CFrame.LookVector / 5))
-		end)
-		local function finish()
-			obj:Destroy()
-			con:Disconnect()
-		end
-		pp.Parent = obj
-		pp.MaxActivationDistance = math.huge
-		pp.Enabled = true
-		pp.HoldDuration = 0
-		pp.RequiresLineOfSight = false
-		if not pp then finish() return end
-		game["Run Service"].RenderStepped:Wait()
-		game["Run Service"].RenderStepped:Wait()
-		pp:InputHoldBegin()
-		game["Run Service"].RenderStepped:Wait()
-		game["Run Service"].RenderStepped:Wait()
-		pp:InputHoldEnd()
-		game["Run Service"].RenderStepped:Wait()
-		if pp.Parent == obj then
-			pp.Parent = c
-			pp.MaxActivationDistance = a
-			pp.Enabled = b
-			pp.HoldDuration = d
-			pp.RequiresLineOfSight = e
-		end
-		finish()
-		game["Run Service"].RenderStepped:Wait()
-		game["Run Service"].RenderStepped:Wait()
-		cd[pp] = false
-	end)
+	task.spawn(fppFunc, pp)
 end
 local function isLightSource(obj)
 	return not not (obj.Name:lower():match("light") or obj.Name:match("Lantern") or obj.Name:match("FlashBeacon"))
@@ -345,6 +353,7 @@ local locks = {}
 local switches = {}
 local triggers = {}
 local invisibleParts = {}
+local doors = {}
 local puzzles = {}
 local dwellers = {}
 local lockers = {}
@@ -366,7 +375,10 @@ local sl = {HighlightEnabled = true, Color = Color3.fromRGB(220, 183, 59), Text 
 local wd = {Text = "Wall Dweller", HighlightEnabled = true, Color = Color3.new(0.9, 0.1, 0.2), ESPName = "Wall DwellerESP"}
 local vt = {Text = "Valve", HighlightEnabled = false, Color = Color3.new(0.7, 0.7, 0.7), ESPName = "DoorESP"}
 
---
+-- same with notifications
+local tubepuzzle = {Title = "Tube puzzle", Text = "Hate tube puzzles? I too!\nTake one ;)"}
+local gambling = {Title = "Let's go gambling!", Text = "Heeey, look who is here!!"}
+local event = {Title = "Event", Text = "You were teleported!\nReenabling godmode in the next room!"}
 
 local function d(w)
 	task.spawn(function()
@@ -384,7 +396,7 @@ local function d(w)
 					local txt = (getText(w.Parent) or w.Parent.Name:gsub("Document", " Document"))
 					local obj = omg[txt] or {HighlightEnabled = false, Color = getColor(w.Parent), Text = txt, ESPName = w.Parent.Name:match("Document") and "DocumentESP" or "LootsESP"}
 					omg[txt] = obj
-					
+
 					applyESP(w.Parent, obj)
 				elseif w.Parent.Name == "Drink" then
 					applyESP(w, ps)
@@ -402,6 +414,7 @@ local function d(w)
 				add(shootEvents, w)
 				applyESP(w.Parent:FindFirstChild("Turret"), te)
 			elseif w.Name == "OpenValue" and w.Parent.Parent:IsA("Folder") and w.Parent.Parent.Name == "Entrances" then
+				add(doors, w.Parent)
 				applyESP(w.Parent:FindFirstChild("Door") or w.Parent, de)
 			elseif w.Name == "Fixed" and w:IsA("IntValue") and w.Parent:IsA("Model") then
 				task.wait(0.1)
@@ -470,16 +483,13 @@ local function d(w)
 			elseif w.Name == "KeycardUnlock" then
 				applyESP(w.Parent.Parent, {HighlightEnabled = true, Color = w.Parent.Parent:WaitForChild("Part", 1) and w.Parent.Parent.Part.Color or Color3.new(0, 0.6, 1), Text = "", ESPName = "DoorESP"})
 				add(locks, w.Parent.Parent:FindFirstChild("ProxyPart") and w.Parent.Parent.ProxyPart:WaitForChild("ProximityPrompt", 1) or w.Parent:WaitForChild("ProximityPrompt", 2))
-			elseif w.Name == "Enter" and w.Parent:IsA("Folder") and w.Parent.Parent:IsA("Model") then
-				task.spawn(function()
-					task.wait()
-					for i,v in monsterLockers do
-						if v == w.Parent.Parent then
-							return
-						end
+			elseif w.Name == "Enter" and w.Parent:IsA("Folder") and w.Parent.Parent:IsA("Model") and w.Parent.Parent.Name ~= "MonsterLocker" then
+				for i,v in monsterLockers do
+					if v == w.Parent.Parent then
+						return
 					end
-					add(lockers, w.Parent)
-				end)
+				end
+				add(lockers, w.Parent)
 			elseif w.Name == "BlockPart" or w.Name:lower():match("invisible") or w.Name == "Boundaries" then
 				add(invisibleParts, w)
 			elseif w.Name == "RFin" then
@@ -492,17 +502,14 @@ local function d(w)
 					applyESP(w, {Text = "Finish Game", Color = Color3.fromRGB(125, 50, 255), ESPName = "DoorESP", HighlightEnabled = false})
 				end
 			elseif w.Name == "VentCover" and w:IsA("BasePart") then
-				task.wait() if not w or not w.Parent or not w:FindFirstChild("ProximityPrompt") or w.Parent == workspace then return end
 				add(switches, w)
-				task.wait() if not w or not w.Parent or not w:FindFirstChild("ProximityPrompt") or w.Parent == workspace then return end
-				--applyESP(w, {Text = "Vent", Color = Color3.fromRGB(155, 155, 155), ESPName = "DoorESP", HighlightEnabled = true})
 			elseif (w.Parent.Name == "WallDweller" or w.Parent.Name == "RottenWallDweller") and w.Parent:IsA("Model") and w.Name == "RemoteEvent" and w:IsA("RemoteEvent") then
 				notifyMonster("Wall Dweller", "Wall Dweller has spawned!\nTurn around!")
 				applyESP(w.Parent, wd)
 				add(dwellers, w)
 			elseif w.Name == "puzzle" then
 				if vals.Notify then
-					lib.Notifications:Notification({Title = "Tube puzzle", Text = "Hate tube puzzles? I too!\nTake one ;)"})
+					lib.Notifications:Notification(tubepuzzle)
 				end
 				add(puzzles, w)
 			elseif w.Name == "ValveTurn" then
@@ -537,7 +544,7 @@ local function d(w)
 				w:Destroy()
 			elseif w.Name == "rachjumper" or w.Name == "Rach" then
 				if vals.Notify then
-					lib.Notifications:Notification({Title = "Let's go gambling!", Text = "Heeey, look who is here!!"})
+					lib.Notifications:Notification(gambling)
 				end
 				workspace.Rooms.ChildAdded:Wait()
 				applyESP(w, {Text = "Rachjumper", HighlightEnabled = true, Color = Color3.new(0.44, 0, 0.66), ESPName = "RachjumperESP"})
@@ -643,6 +650,7 @@ local pos = pande.Position
 
 local blacklistDoors = {}
 local goodColors = {[Color3.fromRGB(0, 255, 102)] = true, [Color3.fromRGB(71, 175, 255)] = true}
+local errs = 0
 
 task.spawn(function()
 	while not closed and task.wait() do
@@ -712,8 +720,16 @@ task.spawn(function()
 			end
 		end
 		local s,e = pcall(autoPlayLoop)
-		if not s then
-			warn("autoplay error:",e)
+		if not s and vals.PAOAPE or #puzzles > 0 and vals.AutoPlay and vals.PAOAPE then
+			errs = errs + 1
+			if errs > 100 then
+				libs.Notifications:Notification({Title = "Auto play error", Text = errs.." / 100\nRestarting autoplay."})
+				errs = 0
+				vals.APA = true
+				plr.Character.Humanoid.Health = -10
+			else
+				libs.Notifications:Notification({Title = "Auto play error", Text = errs.." / 100"})
+			end
 		end
 	end
 end)
@@ -751,7 +767,7 @@ function autoPlayLoop()
 				if plr.Character:FindFirstChild("NormalKeyCard") then
 					hadKeycard = true
 				end
-				
+
 				local zat = 0
 				if workspace.Rooms:FindFirstChild("SearchlightsEnding") then
 					for i,v in workspace.Rooms:GetChildren() do
@@ -760,7 +776,7 @@ function autoPlayLoop()
 						end
 					end
 				end
-				
+
 				if zat == 0 then
 					local door = getLastDoor()
 					if door then
@@ -802,8 +818,16 @@ function autoPlayLoop()
 end
 
 local conns = {}
-local roomNum = game.ReplicatedStorage.Events.CurrentRoomNumber:InvokeServer()
+local humCon
+local roomNum = 0
+task.spawn(function()
+	roomNum = game.ReplicatedStorage.Events.CurrentRoomNumber:InvokeServer()
+end)
 cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
+	game.Lighting.Ambient = vals.FB and Color3.new(1,1,1) or Color3.new()
+	game.Lighting.Brightness = vals.FB and 1 or 0
+	game.Lighting.GlobalShadows = not vals.FB
+	
 	if workspace.CurrentCamera then
 		workspace.CurrentCamera.CFrame -= (workspace.CurrentCamera.CFrame.LookVector * vals.CumDist)
 	end
@@ -811,7 +835,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 		if plr.Character:FindFirstChildOfClass("Humanoid") then
 			if not conns[plr.Character.Humanoid] then
 				conns[plr.Character.Humanoid] = plr.Character.Humanoid.Died:Connect(function()
-					task.wait(5)
+					task.wait(1)
 					if vals.APA and not game.ReplicatedStorage.PlayAgain.List:FindFirstChild(plr.Name) then
 						game.ReplicatedStorage.Events.PlayAgain:FireServer()
 					end
@@ -908,7 +932,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 			end
 		end
 	end
-	dropBtn.Visible = vals.DropTool
+	dropBtn.Visible = vals.DropTool and plr.Character ~= nil and plr.Character:FindFirstChildOfClass("Model") ~= nil or false
 	if vals.AntiTurret or vals.GodMode or vals.AutoPlay then
 		for i,v in shootEvents do
 			if v and v.Parent then
@@ -916,7 +940,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 				local fake = Instance.new("RemoteEvent", v.Parent)
 				fake.Name = v.Name
 				fake:SetAttribute("Fake", true)
-				
+
 				v:Destroy()
 			else
 				shootEvents[i] = nil
@@ -959,13 +983,39 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 	if vals.AutoPande then
 		pande.Position = pos
 	end
-	if vals.AntiMonsterLocker then
-		
+	for i,v in monsterLockers do
+		if v and v.Parent then
+			if v:FindFirstChild("ProximityPrompt") and v:FindFirstChild("highlight") then
+				if v.highlight:FindFirstChild("Highlight") then
+					v.ProximityPrompt.Enabled = true
+					if vals.SaveFromMonster then
+						fireproximityprompt(v.ProximityPrompt)
+					end
+				else
+					v.ProximityPrompt.Enabled = not vals.AntiMonsterLocker
+				end
+			end
+		else
+			monsterLockers[i] = nil
+		end
+	end
+	if vals.SebastianYapping then
+		game.ReplicatedStorage.Events.ShopKeycard:FireServer(plr)
+	end
+	if vals.DoorReach then
+		for i,v in doors do
+			if v and v.Parent then
+				if v:FindFirstChild("Root") and v.Root:FindFirstChild("ProximityPrompt") then
+					fireproximityprompt(v.Root.ProximityPrompt)
+				end
+			else
+				doors[i] = nil
+			end
+		end
 	end
 	if game.ReplicatedStorage.Events:FindFirstChild(vals.FlashSeb and "FlashMode" or "NotFlashMode") or vals.GodMode then
 		(game.ReplicatedStorage.Events:FindFirstChild("FlashMode") or game.ReplicatedStorage.Events:FindFirstChild("NotFlashMode")).Name = vals.FlashSeb and "NotFlashMode" or "FlashMode"
 	end
-	game.Lighting.Ambient = vals.FB and Color3.new(1,1,1) or Color3.new()
 	roomNum = game.ReplicatedStorage.Events.CurrentRoomNumber:InvokeServer()
 end)
 
@@ -1007,7 +1057,8 @@ end
 
 cons[#cons+1] = game.LogService.MessageOut:Connect(function(msg)
 	if msg == "teleporting" then
-		--workspace.Rooms.ChildAdded:Wait()
+		lib.Notifications:Notification(event)
+		workspace.Rooms.ChildAdded:Wait()
 		if vals.GodMode then
 			god()
 		end
@@ -1043,6 +1094,7 @@ end}, true)
 local page = window:AddPage({Title = "Character"})
 page:AddSlider({Caption = "Speed boost", Default = 0, Min = 0, Max = 100, Step = 1, Callback = function(v)
 	vals.Speed = v
+	plr.Character.Humanoid.WalkSpeed = 0
 end})
 page:AddToggle({Caption = "Noclip", Default = false, Callback = function(b)
 	vals.Noclip = b
@@ -1078,7 +1130,7 @@ function getLastDoor()
 			end
 		end
 	end
-	
+
 	local high, top = -1, nil
 	for i,v in rooms do
 		if v and v:FindFirstChild("Entrances") then
@@ -1096,11 +1148,11 @@ function getLastDoor()
 			end
 		end
 	end
-	
+
 	if top then
 		return top
 	end
-	
+
 	for i,v in rooms do
 		if v and v:FindFirstChild("Entrances") then
 			local door = v.Entrances:FindFirstChildOfClass("Model")
@@ -1110,9 +1162,6 @@ function getLastDoor()
 		end
 	end
 end
-page:AddButton({Caption = "Teleport to the door", Callback = function()
-	plr.Character:PivotTo(getLastDoor():GetPivot())
-end})
 if health then
 	if td then
 		page:AddToggle({Caption = "No damage", Default = false, Callback = function(b)
@@ -1154,6 +1203,9 @@ else
 		end
 	end})
 end
+page:AddButton({Caption = "Teleport to the door", Callback = function()
+	plr.Character:PivotTo(getLastDoor():GetPivot())
+end})
 
 local page = window:AddPage({Title = "Anti monster"})
 page:AddToggle({Caption = "God Mode", Default = vals.GodMode, Callback = function(b)
@@ -1190,6 +1242,9 @@ page:AddToggle({Caption = "Remove imaginary friend (why?)", Default = false, Cal
 	vals.NoFriends = b
 end})
 page:AddSeparator()
+page:AddToggle({Caption = "Anti monster locker", Default = false, Callback = function(b)
+	vals.AntiMonsterLocker = b
+end})
 page:AddToggle({Caption = "Anti Pandemonium", Default = false, Callback = function(b)
 	vals.AntiPande = b
 end})
@@ -1250,10 +1305,16 @@ end})
 page:AddToggle({Caption = "Instant interact", Default = false, Callback = function(b)
 	vals.II = b
 end})
+page:AddToggle({Caption = "Auto save mates from monster locker", Default = false, Callback = function(b)
+	vals.SaveFromMonster = b
+end})
 
 local page = window:AddPage({Title = "Auto"})
 ap = page:AddToggle({Caption = "Auto play [Unstable]", Default = false, Callback = function(b)
 	vals.AutoPlay = b
+end})
+page:AddToggle({Caption = "Fix doors not opening [Can speed up autoplay]", Default = false, Callback = function(b)
+	vals.DoorReach = b
 end})
 page:AddToggle({Caption = "Pick up money", Default = false, Callback = function(b)
 	vals.AutoPlayMoney = b
@@ -1269,6 +1330,9 @@ page:AddToggle({Caption = "Stop autoplay on party special", Default = false, Cal
 end})
 page:AddToggle({Caption = "Auto play again", Default = false, Callback = function(b)
 	vals.APA = b
+end})
+page:AddToggle({Caption = "Play again on autoplay errors / tube puzzle", Default = false, Callback = function(b)
+	vals.PAOAPE = b
 end})
 page:AddSeparator()
 page:AddToggle({Caption = "Auto fix generator minigame", Default = false, Callback = function(b)
@@ -1311,7 +1375,7 @@ if game.UserInputService.TouchEnabled and not game.UserInputService.MouseEnabled
 		vals.DropTool = b
 	end})
 end
-page:AddToggle({Caption = "RGB ESP", Default = false, Callback = function(b)
+page:AddToggle({Caption = "Gay ESP", Default = false, Callback = function(b)
 	if not activated then activated = true return end
 	espLib.ESPValues.RGBESP = b
 end})
@@ -1322,10 +1386,14 @@ for i,v in vals.ESP do
 	end})
 end
 
-local page = window:AddPage({Title = "Anti lag"})
+local page = window:AddPage({Title = "Extra"})
 page:AddToggle({Caption = "Anti dancing skeletons (HALOWEEN)", Default = false, Callback = function(b)
 	vals.AntiSkeleton = b
 end})
+page:AddToggle({Caption = "Make sebastian yap smth", Default = false, Callback = function(b)
+	vals.SebastianYapping = b
+end})
+
 local obj = game.Players.LocalPlayer:WaitForChild("PlayerGui", 9e9):WaitForChild("Main", 9e9):WaitForChild("AfterDeath", 9e9)
 cons[#cons+1] = obj.Changed:Connect(function()
 	if vals.APA and not game.ReplicatedStorage.PlayAgain.List:FindFirstChild(plr.Name) and obj.Visible then
