@@ -17,7 +17,7 @@ local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusS
 local plr = game.Players.LocalPlayer
 
 local ftiv = false
-local fti --= getfenv().firetouchinterest
+local fti = getfenv().firetouchinterest
 task.spawn(function()
 	if fti then
 		local part = Instance.new("Part", workspace)
@@ -126,19 +126,21 @@ page:AddButton({Caption = "Developer submarine", Callback = function()
 	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.Teleporters, "DeveloperSub").Main, 1)
 end})
 
-local page = window:AddPage({Title = "Raveyard Submarines"})
-page:AddButton({Caption = "1 Player", Callback = function()
-	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "1Player").Main, 1)
-end})
-page:AddButton({Caption = "2 Players", Callback = function()
-	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "2Player").Main, 1)
-end})
-page:AddButton({Caption = "3 Players", Callback = function()
-	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "3Players").Main, 1)
-end})
-page:AddButton({Caption = "4 Players", Callback = function()
-	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "4Players").Main, 1)
-end})
+if workspace:FindFirstChild("RaveyardTeleporters") then
+	local page = window:AddPage({Title = "Raveyard Submarines"})
+	page:AddButton({Caption = "1 Player", Callback = function()
+		firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "1Player").Main, 1)
+	end})
+	page:AddButton({Caption = "2 Players", Callback = function()
+		firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "2Player").Main, 1)
+	end})
+	page:AddButton({Caption = "3 Players", Callback = function()
+		firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "3Players").Main, 1)
+	end})
+	page:AddButton({Caption = "4 Players", Callback = function()
+		firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "4Players").Main, 1)
+	end})
+end
 
 local toSnipe = plr.DisplayName
 local function getUser()
