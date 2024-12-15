@@ -380,192 +380,192 @@ local tubepuzzle = {Title = "Tube puzzle", Text = "Hate tube puzzles? I too!\nTa
 local gambling = {Title = "Let's go gambling!", Text = "Heeey, look who is here!!"}
 local event = {Title = "Event", Text = "You were teleported!\nReenabling godmode in the next room!"}
 
-local function d(w)
-	task.spawn(function()
-		if w and w:IsDescendantOf(workspace) and w.Parent ~= workspace and w.Parent then
-			task.wait()
-			if not w or not w.Parent then return end
-			if w.Name == "ProxyPart" and w.Parent:IsA("Model") then
-				if w.Parent.Name:match("Document") or w.Parent.Parent:IsA("BasePart") then
-					if w.Parent.Parent.Name ~= "ShopSpawn" then
-						add(interacts, w)
-						if w.Parent.Name:match("Document") then
-							add(documents, w)
-						end
+local function mainFunc(w)
+	if w and w:IsDescendantOf(workspace) and w.Parent ~= workspace and w.Parent then
+		task.wait()
+		if not w or not w.Parent then return end
+		if w.Name == "ProxyPart" and w.Parent:IsA("Model") then
+			if w.Parent.Name:match("Document") or w.Parent.Parent:IsA("BasePart") then
+				if w.Parent.Parent.Name ~= "ShopSpawn" then
+					add(interacts, w)
+					if w.Parent.Name:match("Document") then
+						add(documents, w)
 					end
-					local txt = (getText(w.Parent) or w.Parent.Name:gsub("Document", " Document"))
-					local obj = omg[txt] or {HighlightEnabled = false, Color = getColor(w.Parent), Text = txt, ESPName = w.Parent.Name:match("Document") and "DocumentESP" or "LootsESP"}
-					omg[txt] = obj
+				end
+				local txt = (getText(w.Parent) or w.Parent.Name:gsub("Document", " Document"))
+				local obj = omg[txt] or {HighlightEnabled = false, Color = getColor(w.Parent), Text = txt, ESPName = w.Parent.Name:match("Document") and "DocumentESP" or "LootsESP"}
+				omg[txt] = obj
 
-					applyESP(w.Parent, obj)
-				elseif w.Parent.Name == "Drink" then
-					applyESP(w, ps)
-					if vals.StopAutoplayOnPS then
-						ap:Set(false)
-					end
-				end	
-			elseif w.Name == "highlight" then
-				add(monsterLockers, w.Parent)
-				applyESP(w.Parent, ml)
-			elseif w.Name == "Door" and w.Parent.Name == "TricksterDoor" then
-				add(fakeDoors, w.Parent.Parent:FindFirstChild("RemoteEvent"))
-				applyESP(w, fd)
-			elseif w.Name == "Shoot" and w.Parent.Name:match("TurretSpawn") and not w:GetAttribute("Fake") then
-				add(shootEvents, w)
-				applyESP(w.Parent:FindFirstChild("Turret"), te)
-			elseif w.Name == "OpenValue" and w.Parent.Parent:IsA("Folder") and w.Parent.Parent.Name == "Entrances" then
-				add(doors, w.Parent)
-				applyESP(w.Parent:FindFirstChild("Door") or w.Parent, de)
-			elseif w.Name == "Fixed" and w:IsA("IntValue") and w.Parent:IsA("Model") then
-				task.wait(0.1)
-				if w and w.Parent and w.Value ~= 100 then
-					local mod = w.Parent:FindFirstChild("Model") or w.Parent
-					if w.Value == 100 or not w or not w.Parent or not w.Parent:FindFirstChild("ProxyPart") then
-						espLib.DeapplyESP(mod)	
-					else
-						applyESP(mod, {HighlightEnabled = true, Object = w.Parent:FindFirstChild("Model"), Color = Color3.new(0.7, 0.5, 1), Text = (w.Parent.Name == "BrokenCables" and "Broken Cables" or "Broken Generator") .. "\n[" .. string.format("%03d", w.Value):gsub("", " "):sub(2):sub(0, 5) .. "]", ESPName = "GeneratorESP"})
-						add(generators, w.Parent)
-						w.Changed:Connect(function(val)
-							if val >= 87 or not w or not w.Parent  or not w.Parent:FindFirstChild("ProxyPart") or not w.Parent.ProxyPart:FindFirstChild("ProximityPrompt") then
-								espLib.DeapplyESP(mod)	
-							else
-								applyESP(mod, {HighlightEnabled = true, Object = w.Parent:FindFirstChild("Model"), Color = Color3.new(0.7, 0.5, 1), Text = (w.Parent.Name == "BrokenCables" and "Broken Cables" or "Broken Generator") .. "\n[" .. string.format("%03d", w.Value):gsub("", " "):sub(2):sub(0, 5) .. "]", ESPName = "GeneratorESP"})
-							end
-						end)
-					end
-				end
-			elseif w.Name == "Eyefestation" and (w.Parent.Name == "EyefestationSpawn" or w.Parent.Name == "EyefestationRoot") then
-				notifyMonster("Eyefestation", "Eyefestation has spawned!\n"..(vals.GodMode and "\nDISABLE GODMODE IF YOU GOT STUCK" or "Avoid looking at it!"))
-				ef.Color = w.NonAnimated.LeftEye.Color
-				applyESP(w, ef)
-				task.spawn(function()
-					repeat task.wait() until w and w:FindFirstChild("Active") and w.Active.Value or not w
-					if not w then return end
-					task.spawn(function()
-						while w and w.Parent and w:FindFirstChild("Active") and not closed do
-							w.Active.Value = not vals.AntiEyefestation
-							task.wait()
-						end
-					end)
-				end)
-				local noAnim = w:WaitForChild("NonAnimated", 0.1)
-				local function fake()
-					local fake = Instance.new("Folder", w)
-					fake.Name = "NonAnimated"
-				end
-				if not noAnim then return fake() end
-				noAnim:WaitForChild("LeftEye", 1)
-				if not noAnim or not noAnim:FindFirstChild("LeftEye") then return fake() end
-				cons[#cons+1] = noAnim.LeftEye.Changed:Connect(function()
-					ef.Color = w.NonAnimated.LeftEye.Color
-					applyESP(w, ef)
-				end)
-			elseif w.Name == "LeverPull" then
-				local colored = w.Parent.Parent:WaitForChild("Colored", 1)
-				if colored then
-					cons[#cons+1] = colored.Changed:Connect(function()
-						applyESP(w.Parent.Parent, {HighlightEnabled = true, Color = (colored and colored.Color or Color3.fromRGB(0, 167, 97)), Text = "Lever", ESPName = "LeverESP"})
-					end)
-				end
-				applyESP(w.Parent.Parent, {HighlightEnabled = true, Color = (colored and colored.Color or Color3.fromRGB(0, 167, 97)), Text = "Lever", ESPName = "LeverESP"})
-				if not w.Parent:WaitForChild("ProximityPrompt", 1) then return end
-				add(switches, w.Parent)
-			elseif w.Name == "Tentacle1" and w.Parent:FindFirstChild("Tentacle10") then
-				if not vals.AntiSquid then
-					applyESP(w.Parent, sq)
-				else
-					w.Parent:Destroy()
-				end
-			elseif w.Name:match("DamagePart") or (w.Name == "Electricity" and w:IsA("BasePart")) then
-				add(damageParts, w)
-			elseif w.Name == "RemoteEvent" and w.Parent.Name:lower():match("searchlight") then
-				add(searchlights, w)
-			elseif w.Name == "KeycardUnlock" then
-				applyESP(w.Parent.Parent, {HighlightEnabled = true, Color = w.Parent.Parent:WaitForChild("Part", 1) and w.Parent.Parent.Part.Color or Color3.new(0, 0.6, 1), Text = "", ESPName = "DoorESP"})
-				add(locks, w.Parent.Parent:FindFirstChild("ProxyPart") and w.Parent.Parent.ProxyPart:WaitForChild("ProximityPrompt", 1) or w.Parent:WaitForChild("ProximityPrompt", 2))
-			elseif w.Name == "Enter" and w.Parent:IsA("Folder") and w.Parent.Parent:IsA("Model") and w.Parent.Parent.Name ~= "MonsterLocker" then
-				for i,v in monsterLockers do
-					if v == w.Parent.Parent then
-						return
-					end
-				end
-				add(lockers, w.Parent)
-			elseif w.Name == "BlockPart" or w.Name:lower():match("invisible") or w.Name == "Boundaries" then
-				add(invisibleParts, w)
-			elseif w.Name == "RFin" then
-				applyESP(w.Parent, sl)
-			elseif w.Name == "TouchInterest" and w.Parent.Name:match("Trigger") then
-				add(triggers, w.Parent)
-			elseif w.Name == "ProximityPrompt" then
-				if w.Parent.Parent.Name == "FinalButton" then
-					add(switches, w.Parent)
-					applyESP(w, {Text = "Finish Game", Color = Color3.fromRGB(125, 50, 255), ESPName = "DoorESP", HighlightEnabled = false})
-				end
-			elseif w.Name == "VentCover" and w:IsA("BasePart") then
-				add(switches, w)
-			elseif (w.Parent.Name == "WallDweller" or w.Parent.Name == "RottenWallDweller") and w.Parent:IsA("Model") and w.Name == "RemoteEvent" and w:IsA("RemoteEvent") then
-				notifyMonster("Wall Dweller", "Wall Dweller has spawned!\nTurn around!")
-				applyESP(w.Parent, wd)
-				add(dwellers, w)
-			elseif w.Name == "puzzle" then
-				if vals.Notify then
-					lib.Notifications:Notification(tubepuzzle)
-				end
-				add(puzzles, w)
-			elseif w.Name == "ValveTurn" then
-				task.wait()
-				applyESP(w.Parent, vt)
-				add(switches, w.Parent)
-			elseif w.Parent == workspace.Monsters and w.Name ~= "WallDweller" then
-				applyESP(w, {Text = w.Name:gsub("H", " H"):gsub("Root", ""), HighlightEnabled = true, Color = Color3.new(0.9, 0.1, 0.2), ESPName = "Other MonstersESP"})
-				notifyMonster(w.Name:gsub("H", " H"):gsub("Root", "").."", w.Name:gsub("H", " H"):gsub("Root", "").." has spawned!\nI dunno who is tat :sob:")
-			elseif w:IsA("Beam") and w.Parent:IsA("Part") then
-				task.wait(0.05)
-				if w and w.Parent and w.Parent:FindFirstChildOfClass("Sound") and w.Parent:FindFirstChildOfClass("Attachment") and w.Parent.Parent == workspace and not applied[w.Parent] then
-					applied[w.Parent] = true
-					notifyMonster(w.Parent.Name:gsub("Ridge", "").."", not w.Parent.Name:match("Pandemonium") and w.Parent.Name:gsub("Ridge", "").." has spawned!\nHide!" or "Pandemonium has spawned!\nRolling ballz time ;)")
-					if w.Parent.Name:match("Pandemonium") and (vals.AntiPande or vals.GodMode or vals.AutoPlay) then
-						task.wait(1)
-						w.Parent:Destroy()
-					elseif w.Parent.Name:lower():match("death") and (vals.AntiDeath or vals.GodMode or vals.AutoPlay) then
-						task.wait(1)
-						w.Parent:Destroy()
-					else
-						add(monsters, w)
-						applyESP(w.Parent, {Text = w.Parent.Name:gsub("Ridge", "").."", HighlightEnabled = true, Color = Color3.new(0.9, 0.1, 0.2), ESPName = "MonsterESP"})
-						local con; con = w.Destroying:Connect(function()
-							con:Disconnect()
-							remove(monsters, w)
-						end)
-					end
-				end
-			elseif w.Name == "SkeletonDancer" and vals.AntiSkeleton then
-				task.wait()
-				w:Destroy()
-			elseif w.Name == "rachjumper" or w.Name == "Rach" then
-				if vals.Notify then
-					lib.Notifications:Notification(gambling)
-				end
-				workspace.Rooms.ChildAdded:Wait()
-				applyESP(w, {Text = "Rachjumper", HighlightEnabled = true, Color = Color3.new(0.44, 0, 0.66), ESPName = "RachjumperESP"})
-			elseif w.Name == "UnboxChest" then
-				applyESP(w, {Text = "Gambling Chest", HighlightEnabled = true, Color = Color3.new(0.66, 0.33, 0), ESPName = "RachjumperESP"})
-				if vals.StopAutoplayOnGambling then
+				applyESP(w.Parent, obj)
+			elseif w.Parent.Name == "Drink" then
+				applyESP(w, ps)
+				if vals.StopAutoplayOnPS then
 					ap:Set(false)
 				end
+			end	
+		elseif w.Name == "highlight" then
+			add(monsterLockers, w.Parent)
+			applyESP(w.Parent, ml)
+		elseif w.Name == "Door" and w.Parent.Name == "TricksterDoor" then
+			add(fakeDoors, w.Parent.Parent:FindFirstChild("RemoteEvent"))
+			applyESP(w, fd)
+		elseif w.Name == "Shoot" and w.Parent.Name:match("TurretSpawn") and not w:GetAttribute("Fake") then
+			add(shootEvents, w)
+			applyESP(w.Parent:FindFirstChild("Turret"), te)
+		elseif w.Name == "OpenValue" and w.Parent.Parent:IsA("Folder") and w.Parent.Parent.Name == "Entrances" then
+			add(doors, w.Parent)
+			applyESP(w.Parent:FindFirstChild("Door") or w.Parent, de)
+		elseif w.Name == "Fixed" and w:IsA("IntValue") and w.Parent:IsA("Model") then
+			task.wait(0.1)
+			if w and w.Parent and w.Value ~= 100 then
+				local mod = w.Parent:FindFirstChild("Model") or w.Parent
+				if w.Value == 100 or not w or not w.Parent or not w.Parent:FindFirstChild("ProxyPart") then
+					espLib.DeapplyESP(mod)	
+				else
+					applyESP(mod, {HighlightEnabled = true, Object = w.Parent:FindFirstChild("Model"), Color = Color3.new(0.7, 0.5, 1), Text = (w.Parent.Name == "BrokenCables" and "Broken Cables" or "Broken Generator") .. "\n[" .. string.format("%03d", w.Value):gsub("", " "):sub(2):sub(0, 5) .. "]", ESPName = "GeneratorESP"})
+					add(generators, w.Parent)
+					w.Changed:Connect(function(val)
+						if val >= 99 or not w or not w.Parent  or not w.Parent:FindFirstChild("ProxyPart") or not w.Parent.ProxyPart:FindFirstChild("ProximityPrompt") then
+							espLib.DeapplyESP(mod)	
+						else
+							applyESP(mod, {HighlightEnabled = true, Object = w.Parent:FindFirstChild("Model"), Color = Color3.new(0.7, 0.5, 1), Text = (w.Parent.Name == "BrokenCables" and "Broken Cables" or "Broken Generator") .. "\n[" .. string.format("%03d", w.Value):gsub("", " "):sub(2):sub(0, 5) .. "]", ESPName = "GeneratorESP"})
+						end
+					end)
+				end
+			end
+		elseif w.Name == "Eyefestation" and (w.Parent.Name == "EyefestationSpawn" or w.Parent.Name == "EyefestationRoot") then
+			notifyMonster("Eyefestation", "Eyefestation has spawned!\n"..(vals.GodMode and "\nDISABLE GODMODE IF YOU GOT STUCK" or "Avoid looking at it!"))
+			ef.Color = w.NonAnimated.LeftEye.Color
+			applyESP(w, ef)
+			task.spawn(function()
+				repeat task.wait() until w and w:FindFirstChild("Active") and w.Active.Value or not w
+				if not w then return end
+				task.spawn(function()
+					while w and w.Parent and w:FindFirstChild("Active") and not closed do
+						w.Active.Value = not vals.AntiEyefestation
+						task.wait()
+					end
+				end)
+			end)
+			local noAnim = w:WaitForChild("NonAnimated", 0.1)
+			local function fake()
+				local fake = Instance.new("Folder", w)
+				fake.Name = "NonAnimated"
+			end
+			if not noAnim then return fake() end
+			noAnim:WaitForChild("LeftEye", 1)
+			if not noAnim or not noAnim:FindFirstChild("LeftEye") then return fake() end
+			cons[#cons+1] = noAnim.LeftEye.Changed:Connect(function()
+				ef.Color = w.NonAnimated.LeftEye.Color
+				applyESP(w, ef)
+			end)
+		elseif w.Name == "LeverPull" then
+			local colored = w.Parent.Parent:WaitForChild("Colored", 1)
+			if colored then
+				cons[#cons+1] = colored.Changed:Connect(function()
+					applyESP(w.Parent.Parent, {HighlightEnabled = true, Color = (colored and colored.Color or Color3.fromRGB(0, 167, 97)), Text = "Lever", ESPName = "LeverESP"})
+				end)
+			end
+			applyESP(w.Parent.Parent, {HighlightEnabled = true, Color = (colored and colored.Color or Color3.fromRGB(0, 167, 97)), Text = "Lever", ESPName = "LeverESP"})
+			if not w.Parent:WaitForChild("ProximityPrompt", 1) then return end
+			add(switches, w.Parent)
+		elseif w.Name == "Tentacle1" and w.Parent:FindFirstChild("Tentacle10") then
+			if not vals.AntiSquid then
+				applyESP(w.Parent, sq)
+			else
+				w.Parent:Destroy()
+			end
+		elseif w.Name:match("DamagePart") or (w.Name == "Electricity" and w:IsA("BasePart")) then
+			add(damageParts, w)
+		elseif w.Name == "RemoteEvent" and w.Parent.Name:lower():match("searchlight") then
+			add(searchlights, w)
+		elseif w.Name == "KeycardUnlock" then
+			applyESP(w.Parent.Parent, {HighlightEnabled = true, Color = w.Parent.Parent:WaitForChild("Part", 1) and w.Parent.Parent.Part.Color or Color3.new(0, 0.6, 1), Text = "", ESPName = "DoorESP"})
+			add(locks, w.Parent.Parent:FindFirstChild("ProxyPart") and w.Parent.Parent.ProxyPart:WaitForChild("ProximityPrompt", 1) or w.Parent:WaitForChild("ProximityPrompt", 2))
+		elseif w.Name == "Enter" and w.Parent:IsA("Folder") and w.Parent.Parent:IsA("Model") and w.Parent.Parent.Name ~= "MonsterLocker" then
+			for i,v in monsterLockers do
+				if v == w.Parent.Parent then
+					return
+				end
+			end
+			add(lockers, w.Parent)
+		elseif w.Name == "BlockPart" or w.Name:lower():match("invisible") or w.Name == "Boundaries" then
+			add(invisibleParts, w)
+		elseif w.Name == "RFin" then
+			applyESP(w.Parent, sl)
+		elseif w.Name == "TouchInterest" and w.Parent.Name:match("Trigger") then
+			add(triggers, w.Parent)
+		elseif w.Name == "ProximityPrompt" then
+			if w.Parent.Parent.Name == "FinalButton" then
+				add(switches, w.Parent)
+				applyESP(w, {Text = "Finish Game", Color = Color3.fromRGB(125, 50, 255), ESPName = "DoorESP", HighlightEnabled = false})
+			end
+		elseif w.Name == "VentCover" and w:IsA("BasePart") then
+			add(switches, w)
+		elseif (w.Parent.Name == "WallDweller" or w.Parent.Name == "RottenWallDweller") and w.Parent:IsA("Model") and w.Name == "RemoteEvent" and w:IsA("RemoteEvent") then
+			notifyMonster("Wall Dweller", "Wall Dweller has spawned!\nTurn around!")
+			applyESP(w.Parent, wd)
+			add(dwellers, w)
+		elseif w.Name == "puzzle" then
+			if vals.Notify then
+				lib.Notifications:Notification(tubepuzzle)
+			end
+			add(puzzles, w)
+		elseif w.Name == "ValveTurn" then
+			task.wait()
+			applyESP(w.Parent, vt)
+			add(switches, w.Parent)
+		elseif w.Parent == workspace.Monsters and w.Name ~= "WallDweller" then
+			applyESP(w, {Text = w.Name:gsub("H", " H"):gsub("Root", ""), HighlightEnabled = true, Color = Color3.new(0.9, 0.1, 0.2), ESPName = "Other MonstersESP"})
+			notifyMonster(w.Name:gsub("H", " H"):gsub("Root", "").."", w.Name:gsub("H", " H"):gsub("Root", "").." has spawned!\nI dunno who is tat :sob:")
+		elseif w:IsA("Beam") and w.Parent:IsA("Part") then
+			task.wait(0.05)
+			if w and w.Parent and w.Parent:FindFirstChildOfClass("Sound") and w.Parent:FindFirstChildOfClass("Attachment") and w.Parent.Parent == workspace and not applied[w.Parent] then
+				applied[w.Parent] = true
+				notifyMonster(w.Parent.Name:gsub("Ridge", "").."", not w.Parent.Name:match("Pandemonium") and w.Parent.Name:gsub("Ridge", "").." has spawned!\nHide!" or "Pandemonium has spawned!\nRolling ballz time ;)")
+				if w.Parent.Name:match("Pandemonium") and (vals.AntiPande or vals.GodMode or vals.AutoPlay) then
+					task.wait(1)
+					w.Parent:Destroy()
+				elseif w.Parent.Name:lower():match("death") and (vals.AntiDeath or vals.GodMode or vals.AutoPlay) then
+					task.wait(1)
+					w.Parent:Destroy()
+				else
+					add(monsters, w)
+					applyESP(w.Parent, {Text = w.Parent.Name:gsub("Ridge", "").."", HighlightEnabled = true, Color = Color3.new(0.9, 0.1, 0.2), ESPName = "MonsterESP"})
+					local con; con = w.Destroying:Connect(function()
+						con:Disconnect()
+						remove(monsters, w)
+					end)
+				end
+			end
+		elseif w.Name == "SkeletonDancer" and vals.AntiSkeleton then
+			task.wait()
+			w:Destroy()
+		elseif w.Name == "rachjumper" or w.Name == "Rach" then
+			if vals.Notify then
+				lib.Notifications:Notification(gambling)
+			end
+			workspace.Rooms.ChildAdded:Wait()
+			applyESP(w, {Text = "Rachjumper", HighlightEnabled = true, Color = Color3.new(0.44, 0, 0.66), ESPName = "RachjumperESP"})
+		elseif w.Name == "UnboxChest" then
+			applyESP(w, {Text = "Gambling Chest", HighlightEnabled = true, Color = Color3.new(0.66, 0.33, 0), ESPName = "RachjumperESP"})
+			if vals.StopAutoplayOnGambling then
+				ap:Set(false)
 			end
 		end
-	end)
+	elseif w.Parent == workspace and w.Name == "Statue" then
+		applyESP(w.Parent, {Text = "Statue", HighlightEnabled = true, Color = Color3.new(0.9, 0.1, 0.2), ESPName = "Other MonsterESP"})
+	end
 end
 
 local dsc = workspace:GetDescendants()
 local len = #dsc
 
 for i,v in dsc do
-	d(v)
+	task.spawn(mainFunc, v)
 end
 
-cons[#cons+1] = workspace.DescendantAdded:Connect(d)
+cons[#cons+1] = workspace.DescendantAdded:Connect(mainFunc)
 
 local function canCarry(v)
 	if not v or v:FindFirstChild("LeverPull", math.huge) or v.Name == "ToyRemote" or not v:FindFirstChild("ProximityPrompt", math.huge) or not v:FindFirstChild("ProximityPrompt", math.huge).Enabled then
@@ -626,7 +626,7 @@ end
 local function fixGenerator(gen)
 	if fixing or not (vals.AutoFixGenerators or vals.AutoPlay) then return false end
 	if not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") then return end
-	if gen.Fixed.Value >= 87 then return true end
+	if gen.Fixed.Value >= 99 then return true end
 	gen.RemoteFunction:InvokeServer()
 	local i = 20
 	repeat
@@ -638,10 +638,10 @@ local function fixGenerator(gen)
 		gen.RemoteEvent:FireServer(true)
 		pcall(fix, gen)
 		task.wait(0.03)
-	until not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") or gen.Fixed.Value >= 87 or not (vals.AutoFixGenerators or vals.AutoPlay)
+	until not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") or gen.Fixed.Value >= 99 or not (vals.AutoFixGenerators or vals.AutoPlay)
 	if fixing or not (vals.AutoFixGenerators or vals.AutoPlay) then return false end
 	if not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") then return end
-	if gen.Fixed.Value >= 87 then return true end
+	if gen.Fixed.Value >= 99 then return true end
 end
 
 local cool = game:GetService("Players").LocalPlayer.PlayerGui.Main.FixMinigame.Background.Frame.Middle
@@ -723,12 +723,12 @@ task.spawn(function()
 		if not s and vals.PAOAPE or #puzzles > 0 and vals.AutoPlay and vals.PAOAPE then
 			errs = errs + 1
 			if errs > 100 then
-				libs.Notifications:Notification({Title = "Auto play error", Text = errs.." / 100\nRestarting autoplay."})
+				lib.Notifications:Notification({Title = "Auto play error", Text = errs.." / 100\nRestarting autoplay."})
 				errs = 0
 				vals.APA = true
 				plr.Character.Humanoid.Health = -10
 			else
-				libs.Notifications:Notification({Title = "Auto play error", Text = errs.." / 100"})
+				lib.Notifications:Notification({Title = "Auto play error", Text = errs.." / 100\n\n"..e})
 			end
 		end
 	end
@@ -827,7 +827,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 	game.Lighting.Ambient = vals.FB and Color3.new(1,1,1) or Color3.new()
 	game.Lighting.Brightness = vals.FB and 1 or 0
 	game.Lighting.GlobalShadows = not vals.FB
-	
+
 	if workspace.CurrentCamera then
 		workspace.CurrentCamera.CFrame -= (workspace.CurrentCamera.CFrame.LookVector * vals.CumDist)
 	end
@@ -961,6 +961,9 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 		if workspace:FindFirstChild("Monsters") and workspace.Monsters:FindFirstChild("StatueRoot") then
 			workspace.Monsters.StatueRoot:Destroy()
 		end
+		if workspace:FindFirstChild("Statue") then
+			workspace.Statue:Destroy()
+		end
 	end
 	if vals.AntiSearchlight or vals.GodMode or vals.AutoPlay then
 		for i,v in searchlights do
@@ -1028,6 +1031,7 @@ local function god()
 	if godQueue then return end
 	godQueue = true
 	local locker
+	game.ReplicatedStorage.Events.ResetStatus:FireServer()
 	repeat task.wait()
 		for i,v in lockers do
 			if v and v:FindFirstChild("Enter") and v:FindFirstChild("OpenValue") and v.Parent then
@@ -1047,7 +1051,7 @@ local function god()
 	local ti = tick()
 	repeat
 		plr.Character:PivotTo(CFrame.lookAt(locker.Parent:GetPivot().Position + (locker.Parent:GetPivot().LookVector * 3), locker.Parent:GetPivot().Position))
-		locker.Enter:InvokeServer()
+		locker.Enter:InvokeServer(true)
 		task.wait()
 	until locker or not vals.GodMode and locker.Parent and locker:FindFirstChild("OpenValue") and locker.OpenValue.Value == "enter" or not locker or not locker.Parent or not locker:FindFirstChild("OpenValue") or closed or tick() - ti > 2
 	if not locker or not vals.GodMode or not locker.Parent or not locker:FindFirstChild("OpenValue") or locker.OpenValue.Value ~= "enter" or closed then return end
@@ -1208,13 +1212,12 @@ page:AddButton({Caption = "Teleport to the door", Callback = function()
 end})
 
 local page = window:AddPage({Title = "Anti monster"})
-page:AddToggle({Caption = "God Mode", Default = vals.GodMode, Callback = function(b)
+page:AddToggle({Caption = "God Mode [!RE-ENABLE AFTER ANY TYPE OF TELEPORTATION!]", Default = vals.GodMode, Callback = function(b)
 	vals.GodMode = b
 	getGlobalTable().GodMode = b
 	if b then
 		god()
 	else
-		game.ReplicatedStorage.Events.ResetStatus:FireServer()
 		godQueue = false
 	end
 end})
@@ -1310,7 +1313,7 @@ page:AddToggle({Caption = "Auto save mates from monster locker", Default = false
 end})
 
 local page = window:AddPage({Title = "Auto"})
-ap = page:AddToggle({Caption = "Auto play [Unstable]", Default = false, Callback = function(b)
+ap = page:AddToggle({Caption = "Auto play [After update it became ultra unstable]", Default = false, Callback = function(b)
 	vals.AutoPlay = b
 end})
 page:AddToggle({Caption = "Fix doors not opening [Can speed up autoplay]", Default = false, Callback = function(b)
