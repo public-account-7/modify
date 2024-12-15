@@ -2,7 +2,13 @@ local defaults = {
 	flex = false,
 	delay = 0,
 	flex2 = false,
-	delay2 = 0
+	delay2 = 0,
+	flex3 = false,
+	delay3 = 0,
+	flex4 = false,
+	delay4 = 0,
+	skip1 = false,
+	skip2 = false
 }
 local vals = table.clone(defaults)
 
@@ -42,7 +48,7 @@ local firetouchinterest = function(a,b,touching)
 	if ftiv then
 		return fti(a,b,touching)
 	end
-	
+
 	if cd[a] or cd[b] then return end
 	cd[a] = true
 	touching = touching == 1
@@ -126,22 +132,6 @@ page:AddButton({Caption = "Developer submarine", Callback = function()
 	firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.Teleporters, "DeveloperSub").Main, 1)
 end})
 
-if workspace:FindFirstChild("RaveyardTeleporters") then
-	local page = window:AddPage({Title = "Raveyard Submarines"})
-	page:AddButton({Caption = "1 Player", Callback = function()
-		firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "1Player").Main, 1)
-	end})
-	page:AddButton({Caption = "2 Players", Callback = function()
-		firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "2Player").Main, 1)
-	end})
-	page:AddButton({Caption = "3 Players", Callback = function()
-		firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "3Players").Main, 1)
-	end})
-	page:AddButton({Caption = "4 Players", Callback = function()
-		firetouchinterest(plr.Character.HumanoidRootPart, getFree(workspace.RaveyardTeleporters, "4Players").Main, 1)
-	end})
-end
-
 local toSnipe = plr.DisplayName
 local function getUser()
 	for i,v in game.Players:GetPlayers() do
@@ -188,36 +178,78 @@ task.spawn(function()
 	end
 end)
 local page = window:AddPage({Title = "Fun"})
-local ch = plr.PlayerGui.Main.Inventory.Badges.ScrollingFrame:GetChildren()
+local ch = {}
 task.spawn(function()
 	while task.wait() and not closed do
 		if vals.flex then
 			for i,v in ch do
-				if v and v:IsA("ImageButton") then
-					task.spawn(function()
-						game.ReplicatedStorage.Events.EquipBadge:FireServer(v.Name)
-					end)
-					task.wait(vals.delay)
-				end
+				if not vals.flex then continue end
+				task.spawn(game.ReplicatedStorage.Events.EquipBadge.FireServer, game.ReplicatedStorage.Events.EquipBadge, v)
+				task.wait(vals.delay)
 			end
 		end
 	end
 end)
-local ch = plr.PlayerGui.Main.Inventory.Clothes.List:GetChildren()
+local ch2 = {}
 task.spawn(function()
 	while task.wait() and not closed do
 		if vals.flex2 then
-			for i,v in ch do
-				if v and v:IsA("ImageButton") then
-					task.spawn(function()
-						game.ReplicatedStorage.Events.EquipClothes:FireServer(v.Name)
-					end)
-					task.wait(vals.delay2)
-				end
+			for i,v in ch2 do
+				if not vals.flex2 then continue end
+				task.spawn(game.ReplicatedStorage.Events.EquipClothes.FireServer, game.ReplicatedStorage.Events.EquipClothes, v)
+				task.wait(vals.delay2)
 			end
 		end
 	end
 end)
+local ch3 = {}
+local leftNametag, rightNametag = {"Left"}, {"Right"}
+task.spawn(function()
+	while task.wait() and not closed do
+		if vals.flex3 then
+			for i,v in ch3 do
+				if v == "None" and vals.skip1 or not vals.flex3 then continue end
+				task.spawn(game.ReplicatedStorage.Events.EquipNametag.FireServer, game.ReplicatedStorage.Events.EquipNametag, v, leftNametag)
+				task.wait(vals.delay3)
+			end
+		end
+	end
+end)
+task.spawn(function()
+	while task.wait() and not closed do
+		if vals.flex4 then
+			for i,v in ch3 do
+				if v == "None" and vals.skip2 or not vals.flex4 then continue end
+				task.spawn(game.ReplicatedStorage.Events.EquipNametag.FireServer, game.ReplicatedStorage.Events.EquipNametag, v, rightNametag)
+				task.wait(vals.delay4)
+			end
+		end
+	end
+end)
+for i,v in game:GetService("Players").LocalPlayer.PlayerGui.Main.Inventory.Background.Badges.ScrollingFrame:GetChildren() do
+	if v and v:IsA("Frame") then
+		for idx,val in v:GetChildren() do
+			if val and val:IsA("ImageButton") and val:FindFirstChild("Icon") and val:FindFirstChild("Icon").ImageTransparency == 0 then
+				ch[#ch+1] = val.Name
+			end
+		end
+	end
+end
+for i,v in game:GetService("Players").LocalPlayer.PlayerGui.Main.Inventory.Background.Clothes.List:GetChildren() do
+	if v and v:IsA("Frame") then
+		for idx,val in v:GetChildren() do
+			if val and val:IsA("ImageButton") and val:FindFirstChild("ImageLabel") and val:FindFirstChild("ImageLabel").ImageTransparency == 0 then
+				ch2[#ch2+1] = val.Name
+			end
+		end
+	end
+end
+for i,v in game:GetService("Players").LocalPlayer.PlayerGui.Main.Inventory.Background.Nametag.Options:GetChildren() do
+	if v and v:IsA("ImageButton") then
+		ch3[#ch3+1] = v.Name
+	end
+end
+
 page:AddToggle({Caption = "Flex achievements", Default = false, Callback = function(txt)
 	vals.flex = txt
 end})
@@ -230,4 +262,25 @@ page:AddToggle({Caption = "Flex clothes", Default = false, Callback = function(t
 end})
 page:AddSlider({Caption = "Clothing Flex Speed", Min = 0, Max = 100, Step = 1, Default = 100, Callback = function(txt)
 	vals.delay2 = (100-txt)/100
+end})
+page:AddSeparator()
+page:AddSeparator()
+page:AddToggle({Caption = "Flex nametags [Left]", Default = false, Callback = function(txt)
+	vals.flex3 = txt
+end})
+page:AddToggle({Caption = "Ignore \"None\" flex [Left]", Default = false, Callback = function(txt)
+	vals.skip1 = txt
+end})
+page:AddSlider({Caption = "Nametag Flex Speed [Left]", Min = 0, Max = 100, Step = 1, Default = 100, Callback = function(txt)
+	vals.delay3 = (100-txt)/100
+end})
+page:AddSeparator()
+page:AddToggle({Caption = "Flex nametags [Right]", Default = false, Callback = function(txt)
+	vals.flex4 = txt
+end})
+page:AddToggle({Caption = "Ignore \"None\" flex [Right]", Default = false, Callback = function(txt)
+	vals.skip2 = txt
+end})
+page:AddSlider({Caption = "Nametag Flex Speed [Right]", Min = 0, Max = 100, Step = 1, Default = 100, Callback = function(txt)
+	vals.delay4 = (100-txt)/100
 end})
