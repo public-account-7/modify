@@ -580,7 +580,7 @@ local function mainFunc(w)
 				if w.Parent.Name:match("Pandemonium") and (vals.AntiPande or vals.GodMode or vals.AutoPlay) then
 					task.wait(1)
 					w.Parent:Destroy()
-				elseif w.Parent.Name:lower():match("death") and (vals.AntiDeath or vals.GodMode or vals.AutoPlay) then
+				elseif (w.Parent.Name:lower():match("death") or w.Parent.Name:lower():match("harbringer")) and (vals.AntiDeath or vals.GodMode or vals.AutoPlay) then
 					task.wait(1)
 					w.Parent:Destroy()
 				else
@@ -1320,21 +1320,7 @@ if health and td then
 		end
 		vals.NoDamage = b
 	end})
-
-	local inf = 1e8
-	local function healthFunc(b)
-		vals.infhp = b
-		if b == bool then return end
-		bool = b
-		if b then
-			setHealth(inf)
-		else
-			setHealth(100)
-		end
-	end
-	page:AddToggle({Caption = "Infinite health", Default = false, Callback = function(b)
-		task.spawn(healthFunc, b)
-	end})
+	
 	page:AddButton({Caption = "Regenerate health", Default = true, Callback = function(b)
 		setHealth(bool and inf or 100)
 	end})
