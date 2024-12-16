@@ -55,10 +55,11 @@ local defaults = {
 	AutoPlayMoney = false,
 	AutoHide = false,
 	AutoPlayTools = false,
+	ShowCurrentRoom = false,
 	NoVoid = false,
 	Notify = false,
 	NotifyChatM = "{monster} has spawned!",
-	NotifyChatF = "Chainsmoker=Chain; Wall Dweller=Dweller; Bouncer=None; Statue=None; Skeleton Head=None",
+	NotifyChatF = "Chainsmoker=Chain; Wall Dweller=Dweller; Bouncer=None; Statue=None; Skeleton Head=None; RottenWallDweller=Dweller",
 	NotifyChat = false,
 	AntiParasite = false,
 	AntiSkelepede = false,
@@ -89,14 +90,15 @@ local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusS
 local espLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/ESP/Main.lua", true))()
 
 espLib.Values = vals.ESP
+local function espFunc(...)
+	task.wait()
+	game["Run Service"].RenderStepped:Wait()
+	task.wait()
+	game["Run Service"].RenderStepped:Wait()
+	espLib.ApplyESP(...)
+end
 local applyESP = function(...)
-	task.spawn(function(...)
-		task.wait()
-		game["Run Service"].RenderStepped:Wait()
-		task.wait()
-		game["Run Service"].RenderStepped:Wait()
-		espLib.ApplyESP(...)
-	end, ...)
+	task.spawn(espFunc, ...)
 end
 
 local plr = game.Players.LocalPlayer
@@ -215,10 +217,9 @@ if getfenv().getgc and not framework then
 end
 local td = false
 task.spawn(function()
-	if framework then
+	if framework and getfenv().hookfunction then
 		health = framework.Main.Health
-		local old = health.TakeDamage -- not using some executors, bcus of some rizzsploits having fake version of it
-		health.TakeDamage = function(currentHealth, max, ...)
+		local old; old = getfenv().hookfunction(health.TakeDamage, function(currentHealth, max, ...)
 			if vals.NoDamage then
 				if vals.infhp then
 					health.CurrentHealth = 999999999
@@ -228,7 +229,7 @@ task.spawn(function()
 				return
 			end
 			return old(currentHealth, max, ...)
-		end
+		end)
 		td = true
 	end
 end)
@@ -238,43 +239,47 @@ local function notifyMonster(monster, text)
 	if vals.Notify then
 		Not.Title = monster
 		Not.Text = text
-		lib.Notifications:Notification(Not)
+		task.spawn(lib.Notifications.Notification, lib.Notifications, Not)
 	end
 	if vals.NotifyChat then
 		local formatted = vals.NotifyChatM:gsub("{monster}", monster)
 		for i,v in vals.NotifyChatF:split("; ") do
 			local s = v:split("=")
-			if s[2] == "None" then return end
+			if s[2] == "None" and monster:lower():match(s[1]:lower()) then return end
 			formatted = formatted:gsub(s[1], s[2])
 		end
-		game.TextChatService.TextChannels.RBXGeneral:SendAsync(formatted)
+		task.spawn(game.TextChatService.TextChannels.RBXGeneral.SendAsync, game.TextChatService.TextChannels.RBXGeneral, formatted)
 	end
 end
+local gm
 local interacts = {}
 local monsterLockers = {}
-local function add(t,v)
-	task.spawn(function()
-		if v == nil or typeof(t) ~= "table" then return end
-		local i = 1
-		local add = 1
-		while true do
-			if v == nil or typeof(v) == "Instance" and v.Parent == nil then
-				return -1
-			end
-			if t[i] == nil or typeof(t[i]) == "Instance" and t[i].Parent == nil then
-				t[i] = v
-				return i
-			end
-			i = i + 1
+local function addFunction(t,v)
+	if v == nil or typeof(t) ~= "table" then return end
+	local i = 1
+	local add = 1
+	while true do
+		if v == nil or typeof(v) == "Instance" and v.Parent == nil then
+			return -1
 		end
-	end)
+		if t[i] == nil or typeof(t[i]) == "Instance" and t[i].Parent == nil then
+			t[i] = v
+			return i
+		end
+		i = i + 1
+	end
+end
+local function add(t,v)
+	task.spawn(addFunction, t, v)
+end
+local function removeFunc2(t,v)
+	table.remove(t, table.find(v))
+end
+local function removeFunc(t,v)
+	pcall(removeFunc2, t, v)
 end
 local function remove(t,v)
-	task.spawn(function()
-		pcall(function()
-			table.remove(t, table.find(v))
-		end)
-	end)
+	task.spawn(removeFunc, t, v)
 end
 local function count(t)
 	local amnt = 0
@@ -295,6 +300,30 @@ local function getFirst(t)
 	return amnt
 end
 
+local sideGui = Instance.new("ScreenGui", getfenv().gethui and getfenv().gethui() or game.CoreGui)
+local sideUI = Instance.new("TextLabel", sideGui)
+sideUI.BackgroundTransparency = 1
+sideUI.TextScaled = true
+sideUI.AnchorPoint = Vector2.new(0, 0.5)
+sideUI.Size = UDim2.fromScale(1, 0)
+sideUI.TextColor3 = Color3.new(1,1,1)
+sideUI.TextStrokeTransparency = 0
+sideUI.Position = UDim2.fromScale(0.0175, 0.5)
+sideUI.TextXAlignment = Enum.TextXAlignment.Left
+sideUI.Font = Enum.Font.Arcade
+sideUI.Visible = true
+sideUI.Text = ""
+local function updLine(txt)
+	if sideUI.Text ~= "" then
+		sideUI.Text = sideUI.Text.."\n"
+	end
+	sideUI.Text = sideUI.Text..txt
+	sideUI.Size = UDim2.fromScale(1, sideUI.Size.Y.Scale + 0.02)
+end
+
+local function insertCum(str)
+	return str:gsub("(%u)", " %1"):sub(2)
+end
 local function getColor(v)
 	if v.Name:match("Currency") then
 		return Color3.new((v:GetAttribute("Amount") or 5)/75, 150/255, 50/255)
@@ -305,10 +334,14 @@ local function getColor(v)
 		return Color3.new(0.7, 0.1, 0.025)
 	elseif v.Name == "Medkit" then
 		return Color3.new(0.3, 1, 0.4)
+	elseif v.Name:lower():match("document") then
+		return Color3.new(0.4, 0.2, 0.5)
 	elseif v.Name:match("Battery") then
 		return Color3.new(0.6, 0.4, 0.2)
 	elseif v.Name == "Blacklight" then
 		return Color3.new(0.3, 0.1, 0.6)
+	elseif v.Name == "SPRINT" then
+		return Color3.new(0.5, 0.5, 0.9)
 	elseif isLightSource(v) then
 		return Color3.new(1, 1, 0.5)
 	elseif v.Name == "Relic" then
@@ -323,10 +356,14 @@ local function getText(v)
 		return v:GetAttribute("Amount").."$"
 	elseif v.Name:lower():match("keycard") then
 		return "Keycard"
+	elseif v.Name == "SPRINT" then
+		return "Adrenaline"
 	elseif v.Name == "CodeBreacher" then
 		return "Code Breacher"
 	elseif v.Name:match("Battery") then
 		return "Battery"
+	elseif v.Name:lower():match("document") then
+		return insertCum(v.Name)
 	elseif isLightSource(v) then
 		return v.Name:gsub("Big", "Large"):gsub("Large", ""):gsub("Small", ""):gsub("(%u)", " %1"):gsub("^%s", "")..""
 	elseif v.Name == "ToyRemote" then
@@ -378,8 +415,27 @@ local vt = {Text = "Valve", HighlightEnabled = false, Color = Color3.new(0.7, 0.
 -- same with notifications
 local tubepuzzle = {Title = "Tube puzzle", Text = "Hate tube puzzles? I too!\nTake one ;)"}
 local gambling = {Title = "Let's go gambling!", Text = "Heeey, look who is here!!"}
-local event = {Title = "Event", Text = "You were teleported!\nReenabling godmode in the next room!"}
+local event = {Title = "Event", Text = "You passed event!\nReenabling godmode..."}
 
+local genMax = 92
+local function eyefestationLoop(w)
+	repeat task.wait() until w and w:FindFirstChild("Active") and w.Active.Value or not w
+	if not w then return end
+	while w and w.Parent and w:FindFirstChild("Active") and not closed do
+		w.Active.Value = not vals.AntiEyefestation
+		task.wait()
+	end
+end
+local function offGodMode(w)
+	local par = w.Parent.Parent
+	while w and w.Parent and w.Parent.Parent and w.Parent.Parent == par do
+		task.wait()
+	end
+	gm:Set(true)
+end
+local eventRooms = {
+	["SearchlightsEncounter"] = true
+}
 local function mainFunc(w)
 	if w and w:IsDescendantOf(workspace) and w.Parent ~= workspace and w.Parent then
 		task.wait()
@@ -412,7 +468,7 @@ local function mainFunc(w)
 		elseif w.Name == "Shoot" and w.Parent.Name:match("TurretSpawn") and not w:GetAttribute("Fake") then
 			add(shootEvents, w)
 			applyESP(w.Parent:FindFirstChild("Turret"), te)
-		elseif w.Name == "OpenValue" and w.Parent.Parent:IsA("Folder") and w.Parent.Parent.Name == "Entrances" then
+		elseif w.Name == "OpenValue" and w:FindFirstAncestorOfClass("Folder") and w:FindFirstAncestorOfClass("Folder").Name == "Entrances" then
 			add(doors, w.Parent)
 			applyESP(w.Parent:FindFirstChild("Door") or w.Parent, de)
 		elseif w.Name == "Fixed" and w:IsA("IntValue") and w.Parent:IsA("Model") then
@@ -424,9 +480,9 @@ local function mainFunc(w)
 				else
 					applyESP(mod, {HighlightEnabled = true, Object = w.Parent:FindFirstChild("Model"), Color = Color3.new(0.7, 0.5, 1), Text = (w.Parent.Name == "BrokenCables" and "Broken Cables" or "Broken Generator") .. "\n[" .. string.format("%03d", w.Value):gsub("", " "):sub(2):sub(0, 5) .. "]", ESPName = "GeneratorESP"})
 					add(generators, w.Parent)
-					w.Changed:Connect(function(val)
-						if val >= 99 or not w or not w.Parent  or not w.Parent:FindFirstChild("ProxyPart") or not w.Parent.ProxyPart:FindFirstChild("ProximityPrompt") then
-							espLib.DeapplyESP(mod)	
+					cons[#cons+1] = w.Changed:Connect(function(val)
+						if val >= genMax or not w or not w.Parent  or not w.Parent:FindFirstChild("ProxyPart") or not w.Parent.ProxyPart:FindFirstChild("ProximityPrompt") then
+							espLib.DeapplyESP(mod)
 						else
 							applyESP(mod, {HighlightEnabled = true, Object = w.Parent:FindFirstChild("Model"), Color = Color3.new(0.7, 0.5, 1), Text = (w.Parent.Name == "BrokenCables" and "Broken Cables" or "Broken Generator") .. "\n[" .. string.format("%03d", w.Value):gsub("", " "):sub(2):sub(0, 5) .. "]", ESPName = "GeneratorESP"})
 						end
@@ -434,19 +490,15 @@ local function mainFunc(w)
 				end
 			end
 		elseif w.Name == "Eyefestation" and (w.Parent.Name == "EyefestationSpawn" or w.Parent.Name == "EyefestationRoot") then
-			notifyMonster("Eyefestation", "Eyefestation has spawned!\n"..(vals.GodMode and "\nDISABLE GODMODE IF YOU GOT STUCK" or "Avoid looking at it!"))
+			notifyMonster("Eyefestation", "Eyefestation has spawned!\nAvoid looking at it!")
+			if vals.GodMode and w.Parent.Name == "EyefestationRoot" and gm then
+				if gm.Value then
+					task.spawn(offGodMode, w)
+				end
+			end
 			ef.Color = w.NonAnimated.LeftEye.Color
 			applyESP(w, ef)
-			task.spawn(function()
-				repeat task.wait() until w and w:FindFirstChild("Active") and w.Active.Value or not w
-				if not w then return end
-				task.spawn(function()
-					while w and w.Parent and w:FindFirstChild("Active") and not closed do
-						w.Active.Value = not vals.AntiEyefestation
-						task.wait()
-					end
-				end)
-			end)
+			task.spawn(eyefestationLoop, w)
 			local noAnim = w:WaitForChild("NonAnimated", 0.1)
 			local function fake()
 				local fake = Instance.new("Folder", w)
@@ -456,6 +508,7 @@ local function mainFunc(w)
 			noAnim:WaitForChild("LeftEye", 1)
 			if not noAnim or not noAnim:FindFirstChild("LeftEye") then return fake() end
 			cons[#cons+1] = noAnim.LeftEye.Changed:Connect(function()
+				if not w or not w.Parent then return end
 				ef.Color = w.NonAnimated.LeftEye.Color
 				applyESP(w, ef)
 			end)
@@ -463,6 +516,7 @@ local function mainFunc(w)
 			local colored = w.Parent.Parent:WaitForChild("Colored", 1)
 			if colored then
 				cons[#cons+1] = colored.Changed:Connect(function()
+					if not w or not w.Parent then return end
 					applyESP(w.Parent.Parent, {HighlightEnabled = true, Color = (colored and colored.Color or Color3.fromRGB(0, 167, 97)), Text = "Lever", ESPName = "LeverESP"})
 				end)
 			end
@@ -510,7 +564,7 @@ local function mainFunc(w)
 			if vals.Notify then
 				lib.Notifications:Notification(tubepuzzle)
 			end
-			add(puzzles, w)
+			add(puzzles, w.Parent)
 		elseif w.Name == "ValveTurn" then
 			task.wait()
 			applyESP(w.Parent, vt)
@@ -564,6 +618,20 @@ local len = #dsc
 for i,v in dsc do
 	task.spawn(mainFunc, v)
 end
+
+local god
+
+cons[#cons+1] = workspace.Rooms.ChildAdded:Connect(function(room)
+	if eventRooms[room.Name] then
+		workspace.Rooms.ChildAdded:Wait()
+		if vals.GodMode then
+			lib.Notification(event)
+			vals.GodMode = false
+			getGlobalTable().GodMode = false
+			god()
+		end
+	end
+end)
 
 cons[#cons+1] = workspace.DescendantAdded:Connect(mainFunc)
 
@@ -626,7 +694,7 @@ end
 local function fixGenerator(gen)
 	if fixing or not (vals.AutoFixGenerators or vals.AutoPlay) then return false end
 	if not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") then return end
-	if gen.Fixed.Value >= 99 then return true end
+	if gen.Fixed.Value >= genMax then return true end
 	gen.RemoteFunction:InvokeServer()
 	local i = 20
 	repeat
@@ -638,20 +706,25 @@ local function fixGenerator(gen)
 		gen.RemoteEvent:FireServer(true)
 		pcall(fix, gen)
 		task.wait(0.03)
-	until not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") or gen.Fixed.Value >= 99 or not (vals.AutoFixGenerators or vals.AutoPlay)
+	until not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") or gen.Fixed.Value >= genMax or not (vals.AutoFixGenerators or vals.AutoPlay)
 	if fixing or not (vals.AutoFixGenerators or vals.AutoPlay) then return false end
 	if not gen or not gen:FindFirstChild("RemoteEvent") or not gen:FindFirstChild("RemoteFunction") or not gen:FindFirstChild("Fixed") then return end
-	if gen.Fixed.Value >= 99 then return true end
+	if gen.Fixed.Value >= genMax then return true end
 end
 
 local cool = game:GetService("Players").LocalPlayer.PlayerGui.Main.FixMinigame.Background.Frame.Middle
 local pande = game:GetService("Players").LocalPlayer.PlayerGui.Main.PandemoniumMiniGame.Background.Frame.circle
 local pos = pande.Position
 
-local blacklistDoors = {}
 local goodColors = {[Color3.fromRGB(0, 255, 102)] = true, [Color3.fromRGB(71, 175, 255)] = true}
 local errs = 0
 
+local function restart()
+	if plr.Character and plr.Character:FindFirstChild("Humanoid") then
+		plr.Character.Humanoid.Health = -10
+	end
+	game.ReplicatedStorage.Events.PlayAgain:FireServer()
+end
 task.spawn(function()
 	while not closed and task.wait() do
 		local fixed = false
@@ -688,17 +761,7 @@ task.spawn(function()
 				plr.Character.HumanoidRootPart.Velocity = Vector3.new()
 			end
 		end
-		if vals.FixGeneratorsLegit and not vals.AutoFixGenerators and not vals.AutoPlay then
-			if cool.Parent.Parent.Parent.GroupTransparency ~= 1 then
-				local num = (cool.Pointer.Rotation - cool.Circle.Rotation) % 360
-				if num > 1 and num < 44 then
-					game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.E, false, game)
-					task.wait()
-					game:GetService("VirtualInputManager"):SendKeyEvent(false, Enum.KeyCode.E, false, game)
-					task.wait(0.3)
-				end
-			end
-		elseif vals.AutoFixGenerators or vals.AutoPlay then
+		if vals.AutoFixGenerators and not vals.AutoPlay then
 			local old = plr and plr.Character and plr.Character:GetPivot() or CFrame.new()
 			for i,v in generators do
 				if v and v.Parent then
@@ -719,101 +782,187 @@ task.spawn(function()
 				end
 			end
 		end
-		local s,e = pcall(autoPlayLoop)
-		if not s and vals.PAOAPE or #puzzles > 0 and vals.AutoPlay and vals.PAOAPE then
-			errs = errs + 1
-			if errs > 100 then
-				lib.Notifications:Notification({Title = "Auto play error", Text = errs.." / 100\nRestarting autoplay."})
-				errs = 0
-				vals.APA = true
-				plr.Character.Humanoid.Health = -10
-			else
-				lib.Notifications:Notification({Title = "Auto play error", Text = errs.." / 100\n\n"..e})
+		if vals.AutoPlay then
+			local s,e = pcall(autoPlayLoop)
+			if not s and vals.PAOAPE or #puzzles > 0 and vals.AutoPlay and vals.PAOAPE then
+				if not s then
+					errs = errs + 1
+					if errs > 100 then
+						lib.Notifications:Notification({Title = "Auto play error", Text = errs.." / 100\nRestarting autoplay."})
+						errs = 0
+						vals.APA = true
+						plr.Character.Humanoid.Health = -10
+					else
+						lib.Notifications:Notification({Title = "Auto play error", Text = errs.." / 100\n\n"..e})
+					end
+				else
+					restart()
+				end
+			end
+		end
+	end
+end)
+task.spawn(function()
+	while task.wait() do
+		if vals.FixGeneratorsLegit then
+			if cool.Parent.Parent.Parent.GroupTransparency ~= 1 then
+				local num = (cool.Pointer.Rotation - cool.Circle.Rotation) % 360
+				if num > 1 and num < 44 then
+					game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+					task.wait()
+					game:GetService("VirtualInputManager"):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+					task.wait(0.3)
+				end
 			end
 		end
 	end
 end)
 
 local doorsHistory = {}
+local blockDoors = {}
 local blockLevers = {}
 
 local hadKeycard = false
 local godQueue = false
+local teleported = false
+
+local function blockLever()
+	task.wait(3.5)
+	blockLevers[doorsHistory[#doorsHistory-1].Lever] = true
+end
 function autoPlayLoop()
 	if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") and plr.Character:FindFirstChild("Humanoid") and not godQueue then
-		if vals.AutoPlay then
-			local pickedUp = false
-			for i,v in interacts do
-				if v and v.Parent then
-					if v:FindFirstChild("ProximityPrompt") and canCarry(v.Parent) then
-						if v and v.Parent and not isLightSource(v.Parent) and ((getText(v.Parent):match("%$") and vals.AutoPlayMoney or not getText(v.Parent):match("%$")) or (not v.Parent.Name:lower():match("keycard") and vals.AutoPlayTools or v.Parent.Name:lower():match("keycard"))) then
-							plr.Character:PivotTo(v:GetPivot())
-							plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 5)
-							pickedUp = true
-							break
+		if #puzzles > 0 then
+			local mustTeleport = false
+			for i,v in puzzles do
+				if v and v.Parent and task.wait(0.001) --[[prevert bugs]] and v:FindFirstChild("Ends") and v:FindFirstChild("") then
+					local allGreen = true
+					for idx, val in v.Ends:GetChildren() do
+						if val and val:FindFirstChild("LightPart") and val.Color ~= Color3.fromRGB(0, 167, 97) then
+							allGreen = false
 						end
+					end
+					if allGreen then
+						puzzles[i] = nil
+					else
+						mustTeleport = v
 					end
 				else
-					interacts[i] = nil
+					puzzles[i] = nil
 				end
 			end
-
-			if not pickedUp then
-				if hadKeycard and not plr.Character:FindFirstChild("NormalKeyCard") then
-					game.ReplicatedStorage.Events.Equip:FireServer("NormalKeyCard")
-					local atts = 0
-					repeat task.wait(0.01) atts += 1 until plr.Character:FindFirstChild("NormalKeyCard") or atts >= 100
+			if mustTeleport then
+				if not teleported then
+					teleported = true
+					task.wait(1)
+					plr.Character:PivotTo(mustTeleport.Main.CFrame + (mustTeleport.Main.CFrame.LookVector*10))
 				end
-				if plr.Character:FindFirstChild("NormalKeyCard") then
-					hadKeycard = true
-				end
-
-				local zat = 0
-				if workspace.Rooms:FindFirstChild("SearchlightsEnding") then
-					for i,v in workspace.Rooms:GetChildren() do
-						if v and v.Name == "0After200" then
-							zat += 1
-						end
-					end
-				end
-
-				if zat == 0 then
-					local door = getLastDoor()
-					if door then
-						if not table.find(doorsHistory, door.Parent.Parent) then
-							doorsHistory[#doorsHistory+1] = door.Parent.Parent
-						end
-						if doorsHistory[#doorsHistory-1] and doorsHistory[#doorsHistory-1]:FindFirstChild("Lever") and doorsHistory[#doorsHistory-1].Lever:FindFirstChild("Colored") and doorsHistory[#doorsHistory-1].Lever.Colored.Color == Color3.fromRGB(0, 167, 97) and not blockLevers[doorsHistory[#doorsHistory-1].Lever] then
-							door = doorsHistory[#doorsHistory-1].Lever
-						elseif doorsHistory[#doorsHistory-1] and doorsHistory[#doorsHistory-1]:FindFirstChild("Lever") and not blockLevers[doorsHistory[#doorsHistory-1].Lever] then
-							task.spawn(function()
-								task.wait(3.5)
-								blockLevers[doorsHistory[#doorsHistory-1].Lever] = true
-							end)
-						end
-						plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 50)
-						plr.Character:PivotTo(door:GetPivot() + Vector3.new(math.random(-100, 100),0,math.random(-100, 100))/20)
-					end
-				else
-					if workspace.Rooms:FindFirstChild("SearchlightsEnding") then
-						if workspace.Rooms.SearchlightsEnding:FindFirstChild("Lever") and workspace.Rooms.SearchlightsEnding.Lever.Colored.Color == Color3.fromRGB(0, 167, 97) and workspace.Rooms.SearchlightsEnding.Lever.Highlight.ProximityPrompt then
-							plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 50)
-							plr.Character:PivotTo(workspace.Rooms.SearchlightsEnding.Lever.Colored:GetPivot())
-						elseif workspace.Rooms.SearchlightsEnding:FindFirstChild("Lever2") and workspace.Rooms.SearchlightsEnding.Lever2.Colored.Color == Color3.fromRGB(0, 167, 97) and workspace.Rooms.SearchlightsEnding.Lever2.Highlight.ProximityPrompt.Enabled then
-							plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 50)
-							plr.Character:PivotTo(workspace.Rooms.SearchlightsEnding.Lever2.Colored:GetPivot())
-						elseif workspace.Rooms.SearchlightsEnding:FindFirstChild("TriggerLever") and workspace.Rooms.SearchlightsEnding.TriggerLever.Colored.Color == Color3.fromRGB(0, 167, 97) and workspace.Rooms.SearchlightsEnding.TriggerLever.Highlight.ProximityPrompt then
-							plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 50)
-							plr.Character:PivotTo(workspace.Rooms.SearchlightsEnding.TriggerLever.Colored:GetPivot())
-						else
-							plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 50)
-							plr.Character:PivotTo(workspace.Rooms.SearchlightsEnding.ExitSubmarine.FinalButton.Highlight:GetPivot())
-						end
-					end
-				end
+				return
 			end
-			task.wait(0.3)
 		end
+		teleported = false
+		if vals.AutoPlay then
+			if
+				workspace.Rooms:FindFirstChild("SearchlightsEncounter") and
+				workspace.Rooms.SearchlightsEncounter:FindFirstChild("Interactables") and
+				workspace.Rooms.SearchlightsEncounter.Interactables:FindFirstChild("EntranceDoor") and
+				workspace.Rooms.SearchlightsEncounter.Interactables.EntranceDoor:FindFirstChild("BigDoor") and
+				workspace.Rooms.SearchlightsEncounter.Interactables.EntranceDoor.BigDoor:FindFirstChild("OpenValue") and
+				not workspace.Rooms.SearchlightsEncounter.Interactables.EntranceDoor.BigDoor.OpenValue.Value and
+				workspace.Rooms.SearchlightsEncounter.Interactables.EntranceDoor.BigDoor:FindFirstChild("Root") and
+				workspace.Rooms.SearchlightsEncounter.Interactables.EntranceDoor.BigDoor.Root:FindFirstChild("ProximityPrompt")
+			then
+				plr.Character:PivotTo(workspace.Rooms.SearchlightsEncounter.Interactables.EntranceDoor.BigDoor.Root:GetPivot())
+				fireproximityprompt(workspace.Rooms.SearchlightsEncounter.Interactables.EntranceDoor.BigDoor.Root.ProximityPrompt)
+				return
+			end
+
+			local old = plr and plr.Character and plr.Character:GetPivot() or CFrame.new()
+			local fixed = false
+			for i,v in generators do
+				if v and v.Parent then
+					local res = fixGenerator(v)
+					if res == true or res == nil then
+						generators[i] = nil
+						fixed = true
+					end
+				else
+					generators[i] = nil
+				end
+			end
+			if fixed then
+				if plr and plr.Character then
+					plr.Character:PivotTo(old)
+					plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 5)
+					task.wait()
+				end
+			end
+		end
+
+		local pickedUp = false
+		for i,v in interacts do
+			if v and v.Parent then
+				if v:FindFirstChild("ProximityPrompt") and canCarry(v.Parent) then
+					if v and v.Parent and not isLightSource(v.Parent) and ((getText(v.Parent):match("%$") and vals.AutoPlayMoney or not getText(v.Parent):match("%$")) or (not v.Parent.Name:lower():match("keycard") and vals.AutoPlayTools or v.Parent.Name:lower():match("keycard"))) then
+						plr.Character:PivotTo(v:GetPivot())
+						plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 5)
+						pickedUp = true
+						break
+					end
+				end
+			else
+				interacts[i] = nil
+			end
+		end
+
+		if not pickedUp then
+			if hadKeycard and not plr.Character:FindFirstChild("NormalKeyCard") then
+				game.ReplicatedStorage.Events.Equip:FireServer("NormalKeyCard")
+				local atts = 0
+				repeat task.wait(0.01) atts += 1 until plr.Character:FindFirstChild("NormalKeyCard") or atts >= 100
+			end
+			if plr.Character:FindFirstChild("NormalKeyCard") then
+				hadKeycard = true
+			end
+
+			local zat = false
+			if workspace.Rooms:FindFirstChild("SearchlightsEnding") then
+				zat = workspace.Rooms:FindFirstChild("0After200") ~= nil
+			end
+
+			if not zat then
+				local door = getLastDoor()
+				if door then
+					if not table.find(doorsHistory, door.Parent.Parent) then
+						doorsHistory[#doorsHistory+1] = door.Parent.Parent
+					end
+					if doorsHistory[#doorsHistory-1] and doorsHistory[#doorsHistory-1]:FindFirstChild("Lever") and doorsHistory[#doorsHistory-1].Lever:FindFirstChild("Colored") and doorsHistory[#doorsHistory-1].Lever.Colored.Color == Color3.fromRGB(0, 167, 97) and not blockLevers[doorsHistory[#doorsHistory-1].Lever] then
+						door = doorsHistory[#doorsHistory-1].Lever
+					elseif doorsHistory[#doorsHistory-1] and doorsHistory[#doorsHistory-1]:FindFirstChild("Lever") and not blockLevers[doorsHistory[#doorsHistory-1].Lever] then
+						task.spawn(blockLever)
+					end
+					plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 50)
+					plr.Character:PivotTo(door:GetPivot() + Vector3.new(math.random(-100, 100),0,math.random(-100, 100))/20)
+				end
+			else
+				if workspace.Rooms:FindFirstChild("SearchlightsEnding") then
+					if workspace.Rooms.SearchlightsEnding:FindFirstChild("Lever") and workspace.Rooms.SearchlightsEnding.Lever.Colored.Color == Color3.fromRGB(0, 167, 97) and workspace.Rooms.SearchlightsEnding.Lever.Highlight.ProximityPrompt then
+						plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 50)
+						plr.Character:PivotTo(workspace.Rooms.SearchlightsEnding.Lever.Colored:GetPivot())
+					elseif workspace.Rooms.SearchlightsEnding:FindFirstChild("Lever2") and workspace.Rooms.SearchlightsEnding.Lever2.Colored.Color == Color3.fromRGB(0, 167, 97) and workspace.Rooms.SearchlightsEnding.Lever2.Highlight.ProximityPrompt.Enabled then
+						plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 50)
+						plr.Character:PivotTo(workspace.Rooms.SearchlightsEnding.Lever2.Colored:GetPivot())
+					elseif workspace.Rooms.SearchlightsEnding:FindFirstChild("TriggerLever") and workspace.Rooms.SearchlightsEnding.TriggerLever.Colored.Color == Color3.fromRGB(0, 167, 97) and workspace.Rooms.SearchlightsEnding.TriggerLever.Highlight.ProximityPrompt then
+						plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 50)
+						plr.Character:PivotTo(workspace.Rooms.SearchlightsEnding.TriggerLever.Colored:GetPivot())
+					else
+						plr.Character.HumanoidRootPart.Velocity = Vector3.new(0, 50)
+						plr.Character:PivotTo(workspace.Rooms.SearchlightsEnding.ExitSubmarine.FinalButton.Highlight:GetPivot())
+					end
+				end
+			end
+		end
+		task.wait(0.3)
 	end
 end
 
@@ -824,6 +973,11 @@ task.spawn(function()
 	roomNum = game.ReplicatedStorage.Events.CurrentRoomNumber:InvokeServer()
 end)
 cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
+	sideUI.Text = ""
+	sideUI.Size = UDim2.fromScale(1, 0)
+	if vals.ShowCurrentRoom then
+		updLine("Current room: "..(string.format("%03d", roomNum)))
+	end
 	game.Lighting.Ambient = vals.FB and Color3.new(1,1,1) or Color3.new()
 	game.Lighting.Brightness = vals.FB and 1 or 0
 	game.Lighting.GlobalShadows = not vals.FB
@@ -837,7 +991,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 				conns[plr.Character.Humanoid] = plr.Character.Humanoid.Died:Connect(function()
 					task.wait(1)
 					if vals.APA and not game.ReplicatedStorage.PlayAgain.List:FindFirstChild(plr.Name) then
-						game.ReplicatedStorage.Events.PlayAgain:FireServer()
+						restart()
 					end
 				end)
 			end
@@ -1027,7 +1181,7 @@ local function playSound(sound)
 	game.ReplicatedStorage.Events.PlaySound:FireServer(sound)
 end
 
-local function god()
+function god()
 	if godQueue then return end
 	godQueue = true
 	local locker
@@ -1059,16 +1213,6 @@ local function god()
 	godQueue = false
 end
 
-cons[#cons+1] = game.LogService.MessageOut:Connect(function(msg)
-	if msg == "teleporting" then
-		lib.Notifications:Notification(event)
-		workspace.Rooms.ChildAdded:Wait()
-		if vals.GodMode then
-			god()
-		end
-	end
-end)
-
 local bool = false
 local function setHealth(h)
 	health.CurrentHealth = h
@@ -1092,6 +1236,7 @@ local window = lib:MakeWindow({Title = "NullFire: Pressure", CloseCallback = fun
 			v:Disconnect()
 		end
 	end
+	sideGui:Destroy()
 	closed = true
 end}, true)
 
@@ -1118,7 +1263,7 @@ function getLastDoor()
 	for i,v in rooms do
 		if v and v:FindFirstChild("Entrances") and v:FindFirstChild("Lights") and v.Lights:FindFirstChild("Sign") then
 			local door = v.Entrances:FindFirstChildOfClass("Model")
-			if door and door:FindFirstChild("OpenValue") and not door.OpenValue.Value and door:FindFirstChild("Exit") and door.Exit.Value and door.Exit.Value:IsDescendantOf(workspace.Rooms) then
+			if door and (door:FindFirstChild("OpenValue") and not door.OpenValue.Value or door:FindFirstChild("NormalDoor") and door.NormalDoor:FindFirstChild("OpenValue") and not door.NormalDoor.OpenValue.Value) and door:FindFirstChild("Exit") and door.Exit.Value and door.Exit.Value:IsDescendantOf(workspace.Rooms) then
 				local thatRoomNum
 				for idx,val in v.Lights:GetChildren() do
 					if val and val.Name == "Sign" and val:FindFirstChild("SurfaceGui") and val.SurfaceGui:FindFirstChild("TextLabel") and not goodColors[val.SurfaceGui.TextLabel.TextColor3] then
@@ -1139,7 +1284,7 @@ function getLastDoor()
 	for i,v in rooms do
 		if v and v:FindFirstChild("Entrances") then
 			local door = v.Entrances:FindFirstChildOfClass("Model")
-			if door and door:FindFirstChild("OpenValue") and not door.OpenValue.Value and door:FindFirstChild("Exit") and door.Exit.Value and door.Exit.Value:IsDescendantOf(workspace.Rooms) then
+			if door and (door:FindFirstChild("OpenValue") and not door.OpenValue.Value or door:FindFirstChild("NormalDoor") and door.NormalDoor:FindFirstChild("OpenValue") and not door.NormalDoor.OpenValue.Value) and door:FindFirstChild("Exit") and door.Exit.Value and door.Exit.Value:IsDescendantOf(workspace.Rooms) then
 				local found = table.find(doorsHistory, door)
 				if not found then
 					return door
@@ -1160,25 +1305,23 @@ function getLastDoor()
 	for i,v in rooms do
 		if v and v:FindFirstChild("Entrances") then
 			local door = v.Entrances:FindFirstChildOfClass("Model")
-			if door and door:FindFirstChild("OpenValue") and not door.OpenValue.Value and door:FindFirstChild("Exit") and door.Exit.Value and door.Exit.Value:IsDescendantOf(workspace.Rooms) then
+			if door and (door:FindFirstChild("OpenValue") and not door.OpenValue.Value or door:FindFirstChild("NormalDoor") and door.NormalDoor:FindFirstChild("OpenValue") and not door.NormalDoor.OpenValue.Value) and door:FindFirstChild("Exit") and door.Exit.Value and door.Exit.Value:IsDescendantOf(workspace.Rooms) then
 				return door
 			end
 		end
 	end
 end
-if health then
-	if td then
-		page:AddToggle({Caption = "No damage", Default = false, Callback = function(b)
-			if b then
-				game.CollectionService:AddTag(game.Players.LocalPlayer, "GodMode")
-			else
-				game.CollectionService:RemoveTag(game.Players.LocalPlayer, "GodMode")
-			end
-			vals.NoDamage = b
-		end})
-	end
+if health and td then
+	page:AddToggle({Caption = "No damage", Default = false, Callback = function(b)
+		if b then
+			game.CollectionService:AddTag(game.Players.LocalPlayer, "GodMode")
+		else
+			game.CollectionService:RemoveTag(game.Players.LocalPlayer, "GodMode")
+		end
+		vals.NoDamage = b
+	end})
 
-	local inf = 999999999
+	local inf = 1e8
 	local function healthFunc(b)
 		vals.infhp = b
 		if b == bool then return end
@@ -1196,15 +1339,9 @@ if health then
 		setHealth(bool and inf or 100)
 	end})
 	page:AddButton({Caption = "Kill", Default = true, Callback = function(b)
+		plr.Character.Humanoid.Health = -10
 		setHealth(0)
-	end})
-else
-	page:AddToggle({Caption = "No damage (kinda)", Default = false, Callback = function(b)
-		if b then
-			game.CollectionService:AddTag(game.Players.LocalPlayer, "GodMode")
-		else
-			game.CollectionService:RemoveTag(game.Players.LocalPlayer, "GodMode")
-		end
+		lib.Notifications:Notification({Title = "Kill", Text = "Killed character!"})
 	end})
 end
 page:AddButton({Caption = "Teleport to the door", Callback = function()
@@ -1212,7 +1349,7 @@ page:AddButton({Caption = "Teleport to the door", Callback = function()
 end})
 
 local page = window:AddPage({Title = "Anti monster"})
-page:AddToggle({Caption = "God Mode [!RE-ENABLE AFTER ANY TYPE OF TELEPORTATION!]", Default = vals.GodMode, Callback = function(b)
+gm = page:AddToggle({Caption = "God Mode [!RE-ENABLE AFTER ANY TYPE OF TELEPORTATION!]", Default = vals.GodMode, Callback = function(b)
 	vals.GodMode = b
 	getGlobalTable().GodMode = b
 	if b then
@@ -1359,11 +1496,14 @@ end})
 page:AddTextBox({Caption = "Chat message", Default = vals.NotifyChatM, Placeholder = "{monster} - monster name", Callback = function(t)
 	vals.NotifyChatM = t
 end})
-page:AddTextBox({Caption = "Chat message format\nNone = Won't notify", Default = vals.NotifyChatF, Placeholder = "monster_name=formatted_name\nmonster_name=None - Wont notify", Callback = function(t)
+page:AddTextBox({Caption = "Chat message format; None = Won't notify in chat", Default = vals.NotifyChatF, Placeholder = "monster_name=formatted_name\nmonster_name=None - Wont notify", Callback = function(t)
 	vals.NotifyChatF = t
 end})
 
 local page = window:AddPage({Title = "Visual"})
+page:AddToggle({Caption = "Show current room number", Default = false, Callback = function(b)
+	vals.ShowCurrentRoom = b
+end})
 page:AddSlider({Caption = "Camera zoom", Default = vals.CumDist, Min = 0, Max = 30, Step = 0.1, Callback = function(v)
 	vals.CumDist = v
 end})
@@ -1396,10 +1536,11 @@ end})
 page:AddToggle({Caption = "Make sebastian yap smth", Default = false, Callback = function(b)
 	vals.SebastianYapping = b
 end})
+page:AddButton({Caption = "Play again", Callback = restart})
 
 local obj = game.Players.LocalPlayer:WaitForChild("PlayerGui", 9e9):WaitForChild("Main", 9e9):WaitForChild("AfterDeath", 9e9)
 cons[#cons+1] = obj.Changed:Connect(function()
 	if vals.APA and not game.ReplicatedStorage.PlayAgain.List:FindFirstChild(plr.Name) and obj.Visible then
-		game.ReplicatedStorage.Events.PlayAgain:FireServer()
+		restart()
 	end
 end)
