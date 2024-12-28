@@ -212,7 +212,7 @@ return function(action, side, ...)
 		end
 		side.Size = UDim2.fromScale(0.95, ((#side.Text:split("\n"))-1)*0.025)
 	elseif action == "ClearText" then
-		if side ~= "nil" then
+		if side ~= "nil" and side ~= "all" and side ~= "All" then
 			local side = Instance1:FindFirstChild(side)
 			if not side then
 				return warn("No side '"..side.."' found")
@@ -227,14 +227,21 @@ return function(action, side, ...)
 			end
 		end
 	elseif action == "SetText" then
-		local side = Instance1:FindFirstChild(side)
-		if not side then
-			return warn("No side '"..side.."' found")
+		if side ~= "nil" and side ~= "all" and side ~= "All" then
+			local side = Instance1:FindFirstChild(side)
+			if not side then
+				return warn("No side '"..side.."' found")
+			end
+			side.Text = tostring(...)
+			side.Size = UDim2.fromScale(0.95, ((#side.Text:split("\n"))-1)*0.025)
+		else
+			for i,side in Instance1:GetChildren() do
+				side.Text = tostring(...)
+				side.Size = UDim2.fromScale(0.95, ((#side.Text:split("\n"))-1)*0.025)
+			end
 		end
-		side.Text = tostring(...)
-		side.Size = UDim2.fromScale(0.95, ((#side.Text:split("\n"))-1)*0.025)
 	elseif action == "GetText" then
-		if side ~= "nil" then
+		if side ~= "nil" and side ~= "all" and side ~= "All" then
 			local side = Instance1:FindFirstChild(side)
 			if not side then
 				return warn("No side '"..side.."' found")
