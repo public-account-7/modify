@@ -1,5 +1,5 @@
 local Instance1
-local n = "SideTextUI"
+local n = "SideTextUI_1488"
 local h = pcall(function()
 	return game.CoreGui:GetFullName()
 end) and game.CoreGui or game.Players.LocalPlayer:WaitForChild("PlayerGui", 9e9)
@@ -42,12 +42,11 @@ if not h:FindFirstChild(n) then
 	Instance2.TextStrokeColor3 = Color3.new(0, 0, 0)
 	Instance2.TextSize = 14
 	Instance2.AutomaticSize = Enum.AutomaticSize.None
-	Instance2.Size = UDim2.new(0.9750000238418579, 0, 0.02500000037252903, 0)
+	Instance2.Size = UDim2.new(0.949999988079071, 0, 0, 0)
 	Instance2.TextColor3 = Color3.new(1, 1, 1)
 	Instance2.ClipsDescendants = false
 	Instance2.BorderColor3 = Color3.new(0, 0, 0)
-	Instance2.Text = --"Left"
-		""
+	Instance2.Text = "Left"
 	Instance2.SelectionOrder = 0
 	Instance2.BackgroundColor3 = Color3.new(1, 1, 1)
 	Instance2.Rotation = 0
@@ -83,12 +82,11 @@ if not h:FindFirstChild(n) then
 	Instance3.TextStrokeColor3 = Color3.new(0, 0, 0)
 	Instance3.TextSize = 14
 	Instance3.AutomaticSize = Enum.AutomaticSize.None
-	Instance3.Size = UDim2.new(0.9750000238418579, 0, 0.02500000037252903, 0)
+	Instance3.Size = UDim2.new(0.949999988079071, 0, 0, 0)
 	Instance3.TextColor3 = Color3.new(1, 1, 1)
 	Instance3.ClipsDescendants = false
 	Instance3.BorderColor3 = Color3.new(0, 0, 0)
-	Instance3.Text = --"Right"
-		""
+	Instance3.Text = "Right"
 	Instance3.SelectionOrder = 0
 	Instance3.BackgroundColor3 = Color3.new(1, 1, 1)
 	Instance3.Rotation = 0
@@ -120,21 +118,20 @@ if not h:FindFirstChild(n) then
 	Instance4.TextDirection = Enum.TextDirection.Auto
 	Instance4.Visible = true
 	Instance4.FontSize = Enum.FontSize.Size14
-	Instance4.AnchorPoint = Vector2.new(0, 0)
+	Instance4.AnchorPoint = Vector2.new(0, 1)
 	Instance4.TextStrokeColor3 = Color3.new(0, 0, 0)
 	Instance4.TextSize = 14
 	Instance4.AutomaticSize = Enum.AutomaticSize.None
-	Instance4.Size = UDim2.new(0.949999988079071, 0, 0.02500000037252903, 0)
+	Instance4.Size = UDim2.new(0.949999988079071, 0, 0, 0)
 	Instance4.TextColor3 = Color3.new(1, 1, 1)
 	Instance4.ClipsDescendants = false
 	Instance4.BorderColor3 = Color3.new(0, 0, 0)
-	Instance4.Text = --"Bottom"
-		""
+	Instance4.Text = "Bottom"
 	Instance4.SelectionOrder = 0
 	Instance4.BackgroundColor3 = Color3.new(1, 1, 1)
 	Instance4.Rotation = 0
 	Instance4.BackgroundTransparency = 1
-	Instance4.Position = UDim2.new(0.02500000037252903, 0, 0.949999988079071, 0)
+	Instance4.Position = UDim2.new(0.02500000037252903, 0, 0.9750000238418579, 0)
 	Instance4.MaxVisibleGraphemes = -1
 
 	local Instance5 = Instance.new("TextLabel", Instance1) --Top
@@ -165,12 +162,11 @@ if not h:FindFirstChild(n) then
 	Instance5.TextStrokeColor3 = Color3.new(0, 0, 0)
 	Instance5.TextSize = 14
 	Instance5.AutomaticSize = Enum.AutomaticSize.None
-	Instance5.Size = UDim2.new(0.949999988079071, 0, 0.02500000037252903, 0)
+	Instance5.Size = UDim2.new(0.949999988079071, 0, 0, 0)
 	Instance5.TextColor3 = Color3.new(1, 1, 1)
 	Instance5.ClipsDescendants = false
 	Instance5.BorderColor3 = Color3.new(0, 0, 0)
-	Instance5.Text = --"Text"
-		""
+	Instance5.Text = "Top"
 	Instance5.SelectionOrder = 0
 	Instance5.BackgroundColor3 = Color3.new(1, 1, 1)
 	Instance5.Rotation = 0
@@ -214,6 +210,7 @@ return function(action, side, ...)
 		else
 			side.Text = tostring(...)
 		end
+		side.Size = UDim2.fromScale(0.95, ((#side.Text:split("\n"))-1)*0.025)
 	elseif action == "ClearText" then
 		if side ~= "nil" then
 			local side = Instance1:FindFirstChild(side)
@@ -222,9 +219,11 @@ return function(action, side, ...)
 			end
 
 			side.Text = ""
+			side.Size = UDim2.fromScale(0.95, 0)
 		else
 			for i,v in Instance1:GetChildren() do
 				v.Text = ""
+				v.Size = UDim2.fromScale(0.95, 0)
 			end
 		end
 	elseif action == "SetText" then
@@ -232,7 +231,8 @@ return function(action, side, ...)
 		if not side then
 			return warn("No side '"..side.."' found")
 		end
-		side.Text = ""
+		side.Text = tostring(...)
+		side.Size = UDim2.fromScale(0.95, ((#side.Text:split("\n"))-1)*0.025)
 	elseif action == "GetText" then
 		if side ~= "nil" then
 			local side = Instance1:FindFirstChild(side)
