@@ -12,6 +12,7 @@ local defaults = {
 	nodeath = false,
 	increaseonmiss = false,
 	megascore = false,
+	combo = false,
 	extraDelay = 0,
 	extraLongDelay = 0,
 	extraDelayRNG = 0,
@@ -77,6 +78,8 @@ local get = getfenv().getidentity or getfenv().getthreadcontext or getfenv().get
 local old = get()
 
 local notified = false
+local storage = {}
+
 local function getSignal(sig)
 	if not getfenv().getconnections then
 		if not notified then
@@ -91,7 +94,10 @@ local function getSignal(sig)
 			local scr = rawget(getfenv(func), "script")
 			if scr and scr.Name == "ScrollHandler" then
 				return function(keyCode)
-					pcall(func, { KeyCode = keyCode, UserInputType = Enum.UserInputType.Keyboard })
+					local kk = storage[keyCode] or {KeyCode = keyCode, UserInputType = Enum.UserInputType.Keyboard}
+					storage[keyCode] = kk
+					
+					pcall(func, kk)
 				end
 			end
 		end
@@ -131,12 +137,14 @@ for _, enum in Enum.KeyCode:GetEnumItems() do
 	keyCodeMap[enum.Value] = enum
 end
 
+local soloT = {
+	[1] = "Server",
+	[2] = "StageManager",
+	[3] = "PlaySolo"
+}
+local empty = {}
 local function startSolo()
-	game:GetService("ReplicatedStorage"):WaitForChild("RE"):FireServer({
-		[1] = "Server",
-		[2] = "StageManager",
-		[3] = "PlaySolo"
-	}, {})  
+	game:GetService("ReplicatedStorage"):WaitForChild("RE"):FireServer(soloT, empty)
 end
 
 local function rollChance(table)
@@ -182,10 +190,8 @@ end
 
 local rf = game.ReplicatedStorage.RF
 local function gainScore(score)
-	spawn(function()
-		rf:InvokeServer({"Server", "RoundManager", "UpdateScore"},  {score})
-		rf:InvokeServer({"Server", "RoundManager", "UpdateHealth"}, {score > 0 and "Gain" or "Loss"})
-	end)
+	rf:InvokeServer({"Server", "RoundManager", "UpdateScore"},  {score})
+	rf:InvokeServer({"Server", "RoundManager", "UpdateHealth"}, {score > 0 and "Gain" or "Loss"})
 end
 
 if getfenv().hookmetamethod and getfenv().getnamecallmethod then
@@ -219,81 +225,106 @@ end
 local NPS, s = 0, ""
 local framesPassed = 0
 
-cons[#cons+1] = game["Run Service"].Heartbeat:Connect(function(delta)
+local function func3(keyCode)
+	nps[keyCode] = (nps[keyCode] or 0) + 1
+	task.wait(1)
+	nps[keyCode] = nps[keyCode] - 1
+	if nps[keyCode] < 0 then
+		nps[keyCode] = 0
+	end
+end
+
+local function func2(arrow, arrowData, count)
+	local keyCode = keyCodeMap[arrowData[(arrow.Data.Position % count) .. ''].Keybinds.Keyboard[1] ]
+
+	if vals.missnps ~= defaults.missnps and nps[keyCode] and nps[keyCode] > vals.missnps then
+		nps[keyCode] = nps[keyCode] - 1
+		arrow.HitValue = "Miss"
+		return
+	end
+	local arrowId = (id[keyCode] or 0) + 1
+
+	id[keyCode] = arrowId
+	task.spawn(func3, keyCode)
+	arrow.Buzy = true
+
+	PressKey(keyCode, false)
+	PressKey(keyCode, true)
+
+	local arrowLen = (arrow.Data.Length or 0)
+	if vals.extraDelay ~= 0 then
+		arrowLen = arrowLen + ((vals.extraDelay/1000) + (math.random(-vals.extraDelayRNG, vals.extraDelayRNG))/1000)
+	end
+	if vals.extraLongDelay ~= 0 and arrow.Data.Length and arrow.Data.Length ~= 0 then
+		arrowLen = arrowLen + (vals.extraLongDelay/1000) + (math.random(-vals.extraLongDelayRNG, vals.extraLongDelayRNG)/1000)
+	end
+
+	if arrowLen > 0 then
+		task.wait(arrowLen)
+	end
+
+	arrow.Buzy = false
+
+	if arrowId == id[keyCode] then
+		PressKey(keyCode, false)
+		id[keyCode] = 0
+	end
+end
+
+local function func1(arrow, arrowData, count)
+	rendered = rendered + 1
+
+	if not arrow or arrow.Buzy or arrow.HitValue == "Miss" or arrow.NoteDataConfigs and ignoredNoteTypes[arrow.NoteDataConfigs.Type] then return end
+
+	arrow.HitValue = arrow.HitValue or vals.autoplay and rollChance(vals.chances) or nil
+
+	if arrow.Side == framework.UI.CurrentSide then
+		local songTime = framework.SongPlayer.CurrentTime / (framework.SongPlayer.CurrentSongConfigs.PlaybackSpeed or 1)
+		local hitboxOffset = framework.Settings.HitboxOffset.Value / 1000
+
+		if vals.unfair then
+			arrow.Data.Time = songTime + hitboxOffset
+		end
+
+		if vals.autoplay and (vals.unfair or math.clamp((1 - math.abs(arrow.Data.Time - (songTime + hitboxOffset))) * 100, 0, 100) >= (hitVals[arrow.HitValue or "Sick"] or hitVals.Sick)) then
+			task.spawn(func2, arrow, arrowData, count)
+		end
+	end
+end
+
+local deltaSum, frames = 0, 12
+
+cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function(delta)
 	rendered = 0
+	deltaSum += delta
 	framesPassed = framesPassed + 1
-	if framesPassed == 12 then
-		fps = 1 / delta
+	if framesPassed == frames then
+		fps = frames / deltaSum
+		deltaSum = 0
 		framesPassed = 0
 	end
 
+	if vals.nomiss then
+		framework.UI.Misses = 0
+	end
+	if vals.combo then
+		framework.UI.Combo = 99999 - 1
+		framework.UI.TotalHits = 99999 - 1
+		framework.UI.Accuracy = (99999 * 100) - 1
+		if framework.UI.ScoreCounter then
+			framework.UI.ScoreCounter.Ok = 0
+			framework.UI.ScoreCounter.Bad = 0
+			framework.UI.ScoreCounter.Miss = -1
+			framework.UI.ScoreCounter.Good = 0
+			framework.UI.ScoreCounter.Sick = 99999 - 1
+		end
+	end
 	if vals.autoplay or vals.unfair then
 		local count = framework.SongPlayer:GetKeyCount()
 
 		local arrowData = framework.ArrowData[count .. 'Key'].Arrows
 		for i, arrow in next, framework.UI:GetNotes() do
-			spawn(function()
-				rendered = rendered + 1
-
-				if not arrow or arrow.Buzy or arrow.HitValue == "Miss" or arrow.NoteDataConfigs and ignoredNoteTypes[arrow.NoteDataConfigs.Type] then return end
-
-				arrow.HitValue = arrow.HitValue or vals.autoplay and rollChance(vals.chances) or nil
-
-				if arrow.Side == framework.UI.CurrentSide then
-					local songTime = framework.SongPlayer.CurrentTime / (framework.SongPlayer.CurrentSongConfigs.PlaybackSpeed or 1)
-					local hitboxOffset = framework.Settings.HitboxOffset.Value / 1000
-
-					if vals.unfair then
-						arrow.Data.Time = songTime + hitboxOffset
-					end
-
-					if vals.autoplay and (vals.unfair or math.clamp((1 - math.abs(arrow.Data.Time - (songTime + hitboxOffset))) * 100, 0, 100) >= (hitVals[arrow.HitValue or "Sick"] or hitVals.Sick)) then
-						spawn(function()	
-							local keyCode = keyCodeMap[arrowData[(arrow.Data.Position % count) .. ''].Keybinds.Keyboard[1] ]
-
-							if vals.missnps ~= defaults.missnps and nps[keyCode] and nps[keyCode] > vals.missnps then
-								nps[keyCode] = nps[keyCode] - 1
-								arrow.HitValue = "Miss"
-								return
-							end
-							local arrowId = (id[keyCode] or 0) + 1
-
-							id[keyCode] = arrowId
-							spawn(function()
-								nps[keyCode] = (nps[keyCode] or 0) + 1
-								task.wait(1)
-								nps[keyCode] = nps[keyCode] - 1
-								if nps[keyCode] < 0 then
-									nps[keyCode] = 0
-								end
-							end)
-							arrow.Buzy = true
-
-							PressKey(keyCode, false)
-							PressKey(keyCode, true)
-
-							local arrowLen = (arrow.Data.Length or 0)
-							if vals.extraDelay ~= 0 then
-								arrowLen = arrowLen + ((vals.extraDelay/1000) + (math.random(-vals.extraDelayRNG, vals.extraDelayRNG))/1000)
-							end
-							if vals.extraLongDelay ~= 0 and arrow.Data.Length and arrow.Data.Length ~= 0 then
-								arrowLen = arrowLen + (vals.extraLongDelay/1000) + (math.random(-vals.extraLongDelayRNG, vals.extraLongDelayRNG)/1000)
-							end
-
-							if arrowLen > 0 then
-								task.wait(arrowLen)
-							end
-
-							arrow.Buzy = false
-
-							if arrowId == id[keyCode] then
-								PressKey(keyCode, false)
-								id[keyCode] = 0
-							end
-						end)
-					end
-				end
-			end)
+			task.spawn(func1, arrow, arrowData, count)
 		end
 	end
 	npsText.Text = ""
@@ -341,7 +372,7 @@ spawn(function()
 	while not closed and task.wait(0) do
 		if vals.infscore then
 			for i=1, 3 do
-				gainScore(50000)
+				task.spawn(gainScore, 50000)
 			end
 		end
 	end
@@ -425,12 +456,21 @@ page:AddToggle({Caption = "Show FPS", Callback = function(bool)
 end, Default = false})
 
 local page = window:AddPage({Title = "Unfair"})
-page:AddToggle({Caption = "Unfair mode (Every note you will try to hit will be \"Sick 0.00ms\")", Callback = function(bool)
-	vals.unfair = bool
-end, Default = false})
-page:AddToggle({Caption = "Max score", Callback = function(bool)
-	vals.infscore = bool
-end, Default = false})
+if framework then
+	page:AddToggle({Caption = "Unfair mode (Every note you will try to hit will be \"Sick 0.00ms\")", Callback = function(bool)
+		vals.unfair = bool
+	end, Default = false})
+	page:AddToggle({Caption = "Max score", Callback = function(bool)
+		vals.infscore = bool
+	end, Default = false})
+	page:AddToggle({Caption = "No miss", Callback = function(bool)
+		vals.nomiss = bool
+	end, Default = false})
+	page:AddToggle({Caption = "Mega-omega super-tuber nitro-ohio combo", Callback = function(bool)
+		vals.combo = bool
+	end, Default = false})
+	page:AddSeparator()
+end
 if getfenv().hookmetamethod and getfenv().getnamecallmethod then
 	page:AddToggle({Caption = "Mega score: Any score change will act like you just hit \"Sick\" note", Callback = function(bool)
 		vals.megascore = bool
@@ -438,15 +478,10 @@ if getfenv().hookmetamethod and getfenv().getnamecallmethod then
 	page:AddToggle({Caption = "Increase score on miss", Callback = function(bool)
 		vals.increaseonmiss = bool
 	end, Default = false})
-	page:AddToggle({Caption = "No miss", Callback = function(bool)
-		vals.nomiss = bool
-	end, Default = false})
-	page:AddLabel({Caption = "\"No miss\" does work, it just not changing the text."})
 	page:AddToggle({Caption = "No death", Callback = function(bool)
 		vals.nodeath = bool
 	end, Default = false})
 end
-page:AddSeparator()
 local grant = "0"
 local tb; tb = page:AddTextBox({Caption = "Score to give yourself", Placeholder = "", Default = grant, Callback = function(txt)
 	if txt == grant then return end
@@ -463,28 +498,28 @@ page:AddButton({Caption = "Give score", Callback = function()
 		if num > step then
 			local leftover = num
 			for i = step, num, step do
-				gainScore(step)
+				task.spawn(gainScore, step)
 				leftover = leftover - step
 				if i % (step * 25) == 0 then
 					task.wait()
 				end
 			end
-			gainScore(leftover)
+			task.spawn(gainScore, leftover)
 		elseif num < -step then
 			local leftover = num
 			for i = step, math.abs(num), step do
-				gainScore(-step)
+				task.spawn(gainScore, -step)
 				leftover = leftover + step
 				if i % (step * 25) == 0 then
 					task.wait()
 				end
 			end
-			gainScore(leftover)
+			task.spawn(gainScore, leftover)
 		else
-			gainScore(num)
+			task.spawn(gainScore, num)
 		end
 	end
 end})
 if getfenv().hookmetamethod then
-	page:AddLabel({Caption = "Warning: Giving score can be buggy when max score or mega score options are enabled.\nAlso breaks on multiplayer"})
+	page:AddLabel({Caption = "Warning: Giving score can be buggy when max score or mega score options are enabled.\nAlso might break on multiplayer"})
 end
