@@ -1,13 +1,12 @@
 {
-  "Themes": {
-    "Acid": {"Text": [255,255,255], "Main": [0,255,0], "Back": [35,35,35]},
-    "Default": {"Text": [255,255,255], "Main": [170,0,255], "Back": [35,35,35]},
-    "Light": {"Text": [0,0,0], "Main": [100,100,100], "Back": [255,255,255]}
-  },
-  "Patterns": {
-	  "Custom": "",
-	  "Checkers pattern": "rbxassetid://15562720000",
-	  "Rounded corner pattern": "rbxassetid://846693570",
-	  "Stripes": "rbxassetid://87577631610763"
-  }
+	"Themes": {
+		"Acid": {"Text": [255,255,255], "Main": [0,255,0], "Back": [35,35,35]},
+		"Default": {"Text": [255,255,255], "Main": [170,0,255], "Back": [35,35,35]},
+		"Light": {"Text": [0,0,0], "Main": [100,100,100], "Back": [255,255,255]}},
+	"Patterns": {
+		"Custom": "",
+		"Checkers pattern": "rbxassetid://15562720000",
+		"Rounded corner pattern": "rbxassetid://846693570",
+		"Stripes": "rbxassetid://87577631610763"
+	}
 }
