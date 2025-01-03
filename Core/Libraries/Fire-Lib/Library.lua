@@ -1,5 +1,5 @@
 local Instance1 = Instance.new("ScreenGui", pcall(function() return game.CoreGui:GetFullName() end) and game.CoreGui or game:GetService("TestService")) --Fire Library
-Instance1.Enabled = true
+Instance1.Enabled = false
 Instance1.SafeAreaCompatibility = Enum.SafeAreaCompatibility.FullscreenExtension
 Instance1.IgnoreGuiInset = true
 Instance1.ClipToDeviceSafeArea = true
@@ -4803,7 +4803,7 @@ local configsEnabled = typeof(writefile) == "function" and typeof(readfile) == "
 local themes
 local versions
 local try, e = pcall(function()
-    local str = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Data/Versions.json"))
+    local str = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Data/Versions.json"))
     versions = {
         ["FireLibraryVersion"] = str[2],
         ["FireHubVersion"] = str[1]
