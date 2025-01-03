@@ -20,6 +20,14 @@ end, Size = UDim2.fromScale(1, 0.75), -- size is not important
 })
 ```
 
+## We can also add keysystem here
+```lua
+local window = lib:MakeWindow({Title = "Fire~Lib: Example", Key = function(key)
+	return key == "GVnt2ba"
+end, Url = "discord.gg/4bexJD6WVT")
+```
+### !KEYSYSTEM WON'T APPEAR IF YOU DON'T PROVIDE "KEY" FUNCTION OR "URL" OPTION!
+
 After we got a window, we need to put stuff in it
 ### Showing / Hiding / Toggling / Closing the window
 ```lua
@@ -142,7 +150,9 @@ local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusS
 
 local window = lib:MakeWindow({Title = "Fire~Lib: Example", CloseCallback = function()
 	print("Closed!")
-end, Size = UDim2.fromScale(1, 0.75), Theme = {Text = Color3.new(0, 0, 0)}}) -- black
+end, Size = UDim2.fromScale(1, 0.75), Theme = {Text = Color3.new(0, 0, 0)  --[[black]]}, Key = function(key)
+	return key == ""
+end, Url = "discord.gg/4bexJD6WVT"})
 window.ThemeColors.Main = Color3.new(1,0,0) -- red
 
 local page = window:AddPage({Title = "Example page!"})
