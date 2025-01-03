@@ -4785,6 +4785,16 @@ if getGlobalTable()._FIRELIB then
     end)
     return getGlobalTable()._FIRELIB
 end
+
+script.Parent.Holder.Window.Visible = false
+script.Parent.Holder.Window.HolderFrame.PageDisplay.Page.Visible = false
+script.Parent.Holder.Window.HolderFrame.PageButtons.PageButton.Visible = false
+for i,v in script.Parent.Holder.Window.HolderFrame.PageDisplay.Page:GetChildren() do
+    if v and v:IsA("GuiObject") then
+        v.Visible = false
+    end
+end
+
 local writefile, readfile, makefolder, isfolder, isfile, listfiles = getfenv().writefile, getfenv().readfile, getfenv().makefolder or getfenv().createfolder, getfenv().isfolder, getfenv().isfile or getfenv().readfile and function(path)
     return typeof(select(2, pcall(getfenv().readfile, path))) == "string"
 end, getfenv().listfiles
@@ -4792,14 +4802,16 @@ local configsEnabled = typeof(writefile) == "function" and typeof(readfile) == "
 
 local themes
 local versions
-if not pcall(function()
-        local str = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Data/Versions.json"))
-        versions = {
-            ["FireLibraryVersion"] = str[2],
-            ["FireHubVersion"] = str[1]
-        }
-        themes = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/refs/heads/main/Core/Data/Theme.json"))
-    end) then
+local try, e = pcall(function()
+    local str = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Data/Versions.json"))
+    versions = {
+        ["FireLibraryVersion"] = str[2],
+        ["FireHubVersion"] = str[1]
+    }
+    themes = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/refs/heads/main/Core/Data/Theme.json"))
+end)
+if not try then
+    warn(e)
     versions = {
         ["FireLibraryVersion"] = "5.2.0",
         ["FireHubVersion"] = "4.0.2"
@@ -4970,15 +4982,6 @@ local blockedCodes = {
     Enum.KeyCode.ScrollLock,
     Enum.KeyCode.NumLock
 }
-
-script.Parent.Holder.Window.Visible = false
-script.Parent.Holder.Window.HolderFrame.PageDisplay.Page.Visible = false
-script.Parent.Holder.Window.HolderFrame.PageButtons.PageButton.Visible = false
-for i,v in script.Parent.Holder.Window.HolderFrame.PageDisplay.Page:GetChildren() do
-    if v and v:IsA("GuiObject") then
-        v.Visible = false
-    end
-end
 
 local lib; lib = {
     Notifications = {
