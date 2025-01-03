@@ -3869,7 +3869,7 @@ Instance152.ScaleType = Enum.ScaleType.Tile
 Instance152.BackgroundColor3 = Color3.new(1, 1, 1)
 Instance152.ImageTransparency = 0.8999999761581421
 Instance152.AnchorPoint = Vector2.new(0, 0)
-Instance152.Image = "rbxassetid://87577631610763"
+Instance152.Image = "rbxassetid://15562720000"
 Instance152.TileSize = UDim2.new(0, 30, 0, 30)
 Instance152.ImageRectSize = Vector2.new(0, 0)
 Instance152.SelectionOrder = 0
@@ -3915,7 +3915,7 @@ Instance154.ScaleType = Enum.ScaleType.Tile
 Instance154.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
 Instance154.ImageTransparency = 0.75
 Instance154.AnchorPoint = Vector2.new(0, 0)
-Instance154.Image = "rbxassetid://87577631610763"
+Instance154.Image = "rbxassetid://15562720000"
 Instance154.TileSize = UDim2.new(0, 30, 0, 30)
 Instance154.ImageRectSize = Vector2.new(0, 0)
 Instance154.SelectionOrder = 0
@@ -4790,6 +4790,7 @@ local writefile, readfile, makefolder, isfolder, isfile, listfiles = getfenv().w
 end, getfenv().listfiles
 local configsEnabled = typeof(writefile) == "function" and typeof(readfile) == "function"
 
+local themes
 local versions
 if not pcall(function()
         local str = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Core/Data/Versions.json"))
@@ -4797,11 +4798,43 @@ if not pcall(function()
             ["FireLibraryVersion"] = str[2],
             ["FireHubVersion"] = str[1]
         }
+        themes = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/refs/heads/main/Core/Data/Theme.json"))
     end) then
     versions = {
-        ["FireLibraryVersion"] = "5.2",
+        ["FireLibraryVersion"] = "5.2.0",
         ["FireHubVersion"] = "4.0.2"
     }
+    themes = {
+        Patterns = {
+            ["Stripes"] = "rbxassetid://87577631610763",
+            ["Rounded corner pattern"] = "rbxassetid://846693570",
+            ["Checkers pattern"] = "rbxassetid://15562720000",
+            ["Custom"] = ""
+        },
+        Themes = {
+            Default = {
+                Main = {170, 0, 255},
+                Back = {35, 35, 35},
+                Text = {255, 255, 255}
+            },
+            Acid = {
+                Main = {0, 255, 0},
+                Back = {35, 35, 35},
+                Text = {255, 255, 255}
+            },
+            Light = {
+                Main = {100, 100, 100},
+                Back = {255, 255, 255},
+                Text = {0, 0, 0}
+            }
+        }
+    }
+end
+
+for i,v in themes.Themes do
+    for idx, val in themes.Themes[i] do
+        themes.Themes[i][idx] = Color3.fromRGB(themes.Themes[i][idx][1], themes.Themes[i][idx][2], themes.Themes[i][idx][3])
+    end
 end
 
 script.Parent.Name = "Fire-Lib [ID:"..game.HttpService:GenerateGUID(false).."]"
@@ -6420,45 +6453,67 @@ local lib; lib = {
                 end
             end})
         end
+        
+        local themeRows = {}
+        for i,v in themes.Themes do
+            themeRows[#themeRows+1] = i
+        end
+        
+        page:AddSeparator()
+        page:AddDropdown({Title = "Themes", Rows = themeRows, Callback = function(_,v)
+            for i,v in themes.Themes[v] do
+                windowFuncs.ThemeColors[i] = v
+            end
+        end})
 
         page:AddSeparator()
         page:Label({Text = "Back image"})
         page:AddSeparator()
 
-        local images = {
-            ["Stripes"] = "rbxassetid://87577631610763",
-            ["Custom"] = ""
-        }
+        local tileMode = false
         local rows = {}
-        for i,v in images do
+        for i,v in themes.Patterns do
             rows[#rows+1] = i
         end
 
-        local custom
-        local dd = page:AddDropdown({Title = "Back image", Rows = rows, Callback = function(_,v)
-            window.Stripes.Image = images[v]
-            window.HolderFrame.Stripes.Image = images[v]
+        local custom, tile
+        local dd = page:AddDropdown({Title = "Background image", Rows = rows, Callback = function(_,v)
+            window.Stripes.Image = themes.Patterns[v]
+            window.HolderFrame.Stripes.Image = themes.Patterns[v]
             
-            window.Stripes.ScaleType = v == "Custom" and Enum.ScaleType.Fit or Enum.ScaleType.Tile
+            window.Stripes.ScaleType = v == "Custom" and not tileMode and Enum.ScaleType.Fit or Enum.ScaleType.Tile
             window.HolderFrame.Stripes.ScaleType = window.Stripes.ScaleType
             
             if v == "Custom" then
                 custom:Show()
+                tile:Show()
             else
                 custom:Hide()
+                tile:Hide()
             end
         end, Default = "Stripes"})
         custom = page:AddTextBox({Title = "Custom image id", Default = "", Callback = function(text)
             if not text:match("rbxassetid") and not text:match("asset/%?id%=") then
                 return custom:Set("rbxassetid://"..text)
             end
-            images.Custom = text
+            themes.Patterns.Custom = text
             window.Stripes.Image = text
             window.HolderFrame.Stripes.Image = text
         end})
+        tile = page:AddToggle({Title = "Tile mode", Default = false, Callback = function(new)
+            tileMode = new
+            
+            window.Stripes.ScaleType = tileMode and Enum.ScaleType.Tile or Enum.ScaleType.Fit
+            window.HolderFrame.Stripes.ScaleType = window.Stripes.ScaleType
+        end})
+        
+        tile:Hide()
         custom:Hide()
-        window.Stripes.Image = images.Stripes
-        window.HolderFrame.Stripes.Image = images.Stripes
+
+        window.Stripes.ScaleType = Enum.ScaleType.Tile
+        window.HolderFrame.Stripes.ScaleType = window.Stripes.ScaleType
+        window.Stripes.Image = themes.Patterns.Stripes
+        window.HolderFrame.Stripes.Image = themes.Patterns.Stripes
 
         page:AddColorPicker({Text = "Outline image color", Default = window.Stripes.ImageColor3, Callback = function(col)
             window.Stripes.ImageColor3 = col
