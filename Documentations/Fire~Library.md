@@ -11,7 +11,13 @@ Now we can use the library!
 ```lua
 local window = lib:MakeWindow({Title = "Fire~Lib: Example", CloseCallback = function()
 	print("Closed!")
-end, Size = UDim2.fromScale(1, 0.75)}) -- size is not important
+end, Size = UDim2.fromScale(1, 0.75), -- size is not important
+	Theme = { -- theme is not important too
+		Main = Color3.new(1,0,1), -- pink
+		Text = Color3.new(1,0.6,1), -- soft pink
+		Back = Color3.new(0.4,0,0.4) -- dark pink
+	}
+})
 ```
 
 After we got a window, we need to put stuff in it
@@ -136,7 +142,7 @@ local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusS
 
 local window = lib:MakeWindow({Title = "Fire~Lib: Example", CloseCallback = function()
 	print("Closed!")
-end, Size = UDim2.fromScale(1, 0.75)})
+end, Size = UDim2.fromScale(1, 0.75), Theme = {Text = Color3.new(0, 0, 0)}}) -- black
 window.ThemeColors.Main = Color3.new(1,0,0) -- red
 
 local page = window:AddPage({Title = "Example page!"})
