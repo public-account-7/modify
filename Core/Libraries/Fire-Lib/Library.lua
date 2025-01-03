@@ -255,7 +255,7 @@ Instance13.AutomaticCanvasSize = Enum.AutomaticSize.X
 Instance13.Selectable = true
 Instance13.AnchorPoint = Vector2.new(0, 0)
 Instance13.Name = "PageButtons"
-Instance13.Visible = true
+Instance13.Visible = false
 Instance13.Size = UDim2.new(1, 0, 0.06499999761581421, 0)
 Instance13.ScrollBarImageColor3 = Color3.new(0, 0, 0)
 Instance13.BorderSizePixel = 0
@@ -456,7 +456,7 @@ Instance20.AutomaticCanvasSize = Enum.AutomaticSize.Y
 Instance20.Selectable = true
 Instance20.AnchorPoint = Vector2.new(0, 0)
 Instance20.Name = "Page"
-Instance20.Visible = true
+Instance20.Visible = false
 Instance20.Size = UDim2.new(1, 0, 1, 0)
 Instance20.ScrollBarImageColor3 = Color3.new(0.764706, 0.0980392, 1.09804)
 Instance20.BorderSizePixel = 0
@@ -3012,7 +3012,7 @@ Instance120.BorderMode = Enum.BorderMode.Outline
 Instance120.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
 local Instance121 = Instance.new("Frame", Instance10) --KeySystem
-Instance121.Visible = false
+Instance121.Visible = true
 Instance121.SelectionOrder = 0
 Instance121.Name = "KeySystem"
 Instance121.Active = false
@@ -3022,15 +3022,15 @@ Instance121.Style = Enum.FrameStyle.Custom
 Instance121.LayoutOrder = 0
 Instance121.SizeConstraint = Enum.SizeConstraint.RelativeXY
 Instance121.ZIndex = 80000
-Instance121.Size = UDim2.new(1, 0, 0.843999981880188, -1)
+Instance121.Size = UDim2.new(1, 0, 0.921999990940094, 0)
 Instance121.Draggable = false
-Instance121.Position = UDim2.new(0, 0, 0.15600000321865082, 1)
+Instance121.Position = UDim2.new(0, 0, 0.07800000160932541, 0)
 Instance121.Selectable = false
 Instance121.ClipsDescendants = false
 Instance121.BorderColor3 = Color3.new(0, 0, 0)
 Instance121.BorderSizePixel = 0
 Instance121.Rotation = 0
-Instance121.BackgroundTransparency = 0
+Instance121.BackgroundTransparency = 1
 Instance121.BorderMode = Enum.BorderMode.Outline
 Instance121.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
@@ -3231,7 +3231,7 @@ Instance128.AnchorPoint = Vector2.new(0, 0)
 Instance128.TextSize = 14
 Instance128.TextDirection = Enum.TextDirection.Auto
 Instance128.CursorPosition = 1
-Instance128.PlaceholderText = "Skibidi Sigma"
+Instance128.PlaceholderText = "Your key here..."
 Instance128.ShowNativeInput = true
 Instance128.Selectable = true
 Instance128.BackgroundTransparency = 1
@@ -3845,7 +3845,7 @@ Instance151.Style = Enum.FrameStyle.Custom
 Instance151.LayoutOrder = 999
 Instance151.SizeConstraint = Enum.SizeConstraint.RelativeXY
 Instance151.ZIndex = 80001
-Instance151.Size = UDim2.new(1, 0, 0.20000000298023224, 0)
+Instance151.Size = UDim2.new(1, 0, 0.10000000149011612, 0)
 Instance151.Draggable = false
 Instance151.Position = UDim2.new(0, 0, 0, 0)
 Instance151.Selectable = false
@@ -3857,166 +3857,152 @@ Instance151.BackgroundTransparency = 1
 Instance151.BorderMode = Enum.BorderMode.Outline
 Instance151.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance152 = Instance.new("ImageLabel", Instance10) --Stripes
-Instance152.Visible = true
-Instance152.Active = false
+local Instance152 = Instance.new("TextButton", Instance121) --CloseUI
+Instance152.LayoutOrder = 4
+Instance152.TextWrapped = false
+Instance152.LineHeight = 1
+Instance152.Active = true
+Instance152.TextStrokeTransparency = 1
+Instance152.TextTruncate = Enum.TextTruncate.None
 Instance152.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance152.ZIndex = 10002
-Instance152.BorderSizePixel = 0
-Instance152.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance152.ZIndex = 80001
+Instance152.TextWrap = false
 Instance152.Draggable = false
-Instance152.ScaleType = Enum.ScaleType.Tile
-Instance152.BackgroundColor3 = Color3.new(1, 1, 1)
-Instance152.ImageTransparency = 0.8999999761581421
-Instance152.AnchorPoint = Vector2.new(0, 0)
-Instance152.Image = "rbxassetid://15562720000"
-Instance152.TileSize = UDim2.new(0, 30, 0, 30)
-Instance152.ImageRectSize = Vector2.new(0, 0)
+Instance152.RichText = false
+Instance152.Modal = false
 Instance152.SelectionOrder = 0
-Instance152.Selectable = false
-Instance152.Size = UDim2.new(1, 0, 1, 0)
-Instance152.Name = "Stripes"
-Instance152.ResampleMode = Enum.ResamplerMode.Default
+Instance152.Selectable = true
+Instance152.AutoButtonColor = true
+Instance152.TextXAlignment = Enum.TextXAlignment.Center
+Instance152.Name = "CloseUI"
+Instance152.TextYAlignment = Enum.TextYAlignment.Center
+Instance152.TextScaled = false
+Instance152.TextDirection = Enum.TextDirection.Auto
+Instance152.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance152.Visible = true
+Instance152.BorderMode = Enum.BorderMode.Outline
+Instance152.TextTransparency = 0
+Instance152.FontSize = Enum.FontSize.Size14
+Instance152.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance152.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance152.AnchorPoint = Vector2.new(0, 0)
+Instance152.TextSize = 14
+Instance152.TextColor3 = Color3.new(0, 0, 0)
+Instance152.Selected = false
+Instance152.AutomaticSize = Enum.AutomaticSize.None
+Instance152.Size = UDim2.new(1, 0, 0.10000000149011612, 0)
 Instance152.ClipsDescendants = false
 Instance152.BorderColor3 = Color3.new(0, 0, 0)
-Instance152.ImageColor3 = Color3.new(0, 0, 0)
-Instance152.LayoutOrder = 0
-Instance152.BorderMode = Enum.BorderMode.Outline
+Instance152.Text = ""
+Instance152.BorderSizePixel = 0
 Instance152.Rotation = 0
-Instance152.ImageRectOffset = Vector2.new(0, 0)
 Instance152.BackgroundTransparency = 1
+Instance152.MaxVisibleGraphemes = -1
 Instance152.Position = UDim2.new(0, 0, 0, 0)
-Instance152.SliceScale = 1
-Instance152.AutomaticSize = Enum.AutomaticSize.None
+Instance152.Style = Enum.ButtonStyle.Custom
 
-local Instance153 = Instance.new("UIGradient", Instance8) --UIGradient
-Instance153.Offset = Vector2.new(0, 0)
-Instance153.Color = ColorSequence.new({
-    [1] = ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
-    [2] = ColorSequenceKeypoint.new(1, Color3.new(0.784314, 0.784314, 0.784314))
-})
-Instance153.Rotation = 45
-Instance153.Transparency = NumberSequence.new({
-    [1] = NumberSequenceKeypoint.new(0, 0, 0),
-    [2] = NumberSequenceKeypoint.new(1, 0, 0)
-})
-Instance153.Name = "UIGradient"
-Instance153.Enabled = true
+local Instance153 = Instance.new("Frame", Instance152) --ToggleOuter
+Instance153.Visible = true
+Instance153.SelectionOrder = 0
+Instance153.Name = "ToggleOuter"
+Instance153.Active = false
+Instance153.AutomaticSize = Enum.AutomaticSize.None
+Instance153.AnchorPoint = Vector2.new(0, 0.5)
+Instance153.Style = Enum.FrameStyle.Custom
+Instance153.LayoutOrder = 0
+Instance153.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance153.ZIndex = 80002
+Instance153.Size = UDim2.new(0.05000000074505806, -1, 1, 0)
+Instance153.Draggable = false
+Instance153.Position = UDim2.new(0.05000000074505806, 0, 0.5, 0)
+Instance153.Selectable = false
+Instance153.ClipsDescendants = false
+Instance153.BorderColor3 = Color3.new(0, 0, 0)
+Instance153.BorderSizePixel = 0
+Instance153.Rotation = 0
+Instance153.BackgroundTransparency = 0
+Instance153.BorderMode = Enum.BorderMode.Outline
+Instance153.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance154 = Instance.new("ImageLabel", Instance8) --Stripes
-Instance154.Visible = true
-Instance154.Active = false
-Instance154.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance154.ZIndex = 10001
-Instance154.BorderSizePixel = 0
-Instance154.SliceCenter = Rect.new(0, 0, 0, 0)
-Instance154.Draggable = false
-Instance154.ScaleType = Enum.ScaleType.Tile
-Instance154.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
-Instance154.ImageTransparency = 0.75
-Instance154.AnchorPoint = Vector2.new(0, 0)
-Instance154.Image = "rbxassetid://15562720000"
-Instance154.TileSize = UDim2.new(0, 30, 0, 30)
-Instance154.ImageRectSize = Vector2.new(0, 0)
-Instance154.SelectionOrder = 0
-Instance154.Selectable = false
-Instance154.Size = UDim2.new(1, 0, 1, 0)
-Instance154.Name = "Stripes"
-Instance154.ResampleMode = Enum.ResamplerMode.Default
-Instance154.ClipsDescendants = false
-Instance154.BorderColor3 = Color3.new(0, 0, 0)
-Instance154.ImageColor3 = Color3.new(1, 1, 1)
-Instance154.LayoutOrder = 0
-Instance154.BorderMode = Enum.BorderMode.Outline
-Instance154.Rotation = 0
-Instance154.ImageRectOffset = Vector2.new(0, 0)
-Instance154.BackgroundTransparency = 1
-Instance154.Position = UDim2.new(0, 0, 0, 0)
-Instance154.SliceScale = 1
-Instance154.AutomaticSize = Enum.AutomaticSize.None
+local Instance154 = Instance.new("UIAspectRatioConstraint", Instance153) --UIAspectRatioConstraint
+Instance154.DominantAxis = Enum.DominantAxis.Width
+Instance154.AspectRatio = 1
+Instance154.Name = "UIAspectRatioConstraint"
+Instance154.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Instance155 = Instance.new("UIAspectRatioConstraint", Instance7) --UIAspectRatioConstraint
-Instance155.DominantAxis = Enum.DominantAxis.Width
-Instance155.AspectRatio = 1
-Instance155.Name = "UIAspectRatioConstraint"
-Instance155.AspectType = Enum.AspectType.FitWithinMaxSize
+local Instance155 = Instance.new("Frame", Instance153) --Frame
+Instance155.Visible = true
+Instance155.SelectionOrder = 0
+Instance155.Name = "Frame"
+Instance155.Active = false
+Instance155.AutomaticSize = Enum.AutomaticSize.None
+Instance155.AnchorPoint = Vector2.new(0, 0)
+Instance155.Style = Enum.FrameStyle.Custom
+Instance155.LayoutOrder = 0
+Instance155.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance155.ZIndex = 80003
+Instance155.Size = UDim2.new(1, -4, 1, -4)
+Instance155.Draggable = false
+Instance155.Position = UDim2.new(0, 2, 0, 2)
+Instance155.Selectable = false
+Instance155.ClipsDescendants = false
+Instance155.BorderColor3 = Color3.new(0, 0, 0)
+Instance155.BorderSizePixel = 0
+Instance155.Rotation = 0
+Instance155.BackgroundTransparency = 0
+Instance155.BorderMode = Enum.BorderMode.Outline
+Instance155.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance156 = Instance.new("Frame", Instance7) --MobileMaximize
-Instance156.Visible = false
-Instance156.SelectionOrder = 0
-Instance156.Name = "MobileMaximize"
+local Instance156 = Instance.new("ImageLabel", Instance155) --ImageLabel
+Instance156.Visible = true
 Instance156.Active = false
-Instance156.AutomaticSize = Enum.AutomaticSize.None
-Instance156.AnchorPoint = Vector2.new(0.5, 0)
-Instance156.Style = Enum.FrameStyle.Custom
-Instance156.LayoutOrder = 0
 Instance156.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance156.ZIndex = 100001
-Instance156.Size = UDim2.new(0, 50, 0, 50)
+Instance156.ZIndex = 80004
+Instance156.BorderSizePixel = 0
+Instance156.SliceCenter = Rect.new(0, 0, 0, 0)
 Instance156.Draggable = false
-Instance156.Position = UDim2.new(0.5, 0, 0.800000011920929, 0)
+Instance156.ScaleType = Enum.ScaleType.Stretch
+Instance156.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance156.ImageTransparency = 0
+Instance156.AnchorPoint = Vector2.new(0.5, 0.5)
+Instance156.Image = "http://www.roblox.com/asset/?id=5715427603"
+Instance156.TileSize = UDim2.new(1, 0, 1, 0)
+Instance156.ImageRectSize = Vector2.new(0, 0)
+Instance156.SelectionOrder = 0
 Instance156.Selectable = false
+Instance156.Size = UDim2.new(0.8999999761581421, 0, 0.8999999761581421, 0)
+Instance156.Name = "ImageLabel"
+Instance156.ResampleMode = Enum.ResamplerMode.Default
 Instance156.ClipsDescendants = false
 Instance156.BorderColor3 = Color3.new(0, 0, 0)
-Instance156.BorderSizePixel = 0
-Instance156.Rotation = 0
-Instance156.BackgroundTransparency = 1
+Instance156.ImageColor3 = Color3.new(0.666667, 0, 1)
+Instance156.LayoutOrder = 0
 Instance156.BorderMode = Enum.BorderMode.Outline
-Instance156.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance156.Rotation = 0
+Instance156.ImageRectOffset = Vector2.new(0, 0)
+Instance156.BackgroundTransparency = 1
+Instance156.Position = UDim2.new(0.5, 0, 0.5, 0)
+Instance156.SliceScale = 1
+Instance156.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance157 = Instance.new("TextButton", Instance156) --DragButton
-Instance157.LayoutOrder = 0
-Instance157.TextWrapped = false
-Instance157.LineHeight = 1
-Instance157.Active = true
-Instance157.TextStrokeTransparency = 1
-Instance157.TextTruncate = Enum.TextTruncate.None
-Instance157.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance157.ZIndex = 100002
-Instance157.TextWrap = false
-Instance157.Draggable = false
-Instance157.RichText = false
-Instance157.Modal = false
-Instance157.SelectionOrder = 0
-Instance157.Selectable = true
-Instance157.AutoButtonColor = true
-Instance157.TextXAlignment = Enum.TextXAlignment.Center
-Instance157.Name = "DragButton"
-Instance157.TextYAlignment = Enum.TextYAlignment.Center
-Instance157.TextScaled = false
-Instance157.TextDirection = Enum.TextDirection.Auto
-Instance157.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
-Instance157.Visible = true
-Instance157.BorderMode = Enum.BorderMode.Outline
-Instance157.TextTransparency = 0
-Instance157.FontSize = Enum.FontSize.Size14
-Instance157.TextStrokeColor3 = Color3.new(0, 0, 0)
-Instance157.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
-Instance157.AnchorPoint = Vector2.new(0, 0)
-Instance157.TextSize = 14
-Instance157.TextColor3 = Color3.new(0, 0, 0)
-Instance157.Selected = false
-Instance157.AutomaticSize = Enum.AutomaticSize.None
-Instance157.Size = UDim2.new(1, 0, 1, 0)
-Instance157.ClipsDescendants = false
-Instance157.BorderColor3 = Color3.new(0, 0, 0)
-Instance157.Text = ""
-Instance157.BorderSizePixel = 0
-Instance157.Rotation = 45
-Instance157.BackgroundTransparency = 0
-Instance157.MaxVisibleGraphemes = -1
-Instance157.Position = UDim2.new(0, 0, 0, 0)
-Instance157.Style = Enum.ButtonStyle.Custom
+local Instance157 = Instance.new("UIStroke", Instance153) --UIStroke
+Instance157.Enabled = true
+Instance157.Color = Color3.new(0, 0, 0)
+Instance157.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
+Instance157.Thickness = 1
+Instance157.Transparency = 0
+Instance157.Name = "UIStroke"
+Instance157.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance158 = Instance.new("TextLabel", Instance157) --Text
+local Instance158 = Instance.new("TextLabel", Instance152) --Text
 Instance158.LayoutOrder = 0
 Instance158.TextWrapped = true
 Instance158.LineHeight = 1
-Instance158.Active = false
+Instance158.Active = true
 Instance158.TextStrokeTransparency = 1
 Instance158.TextTruncate = Enum.TextTruncate.None
 Instance158.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance158.ZIndex = 100003
+Instance158.ZIndex = 80002
 Instance158.BorderSizePixel = 0
 Instance158.Draggable = false
 Instance158.RichText = false
@@ -4024,267 +4010,315 @@ Instance158.TextWrap = true
 Instance158.TextTransparency = 0
 Instance158.TextYAlignment = Enum.TextYAlignment.Center
 Instance158.TextScaled = true
-Instance158.TextXAlignment = Enum.TextXAlignment.Center
-Instance158.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance158.TextXAlignment = Enum.TextXAlignment.Left
+Instance158.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
 Instance158.Name = "Text"
 Instance158.BorderMode = Enum.BorderMode.Outline
 Instance158.Selectable = false
 Instance158.TextDirection = Enum.TextDirection.Auto
 Instance158.Visible = true
 Instance158.FontSize = Enum.FontSize.Size14
-Instance158.AnchorPoint = Vector2.new(0, 0)
+Instance158.AnchorPoint = Vector2.new(0.5, 0.5)
 Instance158.TextStrokeColor3 = Color3.new(0, 0, 0)
 Instance158.TextSize = 14
 Instance158.AutomaticSize = Enum.AutomaticSize.None
-Instance158.Size = UDim2.new(1, 0, 1, 0)
+Instance158.Size = UDim2.new(0.824999988079071, 0, 0.4000000059604645, 0)
 Instance158.TextColor3 = Color3.new(1, 1, 1)
 Instance158.ClipsDescendants = false
 Instance158.BorderColor3 = Color3.new(0, 0, 0)
-Instance158.Text = "+"
+Instance158.Text = "Close UI"
 Instance158.SelectionOrder = 0
 Instance158.BackgroundColor3 = Color3.new(1, 1, 1)
-Instance158.Rotation = -45
+Instance158.Rotation = 0
 Instance158.BackgroundTransparency = 1
-Instance158.Position = UDim2.new(0, 0, 0, 0)
+Instance158.Position = UDim2.new(0.5249999761581421, 0, 0.5, 0)
 Instance158.MaxVisibleGraphemes = -1
 
-local Instance159 = Instance.new("UIStroke", Instance157) --UIStroke
-Instance159.Enabled = true
-Instance159.Color = Color3.new(0, 0, 0)
-Instance159.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Instance159.Thickness = 3
-Instance159.Transparency = 0
-Instance159.Name = "UIStroke"
-Instance159.LineJoinMode = Enum.LineJoinMode.Round
+local Instance159 = Instance.new("TextButton", Instance152) --Trigger
+Instance159.LayoutOrder = 0
+Instance159.TextWrapped = false
+Instance159.LineHeight = 1
+Instance159.Active = true
+Instance159.TextStrokeTransparency = 1
+Instance159.TextTruncate = Enum.TextTruncate.None
+Instance159.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance159.ZIndex = 80002
+Instance159.TextWrap = false
+Instance159.Draggable = false
+Instance159.RichText = false
+Instance159.Modal = false
+Instance159.SelectionOrder = 0
+Instance159.Selectable = true
+Instance159.AutoButtonColor = true
+Instance159.TextXAlignment = Enum.TextXAlignment.Center
+Instance159.Name = "Trigger"
+Instance159.TextYAlignment = Enum.TextYAlignment.Center
+Instance159.TextScaled = false
+Instance159.TextDirection = Enum.TextDirection.Auto
+Instance159.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance159.Visible = true
+Instance159.BorderMode = Enum.BorderMode.Outline
+Instance159.TextTransparency = 0
+Instance159.FontSize = Enum.FontSize.Size14
+Instance159.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance159.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance159.AnchorPoint = Vector2.new(0, 0)
+Instance159.TextSize = 14
+Instance159.TextColor3 = Color3.new(0, 0, 0)
+Instance159.Selected = false
+Instance159.AutomaticSize = Enum.AutomaticSize.None
+Instance159.Size = UDim2.new(1, 0, 1, 0)
+Instance159.ClipsDescendants = false
+Instance159.BorderColor3 = Color3.new(0, 0, 0)
+Instance159.Text = ""
+Instance159.BorderSizePixel = 0
+Instance159.Rotation = 0
+Instance159.BackgroundTransparency = 1
+Instance159.MaxVisibleGraphemes = -1
+Instance159.Position = UDim2.new(0, 0, 0, 0)
+Instance159.Style = Enum.ButtonStyle.Custom
 
-local Instance160 = Instance.new("UICorner", Instance157) --UICorner
-Instance160.Name = "UICorner"
-Instance160.CornerRadius = UDim.new(0.200000003, 0)
+local Instance160 = Instance.new("ImageLabel", Instance10) --Stripes
+Instance160.Visible = true
+Instance160.Active = false
+Instance160.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance160.ZIndex = 10002
+Instance160.BorderSizePixel = 0
+Instance160.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance160.Draggable = false
+Instance160.ScaleType = Enum.ScaleType.Tile
+Instance160.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance160.ImageTransparency = 0.8999999761581421
+Instance160.AnchorPoint = Vector2.new(0, 0)
+Instance160.Image = "rbxassetid://15562720000"
+Instance160.TileSize = UDim2.new(0, 30, 0, 30)
+Instance160.ImageRectSize = Vector2.new(0, 0)
+Instance160.SelectionOrder = 0
+Instance160.Selectable = false
+Instance160.Size = UDim2.new(1, 0, 1, 0)
+Instance160.Name = "Stripes"
+Instance160.ResampleMode = Enum.ResamplerMode.Default
+Instance160.ClipsDescendants = false
+Instance160.BorderColor3 = Color3.new(0, 0, 0)
+Instance160.ImageColor3 = Color3.new(0, 0, 0)
+Instance160.LayoutOrder = 0
+Instance160.BorderMode = Enum.BorderMode.Outline
+Instance160.Rotation = 0
+Instance160.ImageRectOffset = Vector2.new(0, 0)
+Instance160.BackgroundTransparency = 1
+Instance160.Position = UDim2.new(0, 0, 0, 0)
+Instance160.SliceScale = 1
+Instance160.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance161 = Instance.new("Frame", Instance1) --Notification
-Instance161.Visible = true
-Instance161.SelectionOrder = 0
-Instance161.Name = "Notification"
-Instance161.Active = false
-Instance161.AutomaticSize = Enum.AutomaticSize.None
-Instance161.AnchorPoint = Vector2.new(0, 0)
-Instance161.Style = Enum.FrameStyle.Custom
-Instance161.LayoutOrder = 0
-Instance161.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance161.ZIndex = 10030
-Instance161.Size = UDim2.new(0, 175, 1, 0)
-Instance161.Draggable = false
-Instance161.Position = UDim2.new(0, 0, 0, 0)
-Instance161.Selectable = false
-Instance161.ClipsDescendants = false
-Instance161.BorderColor3 = Color3.new(0, 0, 0)
-Instance161.BorderSizePixel = 0
-Instance161.Rotation = 0
-Instance161.BackgroundTransparency = 1
-Instance161.BorderMode = Enum.BorderMode.Outline
-Instance161.BackgroundColor3 = Color3.new(1, 1, 1)
+local Instance161 = Instance.new("UIGradient", Instance8) --UIGradient
+Instance161.Offset = Vector2.new(0, 0)
+Instance161.Color = ColorSequence.new({
+    [1] = ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
+    [2] = ColorSequenceKeypoint.new(1, Color3.new(0.784314, 0.784314, 0.784314))
+})
+Instance161.Rotation = 45
+Instance161.Transparency = NumberSequence.new({
+    [1] = NumberSequenceKeypoint.new(0, 0, 0),
+    [2] = NumberSequenceKeypoint.new(1, 0, 0)
+})
+Instance161.Name = "UIGradient"
+Instance161.Enabled = true
 
-local Instance162 = Instance.new("Frame", Instance161) --NotificationHolder
+local Instance162 = Instance.new("ImageLabel", Instance8) --Stripes
 Instance162.Visible = true
-Instance162.SelectionOrder = 0
-Instance162.Name = "NotificationHolder"
 Instance162.Active = false
-Instance162.AutomaticSize = Enum.AutomaticSize.None
-Instance162.AnchorPoint = Vector2.new(0, 0)
-Instance162.Style = Enum.FrameStyle.Custom
-Instance162.LayoutOrder = 0
 Instance162.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance162.ZIndex = 10031
-Instance162.Size = UDim2.new(1, 0, 0, 75)
+Instance162.ZIndex = 10001
+Instance162.BorderSizePixel = 0
+Instance162.SliceCenter = Rect.new(0, 0, 0, 0)
 Instance162.Draggable = false
-Instance162.Position = UDim2.new(0, 0, 0, 0)
+Instance162.ScaleType = Enum.ScaleType.Tile
+Instance162.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+Instance162.ImageTransparency = 0.75
+Instance162.AnchorPoint = Vector2.new(0, 0)
+Instance162.Image = "rbxassetid://15562720000"
+Instance162.TileSize = UDim2.new(0, 30, 0, 30)
+Instance162.ImageRectSize = Vector2.new(0, 0)
+Instance162.SelectionOrder = 0
 Instance162.Selectable = false
+Instance162.Size = UDim2.new(1, 0, 1, 0)
+Instance162.Name = "Stripes"
+Instance162.ResampleMode = Enum.ResamplerMode.Default
 Instance162.ClipsDescendants = false
 Instance162.BorderColor3 = Color3.new(0, 0, 0)
-Instance162.BorderSizePixel = 0
-Instance162.Rotation = 0
-Instance162.BackgroundTransparency = 1
+Instance162.ImageColor3 = Color3.new(1, 1, 1)
+Instance162.LayoutOrder = 0
 Instance162.BorderMode = Enum.BorderMode.Outline
-Instance162.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance162.Rotation = 0
+Instance162.ImageRectOffset = Vector2.new(0, 0)
+Instance162.BackgroundTransparency = 1
+Instance162.Position = UDim2.new(0, 0, 0, 0)
+Instance162.SliceScale = 1
+Instance162.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance163 = Instance.new("Frame", Instance162) --NotificationColored
-Instance163.Visible = true
-Instance163.SelectionOrder = 0
-Instance163.Name = "NotificationColored"
-Instance163.Active = false
-Instance163.AutomaticSize = Enum.AutomaticSize.None
-Instance163.AnchorPoint = Vector2.new(0, 0)
-Instance163.Style = Enum.FrameStyle.Custom
-Instance163.LayoutOrder = 0
-Instance163.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance163.ZIndex = 10032
-Instance163.Size = UDim2.new(1, 0, 1, 0)
-Instance163.Draggable = false
-Instance163.Position = UDim2.new(0, 0, 0, 0)
-Instance163.Selectable = false
-Instance163.ClipsDescendants = false
-Instance163.BorderColor3 = Color3.new(0, 0, 0)
-Instance163.BorderSizePixel = 0
-Instance163.Rotation = 0
-Instance163.BackgroundTransparency = 0
-Instance163.BorderMode = Enum.BorderMode.Outline
-Instance163.BackgroundColor3 = Color3.new(0.666667, 0, 1)
+local Instance163 = Instance.new("UIAspectRatioConstraint", Instance7) --UIAspectRatioConstraint
+Instance163.DominantAxis = Enum.DominantAxis.Width
+Instance163.AspectRatio = 1
+Instance163.Name = "UIAspectRatioConstraint"
+Instance163.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Instance164 = Instance.new("UIStroke", Instance163) --UIStroke
-Instance164.Enabled = true
-Instance164.Color = Color3.new(0, 0, 0)
-Instance164.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Instance164.Thickness = 1
-Instance164.Transparency = 0
-Instance164.Name = "UIStroke"
-Instance164.LineJoinMode = Enum.LineJoinMode.Miter
+local Instance164 = Instance.new("Frame", Instance7) --MobileMaximize
+Instance164.Visible = false
+Instance164.SelectionOrder = 0
+Instance164.Name = "MobileMaximize"
+Instance164.Active = false
+Instance164.AutomaticSize = Enum.AutomaticSize.None
+Instance164.AnchorPoint = Vector2.new(0.5, 0)
+Instance164.Style = Enum.FrameStyle.Custom
+Instance164.LayoutOrder = 0
+Instance164.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance164.ZIndex = 100001
+Instance164.Size = UDim2.new(0, 50, 0, 50)
+Instance164.Draggable = false
+Instance164.Position = UDim2.new(0.5, 0, 0.800000011920929, 0)
+Instance164.Selectable = false
+Instance164.ClipsDescendants = false
+Instance164.BorderColor3 = Color3.new(0, 0, 0)
+Instance164.BorderSizePixel = 0
+Instance164.Rotation = 0
+Instance164.BackgroundTransparency = 1
+Instance164.BorderMode = Enum.BorderMode.Outline
+Instance164.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance165 = Instance.new("Frame", Instance163) --NotificationMain
-Instance165.Visible = true
-Instance165.SelectionOrder = 0
-Instance165.Name = "NotificationMain"
-Instance165.Active = false
-Instance165.AutomaticSize = Enum.AutomaticSize.None
-Instance165.AnchorPoint = Vector2.new(0, 0)
-Instance165.Style = Enum.FrameStyle.Custom
+local Instance165 = Instance.new("TextButton", Instance164) --DragButton
 Instance165.LayoutOrder = 0
+Instance165.TextWrapped = false
+Instance165.LineHeight = 1
+Instance165.Active = true
+Instance165.TextStrokeTransparency = 1
+Instance165.TextTruncate = Enum.TextTruncate.None
 Instance165.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance165.ZIndex = 10033
-Instance165.Size = UDim2.new(1, -5, 1, -2)
+Instance165.ZIndex = 100002
+Instance165.TextWrap = false
 Instance165.Draggable = false
-Instance165.Position = UDim2.new(0, 0, 0, 2)
-Instance165.Selectable = false
+Instance165.RichText = false
+Instance165.Modal = false
+Instance165.SelectionOrder = 0
+Instance165.Selectable = true
+Instance165.AutoButtonColor = true
+Instance165.TextXAlignment = Enum.TextXAlignment.Center
+Instance165.Name = "DragButton"
+Instance165.TextYAlignment = Enum.TextYAlignment.Center
+Instance165.TextScaled = false
+Instance165.TextDirection = Enum.TextDirection.Auto
+Instance165.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance165.Visible = true
+Instance165.BorderMode = Enum.BorderMode.Outline
+Instance165.TextTransparency = 0
+Instance165.FontSize = Enum.FontSize.Size14
+Instance165.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance165.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
+Instance165.AnchorPoint = Vector2.new(0, 0)
+Instance165.TextSize = 14
+Instance165.TextColor3 = Color3.new(0, 0, 0)
+Instance165.Selected = false
+Instance165.AutomaticSize = Enum.AutomaticSize.None
+Instance165.Size = UDim2.new(1, 0, 1, 0)
 Instance165.ClipsDescendants = false
 Instance165.BorderColor3 = Color3.new(0, 0, 0)
+Instance165.Text = ""
 Instance165.BorderSizePixel = 0
-Instance165.Rotation = 0
+Instance165.Rotation = 45
 Instance165.BackgroundTransparency = 0
-Instance165.BorderMode = Enum.BorderMode.Outline
-Instance165.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
+Instance165.MaxVisibleGraphemes = -1
+Instance165.Position = UDim2.new(0, 0, 0, 0)
+Instance165.Style = Enum.ButtonStyle.Custom
 
-local Instance166 = Instance.new("Frame", Instance165) --Bar
-Instance166.Visible = true
-Instance166.SelectionOrder = 0
-Instance166.Name = "Bar"
-Instance166.Active = false
-Instance166.AutomaticSize = Enum.AutomaticSize.None
-Instance166.AnchorPoint = Vector2.new(0, 0)
-Instance166.Style = Enum.FrameStyle.Custom
+local Instance166 = Instance.new("TextLabel", Instance165) --Text
 Instance166.LayoutOrder = 0
+Instance166.TextWrapped = true
+Instance166.LineHeight = 1
+Instance166.Active = false
+Instance166.TextStrokeTransparency = 1
+Instance166.TextTruncate = Enum.TextTruncate.None
 Instance166.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance166.ZIndex = 10034
-Instance166.Size = UDim2.new(1, 0, 0, 5)
+Instance166.ZIndex = 100003
+Instance166.BorderSizePixel = 0
 Instance166.Draggable = false
-Instance166.Position = UDim2.new(0, 0, 1, -5)
+Instance166.RichText = false
+Instance166.TextWrap = true
+Instance166.TextTransparency = 0
+Instance166.TextYAlignment = Enum.TextYAlignment.Center
+Instance166.TextScaled = true
+Instance166.TextXAlignment = Enum.TextXAlignment.Center
+Instance166.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance166.Name = "Text"
+Instance166.BorderMode = Enum.BorderMode.Outline
 Instance166.Selectable = false
+Instance166.TextDirection = Enum.TextDirection.Auto
+Instance166.Visible = true
+Instance166.FontSize = Enum.FontSize.Size14
+Instance166.AnchorPoint = Vector2.new(0, 0)
+Instance166.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance166.TextSize = 14
+Instance166.AutomaticSize = Enum.AutomaticSize.None
+Instance166.Size = UDim2.new(1, 0, 1, 0)
+Instance166.TextColor3 = Color3.new(1, 1, 1)
 Instance166.ClipsDescendants = false
 Instance166.BorderColor3 = Color3.new(0, 0, 0)
-Instance166.BorderSizePixel = 0
-Instance166.Rotation = 0
-Instance166.BackgroundTransparency = 0
-Instance166.BorderMode = Enum.BorderMode.Outline
-Instance166.BackgroundColor3 = Color3.new(0.27451, 0, 0.607843)
+Instance166.Text = "+"
+Instance166.SelectionOrder = 0
+Instance166.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance166.Rotation = -45
+Instance166.BackgroundTransparency = 1
+Instance166.Position = UDim2.new(0, 0, 0, 0)
+Instance166.MaxVisibleGraphemes = -1
 
-local Instance167 = Instance.new("Frame", Instance166) --Fill
-Instance167.Visible = true
-Instance167.SelectionOrder = 0
-Instance167.Name = "Fill"
-Instance167.Active = false
-Instance167.AutomaticSize = Enum.AutomaticSize.None
-Instance167.AnchorPoint = Vector2.new(0, 0)
-Instance167.Style = Enum.FrameStyle.Custom
-Instance167.LayoutOrder = 0
-Instance167.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance167.ZIndex = 10035
-Instance167.Size = UDim2.new(0.5, 0, 1, 0)
-Instance167.Draggable = false
-Instance167.Position = UDim2.new(0.5, 0, 0, 0)
-Instance167.Selectable = false
-Instance167.ClipsDescendants = false
-Instance167.BorderColor3 = Color3.new(0, 0, 0)
-Instance167.BorderSizePixel = 0
-Instance167.Rotation = 0
-Instance167.BackgroundTransparency = 0
-Instance167.BorderMode = Enum.BorderMode.Outline
-Instance167.BackgroundColor3 = Color3.new(0.666667, 0, 1)
+local Instance167 = Instance.new("UIStroke", Instance165) --UIStroke
+Instance167.Enabled = true
+Instance167.Color = Color3.new(0, 0, 0)
+Instance167.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Instance167.Thickness = 3
+Instance167.Transparency = 0
+Instance167.Name = "UIStroke"
+Instance167.LineJoinMode = Enum.LineJoinMode.Round
 
-local Instance168 = Instance.new("TextLabel", Instance165) --Title
-Instance168.LayoutOrder = 0
-Instance168.TextWrapped = true
-Instance168.LineHeight = 1
-Instance168.Active = false
-Instance168.TextStrokeTransparency = 1
-Instance168.TextTruncate = Enum.TextTruncate.None
-Instance168.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance168.ZIndex = 10034
-Instance168.BorderSizePixel = 0
-Instance168.Draggable = false
-Instance168.RichText = false
-Instance168.TextWrap = true
-Instance168.TextTransparency = 0
-Instance168.TextYAlignment = Enum.TextYAlignment.Center
-Instance168.TextScaled = true
-Instance168.TextXAlignment = Enum.TextXAlignment.Center
-Instance168.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
-Instance168.Name = "Title"
-Instance168.BorderMode = Enum.BorderMode.Outline
-Instance168.Selectable = false
-Instance168.TextDirection = Enum.TextDirection.Auto
-Instance168.Visible = true
-Instance168.FontSize = Enum.FontSize.Size14
-Instance168.AnchorPoint = Vector2.new(0, 0)
-Instance168.TextStrokeColor3 = Color3.new(0, 0, 0)
-Instance168.TextSize = 14
-Instance168.AutomaticSize = Enum.AutomaticSize.None
-Instance168.Size = UDim2.new(1, 0, 0.14300000667572021, 0)
-Instance168.TextColor3 = Color3.new(1, 1, 1)
-Instance168.ClipsDescendants = false
-Instance168.BorderColor3 = Color3.new(0, 0, 0)
-Instance168.Text = "Title"
-Instance168.SelectionOrder = 0
-Instance168.BackgroundColor3 = Color3.new(1, 1, 1)
-Instance168.Rotation = 0
-Instance168.BackgroundTransparency = 1
-Instance168.Position = UDim2.new(0, 0, 0.02500000037252903, 0)
-Instance168.MaxVisibleGraphemes = -1
+local Instance168 = Instance.new("UICorner", Instance165) --UICorner
+Instance168.Name = "UICorner"
+Instance168.CornerRadius = UDim.new(0.200000003, 0)
 
-local Instance169 = Instance.new("Frame", Instance165) --Separator
+local Instance169 = Instance.new("Frame", Instance1) --Notification
 Instance169.Visible = true
 Instance169.SelectionOrder = 0
-Instance169.Name = "Separator"
+Instance169.Name = "Notification"
 Instance169.Active = false
 Instance169.AutomaticSize = Enum.AutomaticSize.None
 Instance169.AnchorPoint = Vector2.new(0, 0)
 Instance169.Style = Enum.FrameStyle.Custom
 Instance169.LayoutOrder = 0
 Instance169.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance169.ZIndex = 10034
-Instance169.Size = UDim2.new(1, 0, 0, 1)
+Instance169.ZIndex = 10029
+Instance169.Size = UDim2.new(0, 200, 1, 0)
 Instance169.Draggable = false
-Instance169.Position = UDim2.new(0, 0, 0.20000000298023224, -1)
+Instance169.Position = UDim2.new(0, 0, 0, 0)
 Instance169.Selectable = false
 Instance169.ClipsDescendants = false
 Instance169.BorderColor3 = Color3.new(0, 0, 0)
 Instance169.BorderSizePixel = 0
 Instance169.Rotation = 0
-Instance169.BackgroundTransparency = 0
+Instance169.BackgroundTransparency = 1
 Instance169.BorderMode = Enum.BorderMode.Outline
-Instance169.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+Instance169.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance170 = Instance.new("Frame", Instance165) --Lines
+local Instance170 = Instance.new("Frame", Instance169) --NotificationHolder
 Instance170.Visible = true
 Instance170.SelectionOrder = 0
-Instance170.Name = "Lines"
+Instance170.Name = "NotificationHolder"
 Instance170.Active = false
 Instance170.AutomaticSize = Enum.AutomaticSize.None
 Instance170.AnchorPoint = Vector2.new(0, 0)
 Instance170.Style = Enum.FrameStyle.Custom
 Instance170.LayoutOrder = 0
 Instance170.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance170.ZIndex = 10034
-Instance170.Size = UDim2.new(1, 0, 0.800000011920929, -5)
+Instance170.ZIndex = 10030
+Instance170.Size = UDim2.new(1, 0, 0, 85)
 Instance170.Draggable = false
-Instance170.Position = UDim2.new(0, 0, 0.20000000298023224, 0)
+Instance170.Position = UDim2.new(0, 0, 0, 0)
 Instance170.Selectable = false
 Instance170.ClipsDescendants = false
 Instance170.BorderColor3 = Color3.new(0, 0, 0)
@@ -4294,487 +4328,738 @@ Instance170.BackgroundTransparency = 1
 Instance170.BorderMode = Enum.BorderMode.Outline
 Instance170.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance171 = Instance.new("UIListLayout", Instance170) --UIListLayout
-Instance171.FillDirection = Enum.FillDirection.Vertical
-Instance171.HorizontalAlignment = Enum.HorizontalAlignment.Left
-Instance171.HorizontalFlex = Enum.UIFlexAlignment.None
-Instance171.VerticalFlex = Enum.UIFlexAlignment.None
-Instance171.VerticalAlignment = Enum.VerticalAlignment.Top
-Instance171.SortOrder = Enum.SortOrder.LayoutOrder
-Instance171.Name = "UIListLayout"
-Instance171.Padding = UDim.new(0, 0)
-Instance171.ItemLineAlignment = Enum.ItemLineAlignment.Automatic
+local Instance171 = Instance.new("Frame", Instance170) --NotificationColored
+Instance171.Visible = true
+Instance171.SelectionOrder = 0
+Instance171.Name = "NotificationColored"
+Instance171.Active = false
+Instance171.AutomaticSize = Enum.AutomaticSize.None
+Instance171.AnchorPoint = Vector2.new(0, 0)
+Instance171.Style = Enum.FrameStyle.Custom
+Instance171.LayoutOrder = 0
+Instance171.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance171.ZIndex = 10031
+Instance171.Size = UDim2.new(1, 0, 1, 0)
+Instance171.Draggable = false
+Instance171.Position = UDim2.new(0, 0, 0, 0)
+Instance171.Selectable = false
+Instance171.ClipsDescendants = false
+Instance171.BorderColor3 = Color3.new(0, 0, 0)
+Instance171.BorderSizePixel = 0
+Instance171.Rotation = 0
+Instance171.BackgroundTransparency = 0
+Instance171.BorderMode = Enum.BorderMode.Outline
+Instance171.BackgroundColor3 = Color3.new(0.666667, 0, 1)
 
-local Instance172 = Instance.new("TextLabel", Instance170) --1
-Instance172.LayoutOrder = 0
-Instance172.TextWrapped = true
-Instance172.LineHeight = 1
-Instance172.Active = false
-Instance172.TextStrokeTransparency = 1
-Instance172.TextTruncate = Enum.TextTruncate.None
-Instance172.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance172.ZIndex = 10035
-Instance172.BorderSizePixel = 0
-Instance172.Draggable = false
-Instance172.RichText = false
-Instance172.TextWrap = true
-Instance172.TextTransparency = 0
-Instance172.TextYAlignment = Enum.TextYAlignment.Top
-Instance172.TextScaled = false
-Instance172.TextXAlignment = Enum.TextXAlignment.Left
-Instance172.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
-Instance172.Name = "1"
-Instance172.BorderMode = Enum.BorderMode.Outline
-Instance172.Selectable = false
-Instance172.TextDirection = Enum.TextDirection.Auto
-Instance172.Visible = true
-Instance172.FontSize = Enum.FontSize.Size10
-Instance172.AnchorPoint = Vector2.new(0, 0)
-Instance172.TextStrokeColor3 = Color3.new(0, 0, 0)
-Instance172.TextSize = 10
-Instance172.AutomaticSize = Enum.AutomaticSize.None
-Instance172.Size = UDim2.new(1, 0, 1, 0)
-Instance172.TextColor3 = Color3.new(1, 1, 1)
-Instance172.ClipsDescendants = false
-Instance172.BorderColor3 = Color3.new(0, 0, 0)
-Instance172.Text = "Line"
-Instance172.SelectionOrder = 0
-Instance172.BackgroundColor3 = Color3.new(1, 1, 1)
-Instance172.Rotation = 0
-Instance172.BackgroundTransparency = 1
-Instance172.Position = UDim2.new(0, 0, 0, 0)
-Instance172.MaxVisibleGraphemes = -1
+local Instance172 = Instance.new("UIStroke", Instance171) --UIStroke
+Instance172.Enabled = true
+Instance172.Color = Color3.new(0, 0, 0)
+Instance172.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Instance172.Thickness = 1
+Instance172.Transparency = 0
+Instance172.Name = "UIStroke"
+Instance172.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance173 = Instance.new("ImageLabel", Instance165) --Stripes
+local Instance173 = Instance.new("Frame", Instance171) --NotificationMain
 Instance173.Visible = true
-Instance173.Active = false
-Instance173.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance173.ZIndex = 10002
-Instance173.BorderSizePixel = 0
-Instance173.SliceCenter = Rect.new(0, 0, 0, 0)
-Instance173.Draggable = false
-Instance173.ScaleType = Enum.ScaleType.Tile
-Instance173.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
-Instance173.ImageTransparency = 0.949999988079071
-Instance173.AnchorPoint = Vector2.new(0, 0)
-Instance173.Image = "rbxassetid://87577631610763"
-Instance173.TileSize = UDim2.new(0, 30, 0, 30)
-Instance173.ImageRectSize = Vector2.new(0, 0)
 Instance173.SelectionOrder = 0
+Instance173.Name = "NotificationMain"
+Instance173.Active = false
+Instance173.AutomaticSize = Enum.AutomaticSize.None
+Instance173.AnchorPoint = Vector2.new(0, 0)
+Instance173.Style = Enum.FrameStyle.Custom
+Instance173.LayoutOrder = 0
+Instance173.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance173.ZIndex = 10033
+Instance173.Size = UDim2.new(1, -5, 1, -2)
+Instance173.Draggable = false
+Instance173.Position = UDim2.new(0, 0, 0, 2)
 Instance173.Selectable = false
-Instance173.Size = UDim2.new(1, 0, 1, 0)
-Instance173.Name = "Stripes"
-Instance173.ResampleMode = Enum.ResamplerMode.Default
 Instance173.ClipsDescendants = false
 Instance173.BorderColor3 = Color3.new(0, 0, 0)
-Instance173.ImageColor3 = Color3.new(0, 0, 0)
-Instance173.LayoutOrder = 0
-Instance173.BorderMode = Enum.BorderMode.Outline
+Instance173.BorderSizePixel = 0
 Instance173.Rotation = 0
-Instance173.ImageRectOffset = Vector2.new(0, 0)
-Instance173.BackgroundTransparency = 1
-Instance173.Position = UDim2.new(0, 0, 0, 0)
-Instance173.SliceScale = 1
-Instance173.AutomaticSize = Enum.AutomaticSize.None
+Instance173.BackgroundTransparency = 0
+Instance173.BorderMode = Enum.BorderMode.Outline
+Instance173.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance174 = Instance.new("UICorner", Instance162) --UICorner
-Instance174.Name = "UICorner"
-Instance174.CornerRadius = UDim.new(0.100000001, 0)
+local Instance174 = Instance.new("Frame", Instance173) --Bar
+Instance174.Visible = true
+Instance174.SelectionOrder = 0
+Instance174.Name = "Bar"
+Instance174.Active = false
+Instance174.AutomaticSize = Enum.AutomaticSize.None
+Instance174.AnchorPoint = Vector2.new(0, 0)
+Instance174.Style = Enum.FrameStyle.Custom
+Instance174.LayoutOrder = 0
+Instance174.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance174.ZIndex = 10034
+Instance174.Size = UDim2.new(1, 0, 0, 5)
+Instance174.Draggable = false
+Instance174.Position = UDim2.new(0, 0, 1, -5)
+Instance174.Selectable = false
+Instance174.ClipsDescendants = false
+Instance174.BorderColor3 = Color3.new(0, 0, 0)
+Instance174.BorderSizePixel = 0
+Instance174.Rotation = 0
+Instance174.BackgroundTransparency = 0
+Instance174.BorderMode = Enum.BorderMode.Outline
+Instance174.BackgroundColor3 = Color3.new(0.27451, 0, 0.607843)
 
-local Instance175 = Instance.new("UICorner", Instance162) --UICorner
-Instance175.Name = "UICorner"
-Instance175.CornerRadius = UDim.new(0.100000001, 0)
+local Instance175 = Instance.new("Frame", Instance174) --Fill
+Instance175.Visible = true
+Instance175.SelectionOrder = 0
+Instance175.Name = "Fill"
+Instance175.Active = false
+Instance175.AutomaticSize = Enum.AutomaticSize.None
+Instance175.AnchorPoint = Vector2.new(0, 0)
+Instance175.Style = Enum.FrameStyle.Custom
+Instance175.LayoutOrder = 0
+Instance175.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance175.ZIndex = 10035
+Instance175.Size = UDim2.new(0.5, 0, 1, 0)
+Instance175.Draggable = false
+Instance175.Position = UDim2.new(0.5, 0, 0, 0)
+Instance175.Selectable = false
+Instance175.ClipsDescendants = false
+Instance175.BorderColor3 = Color3.new(0, 0, 0)
+Instance175.BorderSizePixel = 0
+Instance175.Rotation = 0
+Instance175.BackgroundTransparency = 0
+Instance175.BorderMode = Enum.BorderMode.Outline
+Instance175.BackgroundColor3 = Color3.new(0.666667, 0, 1)
 
-local Instance176 = Instance.new("UIListLayout", Instance161) --UIListLayout
-Instance176.FillDirection = Enum.FillDirection.Vertical
-Instance176.HorizontalAlignment = Enum.HorizontalAlignment.Left
-Instance176.HorizontalFlex = Enum.UIFlexAlignment.None
-Instance176.VerticalFlex = Enum.UIFlexAlignment.None
-Instance176.VerticalAlignment = Enum.VerticalAlignment.Bottom
-Instance176.SortOrder = Enum.SortOrder.LayoutOrder
-Instance176.Name = "UIListLayout"
-Instance176.Padding = UDim.new(0.00999999978, 1)
-Instance176.ItemLineAlignment = Enum.ItemLineAlignment.Automatic
+local Instance176 = Instance.new("TextLabel", Instance173) --Title
+Instance176.LayoutOrder = 0
+Instance176.TextWrapped = true
+Instance176.LineHeight = 1
+Instance176.Active = false
+Instance176.TextStrokeTransparency = 1
+Instance176.TextTruncate = Enum.TextTruncate.None
+Instance176.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance176.ZIndex = 10034
+Instance176.BorderSizePixel = 0
+Instance176.Draggable = false
+Instance176.RichText = false
+Instance176.TextWrap = true
+Instance176.TextTransparency = 0
+Instance176.TextYAlignment = Enum.TextYAlignment.Center
+Instance176.TextScaled = true
+Instance176.TextXAlignment = Enum.TextXAlignment.Center
+Instance176.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance176.Name = "Title"
+Instance176.BorderMode = Enum.BorderMode.Outline
+Instance176.Selectable = false
+Instance176.TextDirection = Enum.TextDirection.Auto
+Instance176.Visible = true
+Instance176.FontSize = Enum.FontSize.Size14
+Instance176.AnchorPoint = Vector2.new(0, 0)
+Instance176.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance176.TextSize = 14
+Instance176.AutomaticSize = Enum.AutomaticSize.None
+Instance176.Size = UDim2.new(1, 0, 0.14300000667572021, 0)
+Instance176.TextColor3 = Color3.new(1, 1, 1)
+Instance176.ClipsDescendants = false
+Instance176.BorderColor3 = Color3.new(0, 0, 0)
+Instance176.Text = "Title"
+Instance176.SelectionOrder = 0
+Instance176.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance176.Rotation = 0
+Instance176.BackgroundTransparency = 1
+Instance176.Position = UDim2.new(0, 0, 0.02500000037252903, 0)
+Instance176.MaxVisibleGraphemes = -1
 
-local Instance177 = Instance.new("Frame", Instance161) --ChooseNotificationHolder
+local Instance177 = Instance.new("Frame", Instance173) --Separator
 Instance177.Visible = true
 Instance177.SelectionOrder = 0
-Instance177.Name = "ChooseNotificationHolder"
+Instance177.Name = "Separator"
 Instance177.Active = false
 Instance177.AutomaticSize = Enum.AutomaticSize.None
 Instance177.AnchorPoint = Vector2.new(0, 0)
 Instance177.Style = Enum.FrameStyle.Custom
 Instance177.LayoutOrder = 0
 Instance177.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance177.ZIndex = 10031
-Instance177.Size = UDim2.new(1, 0, 0, 75)
+Instance177.ZIndex = 10034
+Instance177.Size = UDim2.new(1, 0, 0, 1)
 Instance177.Draggable = false
-Instance177.Position = UDim2.new(0, 0, 0, 0)
+Instance177.Position = UDim2.new(0, 0, 0.20000000298023224, -1)
 Instance177.Selectable = false
 Instance177.ClipsDescendants = false
 Instance177.BorderColor3 = Color3.new(0, 0, 0)
 Instance177.BorderSizePixel = 0
 Instance177.Rotation = 0
-Instance177.BackgroundTransparency = 1
+Instance177.BackgroundTransparency = 0
 Instance177.BorderMode = Enum.BorderMode.Outline
-Instance177.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance177.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance178 = Instance.new("Frame", Instance177) --NotificationColored
+local Instance178 = Instance.new("Frame", Instance173) --Lines
 Instance178.Visible = true
 Instance178.SelectionOrder = 0
-Instance178.Name = "NotificationColored"
+Instance178.Name = "Lines"
 Instance178.Active = false
 Instance178.AutomaticSize = Enum.AutomaticSize.None
 Instance178.AnchorPoint = Vector2.new(0, 0)
 Instance178.Style = Enum.FrameStyle.Custom
 Instance178.LayoutOrder = 0
 Instance178.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance178.ZIndex = 10032
-Instance178.Size = UDim2.new(1, 0, 1, 0)
+Instance178.ZIndex = 10034
+Instance178.Size = UDim2.new(1, 0, 0.800000011920929, -5)
 Instance178.Draggable = false
-Instance178.Position = UDim2.new(0, 0, 0, 0)
+Instance178.Position = UDim2.new(0, 0, 0.20000000298023224, 0)
 Instance178.Selectable = false
 Instance178.ClipsDescendants = false
 Instance178.BorderColor3 = Color3.new(0, 0, 0)
 Instance178.BorderSizePixel = 0
 Instance178.Rotation = 0
-Instance178.BackgroundTransparency = 0
+Instance178.BackgroundTransparency = 1
 Instance178.BorderMode = Enum.BorderMode.Outline
-Instance178.BackgroundColor3 = Color3.new(0.666667, 0, 1)
+Instance178.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance179 = Instance.new("UIStroke", Instance178) --UIStroke
-Instance179.Enabled = true
-Instance179.Color = Color3.new(0, 0, 0)
-Instance179.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Instance179.Thickness = 1
-Instance179.Transparency = 0
-Instance179.Name = "UIStroke"
-Instance179.LineJoinMode = Enum.LineJoinMode.Miter
+local Instance179 = Instance.new("UIListLayout", Instance178) --UIListLayout
+Instance179.FillDirection = Enum.FillDirection.Vertical
+Instance179.HorizontalAlignment = Enum.HorizontalAlignment.Left
+Instance179.HorizontalFlex = Enum.UIFlexAlignment.None
+Instance179.VerticalFlex = Enum.UIFlexAlignment.None
+Instance179.VerticalAlignment = Enum.VerticalAlignment.Top
+Instance179.SortOrder = Enum.SortOrder.LayoutOrder
+Instance179.Name = "UIListLayout"
+Instance179.Padding = UDim.new(0, 0)
+Instance179.ItemLineAlignment = Enum.ItemLineAlignment.Automatic
 
-local Instance180 = Instance.new("Frame", Instance178) --NotificationMain
-Instance180.Visible = true
-Instance180.SelectionOrder = 0
-Instance180.Name = "NotificationMain"
-Instance180.Active = false
-Instance180.AutomaticSize = Enum.AutomaticSize.None
-Instance180.AnchorPoint = Vector2.new(0, 0)
-Instance180.Style = Enum.FrameStyle.Custom
+local Instance180 = Instance.new("TextLabel", Instance178) --1
 Instance180.LayoutOrder = 0
+Instance180.TextWrapped = true
+Instance180.LineHeight = 1
+Instance180.Active = false
+Instance180.TextStrokeTransparency = 1
+Instance180.TextTruncate = Enum.TextTruncate.None
 Instance180.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance180.ZIndex = 10033
-Instance180.Size = UDim2.new(1, -5, 1, -2)
+Instance180.ZIndex = 10035
+Instance180.BorderSizePixel = 0
 Instance180.Draggable = false
-Instance180.Position = UDim2.new(0, 0, 0, 2)
+Instance180.RichText = false
+Instance180.TextWrap = true
+Instance180.TextTransparency = 0
+Instance180.TextYAlignment = Enum.TextYAlignment.Top
+Instance180.TextScaled = false
+Instance180.TextXAlignment = Enum.TextXAlignment.Left
+Instance180.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance180.Name = "1"
+Instance180.BorderMode = Enum.BorderMode.Outline
 Instance180.Selectable = false
+Instance180.TextDirection = Enum.TextDirection.Auto
+Instance180.Visible = true
+Instance180.FontSize = Enum.FontSize.Size10
+Instance180.AnchorPoint = Vector2.new(0, 0)
+Instance180.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance180.TextSize = 10
+Instance180.AutomaticSize = Enum.AutomaticSize.None
+Instance180.Size = UDim2.new(1, 0, 1, 0)
+Instance180.TextColor3 = Color3.new(1, 1, 1)
 Instance180.ClipsDescendants = false
 Instance180.BorderColor3 = Color3.new(0, 0, 0)
-Instance180.BorderSizePixel = 0
+Instance180.Text = "Line"
+Instance180.SelectionOrder = 0
+Instance180.BackgroundColor3 = Color3.new(1, 1, 1)
 Instance180.Rotation = 0
-Instance180.BackgroundTransparency = 0
-Instance180.BorderMode = Enum.BorderMode.Outline
-Instance180.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
+Instance180.BackgroundTransparency = 1
+Instance180.Position = UDim2.new(0, 0, 0, 0)
+Instance180.MaxVisibleGraphemes = -1
 
-local Instance181 = Instance.new("Frame", Instance180) --Bar
+local Instance181 = Instance.new("ImageLabel", Instance173) --Stripes
 Instance181.Visible = true
-Instance181.SelectionOrder = 0
-Instance181.Name = "Bar"
 Instance181.Active = false
-Instance181.AutomaticSize = Enum.AutomaticSize.None
-Instance181.AnchorPoint = Vector2.new(0, 0)
-Instance181.Style = Enum.FrameStyle.Custom
-Instance181.LayoutOrder = 0
 Instance181.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance181.ZIndex = 10034
-Instance181.Size = UDim2.new(1, 0, 0, 5)
+Instance181.ZIndex = 10002
+Instance181.BorderSizePixel = 0
+Instance181.SliceCenter = Rect.new(0, 0, 0, 0)
 Instance181.Draggable = false
-Instance181.Position = UDim2.new(0, 0, 1, -5)
+Instance181.ScaleType = Enum.ScaleType.Tile
+Instance181.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+Instance181.ImageTransparency = 0.8999999761581421
+Instance181.AnchorPoint = Vector2.new(0, 0)
+Instance181.Image = "rbxassetid://87577631610763"
+Instance181.TileSize = UDim2.new(0, 30, 0, 30)
+Instance181.ImageRectSize = Vector2.new(0, 0)
+Instance181.SelectionOrder = 0
 Instance181.Selectable = false
+Instance181.Size = UDim2.new(1, 0, 1, 0)
+Instance181.Name = "Stripes"
+Instance181.ResampleMode = Enum.ResamplerMode.Default
 Instance181.ClipsDescendants = false
 Instance181.BorderColor3 = Color3.new(0, 0, 0)
-Instance181.BorderSizePixel = 0
-Instance181.Rotation = 0
-Instance181.BackgroundTransparency = 0
+Instance181.ImageColor3 = Color3.new(0, 0, 0)
+Instance181.LayoutOrder = 0
 Instance181.BorderMode = Enum.BorderMode.Outline
-Instance181.BackgroundColor3 = Color3.new(0.27451, 0, 0.607843)
+Instance181.Rotation = 0
+Instance181.ImageRectOffset = Vector2.new(0, 0)
+Instance181.BackgroundTransparency = 1
+Instance181.Position = UDim2.new(0, 0, 0, 0)
+Instance181.SliceScale = 1
+Instance181.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance182 = Instance.new("Frame", Instance181) --Fill
+local Instance182 = Instance.new("ImageLabel", Instance171) --Stripes
 Instance182.Visible = true
-Instance182.SelectionOrder = 0
-Instance182.Name = "Fill"
 Instance182.Active = false
-Instance182.AutomaticSize = Enum.AutomaticSize.None
-Instance182.AnchorPoint = Vector2.new(0, 0)
-Instance182.Style = Enum.FrameStyle.Custom
-Instance182.LayoutOrder = 0
 Instance182.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance182.ZIndex = 10035
-Instance182.Size = UDim2.new(0.5, 0, 1, 0)
+Instance182.ZIndex = 10032
+Instance182.BorderSizePixel = 0
+Instance182.SliceCenter = Rect.new(0, 0, 0, 0)
 Instance182.Draggable = false
-Instance182.Position = UDim2.new(0.5, 0, 0, 0)
+Instance182.ScaleType = Enum.ScaleType.Tile
+Instance182.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+Instance182.ImageTransparency = 0.75
+Instance182.AnchorPoint = Vector2.new(0, 0)
+Instance182.Image = "rbxassetid://87577631610763"
+Instance182.TileSize = UDim2.new(0, 30, 0, 30)
+Instance182.ImageRectSize = Vector2.new(0, 0)
+Instance182.SelectionOrder = 0
 Instance182.Selectable = false
+Instance182.Size = UDim2.new(1, 0, 1, 0)
+Instance182.Name = "Stripes"
+Instance182.ResampleMode = Enum.ResamplerMode.Default
 Instance182.ClipsDescendants = false
 Instance182.BorderColor3 = Color3.new(0, 0, 0)
-Instance182.BorderSizePixel = 0
-Instance182.Rotation = 0
-Instance182.BackgroundTransparency = 0
+Instance182.ImageColor3 = Color3.new(1, 1, 1)
+Instance182.LayoutOrder = 0
 Instance182.BorderMode = Enum.BorderMode.Outline
-Instance182.BackgroundColor3 = Color3.new(0.666667, 0, 1)
+Instance182.Rotation = 0
+Instance182.ImageRectOffset = Vector2.new(0, 0)
+Instance182.BackgroundTransparency = 1
+Instance182.Position = UDim2.new(0, 0, 0, 0)
+Instance182.SliceScale = 1
+Instance182.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance183 = Instance.new("TextLabel", Instance180) --Title
-Instance183.LayoutOrder = 0
-Instance183.TextWrapped = true
-Instance183.LineHeight = 1
-Instance183.Active = false
-Instance183.TextStrokeTransparency = 1
-Instance183.TextTruncate = Enum.TextTruncate.None
-Instance183.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance183.ZIndex = 10034
-Instance183.BorderSizePixel = 0
-Instance183.Draggable = false
-Instance183.RichText = false
-Instance183.TextWrap = true
-Instance183.TextTransparency = 0
-Instance183.TextYAlignment = Enum.TextYAlignment.Center
-Instance183.TextScaled = true
-Instance183.TextXAlignment = Enum.TextXAlignment.Center
-Instance183.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
-Instance183.Name = "Title"
-Instance183.BorderMode = Enum.BorderMode.Outline
-Instance183.Selectable = false
-Instance183.TextDirection = Enum.TextDirection.Auto
-Instance183.Visible = true
-Instance183.FontSize = Enum.FontSize.Size14
-Instance183.AnchorPoint = Vector2.new(0, 0)
-Instance183.TextStrokeColor3 = Color3.new(0, 0, 0)
-Instance183.TextSize = 14
-Instance183.AutomaticSize = Enum.AutomaticSize.None
-Instance183.Size = UDim2.new(0.800000011920929, 0, 0.14300000667572021, 0)
-Instance183.TextColor3 = Color3.new(1, 1, 1)
-Instance183.ClipsDescendants = false
-Instance183.BorderColor3 = Color3.new(0, 0, 0)
-Instance183.Text = "Title"
-Instance183.SelectionOrder = 0
-Instance183.BackgroundColor3 = Color3.new(1, 1, 1)
-Instance183.Rotation = 0
-Instance183.BackgroundTransparency = 1
-Instance183.Position = UDim2.new(0, 0, 0.02500000037252903, 0)
-Instance183.MaxVisibleGraphemes = -1
+local Instance183 = Instance.new("UICorner", Instance170) --UICorner
+Instance183.Name = "UICorner"
+Instance183.CornerRadius = UDim.new(0.100000001, 0)
 
-local Instance184 = Instance.new("Frame", Instance180) --Separator
-Instance184.Visible = true
-Instance184.SelectionOrder = 0
-Instance184.Name = "Separator"
-Instance184.Active = false
-Instance184.AutomaticSize = Enum.AutomaticSize.None
-Instance184.AnchorPoint = Vector2.new(0, 0)
-Instance184.Style = Enum.FrameStyle.Custom
-Instance184.LayoutOrder = 0
-Instance184.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance184.ZIndex = 10034
-Instance184.Size = UDim2.new(1, 0, 0, 1)
-Instance184.Draggable = false
-Instance184.Position = UDim2.new(0, 0, 0.20000000298023224, -1)
-Instance184.Selectable = false
-Instance184.ClipsDescendants = false
-Instance184.BorderColor3 = Color3.new(0, 0, 0)
-Instance184.BorderSizePixel = 0
-Instance184.Rotation = 0
-Instance184.BackgroundTransparency = 0
-Instance184.BorderMode = Enum.BorderMode.Outline
-Instance184.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+local Instance184 = Instance.new("UICorner", Instance170) --UICorner
+Instance184.Name = "UICorner"
+Instance184.CornerRadius = UDim.new(0.100000001, 0)
 
-local Instance185 = Instance.new("Frame", Instance180) --Lines
-Instance185.Visible = true
-Instance185.SelectionOrder = 0
-Instance185.Name = "Lines"
-Instance185.Active = false
-Instance185.AutomaticSize = Enum.AutomaticSize.None
-Instance185.AnchorPoint = Vector2.new(0, 0)
-Instance185.Style = Enum.FrameStyle.Custom
-Instance185.LayoutOrder = 0
-Instance185.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance185.ZIndex = 10034
-Instance185.Size = UDim2.new(1, 0, 0.800000011920929, -5)
-Instance185.Draggable = false
-Instance185.Position = UDim2.new(0, 0, 0.20000000298023224, 0)
-Instance185.Selectable = false
-Instance185.ClipsDescendants = false
-Instance185.BorderColor3 = Color3.new(0, 0, 0)
-Instance185.BorderSizePixel = 0
-Instance185.Rotation = 0
-Instance185.BackgroundTransparency = 1
-Instance185.BorderMode = Enum.BorderMode.Outline
-Instance185.BackgroundColor3 = Color3.new(1, 1, 1)
+local Instance185 = Instance.new("UIListLayout", Instance169) --UIListLayout
+Instance185.FillDirection = Enum.FillDirection.Vertical
+Instance185.HorizontalAlignment = Enum.HorizontalAlignment.Left
+Instance185.HorizontalFlex = Enum.UIFlexAlignment.None
+Instance185.VerticalFlex = Enum.UIFlexAlignment.None
+Instance185.VerticalAlignment = Enum.VerticalAlignment.Bottom
+Instance185.SortOrder = Enum.SortOrder.LayoutOrder
+Instance185.Name = "UIListLayout"
+Instance185.Padding = UDim.new(0.00999999978, 1)
+Instance185.ItemLineAlignment = Enum.ItemLineAlignment.Automatic
 
-local Instance186 = Instance.new("UIListLayout", Instance185) --UIListLayout
-Instance186.FillDirection = Enum.FillDirection.Vertical
-Instance186.HorizontalAlignment = Enum.HorizontalAlignment.Left
-Instance186.HorizontalFlex = Enum.UIFlexAlignment.None
-Instance186.VerticalFlex = Enum.UIFlexAlignment.None
-Instance186.VerticalAlignment = Enum.VerticalAlignment.Top
-Instance186.SortOrder = Enum.SortOrder.LayoutOrder
-Instance186.Name = "UIListLayout"
-Instance186.Padding = UDim.new(0, 0)
-Instance186.ItemLineAlignment = Enum.ItemLineAlignment.Automatic
+local Instance186 = Instance.new("Frame", Instance169) --ChooseNotificationHolder
+Instance186.Visible = true
+Instance186.SelectionOrder = 0
+Instance186.Name = "ChooseNotificationHolder"
+Instance186.Active = false
+Instance186.AutomaticSize = Enum.AutomaticSize.None
+Instance186.AnchorPoint = Vector2.new(0, 0)
+Instance186.Style = Enum.FrameStyle.Custom
+Instance186.LayoutOrder = 0
+Instance186.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance186.ZIndex = 10030
+Instance186.Size = UDim2.new(1, 0, 0, 85)
+Instance186.Draggable = false
+Instance186.Position = UDim2.new(0, 0, 0, 0)
+Instance186.Selectable = false
+Instance186.ClipsDescendants = false
+Instance186.BorderColor3 = Color3.new(0, 0, 0)
+Instance186.BorderSizePixel = 0
+Instance186.Rotation = 0
+Instance186.BackgroundTransparency = 1
+Instance186.BorderMode = Enum.BorderMode.Outline
+Instance186.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance187 = Instance.new("TextLabel", Instance185) --1
-Instance187.LayoutOrder = 0
-Instance187.TextWrapped = true
-Instance187.LineHeight = 1
-Instance187.Active = false
-Instance187.TextStrokeTransparency = 1
-Instance187.TextTruncate = Enum.TextTruncate.None
-Instance187.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance187.ZIndex = 10035
-Instance187.BorderSizePixel = 0
-Instance187.Draggable = false
-Instance187.RichText = false
-Instance187.TextWrap = true
-Instance187.TextTransparency = 0
-Instance187.TextYAlignment = Enum.TextYAlignment.Top
-Instance187.TextScaled = false
-Instance187.TextXAlignment = Enum.TextXAlignment.Left
-Instance187.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
-Instance187.Name = "1"
-Instance187.BorderMode = Enum.BorderMode.Outline
-Instance187.Selectable = false
-Instance187.TextDirection = Enum.TextDirection.Auto
+local Instance187 = Instance.new("Frame", Instance186) --NotificationColored
 Instance187.Visible = true
-Instance187.FontSize = Enum.FontSize.Size10
-Instance187.AnchorPoint = Vector2.new(0, 0)
-Instance187.TextStrokeColor3 = Color3.new(0, 0, 0)
-Instance187.TextSize = 10
+Instance187.SelectionOrder = 0
+Instance187.Name = "NotificationColored"
+Instance187.Active = false
 Instance187.AutomaticSize = Enum.AutomaticSize.None
+Instance187.AnchorPoint = Vector2.new(0, 0)
+Instance187.Style = Enum.FrameStyle.Custom
+Instance187.LayoutOrder = 0
+Instance187.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance187.ZIndex = 10031
 Instance187.Size = UDim2.new(1, 0, 1, 0)
-Instance187.TextColor3 = Color3.new(1, 1, 1)
+Instance187.Draggable = false
+Instance187.Position = UDim2.new(0, 0, 0, 0)
+Instance187.Selectable = false
 Instance187.ClipsDescendants = false
 Instance187.BorderColor3 = Color3.new(0, 0, 0)
-Instance187.Text = "Line"
-Instance187.SelectionOrder = 0
-Instance187.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance187.BorderSizePixel = 0
 Instance187.Rotation = 0
-Instance187.BackgroundTransparency = 1
-Instance187.Position = UDim2.new(0, 0, 0, 0)
-Instance187.MaxVisibleGraphemes = -1
+Instance187.BackgroundTransparency = 0
+Instance187.BorderMode = Enum.BorderMode.Outline
+Instance187.BackgroundColor3 = Color3.new(0.666667, 0, 1)
 
-local Instance188 = Instance.new("ImageButton", Instance180) --Yes
-Instance188.LayoutOrder = 0
-Instance188.Active = true
-Instance188.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance188.ZIndex = 10034
-Instance188.SliceCenter = Rect.new(0, 0, 0, 0)
-Instance188.Draggable = false
-Instance188.ScaleType = Enum.ScaleType.Fit
-Instance188.Modal = false
-Instance188.AutoButtonColor = true
-Instance188.ResampleMode = Enum.ResamplerMode.Default
-Instance188.BackgroundColor3 = Color3.new(1, 1, 1)
-Instance188.BorderSizePixel = 0
-Instance188.ImageTransparency = 0
-Instance188.Name = "Yes"
-Instance188.Selectable = true
-Instance188.AnchorPoint = Vector2.new(0, 0)
-Instance188.Image = "rbxassetid://12690727184"
-Instance188.TileSize = UDim2.new(1, 0, 1, 0)
-Instance188.ImageRectSize = Vector2.new(0, 0)
-Instance188.Selected = false
-Instance188.Size = UDim2.new(0.10000000149011612, 0, 0.14300000667572021, 0)
-Instance188.Visible = true
-Instance188.HoverImage = ""
-Instance188.ImageColor3 = Color3.new(1, 1, 1)
-Instance188.ClipsDescendants = false
-Instance188.BorderColor3 = Color3.new(0, 0, 0)
-Instance188.BorderMode = Enum.BorderMode.Outline
-Instance188.PressedImage = ""
-Instance188.Rotation = 0
-Instance188.ImageRectOffset = Vector2.new(0, 0)
-Instance188.BackgroundTransparency = 1
-Instance188.Position = UDim2.new(0.800000011920929, 0, 0.02500000037252903, 0)
-Instance188.SliceScale = 1
-Instance188.AutomaticSize = Enum.AutomaticSize.None
-Instance188.SelectionOrder = 0
-Instance188.Style = Enum.ButtonStyle.Custom
+local Instance188 = Instance.new("UIStroke", Instance187) --UIStroke
+Instance188.Enabled = true
+Instance188.Color = Color3.new(0, 0, 0)
+Instance188.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Instance188.Thickness = 1
+Instance188.Transparency = 0
+Instance188.Name = "UIStroke"
+Instance188.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance189 = Instance.new("ImageButton", Instance180) --No
-Instance189.LayoutOrder = 0
-Instance189.Active = true
-Instance189.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance189.ZIndex = 10034
-Instance189.SliceCenter = Rect.new(0, 0, 0, 0)
-Instance189.Draggable = false
-Instance189.ScaleType = Enum.ScaleType.Fit
-Instance189.Modal = false
-Instance189.AutoButtonColor = true
-Instance189.ResampleMode = Enum.ResamplerMode.Default
-Instance189.BackgroundColor3 = Color3.new(1, 1, 1)
-Instance189.BorderSizePixel = 0
-Instance189.ImageTransparency = 0
-Instance189.Name = "No"
-Instance189.Selectable = true
-Instance189.AnchorPoint = Vector2.new(0, 0)
-Instance189.Image = "rbxassetid://168705076"
-Instance189.TileSize = UDim2.new(1, 0, 1, 0)
-Instance189.ImageRectSize = Vector2.new(0, 0)
-Instance189.Selected = false
-Instance189.Size = UDim2.new(0.10000000149011612, 0, 0.14300000667572021, 0)
+local Instance189 = Instance.new("Frame", Instance187) --NotificationMain
 Instance189.Visible = true
-Instance189.HoverImage = ""
-Instance189.ImageColor3 = Color3.new(1, 1, 1)
+Instance189.SelectionOrder = 0
+Instance189.Name = "NotificationMain"
+Instance189.Active = false
+Instance189.AutomaticSize = Enum.AutomaticSize.None
+Instance189.AnchorPoint = Vector2.new(0, 0)
+Instance189.Style = Enum.FrameStyle.Custom
+Instance189.LayoutOrder = 0
+Instance189.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance189.ZIndex = 10033
+Instance189.Size = UDim2.new(1, -5, 1, -2)
+Instance189.Draggable = false
+Instance189.Position = UDim2.new(0, 0, 0, 2)
+Instance189.Selectable = false
 Instance189.ClipsDescendants = false
 Instance189.BorderColor3 = Color3.new(0, 0, 0)
-Instance189.BorderMode = Enum.BorderMode.Outline
-Instance189.PressedImage = ""
+Instance189.BorderSizePixel = 0
 Instance189.Rotation = 0
-Instance189.ImageRectOffset = Vector2.new(0, 0)
-Instance189.BackgroundTransparency = 1
-Instance189.Position = UDim2.new(0.8999999761581421, 0, 0.02500000037252903, 0)
-Instance189.SliceScale = 1
-Instance189.AutomaticSize = Enum.AutomaticSize.None
-Instance189.SelectionOrder = 0
-Instance189.Style = Enum.ButtonStyle.Custom
+Instance189.BackgroundTransparency = 0
+Instance189.BorderMode = Enum.BorderMode.Outline
+Instance189.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance190 = Instance.new("ImageLabel", Instance180) --Stripes
+local Instance190 = Instance.new("Frame", Instance189) --Bar
 Instance190.Visible = true
-Instance190.Active = false
-Instance190.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance190.ZIndex = 10002
-Instance190.BorderSizePixel = 0
-Instance190.SliceCenter = Rect.new(0, 0, 0, 0)
-Instance190.Draggable = false
-Instance190.ScaleType = Enum.ScaleType.Tile
-Instance190.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
-Instance190.ImageTransparency = 0.949999988079071
-Instance190.AnchorPoint = Vector2.new(0, 0)
-Instance190.Image = "rbxassetid://87577631610763"
-Instance190.TileSize = UDim2.new(0, 30, 0, 30)
-Instance190.ImageRectSize = Vector2.new(0, 0)
 Instance190.SelectionOrder = 0
+Instance190.Name = "Bar"
+Instance190.Active = false
+Instance190.AutomaticSize = Enum.AutomaticSize.None
+Instance190.AnchorPoint = Vector2.new(0, 0)
+Instance190.Style = Enum.FrameStyle.Custom
+Instance190.LayoutOrder = 0
+Instance190.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance190.ZIndex = 10034
+Instance190.Size = UDim2.new(1, 0, 0, 5)
+Instance190.Draggable = false
+Instance190.Position = UDim2.new(0, 0, 1, -5)
 Instance190.Selectable = false
-Instance190.Size = UDim2.new(1, 0, 1, 0)
-Instance190.Name = "Stripes"
-Instance190.ResampleMode = Enum.ResamplerMode.Default
 Instance190.ClipsDescendants = false
 Instance190.BorderColor3 = Color3.new(0, 0, 0)
-Instance190.ImageColor3 = Color3.new(0, 0, 0)
-Instance190.LayoutOrder = 0
-Instance190.BorderMode = Enum.BorderMode.Outline
+Instance190.BorderSizePixel = 0
 Instance190.Rotation = 0
-Instance190.ImageRectOffset = Vector2.new(0, 0)
-Instance190.BackgroundTransparency = 1
-Instance190.Position = UDim2.new(0, 0, 0, 0)
-Instance190.SliceScale = 1
-Instance190.AutomaticSize = Enum.AutomaticSize.None
+Instance190.BackgroundTransparency = 0
+Instance190.BorderMode = Enum.BorderMode.Outline
+Instance190.BackgroundColor3 = Color3.new(0.27451, 0, 0.607843)
 
-local Instance191 = Instance.new("ModuleScript", Instance1) --ModuleScript
-Instance191.Name = "ModuleScript"
+local Instance191 = Instance.new("Frame", Instance190) --Fill
+Instance191.Visible = true
+Instance191.SelectionOrder = 0
+Instance191.Name = "Fill"
+Instance191.Active = false
+Instance191.AutomaticSize = Enum.AutomaticSize.None
+Instance191.AnchorPoint = Vector2.new(0, 0)
+Instance191.Style = Enum.FrameStyle.Custom
+Instance191.LayoutOrder = 0
+Instance191.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance191.ZIndex = 10035
+Instance191.Size = UDim2.new(0.5, 0, 1, 0)
+Instance191.Draggable = false
+Instance191.Position = UDim2.new(0.5, 0, 0, 0)
+Instance191.Selectable = false
+Instance191.ClipsDescendants = false
+Instance191.BorderColor3 = Color3.new(0, 0, 0)
+Instance191.BorderSizePixel = 0
+Instance191.Rotation = 0
+Instance191.BackgroundTransparency = 0
+Instance191.BorderMode = Enum.BorderMode.Outline
+Instance191.BackgroundColor3 = Color3.new(0.666667, 0, 1)
+
+local Instance192 = Instance.new("TextLabel", Instance189) --Title
+Instance192.LayoutOrder = 0
+Instance192.TextWrapped = true
+Instance192.LineHeight = 1
+Instance192.Active = false
+Instance192.TextStrokeTransparency = 1
+Instance192.TextTruncate = Enum.TextTruncate.None
+Instance192.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance192.ZIndex = 10034
+Instance192.BorderSizePixel = 0
+Instance192.Draggable = false
+Instance192.RichText = false
+Instance192.TextWrap = true
+Instance192.TextTransparency = 0
+Instance192.TextYAlignment = Enum.TextYAlignment.Center
+Instance192.TextScaled = true
+Instance192.TextXAlignment = Enum.TextXAlignment.Center
+Instance192.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance192.Name = "Title"
+Instance192.BorderMode = Enum.BorderMode.Outline
+Instance192.Selectable = false
+Instance192.TextDirection = Enum.TextDirection.Auto
+Instance192.Visible = true
+Instance192.FontSize = Enum.FontSize.Size14
+Instance192.AnchorPoint = Vector2.new(0, 0)
+Instance192.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance192.TextSize = 14
+Instance192.AutomaticSize = Enum.AutomaticSize.None
+Instance192.Size = UDim2.new(0.800000011920929, 0, 0.14300000667572021, 0)
+Instance192.TextColor3 = Color3.new(1, 1, 1)
+Instance192.ClipsDescendants = false
+Instance192.BorderColor3 = Color3.new(0, 0, 0)
+Instance192.Text = "Title"
+Instance192.SelectionOrder = 0
+Instance192.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance192.Rotation = 0
+Instance192.BackgroundTransparency = 1
+Instance192.Position = UDim2.new(0, 0, 0.02500000037252903, 0)
+Instance192.MaxVisibleGraphemes = -1
+
+local Instance193 = Instance.new("Frame", Instance189) --Separator
+Instance193.Visible = true
+Instance193.SelectionOrder = 0
+Instance193.Name = "Separator"
+Instance193.Active = false
+Instance193.AutomaticSize = Enum.AutomaticSize.None
+Instance193.AnchorPoint = Vector2.new(0, 0)
+Instance193.Style = Enum.FrameStyle.Custom
+Instance193.LayoutOrder = 0
+Instance193.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance193.ZIndex = 10034
+Instance193.Size = UDim2.new(1, 0, 0, 1)
+Instance193.Draggable = false
+Instance193.Position = UDim2.new(0, 0, 0.20000000298023224, -1)
+Instance193.Selectable = false
+Instance193.ClipsDescendants = false
+Instance193.BorderColor3 = Color3.new(0, 0, 0)
+Instance193.BorderSizePixel = 0
+Instance193.Rotation = 0
+Instance193.BackgroundTransparency = 0
+Instance193.BorderMode = Enum.BorderMode.Outline
+Instance193.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+
+local Instance194 = Instance.new("Frame", Instance189) --Lines
+Instance194.Visible = true
+Instance194.SelectionOrder = 0
+Instance194.Name = "Lines"
+Instance194.Active = false
+Instance194.AutomaticSize = Enum.AutomaticSize.None
+Instance194.AnchorPoint = Vector2.new(0, 0)
+Instance194.Style = Enum.FrameStyle.Custom
+Instance194.LayoutOrder = 0
+Instance194.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance194.ZIndex = 10034
+Instance194.Size = UDim2.new(1, 0, 0.800000011920929, -5)
+Instance194.Draggable = false
+Instance194.Position = UDim2.new(0, 0, 0.20000000298023224, 0)
+Instance194.Selectable = false
+Instance194.ClipsDescendants = false
+Instance194.BorderColor3 = Color3.new(0, 0, 0)
+Instance194.BorderSizePixel = 0
+Instance194.Rotation = 0
+Instance194.BackgroundTransparency = 1
+Instance194.BorderMode = Enum.BorderMode.Outline
+Instance194.BackgroundColor3 = Color3.new(1, 1, 1)
+
+local Instance195 = Instance.new("UIListLayout", Instance194) --UIListLayout
+Instance195.FillDirection = Enum.FillDirection.Vertical
+Instance195.HorizontalAlignment = Enum.HorizontalAlignment.Left
+Instance195.HorizontalFlex = Enum.UIFlexAlignment.None
+Instance195.VerticalFlex = Enum.UIFlexAlignment.None
+Instance195.VerticalAlignment = Enum.VerticalAlignment.Top
+Instance195.SortOrder = Enum.SortOrder.LayoutOrder
+Instance195.Name = "UIListLayout"
+Instance195.Padding = UDim.new(0, 0)
+Instance195.ItemLineAlignment = Enum.ItemLineAlignment.Automatic
+
+local Instance196 = Instance.new("TextLabel", Instance194) --1
+Instance196.LayoutOrder = 0
+Instance196.TextWrapped = true
+Instance196.LineHeight = 1
+Instance196.Active = false
+Instance196.TextStrokeTransparency = 1
+Instance196.TextTruncate = Enum.TextTruncate.None
+Instance196.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance196.ZIndex = 10035
+Instance196.BorderSizePixel = 0
+Instance196.Draggable = false
+Instance196.RichText = false
+Instance196.TextWrap = true
+Instance196.TextTransparency = 0
+Instance196.TextYAlignment = Enum.TextYAlignment.Top
+Instance196.TextScaled = false
+Instance196.TextXAlignment = Enum.TextXAlignment.Left
+Instance196.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, false)
+Instance196.Name = "1"
+Instance196.BorderMode = Enum.BorderMode.Outline
+Instance196.Selectable = false
+Instance196.TextDirection = Enum.TextDirection.Auto
+Instance196.Visible = true
+Instance196.FontSize = Enum.FontSize.Size10
+Instance196.AnchorPoint = Vector2.new(0, 0)
+Instance196.TextStrokeColor3 = Color3.new(0, 0, 0)
+Instance196.TextSize = 10
+Instance196.AutomaticSize = Enum.AutomaticSize.None
+Instance196.Size = UDim2.new(1, 0, 1, 0)
+Instance196.TextColor3 = Color3.new(1, 1, 1)
+Instance196.ClipsDescendants = false
+Instance196.BorderColor3 = Color3.new(0, 0, 0)
+Instance196.Text = "Line"
+Instance196.SelectionOrder = 0
+Instance196.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance196.Rotation = 0
+Instance196.BackgroundTransparency = 1
+Instance196.Position = UDim2.new(0, 0, 0, 0)
+Instance196.MaxVisibleGraphemes = -1
+
+local Instance197 = Instance.new("ImageButton", Instance189) --Yes
+Instance197.LayoutOrder = 0
+Instance197.Active = true
+Instance197.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance197.ZIndex = 10034
+Instance197.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance197.Draggable = false
+Instance197.ScaleType = Enum.ScaleType.Fit
+Instance197.Modal = false
+Instance197.AutoButtonColor = true
+Instance197.ResampleMode = Enum.ResamplerMode.Default
+Instance197.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance197.BorderSizePixel = 0
+Instance197.ImageTransparency = 0
+Instance197.Name = "Yes"
+Instance197.Selectable = true
+Instance197.AnchorPoint = Vector2.new(0, 0)
+Instance197.Image = "rbxassetid://12690727184"
+Instance197.TileSize = UDim2.new(1, 0, 1, 0)
+Instance197.ImageRectSize = Vector2.new(0, 0)
+Instance197.Selected = false
+Instance197.Size = UDim2.new(0.10000000149011612, 0, 0.14300000667572021, 0)
+Instance197.Visible = true
+Instance197.HoverImage = ""
+Instance197.ImageColor3 = Color3.new(1, 1, 1)
+Instance197.ClipsDescendants = false
+Instance197.BorderColor3 = Color3.new(0, 0, 0)
+Instance197.BorderMode = Enum.BorderMode.Outline
+Instance197.PressedImage = ""
+Instance197.Rotation = 0
+Instance197.ImageRectOffset = Vector2.new(0, 0)
+Instance197.BackgroundTransparency = 1
+Instance197.Position = UDim2.new(0.800000011920929, 0, 0.02500000037252903, 0)
+Instance197.SliceScale = 1
+Instance197.AutomaticSize = Enum.AutomaticSize.None
+Instance197.SelectionOrder = 0
+Instance197.Style = Enum.ButtonStyle.Custom
+
+local Instance198 = Instance.new("ImageButton", Instance189) --No
+Instance198.LayoutOrder = 0
+Instance198.Active = true
+Instance198.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance198.ZIndex = 10034
+Instance198.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance198.Draggable = false
+Instance198.ScaleType = Enum.ScaleType.Fit
+Instance198.Modal = false
+Instance198.AutoButtonColor = true
+Instance198.ResampleMode = Enum.ResamplerMode.Default
+Instance198.BackgroundColor3 = Color3.new(1, 1, 1)
+Instance198.BorderSizePixel = 0
+Instance198.ImageTransparency = 0
+Instance198.Name = "No"
+Instance198.Selectable = true
+Instance198.AnchorPoint = Vector2.new(0, 0)
+Instance198.Image = "rbxassetid://168705076"
+Instance198.TileSize = UDim2.new(1, 0, 1, 0)
+Instance198.ImageRectSize = Vector2.new(0, 0)
+Instance198.Selected = false
+Instance198.Size = UDim2.new(0.10000000149011612, 0, 0.14300000667572021, 0)
+Instance198.Visible = true
+Instance198.HoverImage = ""
+Instance198.ImageColor3 = Color3.new(1, 1, 1)
+Instance198.ClipsDescendants = false
+Instance198.BorderColor3 = Color3.new(0, 0, 0)
+Instance198.BorderMode = Enum.BorderMode.Outline
+Instance198.PressedImage = ""
+Instance198.Rotation = 0
+Instance198.ImageRectOffset = Vector2.new(0, 0)
+Instance198.BackgroundTransparency = 1
+Instance198.Position = UDim2.new(0.8999999761581421, 0, 0.02500000037252903, 0)
+Instance198.SliceScale = 1
+Instance198.AutomaticSize = Enum.AutomaticSize.None
+Instance198.SelectionOrder = 0
+Instance198.Style = Enum.ButtonStyle.Custom
+
+local Instance199 = Instance.new("ImageLabel", Instance189) --Stripes
+Instance199.Visible = true
+Instance199.Active = false
+Instance199.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance199.ZIndex = 10002
+Instance199.BorderSizePixel = 0
+Instance199.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance199.Draggable = false
+Instance199.ScaleType = Enum.ScaleType.Tile
+Instance199.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+Instance199.ImageTransparency = 0.8999999761581421
+Instance199.AnchorPoint = Vector2.new(0, 0)
+Instance199.Image = "rbxassetid://87577631610763"
+Instance199.TileSize = UDim2.new(0, 30, 0, 30)
+Instance199.ImageRectSize = Vector2.new(0, 0)
+Instance199.SelectionOrder = 0
+Instance199.Selectable = false
+Instance199.Size = UDim2.new(1, 0, 1, 0)
+Instance199.Name = "Stripes"
+Instance199.ResampleMode = Enum.ResamplerMode.Default
+Instance199.ClipsDescendants = false
+Instance199.BorderColor3 = Color3.new(0, 0, 0)
+Instance199.ImageColor3 = Color3.new(0, 0, 0)
+Instance199.LayoutOrder = 0
+Instance199.BorderMode = Enum.BorderMode.Outline
+Instance199.Rotation = 0
+Instance199.ImageRectOffset = Vector2.new(0, 0)
+Instance199.BackgroundTransparency = 1
+Instance199.Position = UDim2.new(0, 0, 0, 0)
+Instance199.SliceScale = 1
+Instance199.AutomaticSize = Enum.AutomaticSize.None
+
+local Instance200 = Instance.new("ImageLabel", Instance187) --Stripes
+Instance200.Visible = true
+Instance200.Active = false
+Instance200.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance200.ZIndex = 10032
+Instance200.BorderSizePixel = 0
+Instance200.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance200.Draggable = false
+Instance200.ScaleType = Enum.ScaleType.Tile
+Instance200.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+Instance200.ImageTransparency = 0.75
+Instance200.AnchorPoint = Vector2.new(0, 0)
+Instance200.Image = "rbxassetid://87577631610763"
+Instance200.TileSize = UDim2.new(0, 30, 0, 30)
+Instance200.ImageRectSize = Vector2.new(0, 0)
+Instance200.SelectionOrder = 0
+Instance200.Selectable = false
+Instance200.Size = UDim2.new(1, 0, 1, 0)
+Instance200.Name = "Stripes"
+Instance200.ResampleMode = Enum.ResamplerMode.Default
+Instance200.ClipsDescendants = false
+Instance200.BorderColor3 = Color3.new(0, 0, 0)
+Instance200.ImageColor3 = Color3.new(1, 1, 1)
+Instance200.LayoutOrder = 0
+Instance200.BorderMode = Enum.BorderMode.Outline
+Instance200.Rotation = 0
+Instance200.ImageRectOffset = Vector2.new(0, 0)
+Instance200.BackgroundTransparency = 1
+Instance200.Position = UDim2.new(0, 0, 0, 0)
+Instance200.SliceScale = 1
+Instance200.AutomaticSize = Enum.AutomaticSize.None
+
+local Instance201 = Instance.new("ModuleScript", Instance1) --ModuleScript
+Instance201.Name = "ModuleScript"
 
 
 ----------
 
 local require; local moduleScripts = {}
 
-moduleScripts[Instance191] = function()
-    local script = Instance191
+moduleScripts[Instance201] = function()
+    local script = Instance201
     local function getGlobalTable()
     return typeof(getfenv().getgenv) == "function" and typeof(getfenv().getgenv()) == "table" and getfenv().getgenv() or _G
 end
@@ -4802,16 +5087,14 @@ local configsEnabled = typeof(writefile) == "function" and typeof(readfile) == "
 
 local themes
 local versions
-local try, e = pcall(function()
+if not pcall(function()
     local str = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Data/Versions.json"))
     versions = {
         ["FireLibraryVersion"] = str[2],
         ["FireHubVersion"] = str[1]
     }
     themes = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/refs/heads/main/Core/Data/Theme.json"))
-end)
-if not try then
-    warn(e)
+end) then
     versions = {
         ["FireLibraryVersion"] = "5.2.0",
         ["FireHubVersion"] = "4.0.2"
@@ -4939,7 +5222,6 @@ local function setupSlider(slider, holder, options)
             local sizeScale = math.clamp((input.Position.X - sliderBar.Parent.AbsolutePosition.X) / sliderBar.Parent.AbsoluteSize.X, 0, 1)
             local pval = prevVal
             set(options.Min + ((options.Max - options.Min) * sizeScale))
-            print(pval, prevVal)
             if pval ~= prevVal then
                 coroutineCall(playSound)("MouseHover")
             end
@@ -5082,7 +5364,8 @@ local lib; lib = {
         local window = script.Parent.Holder.Window:Clone()
         window.Parent = script.Parent.Holder
         local fadeTime = 1
-        local size = typeof(options.WindowSize) == "UDim2" and options.WindowSize or typeof(options.CustomWindowSize) == "UDim2" and options.CustomWindowSize or typeof(options.Size) == "UDim2" and options.Size or UDim2.fromScale(0.7, 0.775)
+        local size = --typeof(options.WindowSize) == "UDim2" and options.WindowSize or typeof(options.CustomWindowSize) == "UDim2" and options.CustomWindowSize or typeof(options.Size) == "UDim2" and options.Size or
+            UDim2.fromScale(0.7, 0.775)
         window.Name = ""
         window.HolderFrame.Title.Text = getText(options) or "Fire Library | "..versions.FireLibraryVersion
         window.Visible = true
@@ -5168,10 +5451,12 @@ local lib; lib = {
                 v.Instance[v.Property] = setColorOffset(colors[v.Class].Color, v.Offset)
             end
         end
-        local function addClass(class, prop, instance)
+        local function addClass(class, prop, instance, setCol)
             local tbl = {Class = class, Property = prop, Instance = instance, Default = instance[prop], Offset = getColorOffset(instance[prop], colors[class].Default)}
             table.insert(colors[class].Instances, tbl)
-            setColor(tbl)
+            if setCol == nil or setCol then
+                setColor(tbl)
+            end
             return tbl
         end
 
@@ -5184,6 +5469,7 @@ local lib; lib = {
         addClass("Main", "BackgroundColor3", window)
         addClass("Main", "ImageColor3", window.HolderFrame.KeySystem.Copy.ToggleOuter.Frame.ImageLabel)
         addClass("Main", "ImageColor3", window.HolderFrame.KeySystem.Redeem.ToggleOuter.Frame.ImageLabel)
+        addClass("Main", "ImageColor3", window.HolderFrame.KeySystem.CloseUI.ToggleOuter.Frame.ImageLabel)
 
         addClass("Back", "BackgroundColor3", script.Parent.Notification.ChooseNotificationHolder.NotificationColored.NotificationMain)
         addClass("Back", "BackgroundColor3", script.Parent.Notification.ChooseNotificationHolder.NotificationColored.NotificationMain.Separator)
@@ -5198,6 +5484,8 @@ local lib; lib = {
         addClass("Back", "BackgroundColor3", window.HolderFrame.KeySystem.Copy.ToggleOuter.Frame)
         addClass("Back", "BackgroundColor3", window.HolderFrame.KeySystem.Redeem.ToggleOuter)
         addClass("Back", "BackgroundColor3", window.HolderFrame.KeySystem.Redeem.ToggleOuter.Frame)
+        addClass("Back", "BackgroundColor3", window.HolderFrame.KeySystem.CloseUI.ToggleOuter)
+        addClass("Back", "BackgroundColor3", window.HolderFrame.KeySystem.CloseUI.ToggleOuter.Frame)
         addClass("Back", "BackgroundColor3", window.HolderFrame.KeySystem.TextBox.TextBoxOuter)
         addClass("Back", "BackgroundColor3", window.HolderFrame.KeySystem.TextBox.TextBoxOuter.TextBoxBackground)
 
@@ -5210,10 +5498,11 @@ local lib; lib = {
         addClass("Text", "TextColor3", window.HolderFrame.Title)
         addClass("Text", "TextColor3", window.HolderFrame.KeySystem.Copy:FindFirstChild("Text"))
         addClass("Text", "TextColor3", window.HolderFrame.KeySystem.Redeem:FindFirstChild("Text"))
+        addClass("Text", "TextColor3", window.HolderFrame.KeySystem.CloseUI:FindFirstChild("Text"))
         addClass("Text", "TextColor3", window.HolderFrame.KeySystem.Label.Text)
         addClass("Text", "TextColor3", window.HolderFrame.KeySystem.TextBox.TextBoxOuter.TextBox)
         addClass("Text", "TextColor3", window.HolderFrame.KeySystem.TextBox:FindFirstChild("Text"))
-        addClass("Text", "PlaceholderColor3", window.HolderFrame.KeySystem.TextBox.TextBoxOuter.TextBox)
+        addClass("Text", "PlaceholderColor3", window.HolderFrame.KeySystem.TextBox.TextBoxOuter.TextBox, false)
 
         local cd = false
         local windowFuncs; windowFuncs = {
@@ -5927,6 +6216,9 @@ local lib; lib = {
                         local function setSelected(idx, val)
                             local row = indexRefs[idx]
                             if not row then return error("Unable to set value", 0) end
+                            if val then
+                                coroutineCall(options.CB)(idx, typeof(val) == "boolean" and rows[idx] or val)
+                            end
                             
                             for i,v in refs do
                                 if colors[v.Class] then
@@ -5948,9 +6240,6 @@ local lib; lib = {
                             dd.DropdownOuter.Default.Text = row.Text
                             enabled = false
                             update()
-                            if val then
-                                options.CB(idx,typeof(val) == "boolean" and rows[idx] or val)
-                            end
                         end
                         
                         local function addRow(i, v)
@@ -6217,12 +6506,88 @@ local lib; lib = {
         windowFuncs.Minimize = windowFuncs.Hide
         windowFuncs.Maximize = windowFuncs.Show
         
+        local tbl = typeof(options.ThemeTable) == "table" and options.ThemeTable or typeof(options.ThemeColors) == "table" and options.ThemeColors or typeof(options.Theme) == "table" and options.Theme
+        if tbl then
+            for i,v in tbl do
+                windowFuncs.ThemeColors[i] = v
+            end
+        end
+        
         windowFuncs:Show()
 
         local keySystemFunc = type(options.KeySystemFunction) == "function" and options.KeySystemFunction or type(options.KeySystemFunc) == "function" and options.KeySystemFunc or type(options.KeySystem) == "function" and options.KeySystem or type(options.KeyCheck) == "function" and options.KeyCheck or type(options.Key) == "function" and options.Key
-        if keySystemFunc then
+        local keySystemUrl = type(options.KeySystemUrl) == "string" and options.KeySystemUrl or type(options.Url) == "string" and options.Url or type(options.KeyUrl) == "string" and options.KeyUrl
+        local newSize = typeof(options.WindowSize) == "UDim2" and options.WindowSize or typeof(options.CustomWindowSize) == "UDim2" and options.CustomWindowSize or typeof(options.Size) == "UDim2" and options.Size or UDim2.fromScale(0.7, 0.775)
+        
+        if keySystemFunc and keySystemUrl then
+            window.HolderFrame.KeySystem.Visible = true
+            window.HolderFrame.PageButtons.Visible = false
+            window.HolderFrame.PageDisplay.Visible = false
             
+            local keysys = window.HolderFrame.KeySystem
+            local redeemed = false
+            local closed = false
+            local buzy = false
+
+            keysys.Copy.Trigger.MouseEnter:Connect(function()
+                playSound("MouseHover")
+            end)
+            keysys.Copy.Trigger.MouseButton1Click:Connect(function()
+                coroutineCall(playSound)("Click")
+                if getfenv().toclipboard or getfenv().setclipboard or getfenv().Clipboard and getfenv().Clipboard.set then
+                    (getfenv().toclipboard or getfenv().setclipboard or getfenv().Clipboard and getfenv().Clipboard.set)(keySystemUrl)
+                else
+                    keysys.TextBox.TextBoxOuter.TextBox.Text = keySystemUrl
+                end
+            end)
+            keysys.CloseUI.Trigger.MouseEnter:Connect(function()
+                playSound("MouseHover")
+            end)
+            keysys.CloseUI.Trigger.MouseButton1Click:Connect(function()
+                coroutineCall(playSound)("Click")
+                closed = true
+                windowFuncs:Close()
+            end)
+            keysys.Redeem.Trigger.MouseEnter:Connect(function()
+                playSound("MouseHover")
+            end)
+            keysys.Redeem.Trigger.MouseButton1Click:Connect(function()
+                coroutineCall(playSound)("Click")
+                if buzy then return end
+                buzy = true
+                if keySystemFunc(keysys.TextBox.TextBoxOuter.TextBox.Text) then
+                    window.HolderFrame.StarterFade.Visible = true
+                    window.HolderFrame.StarterFade.BackgroundTransparency = 1
+                    window.HolderFrame.StarterFade.ZIndex += 1000
+                    game.TweenService:Create(window.HolderFrame.StarterFade, TweenInfo.new(fadeTime / 2.5, Enum.EasingStyle.Exponential, Enum.EasingDirection.In), {BackgroundTransparency = 0}):Play()
+                    task.wait((fadeTime / 2.5) + 0.5)
+                    redeemed = true
+                    size = newSize
+                    windowFuncs:Show()
+                end
+                buzy = false
+            end)
+            keysys.TextBox.Trigger.MouseEnter:Connect(function()
+                playSound("MouseHover")
+            end)
+            keysys.TextBox.Trigger.MouseButton1Click:Connect(function()
+                keysys.TextBox.TextBoxOuter.TextBox:CaptureFocus()
+            end)
+            keysys.TextBox.TextBoxOuter.TextBox.FocusLost:Connect(function()
+                coroutineCall(playSound)("Click")
+            end)
+            
+            repeat task.wait() until redeemed or closed
+            if closed then
+                task.wait(9e9)
+            end
         end
+        
+        size = newSize
+        
+        window.HolderFrame.KeySystem.Visible = false
+        window.HolderFrame.PageButtons.Visible = true
+        window.HolderFrame.PageDisplay.Visible = true
         
         local page = windowFuncs:AddPage({Title = "Main", Order = 999})
         local toggleKey = Enum.KeyCode.LeftAlt
@@ -6487,6 +6852,22 @@ local lib; lib = {
             window.Stripes.ScaleType = v == "Custom" and not tileMode and Enum.ScaleType.Fit or Enum.ScaleType.Tile
             window.HolderFrame.Stripes.ScaleType = window.Stripes.ScaleType
             
+            local str = script.Parent.Notification.ChooseNotificationHolder.NotificationColored.NotificationMain.Stripes
+            str.ScaleType = window.Stripes.ScaleType
+            str.Image = window.Stripes.Image
+            
+            local str = script.Parent.Notification.NotificationHolder.NotificationColored.NotificationMain.Stripes
+            str.ScaleType = window.Stripes.ScaleType
+            str.Image = window.Stripes.Image
+
+            local str = script.Parent.Notification.ChooseNotificationHolder.NotificationColored.Stripes
+            str.ScaleType = window.Stripes.ScaleType
+            str.Image = window.Stripes.Image
+
+            local str = script.Parent.Notification.NotificationHolder.NotificationColored.Stripes
+            str.ScaleType = window.Stripes.ScaleType
+            str.Image = window.Stripes.Image
+            
             if v == "Custom" then
                 custom:Show()
                 tile:Show()
@@ -6502,12 +6883,34 @@ local lib; lib = {
             themes.Patterns.Custom = text
             window.Stripes.Image = text
             window.HolderFrame.Stripes.Image = text
+            local str = script.Parent.Notification.ChooseNotificationHolder.NotificationColored.NotificationMain.Stripes
+            str.ScaleType = window.Stripes.ScaleType
+            str.Image = window.Stripes.Image
+
+            local str = script.Parent.Notification.NotificationHolder.NotificationColored.NotificationMain.Stripes
+            str.ScaleType = window.Stripes.ScaleType
+            str.Image = window.Stripes.Image
+            
+            local str = script.Parent.Notification.ChooseNotificationHolder.NotificationColored.Stripes
+            str.ScaleType = window.Stripes.ScaleType
+            str.Image = window.Stripes.Image
+
+            local str = script.Parent.Notification.NotificationHolder.NotificationColored.Stripes
+            str.ScaleType = window.Stripes.ScaleType
+            str.Image = window.Stripes.Image
         end})
         tile = page:AddToggle({Title = "Tile mode", Default = false, Callback = function(new)
             tileMode = new
             
             window.Stripes.ScaleType = tileMode and Enum.ScaleType.Tile or Enum.ScaleType.Fit
             window.HolderFrame.Stripes.ScaleType = window.Stripes.ScaleType
+            local str = script.Parent.Notification.ChooseNotificationHolder.NotificationColored.NotificationMain.Stripes
+            str.ScaleType = window.Stripes.ScaleType
+            str.Image = window.Stripes.Image
+
+            local str = script.Parent.Notification.NotificationHolder.NotificationColored.NotificationMain.Stripes
+            str.ScaleType = window.Stripes.ScaleType
+            str.Image = window.Stripes.Image
         end})
         
         tile:Hide()
@@ -6517,20 +6920,35 @@ local lib; lib = {
         window.HolderFrame.Stripes.ScaleType = window.Stripes.ScaleType
         window.Stripes.Image = themes.Patterns.Stripes
         window.HolderFrame.Stripes.Image = themes.Patterns.Stripes
+        local str = script.Parent.Notification.ChooseNotificationHolder.NotificationColored.NotificationMain.Stripes
+        str.ScaleType = window.Stripes.ScaleType
+        str.Image = window.Stripes.Image
+
+        local str = script.Parent.Notification.NotificationHolder.NotificationColored.NotificationMain.Stripes
+        str.ScaleType = window.Stripes.ScaleType
+        str.Image = window.Stripes.Image
 
         page:AddColorPicker({Text = "Outline image color", Default = window.Stripes.ImageColor3, Callback = function(col)
             window.Stripes.ImageColor3 = col
+            script.Parent.Notification.ChooseNotificationHolder.NotificationColored.Stripes.ImageColor3 = col
+            script.Parent.Notification.NotificationHolder.NotificationColored.Stripes.ImageColor3 = col
         end})
         page:AddColorPicker({Text = "Background image color", Default = window.HolderFrame.Stripes.ImageColor3, Callback = function(col)
             window.HolderFrame.Stripes.ImageColor3 = col
+            script.Parent.Notification.ChooseNotificationHolder.NotificationColored.NotificationMain.Stripes.ImageColor3 = col
+            script.Parent.Notification.NotificationHolder.NotificationColored.NotificationMain.Stripes.ImageColor3 = col
         end})
         page:AddSlider({Text = "Outline image opacity", Default = (1 - window.Stripes.ImageTransparency) * 100, Min = 0, Max = 100, Step = 1, Callback = function(val)
             window.Stripes.ImageTransparency = 1 - (val / 100)
+            script.Parent.Notification.ChooseNotificationHolder.NotificationColored.Stripes.ImageTransparency = 1 - (val / 100)
+            script.Parent.Notification.NotificationHolder.NotificationColored.Stripes.ImageTransparency = 1 - (val / 100)
         end, CustomTextDisplay = function(i)
             return i .. "%"
         end})
         page:AddSlider({Text = "Background image opacity", Default = (1 - window.HolderFrame.Stripes.ImageTransparency) * 100, Min = 0, Max = 100, Step = 1, Callback = function(val)
             window.HolderFrame.Stripes.ImageTransparency = 1 - (val / 100)
+            script.Parent.Notification.ChooseNotificationHolder.NotificationColored.NotificationMain.Stripes.ImageTransparency = 1 - (val / 100)
+            script.Parent.Notification.NotificationHolder.NotificationColored.NotificationMain.Stripes.ImageTransparency = 1 - (val / 100)
         end, CustomTextDisplay = function(i)
             return i .. "%"
         end})
