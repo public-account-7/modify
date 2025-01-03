@@ -11,7 +11,7 @@ Now we can use the library!
 ```lua
 local window = lib:MakeWindow({Title = "Fire~Lib: Example", CloseCallback = function()
 	print("Closed!")
-end})
+end, Size = UDim2.fromScale(1, 0.75)}) -- size is not important
 ```
 
 After we got a window, we need to put stuff in it
@@ -31,6 +31,14 @@ window:Toggle(false) -- Will hide the window
 window:Close() -- Will close the window, it will be no longer able to be shown again. Calls CloseCallback. In our situation it will print "Closed!" into F9 console
 ```
 
+If you want we can change it's colors!
+### Themes
+```lua
+window.ThemeColors.Text = Color3.new() -- will set textcolor to black
+window.ThemeColors.Main = Color3.new(0.3, 0.3, 0.3) -- will set window outline and things of the same color to gray
+window.ThemeColors.Back = Color3.new(1, 1, 1) -- will set window background color to white
+```
+
 # Adding the page
 ```lua
 local page = window:AddPage({Title = "Example page!"})
@@ -45,7 +53,7 @@ local slider = page:AddSlider({Caption = "Walk Speed", Callback = function(numbe
 end, Default = 16, Min = 0, Max = 100, Step = 1})
 -- slider:Set, slider:SetText, slider:SetMinimum... some nerd stuff, im lazy to type it in there. You can see it using `for i,v in slider do print(i)`.
 ```
-every slider and not only function must be called through ":" - `slider:Destroy()`
+every slider's (and not only) function must be called through ":" - `slider:Destroy()`
 
 ### Separator
 ```lua
@@ -90,19 +98,11 @@ page:AddInput({Text = "Toggle UI Key", Default = toggleKey.Name, Callback = func
 end, IgnoreConfigs = true})
 ```
 
-### Dropdown [BROKEN]
+### Dropdown
 I never used dropdown, so the example can be a bit inaccurate
 ```lua
 page:AddDropdown({Text = "Dropdown", Default = "First", Rows = {"First", "Second", "Third"}, Callback = function(name)
 	-- "name" will be "First", "Second" or "Third"
-end})
-```
-
-### Toggle Dropdown [POSSIBLY BROKEN]
-This one is kinda new, and I think it kinda has some use, so I've added that
-```lua
-page:AddToggleDropdown({Text = "Toggle Dropdown", Default = {["First"] = false, ["Second"] = true}, Callback = function(new)
-	print("First:",tostring(new.First),"\nSecond:",tostring(new.Second))
 end})
 ```
 
@@ -136,7 +136,8 @@ local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusS
 
 local window = lib:MakeWindow({Title = "Fire~Lib: Example", CloseCallback = function()
 	print("Closed!")
-end})
+end, Size = UDim2.fromScale(1, 0.75)})
+window.ThemeColors.Main = Color3.new(1,0,0) -- red
 
 local page = window:AddPage({Title = "Example page!"})
 
@@ -166,10 +167,6 @@ end, IgnoreConfigs = true})
 
 page:AddDropdown({Text = "Dropdown", Default = "First", Rows = {"First", "Second", "Third"}, Callback = function(name)
 	print("You scored "..name.." place!")
-end})
-
-page:AddToggleDropdown({Text = "Toggle Dropdown", Default = {["First"] = false, ["Second"] = true}, Callback = function(new)
-	print("First:",tostring(new.First),"\nSecond:",tostring(new.Second))
 end})
 
 page:AddColorPicker({Text = "Color Picker", Default = Color3.new(1, 0, 0.5), Callback = function(color)
