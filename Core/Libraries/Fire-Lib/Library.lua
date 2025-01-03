@@ -5050,9 +5050,7 @@ Instance200.Position = UDim2.new(0, 0, 0, 0)
 Instance200.SliceScale = 1
 Instance200.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance201 = Instance.new("ModuleScript", Instance1) --ModuleScript
-Instance201.Name = "ModuleScript"
-
+local Instance201 = 1 --ModuleScript
 
 ----------
 
@@ -6992,4 +6990,4 @@ require = getfenv().require
 -- Your code down below --
 
 local screenGui = Instance1
-return require(screenGui.ModuleScript)
+return require(1)
