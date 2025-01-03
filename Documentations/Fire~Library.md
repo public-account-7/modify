@@ -162,7 +162,7 @@ local slider = page:AddSlider({Caption = "Walk Speed", Callback = function(numbe
 end, Default = 16, Min = 0, Max = 100, Step = 1})
 
 local button = page:AddButton({Caption = "Kill", Callback = function()
-	plr.Character.Humanoid.Health = 0
+	game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end})
 
 page:AddSeparator()
