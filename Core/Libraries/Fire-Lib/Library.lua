@@ -5010,48 +5010,48 @@ Instance197.Position = UDim2.new(0, 0, 0, 0)
 Instance197.SliceScale = 1
 Instance197.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance198 = Instance.new("ImageLabel", Instance185) --Stripes
-Instance198.Visible = true
-Instance198.Active = false
-Instance198.SizeConstraint = Enum.SizeConstraint.RelativeXY
-Instance198.ZIndex = 10032
-Instance198.BorderSizePixel = 0
-Instance198.SliceCenter = Rect.new(0, 0, 0, 0)
-Instance198.Draggable = false
-Instance198.ScaleType = Enum.ScaleType.Tile
-Instance198.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
-Instance198.ImageTransparency = 0.75
-Instance198.AnchorPoint = Vector2.new(0, 0)
-Instance198.Image = "rbxassetid://87577631610763"
-Instance198.TileSize = UDim2.new(0, 30, 0, 30)
-Instance198.ImageRectSize = Vector2.new(0, 0)
-Instance198.SelectionOrder = 0
-Instance198.Selectable = false
-Instance198.Size = UDim2.new(1, 0, 1, 0)
-Instance198.Name = "Stripes"
-Instance198.ResampleMode = Enum.ResamplerMode.Default
-Instance198.ClipsDescendants = false
-Instance198.BorderColor3 = Color3.new(0, 0, 0)
-Instance198.ImageColor3 = Color3.new(1, 1, 1)
-Instance198.LayoutOrder = 0
-Instance198.BorderMode = Enum.BorderMode.Outline
-Instance198.Rotation = 0
-Instance198.ImageRectOffset = Vector2.new(0, 0)
-Instance198.BackgroundTransparency = 1
-Instance198.Position = UDim2.new(0, 0, 0, 0)
-Instance198.SliceScale = 1
-Instance198.AutomaticSize = Enum.AutomaticSize.None
+Instance197 = Instance.new("ImageLabel", Instance185) --Stripes
+Instance197.Visible = true
+Instance197.Active = false
+Instance197.SizeConstraint = Enum.SizeConstraint.RelativeXY
+Instance197.ZIndex = 10032
+Instance197.BorderSizePixel = 0
+Instance197.SliceCenter = Rect.new(0, 0, 0, 0)
+Instance197.Draggable = false
+Instance197.ScaleType = Enum.ScaleType.Tile
+Instance197.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+Instance197.ImageTransparency = 0.75
+Instance197.AnchorPoint = Vector2.new(0, 0)
+Instance197.Image = "rbxassetid://87577631610763"
+Instance197.TileSize = UDim2.new(0, 30, 0, 30)
+Instance197.ImageRectSize = Vector2.new(0, 0)
+Instance197.SelectionOrder = 0
+Instance197.Selectable = false
+Instance197.Size = UDim2.new(1, 0, 1, 0)
+Instance197.Name = "Stripes"
+Instance197.ResampleMode = Enum.ResamplerMode.Default
+Instance197.ClipsDescendants = false
+Instance197.BorderColor3 = Color3.new(0, 0, 0)
+Instance197.ImageColor3 = Color3.new(1, 1, 1)
+Instance197.LayoutOrder = 0
+Instance197.BorderMode = Enum.BorderMode.Outline
+Instance197.Rotation = 0
+Instance197.ImageRectOffset = Vector2.new(0, 0)
+Instance197.BackgroundTransparency = 1
+Instance197.Position = UDim2.new(0, 0, 0, 0)
+Instance197.SliceScale = 1
+Instance197.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance199 = Instance.new("ModuleScript", Instance1) --ModuleScript
-Instance199.Name = "ModuleScript"
+Instance198 = Instance.new("ModuleScript", Instance1) --ModuleScript
+Instance198.Name = "ModuleScript"
 
 
 ----------
 
 local require; local moduleScripts = {}
 
-moduleScripts[Instance199] = function()
-    local script = Instance199
+moduleScripts[Instance198] = function()
+    local script = Instance198
     local function getGlobalTable()
     return typeof(getfenv().getgenv) == "function" and typeof(getfenv().getgenv()) == "table" and getfenv().getgenv() or _G
 end
