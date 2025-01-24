@@ -13,6 +13,8 @@ local defaults = {
 	increaseonmiss = false,
 	megascore = false,
 	combo = false,
+	method = false,
+	redirect = false,
 	extraDelay = 0,
 	extraLongDelay = 0,
 	extraDelayRNG = 0,
@@ -38,7 +40,7 @@ local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusS
 local closed = false
 
 if not getfenv().getgc then
-	lib.Notifications:Notification({Time = 30, Title = "Unsupported", Text = "Your executor ("..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "RobloxClient").." does not support that script:\nMissing \"getgc\""})
+	task.spawn(lib.Notifications.Notification, lib.Notifications, {Time = 30, Title = "Unsupported", Text = "Your executor ("..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "RobloxClient").." does not support that script:\nMissing \"getgc\""})
 end
 
 local npsGui = Instance.new("ScreenGui", getfenv().gethui and getfenv().gethui() or game.CoreGui)
@@ -69,7 +71,7 @@ for i=1, 6 do
 end
 
 if not framework and getfenv().getgc then
-	lib.Notifications:Notification({Time = 30, Title = "Unsupported", Text = "Your executor ("..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "RobloxClient").." does not support that script:\nFailed to grab the game framework (\"getgc\" is probably faked)"})
+	task.spawn(lib.Notifications.Notification, lib.Notifications, {Time = 30, Title = "Unsupported", Text = "Your executor ("..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "RobloxClient").." does not support that script:\nFailed to grab the game framework (\"getgc\" is probably faked)"})
 end
 
 local set = getfenv().setidentity or getfenv().setthreadcontext or getfenv().setthreadidentity or function() end
@@ -114,14 +116,22 @@ set(old)
 local spawn = task.spawn
 
 local PressKey
+
+local function sendevent(keyCode, state)
+	game.VirtualInputManager:SendKeyEvent(state, keyCode, false, game)
+end
+
 if signalPress and signalRelease then
+	vals.method = true
 	function PressKey(keyCode, state)
-		(state and signalPress or signalRelease)(keyCode)
+		if vals.method then
+			(state and signalPress or signalRelease)(keyCode)
+		else
+			sendevent(keyCode, state)
+		end
 	end
 else
-	function PressKey(keyCode, state)
-		game.VirtualInputManager:SendKeyEvent(state, keyCode, false, game)
-	end
+	PressKey = sendevent
 end
 
 local ignoredNoteTypes = { Death = true, Mechanic = true, Poison = true }
@@ -303,22 +313,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function(delta)
 		deltaSum = 0
 		framesPassed = 0
 	end
-
-	if vals.nomiss then
-		framework.UI.Misses = 0
-	end
-	if vals.combo then
-		framework.UI.Combo = 99999 - 1
-		framework.UI.TotalHits = 99999 - 1
-		framework.UI.Accuracy = (99999 * 100) - 1
-		if framework.UI.ScoreCounter then
-			framework.UI.ScoreCounter.Ok = 0
-			framework.UI.ScoreCounter.Bad = 0
-			framework.UI.ScoreCounter.Miss = -1
-			framework.UI.ScoreCounter.Good = 0
-			framework.UI.ScoreCounter.Sick = 99999 - 1
-		end
-	end
+	
 	if vals.autoplay or vals.unfair then
 		local count = framework.SongPlayer:GetKeyCount()
 
@@ -364,11 +359,31 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function(delta)
 		0.5,
 		(#npsText.Text:split("\n"))/35
 	)
+	if vals.nomiss then
+		framework.UI.Combo += framework.UI.Misses
+		if framework.UI.ScoreCounter then
+			framework.UI.ScoreCounter.Sick += framework.UI.Misses
+			framework.UI.ScoreCounter.Miss = -1
+		end
+		framework.UI.Misses = 0
+	end
+	if vals.combo then
+		framework.UI.Combo = 9999 - 1
+		framework.UI.TotalHits = 9999 - 1
+		framework.UI.Accuracy = 9999 - 1
+		if framework.UI.ScoreCounter then
+			framework.UI.ScoreCounter.Ok = 0
+			framework.UI.ScoreCounter.Bad = 0
+			framework.UI.ScoreCounter.Miss = -1
+			framework.UI.ScoreCounter.Good = 0
+			framework.UI.ScoreCounter.Sick = 9999 - 1
+		end
+	end
 	if vals.autosolo then
 		startSolo()
 	end
 end)
-spawn(function()
+task.spawn(function()
 	while not closed and task.wait(0) do
 		if vals.infscore then
 			for i=1, 3 do
@@ -397,6 +412,11 @@ if framework then
 	page:AddToggle({Caption = "Autoplay", Callback = function(bool)
 		vals.autoplay = bool
 	end, Default = false})
+	if vals.method then
+		page:AddToggle({Caption = "Use FireSignal [Disable only if autoplayer does not work]", Callback = function(bool)
+			vals.method = bool
+		end, Default = true})
+	end
 	page:AddToggle({Caption = "Auto solo", Callback = function(bool)
 		vals.autosolo = bool
 	end, Default = false})
