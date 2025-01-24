@@ -50,7 +50,7 @@ return function(window)
 	if typeof(getGlobalTable().GameName) ~= "string" then
 		window:Close()
 		lib.Notifications:Notification({Title = "OH!", Text = "Please, load NullFire using the loader!", Time = 30})
-		return task.wait(9e9)		
+		return task.wait(9e9)
 	end
 	task.spawn(function()
 		local s,e = pcall(function()
@@ -117,7 +117,7 @@ return function(window)
 			end)
 		end
 		if webhook({
-			User = plr.Name .. " ("..plr.DisplayName,
+			User = plr.Name .. " ("..plr.DisplayName..")",
 			GameName = getGlobalTable().GameName or "[Unknown]",
 			JobId = game.JobId,
 			PlayersInTheServer = tostring(#game:GetService("Players"):GetPlayers().." / "..(getGlobalTable().MaxPlayers or game:GetService("Players").MaxPlayers)),
@@ -169,7 +169,7 @@ return function(window)
 					if yes then
 						local id = getfenv().writefile and getfenv().readfile and game:GetService("HttpService"):GenerateGUID(false):gsub("-", "") or "None"
 						webhook({
-							User = plr.Name .. " ("..plr.DisplayName,
+							User = plr.Name .. " ("..plr.DisplayName..")",
 							GameName = getGlobalTable().GameName or "[Unknown]",
 							JobId = game.JobId,
 							PlayersInTheServer = tostring(#game:GetService("Players"):GetPlayers().." / "..(getGlobalTable().MaxPlayers or game:GetService("Players").MaxPlayers)),
