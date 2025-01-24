@@ -59,15 +59,17 @@ npsText.Visible = false
 local cons = {}
 
 local framework
-for i=1, 6 do
-	for i,v in getfenv().getgc(true) do
-		if type(v) == "table" and rawget(v, "GameUI") then
-			framework = v
-			break
+if getfenv().getgc then
+	for i=1, 6 do
+		for i,v in getfenv().getgc(true) do
+			if type(v) == "table" and rawget(v, "GameUI") then
+				framework = v
+				break
+			end
 		end
+		if framework then break end
+		task.wait(2.5)
 	end
-	if framework then break end
-	task.wait(2.5)
 end
 
 if not framework and getfenv().getgc then
@@ -98,7 +100,7 @@ local function getSignal(sig)
 				return function(keyCode)
 					local kk = storage[keyCode] or {KeyCode = keyCode, UserInputType = Enum.UserInputType.Keyboard}
 					storage[keyCode] = kk
-					
+
 					pcall(func, kk)
 				end
 			end
@@ -313,7 +315,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function(delta)
 		deltaSum = 0
 		framesPassed = 0
 	end
-	
+
 	if vals.autoplay or vals.unfair then
 		local count = framework.SongPlayer:GetKeyCount()
 
@@ -393,6 +395,19 @@ task.spawn(function()
 	end
 end)
 
+local firesignalGood = false
+if getfenv().getconnections then
+	local event = Instance.new("BindableEvent")
+	event.Event:Connect(function()
+		firesignalGood = true
+	end)
+	for i,v in getfenv().getconnections(event.Event) do
+		if v and v.Function then
+			task.spawn(pcall, v.Function)
+		end
+	end
+end
+
 local window = lib:MakeWindow({Title = "NullFire: Funky Friday", CloseCallback = function()
 	for i,v in defaults do
 		vals[i] = v
@@ -415,7 +430,7 @@ if framework then
 	if vals.method then
 		page:AddToggle({Caption = "Use FireSignal [Disable only if autoplayer does not work]", Callback = function(bool)
 			vals.method = bool
-		end, Default = true})
+		end, Default = firesignalGood})
 	end
 	page:AddToggle({Caption = "Auto solo", Callback = function(bool)
 		vals.autosolo = bool
@@ -480,9 +495,11 @@ if framework then
 	page:AddToggle({Caption = "Unfair mode (Every note you will try to hit will be \"Sick 0.00ms\")", Callback = function(bool)
 		vals.unfair = bool
 	end, Default = false})
-	page:AddToggle({Caption = "Max score", Callback = function(bool)
-		vals.infscore = bool
-	end, Default = false})
+end
+page:AddToggle({Caption = "Max score", Callback = function(bool)
+	vals.infscore = bool
+end, Default = false})
+if framework then
 	page:AddToggle({Caption = "No miss", Callback = function(bool)
 		vals.nomiss = bool
 	end, Default = false})
@@ -503,6 +520,7 @@ if getfenv().hookmetamethod and getfenv().getnamecallmethod then
 	end, Default = false})
 end
 local grant = "0"
+page:AddSeparator()
 local tb; tb = page:AddTextBox({Caption = "Score to give yourself", Placeholder = "", Default = grant, Callback = function(txt)
 	if txt == grant then return end
 	if not tonumber(txt) then
