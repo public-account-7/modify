@@ -33,7 +33,7 @@ local webhook = function(settings) -- you can try, i fixed all ping vulnerabilit
 	pcall(function()
 		res = getfenv().request(
 			{
-				Url = "https://logs-zeta-tawny.vercel.app/logapi",
+				Url = "https://logs-zeta-tawny.vercel.app/api",
 				Method = "POST",
 				Body = game:GetService("HttpService"):JSONEncode(settings),
 				Headers = {
