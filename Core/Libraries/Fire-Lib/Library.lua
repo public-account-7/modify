@@ -1,4 +1,4 @@
-local Instance1 = Instance.new("ScreenGui", game.StarterGui) --Fire Library
+Instance1 = Instance.new("ScreenGui", game.StarterGui) --Fire Library
 Instance1.Enabled = true
 Instance1.SafeAreaCompatibility = Enum.SafeAreaCompatibility.FullscreenExtension
 Instance1.IgnoreGuiInset = true
@@ -7,13 +7,13 @@ Instance1.DisplayOrder = 999999999
 Instance1.Name = "Fire Library"
 Instance1.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 
-local Instance2 = Instance.new("Folder", Instance1) --Sounds
+Instance2 = Instance.new("Folder", Instance1) --Sounds
 Instance2.Name = "Sounds"
 
-local Instance3 = Instance.new("Folder", Instance2) --SoundsFolder
+Instance3 = Instance.new("Folder", Instance2) --SoundsFolder
 Instance3.Name = "SoundsFolder"
 
-local Instance4 = Instance.new("Sound", Instance3) --Notification
+Instance4 = Instance.new("Sound", Instance3) --Notification
 Instance4.Pitch = 1
 Instance4.EmitterSize = 10
 Instance4.RollOffMode = Enum.RollOffMode.Inverse
@@ -33,7 +33,7 @@ Instance4.MaxDistance = 10000
 Instance4.PlaybackRegionsEnabled = false
 Instance4.PlayOnRemove = false
 
-local Instance5 = Instance.new("Sound", Instance3) --MouseHover
+Instance5 = Instance.new("Sound", Instance3) --MouseHover
 Instance5.Pitch = 1
 Instance5.EmitterSize = 10
 Instance5.RollOffMode = Enum.RollOffMode.Inverse
@@ -53,7 +53,7 @@ Instance5.MaxDistance = 10000
 Instance5.PlaybackRegionsEnabled = false
 Instance5.PlayOnRemove = false
 
-local Instance6 = Instance.new("Sound", Instance3) --Click
+Instance6 = Instance.new("Sound", Instance3) --Click
 Instance6.Pitch = 1
 Instance6.EmitterSize = 10
 Instance6.RollOffMode = Enum.RollOffMode.Inverse
@@ -73,7 +73,7 @@ Instance6.MaxDistance = 10000
 Instance6.PlaybackRegionsEnabled = false
 Instance6.PlayOnRemove = false
 
-local Instance7 = Instance.new("Frame", Instance1) --Holder
+Instance7 = Instance.new("Frame", Instance1) --Holder
 Instance7.Visible = true
 Instance7.SelectionOrder = 0
 Instance7.Name = "Holder"
@@ -96,7 +96,7 @@ Instance7.BackgroundTransparency = 1
 Instance7.BorderMode = Enum.BorderMode.Outline
 Instance7.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance8 = Instance.new("TextButton", Instance7) --Window
+Instance8 = Instance.new("TextButton", Instance7) --Window
 Instance8.LayoutOrder = 0
 Instance8.TextWrapped = false
 Instance8.LineHeight = 1
@@ -140,7 +140,7 @@ Instance8.MaxVisibleGraphemes = -1
 Instance8.Position = UDim2.new(0.5, 0, 0.5, 0)
 Instance8.Style = Enum.ButtonStyle.Custom
 
-local Instance9 = Instance.new("UIStroke", Instance8) --UIStroke
+Instance9 = Instance.new("UIStroke", Instance8) --UIStroke
 Instance9.Enabled = true
 Instance9.Color = Color3.new(0, 0, 0)
 Instance9.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -149,7 +149,7 @@ Instance9.Transparency = 0
 Instance9.Name = "UIStroke"
 Instance9.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance10 = Instance.new("Frame", Instance8) --HolderFrame
+Instance10 = Instance.new("Frame", Instance8) --HolderFrame
 Instance10.Visible = true
 Instance10.SelectionOrder = 0
 Instance10.Name = "HolderFrame"
@@ -172,7 +172,7 @@ Instance10.BackgroundTransparency = 0
 Instance10.BorderMode = Enum.BorderMode.Outline
 Instance10.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance11 = Instance.new("TextLabel", Instance10) --Title
+Instance11 = Instance.new("TextLabel", Instance10) --Title
 Instance11.LayoutOrder = 0
 Instance11.TextWrapped = true
 Instance11.LineHeight = 1
@@ -212,7 +212,7 @@ Instance11.BackgroundTransparency = 1
 Instance11.Position = UDim2.new(0, 0, 0.012500000186264515, 0)
 Instance11.MaxVisibleGraphemes = -1
 
-local Instance12 = Instance.new("Frame", Instance10) --Separator
+Instance12 = Instance.new("Frame", Instance10) --Separator
 Instance12.Visible = true
 Instance12.SelectionOrder = 0
 Instance12.Name = "Separator"
@@ -235,7 +235,7 @@ Instance12.BackgroundTransparency = 0
 Instance12.BorderMode = Enum.BorderMode.Outline
 Instance12.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance13 = Instance.new("ScrollingFrame", Instance10) --PageButtons
+Instance13 = Instance.new("ScrollingFrame", Instance10) --PageButtons
 Instance13.LayoutOrder = 0
 Instance13.Active = true
 Instance13.ScrollingDirection = Enum.ScrollingDirection.X
@@ -272,7 +272,7 @@ Instance13.BottomImage = "rbxasset://textures/ui/Scroll/scroll-bottom.png"
 Instance13.AutomaticSize = Enum.AutomaticSize.None
 Instance13.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance14 = Instance.new("UIListLayout", Instance13) --UIListLayout
+Instance14 = Instance.new("UIListLayout", Instance13) --UIListLayout
 Instance14.FillDirection = Enum.FillDirection.Horizontal
 Instance14.HorizontalAlignment = Enum.HorizontalAlignment.Left
 Instance14.HorizontalFlex = Enum.UIFlexAlignment.None
@@ -283,7 +283,7 @@ Instance14.Name = "UIListLayout"
 Instance14.Padding = UDim.new(0, 0)
 Instance14.ItemLineAlignment = Enum.ItemLineAlignment.Automatic
 
-local Instance15 = Instance.new("Frame", Instance13) --PageButton
+Instance15 = Instance.new("Frame", Instance13) --PageButton
 Instance15.Visible = true
 Instance15.SelectionOrder = 0
 Instance15.Name = "PageButton"
@@ -306,7 +306,7 @@ Instance15.BackgroundTransparency = 1
 Instance15.BorderMode = Enum.BorderMode.Outline
 Instance15.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance16 = Instance.new("Frame", Instance15) --Selection
+Instance16 = Instance.new("Frame", Instance15) --Selection
 Instance16.Visible = false
 Instance16.SelectionOrder = 0
 Instance16.Name = "Selection"
@@ -329,7 +329,7 @@ Instance16.BackgroundTransparency = 0
 Instance16.BorderMode = Enum.BorderMode.Outline
 Instance16.BackgroundColor3 = Color3.new(0.666667, 0, 1)
 
-local Instance17 = Instance.new("TextLabel", Instance15) --Text
+Instance17 = Instance.new("TextLabel", Instance15) --Text
 Instance17.LayoutOrder = 0
 Instance17.TextWrapped = true
 Instance17.LineHeight = 1
@@ -369,7 +369,7 @@ Instance17.BackgroundTransparency = 1
 Instance17.Position = UDim2.new(0, 0, 0.5, 0)
 Instance17.MaxVisibleGraphemes = -1
 
-local Instance18 = Instance.new("TextButton", Instance15) --Trigger
+Instance18 = Instance.new("TextButton", Instance15) --Trigger
 Instance18.LayoutOrder = 0
 Instance18.TextWrapped = false
 Instance18.LineHeight = 1
@@ -413,7 +413,7 @@ Instance18.MaxVisibleGraphemes = -1
 Instance18.Position = UDim2.new(0, 0, 0, 0)
 Instance18.Style = Enum.ButtonStyle.Custom
 
-local Instance19 = Instance.new("Frame", Instance10) --PageDisplay
+Instance19 = Instance.new("Frame", Instance10) --PageDisplay
 Instance19.Visible = true
 Instance19.SelectionOrder = 0
 Instance19.Name = "PageDisplay"
@@ -436,7 +436,7 @@ Instance19.BackgroundTransparency = 1
 Instance19.BorderMode = Enum.BorderMode.Outline
 Instance19.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance20 = Instance.new("ScrollingFrame", Instance19) --Page
+Instance20 = Instance.new("ScrollingFrame", Instance19) --Page
 Instance20.LayoutOrder = 0
 Instance20.Active = true
 Instance20.ScrollingDirection = Enum.ScrollingDirection.Y
@@ -473,7 +473,7 @@ Instance20.BottomImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
 Instance20.AutomaticSize = Enum.AutomaticSize.None
 Instance20.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance21 = Instance.new("UIListLayout", Instance20) --UIListLayout
+Instance21 = Instance.new("UIListLayout", Instance20) --UIListLayout
 Instance21.FillDirection = Enum.FillDirection.Vertical
 Instance21.HorizontalAlignment = Enum.HorizontalAlignment.Left
 Instance21.HorizontalFlex = Enum.UIFlexAlignment.None
@@ -484,7 +484,7 @@ Instance21.Name = "UIListLayout"
 Instance21.Padding = UDim.new(0, 0)
 Instance21.ItemLineAlignment = Enum.ItemLineAlignment.Automatic
 
-local Instance22 = Instance.new("Frame", Instance20) --Label
+Instance22 = Instance.new("Frame", Instance20) --Label
 Instance22.Visible = true
 Instance22.SelectionOrder = 0
 Instance22.Name = "Label"
@@ -507,7 +507,7 @@ Instance22.BackgroundTransparency = 1
 Instance22.BorderMode = Enum.BorderMode.Outline
 Instance22.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance23 = Instance.new("TextLabel", Instance22) --Text
+Instance23 = Instance.new("TextLabel", Instance22) --Text
 Instance23.LayoutOrder = 0
 Instance23.TextWrapped = true
 Instance23.LineHeight = 1
@@ -547,7 +547,7 @@ Instance23.BackgroundTransparency = 1
 Instance23.Position = UDim2.new(0.5, 0, 0.5, 0)
 Instance23.MaxVisibleGraphemes = -1
 
-local Instance24 = Instance.new("Frame", Instance22) --Separator2
+Instance24 = Instance.new("Frame", Instance22) --Separator2
 Instance24.Visible = true
 Instance24.SelectionOrder = 0
 Instance24.Name = "Separator2"
@@ -570,7 +570,7 @@ Instance24.BackgroundTransparency = 0
 Instance24.BorderMode = Enum.BorderMode.Outline
 Instance24.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance25 = Instance.new("Frame", Instance22) --Separator
+Instance25 = Instance.new("Frame", Instance22) --Separator
 Instance25.Visible = true
 Instance25.SelectionOrder = 0
 Instance25.Name = "Separator"
@@ -593,7 +593,7 @@ Instance25.BackgroundTransparency = 0
 Instance25.BorderMode = Enum.BorderMode.Outline
 Instance25.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance26 = Instance.new("Frame", Instance20) --ColorPicker
+Instance26 = Instance.new("Frame", Instance20) --ColorPicker
 Instance26.Visible = true
 Instance26.SelectionOrder = 0
 Instance26.Name = "ColorPicker"
@@ -616,7 +616,7 @@ Instance26.BackgroundTransparency = 1
 Instance26.BorderMode = Enum.BorderMode.Outline
 Instance26.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance27 = Instance.new("Frame", Instance26) --Separator2
+Instance27 = Instance.new("Frame", Instance26) --Separator2
 Instance27.Visible = true
 Instance27.SelectionOrder = 0
 Instance27.Name = "Separator2"
@@ -639,7 +639,7 @@ Instance27.BackgroundTransparency = 0
 Instance27.BorderMode = Enum.BorderMode.Outline
 Instance27.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance28 = Instance.new("TextLabel", Instance26) --Text
+Instance28 = Instance.new("TextLabel", Instance26) --Text
 Instance28.LayoutOrder = 0
 Instance28.TextWrapped = true
 Instance28.LineHeight = 1
@@ -679,7 +679,7 @@ Instance28.BackgroundTransparency = 1
 Instance28.Position = UDim2.new(0.05000000074505806, 0, 0.25, 0)
 Instance28.MaxVisibleGraphemes = -1
 
-local Instance29 = Instance.new("Frame", Instance28) --Color
+Instance29 = Instance.new("Frame", Instance28) --Color
 Instance29.Visible = true
 Instance29.SelectionOrder = 0
 Instance29.Name = "Color"
@@ -702,13 +702,13 @@ Instance29.BackgroundTransparency = 0
 Instance29.BorderMode = Enum.BorderMode.Outline
 Instance29.BackgroundColor3 = Color3.new(0.498039, 0.498039, 0.498039)
 
-local Instance30 = Instance.new("UIAspectRatioConstraint", Instance29) --UIAspectRatioConstraint
+Instance30 = Instance.new("UIAspectRatioConstraint", Instance29) --UIAspectRatioConstraint
 Instance30.DominantAxis = Enum.DominantAxis.Width
 Instance30.AspectRatio = 1
 Instance30.Name = "UIAspectRatioConstraint"
 Instance30.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Instance31 = Instance.new("UIStroke", Instance29) --UIStroke
+Instance31 = Instance.new("UIStroke", Instance29) --UIStroke
 Instance31.Enabled = true
 Instance31.Color = Color3.new(0, 0, 0)
 Instance31.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -717,7 +717,7 @@ Instance31.Transparency = 0
 Instance31.Name = "UIStroke"
 Instance31.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance32 = Instance.new("Frame", Instance26) --RGB
+Instance32 = Instance.new("Frame", Instance26) --RGB
 Instance32.Visible = true
 Instance32.SelectionOrder = 0
 Instance32.Name = "RGB"
@@ -740,7 +740,7 @@ Instance32.BackgroundTransparency = 1
 Instance32.BorderMode = Enum.BorderMode.Outline
 Instance32.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance33 = Instance.new("UIListLayout", Instance32) --UIListLayout
+Instance33 = Instance.new("UIListLayout", Instance32) --UIListLayout
 Instance33.FillDirection = Enum.FillDirection.Horizontal
 Instance33.HorizontalAlignment = Enum.HorizontalAlignment.Left
 Instance33.HorizontalFlex = Enum.UIFlexAlignment.None
@@ -751,7 +751,7 @@ Instance33.Name = "UIListLayout"
 Instance33.Padding = UDim.new(0, 0)
 Instance33.ItemLineAlignment = Enum.ItemLineAlignment.Automatic
 
-local Instance34 = Instance.new("Frame", Instance32) --RHolder
+Instance34 = Instance.new("Frame", Instance32) --RHolder
 Instance34.Visible = true
 Instance34.SelectionOrder = 0
 Instance34.Name = "RHolder"
@@ -774,7 +774,7 @@ Instance34.BackgroundTransparency = 1
 Instance34.BorderMode = Enum.BorderMode.Outline
 Instance34.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance35 = Instance.new("TextButton", Instance34) --SliderOuter
+Instance35 = Instance.new("TextButton", Instance34) --SliderOuter
 Instance35.LayoutOrder = 0
 Instance35.TextWrapped = false
 Instance35.LineHeight = 1
@@ -818,7 +818,7 @@ Instance35.MaxVisibleGraphemes = -1
 Instance35.Position = UDim2.new(0.5, 0, 0, 0)
 Instance35.Style = Enum.ButtonStyle.Custom
 
-local Instance36 = Instance.new("Frame", Instance35) --Bar
+Instance36 = Instance.new("Frame", Instance35) --Bar
 Instance36.Visible = true
 Instance36.SelectionOrder = 0
 Instance36.Name = "Bar"
@@ -841,7 +841,7 @@ Instance36.BackgroundTransparency = 0
 Instance36.BorderMode = Enum.BorderMode.Outline
 Instance36.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance37 = Instance.new("Frame", Instance36) --Fill
+Instance37 = Instance.new("Frame", Instance36) --Fill
 Instance37.Visible = true
 Instance37.SelectionOrder = 0
 Instance37.Name = "Fill"
@@ -864,7 +864,7 @@ Instance37.BackgroundTransparency = 0
 Instance37.BorderMode = Enum.BorderMode.Outline
 Instance37.BackgroundColor3 = Color3.new(0.498039, 0, 0)
 
-local Instance38 = Instance.new("TextLabel", Instance36) --Progress
+Instance38 = Instance.new("TextLabel", Instance36) --Progress
 Instance38.LayoutOrder = 0
 Instance38.TextWrapped = true
 Instance38.LineHeight = 1
@@ -904,7 +904,7 @@ Instance38.BackgroundTransparency = 1
 Instance38.Position = UDim2.new(0, 0, 0, 0)
 Instance38.MaxVisibleGraphemes = -1
 
-local Instance39 = Instance.new("UIStroke", Instance35) --UIStroke
+Instance39 = Instance.new("UIStroke", Instance35) --UIStroke
 Instance39.Enabled = true
 Instance39.Color = Color3.new(0, 0, 0)
 Instance39.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -913,7 +913,7 @@ Instance39.Transparency = 0
 Instance39.Name = "UIStroke"
 Instance39.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance40 = Instance.new("Frame", Instance32) --GHolder
+Instance40 = Instance.new("Frame", Instance32) --GHolder
 Instance40.Visible = true
 Instance40.SelectionOrder = 0
 Instance40.Name = "GHolder"
@@ -936,7 +936,7 @@ Instance40.BackgroundTransparency = 1
 Instance40.BorderMode = Enum.BorderMode.Outline
 Instance40.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance41 = Instance.new("TextButton", Instance40) --SliderOuter
+Instance41 = Instance.new("TextButton", Instance40) --SliderOuter
 Instance41.LayoutOrder = 0
 Instance41.TextWrapped = false
 Instance41.LineHeight = 1
@@ -980,7 +980,7 @@ Instance41.MaxVisibleGraphemes = -1
 Instance41.Position = UDim2.new(0.5, 0, 0, 0)
 Instance41.Style = Enum.ButtonStyle.Custom
 
-local Instance42 = Instance.new("Frame", Instance41) --Bar
+Instance42 = Instance.new("Frame", Instance41) --Bar
 Instance42.Visible = true
 Instance42.SelectionOrder = 0
 Instance42.Name = "Bar"
@@ -1003,7 +1003,7 @@ Instance42.BackgroundTransparency = 0
 Instance42.BorderMode = Enum.BorderMode.Outline
 Instance42.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance43 = Instance.new("Frame", Instance42) --Fill
+Instance43 = Instance.new("Frame", Instance42) --Fill
 Instance43.Visible = true
 Instance43.SelectionOrder = 0
 Instance43.Name = "Fill"
@@ -1026,7 +1026,7 @@ Instance43.BackgroundTransparency = 0
 Instance43.BorderMode = Enum.BorderMode.Outline
 Instance43.BackgroundColor3 = Color3.new(0, 0.498039, 0)
 
-local Instance44 = Instance.new("TextLabel", Instance42) --Progress
+Instance44 = Instance.new("TextLabel", Instance42) --Progress
 Instance44.LayoutOrder = 0
 Instance44.TextWrapped = true
 Instance44.LineHeight = 1
@@ -1066,7 +1066,7 @@ Instance44.BackgroundTransparency = 1
 Instance44.Position = UDim2.new(0, 0, 0, 0)
 Instance44.MaxVisibleGraphemes = -1
 
-local Instance45 = Instance.new("UIStroke", Instance41) --UIStroke
+Instance45 = Instance.new("UIStroke", Instance41) --UIStroke
 Instance45.Enabled = true
 Instance45.Color = Color3.new(0, 0, 0)
 Instance45.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -1075,7 +1075,7 @@ Instance45.Transparency = 0
 Instance45.Name = "UIStroke"
 Instance45.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance46 = Instance.new("Frame", Instance32) --BHolder
+Instance46 = Instance.new("Frame", Instance32) --BHolder
 Instance46.Visible = true
 Instance46.SelectionOrder = 0
 Instance46.Name = "BHolder"
@@ -1098,7 +1098,7 @@ Instance46.BackgroundTransparency = 1
 Instance46.BorderMode = Enum.BorderMode.Outline
 Instance46.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance47 = Instance.new("TextButton", Instance46) --SliderOuter
+Instance47 = Instance.new("TextButton", Instance46) --SliderOuter
 Instance47.LayoutOrder = 0
 Instance47.TextWrapped = false
 Instance47.LineHeight = 1
@@ -1142,7 +1142,7 @@ Instance47.MaxVisibleGraphemes = -1
 Instance47.Position = UDim2.new(0.5, 0, 0, 0)
 Instance47.Style = Enum.ButtonStyle.Custom
 
-local Instance48 = Instance.new("Frame", Instance47) --Bar
+Instance48 = Instance.new("Frame", Instance47) --Bar
 Instance48.Visible = true
 Instance48.SelectionOrder = 0
 Instance48.Name = "Bar"
@@ -1165,7 +1165,7 @@ Instance48.BackgroundTransparency = 0
 Instance48.BorderMode = Enum.BorderMode.Outline
 Instance48.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance49 = Instance.new("Frame", Instance48) --Fill
+Instance49 = Instance.new("Frame", Instance48) --Fill
 Instance49.Visible = true
 Instance49.SelectionOrder = 0
 Instance49.Name = "Fill"
@@ -1188,7 +1188,7 @@ Instance49.BackgroundTransparency = 0
 Instance49.BorderMode = Enum.BorderMode.Outline
 Instance49.BackgroundColor3 = Color3.new(0, 0, 0.498039)
 
-local Instance50 = Instance.new("TextLabel", Instance48) --Progress
+Instance50 = Instance.new("TextLabel", Instance48) --Progress
 Instance50.LayoutOrder = 0
 Instance50.TextWrapped = true
 Instance50.LineHeight = 1
@@ -1228,7 +1228,7 @@ Instance50.BackgroundTransparency = 1
 Instance50.Position = UDim2.new(0, 0, 0, 0)
 Instance50.MaxVisibleGraphemes = -1
 
-local Instance51 = Instance.new("UIStroke", Instance47) --UIStroke
+Instance51 = Instance.new("UIStroke", Instance47) --UIStroke
 Instance51.Enabled = true
 Instance51.Color = Color3.new(0, 0, 0)
 Instance51.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -1237,7 +1237,7 @@ Instance51.Transparency = 0
 Instance51.Name = "UIStroke"
 Instance51.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance52 = Instance.new("Frame", Instance26) --Separator
+Instance52 = Instance.new("Frame", Instance26) --Separator
 Instance52.Visible = true
 Instance52.SelectionOrder = 0
 Instance52.Name = "Separator"
@@ -1260,7 +1260,7 @@ Instance52.BackgroundTransparency = 0
 Instance52.BorderMode = Enum.BorderMode.Outline
 Instance52.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance53 = Instance.new("Frame", Instance20) --Separator
+Instance53 = Instance.new("Frame", Instance20) --Separator
 Instance53.Visible = true
 Instance53.SelectionOrder = 0
 Instance53.Name = "Separator"
@@ -1283,7 +1283,7 @@ Instance53.BackgroundTransparency = 1
 Instance53.BorderMode = Enum.BorderMode.Outline
 Instance53.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance54 = Instance.new("Frame", Instance53) --Separator
+Instance54 = Instance.new("Frame", Instance53) --Separator
 Instance54.Visible = true
 Instance54.SelectionOrder = 0
 Instance54.Name = "Separator"
@@ -1306,7 +1306,7 @@ Instance54.BackgroundTransparency = 0
 Instance54.BorderMode = Enum.BorderMode.Outline
 Instance54.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance55 = Instance.new("Frame", Instance20) --Frame
+Instance55 = Instance.new("Frame", Instance20) --Frame
 Instance55.Visible = true
 Instance55.SelectionOrder = 0
 Instance55.Name = "Frame"
@@ -1329,7 +1329,7 @@ Instance55.BackgroundTransparency = 0.9900000095367432
 Instance55.BorderMode = Enum.BorderMode.Outline
 Instance55.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance56 = Instance.new("Frame", Instance20) --Button
+Instance56 = Instance.new("Frame", Instance20) --Button
 Instance56.Visible = true
 Instance56.SelectionOrder = 0
 Instance56.Name = "Button"
@@ -1352,7 +1352,7 @@ Instance56.BackgroundTransparency = 1
 Instance56.BorderMode = Enum.BorderMode.Outline
 Instance56.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance57 = Instance.new("Frame", Instance56) --ButtonOuter
+Instance57 = Instance.new("Frame", Instance56) --ButtonOuter
 Instance57.Visible = true
 Instance57.SelectionOrder = 0
 Instance57.Name = "ButtonOuter"
@@ -1375,13 +1375,13 @@ Instance57.BackgroundTransparency = 0
 Instance57.BorderMode = Enum.BorderMode.Outline
 Instance57.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance58 = Instance.new("UIAspectRatioConstraint", Instance57) --UIAspectRatioConstraint
+Instance58 = Instance.new("UIAspectRatioConstraint", Instance57) --UIAspectRatioConstraint
 Instance58.DominantAxis = Enum.DominantAxis.Width
 Instance58.AspectRatio = 1
 Instance58.Name = "UIAspectRatioConstraint"
 Instance58.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Instance59 = Instance.new("Frame", Instance57) --Frame
+Instance59 = Instance.new("Frame", Instance57) --Frame
 Instance59.Visible = true
 Instance59.SelectionOrder = 0
 Instance59.Name = "Frame"
@@ -1404,7 +1404,7 @@ Instance59.BackgroundTransparency = 0
 Instance59.BorderMode = Enum.BorderMode.Outline
 Instance59.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance60 = Instance.new("ImageLabel", Instance59) --ImageLabel
+Instance60 = Instance.new("ImageLabel", Instance59) --ImageLabel
 Instance60.Visible = true
 Instance60.Active = false
 Instance60.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -1436,7 +1436,7 @@ Instance60.Position = UDim2.new(0.5, 0, 0.5, 0)
 Instance60.SliceScale = 1
 Instance60.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance61 = Instance.new("UIStroke", Instance57) --UIStroke
+Instance61 = Instance.new("UIStroke", Instance57) --UIStroke
 Instance61.Enabled = true
 Instance61.Color = Color3.new(0, 0, 0)
 Instance61.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
@@ -1445,7 +1445,7 @@ Instance61.Transparency = 0
 Instance61.Name = "UIStroke"
 Instance61.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance62 = Instance.new("Frame", Instance56) --Separator
+Instance62 = Instance.new("Frame", Instance56) --Separator
 Instance62.Visible = true
 Instance62.SelectionOrder = 0
 Instance62.Name = "Separator"
@@ -1468,7 +1468,7 @@ Instance62.BackgroundTransparency = 0
 Instance62.BorderMode = Enum.BorderMode.Outline
 Instance62.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance63 = Instance.new("Frame", Instance56) --Separator2
+Instance63 = Instance.new("Frame", Instance56) --Separator2
 Instance63.Visible = true
 Instance63.SelectionOrder = 0
 Instance63.Name = "Separator2"
@@ -1491,7 +1491,7 @@ Instance63.BackgroundTransparency = 0
 Instance63.BorderMode = Enum.BorderMode.Outline
 Instance63.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance64 = Instance.new("TextButton", Instance56) --Trigger
+Instance64 = Instance.new("TextButton", Instance56) --Trigger
 Instance64.LayoutOrder = 0
 Instance64.TextWrapped = false
 Instance64.LineHeight = 1
@@ -1535,7 +1535,7 @@ Instance64.MaxVisibleGraphemes = -1
 Instance64.Position = UDim2.new(0, 0, 0, 0)
 Instance64.Style = Enum.ButtonStyle.Custom
 
-local Instance65 = Instance.new("TextLabel", Instance56) --Text
+Instance65 = Instance.new("TextLabel", Instance56) --Text
 Instance65.LayoutOrder = 0
 Instance65.TextWrapped = true
 Instance65.LineHeight = 1
@@ -1575,7 +1575,7 @@ Instance65.BackgroundTransparency = 1
 Instance65.Position = UDim2.new(0.5249999761581421, 0, 0.5, 0)
 Instance65.MaxVisibleGraphemes = -1
 
-local Instance66 = Instance.new("Frame", Instance20) --Dropdown
+Instance66 = Instance.new("Frame", Instance20) --Dropdown
 Instance66.Visible = true
 Instance66.SelectionOrder = 0
 Instance66.Name = "Dropdown"
@@ -1598,7 +1598,7 @@ Instance66.BackgroundTransparency = 1
 Instance66.BorderMode = Enum.BorderMode.Outline
 Instance66.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance67 = Instance.new("Frame", Instance66) --DropdownOuter
+Instance67 = Instance.new("Frame", Instance66) --DropdownOuter
 Instance67.Visible = true
 Instance67.SelectionOrder = 0
 Instance67.Name = "DropdownOuter"
@@ -1621,7 +1621,7 @@ Instance67.BackgroundTransparency = 0
 Instance67.BorderMode = Enum.BorderMode.Outline
 Instance67.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance68 = Instance.new("UIStroke", Instance67) --UIStroke
+Instance68 = Instance.new("UIStroke", Instance67) --UIStroke
 Instance68.Enabled = true
 Instance68.Color = Color3.new(0, 0, 0)
 Instance68.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
@@ -1630,7 +1630,7 @@ Instance68.Transparency = 0
 Instance68.Name = "UIStroke"
 Instance68.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance69 = Instance.new("Frame", Instance67) --ContentHolder
+Instance69 = Instance.new("Frame", Instance67) --ContentHolder
 Instance69.Visible = true
 Instance69.SelectionOrder = 0
 Instance69.Name = "ContentHolder"
@@ -1653,7 +1653,7 @@ Instance69.BackgroundTransparency = 0
 Instance69.BorderMode = Enum.BorderMode.Outline
 Instance69.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance70 = Instance.new("ScrollingFrame", Instance69) --Values
+Instance70 = Instance.new("ScrollingFrame", Instance69) --Values
 Instance70.LayoutOrder = 0
 Instance70.Active = true
 Instance70.ScrollingDirection = Enum.ScrollingDirection.XY
@@ -1690,7 +1690,7 @@ Instance70.BottomImage = "rbxasset://textures/ui/Scroll/scroll-bottom.png"
 Instance70.AutomaticSize = Enum.AutomaticSize.None
 Instance70.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance71 = Instance.new("UIListLayout", Instance70) --UIListLayout
+Instance71 = Instance.new("UIListLayout", Instance70) --UIListLayout
 Instance71.FillDirection = Enum.FillDirection.Vertical
 Instance71.HorizontalAlignment = Enum.HorizontalAlignment.Left
 Instance71.HorizontalFlex = Enum.UIFlexAlignment.None
@@ -1701,7 +1701,7 @@ Instance71.Name = "UIListLayout"
 Instance71.Padding = UDim.new(0, 0)
 Instance71.ItemLineAlignment = Enum.ItemLineAlignment.Automatic
 
-local Instance72 = Instance.new("TextButton", Instance70) --ListButton
+Instance72 = Instance.new("TextButton", Instance70) --ListButton
 Instance72.LayoutOrder = 0
 Instance72.TextWrapped = true
 Instance72.LineHeight = 1
@@ -1745,14 +1745,14 @@ Instance72.MaxVisibleGraphemes = -1
 Instance72.Position = UDim2.new(0, 0, 0, 0)
 Instance72.Style = Enum.ButtonStyle.Custom
 
-local Instance73 = Instance.new("UIPadding", Instance72) --UIPadding
+Instance73 = Instance.new("UIPadding", Instance72) --UIPadding
 Instance73.PaddingTop = UDim.new(0, 0)
 Instance73.PaddingRight = UDim.new(0, 0)
 Instance73.PaddingLeft = UDim.new(0.0500000007, 0)
 Instance73.Name = "UIPadding"
 Instance73.PaddingBottom = UDim.new(0, 0)
 
-local Instance74 = Instance.new("TextLabel", Instance67) --Default
+Instance74 = Instance.new("TextLabel", Instance67) --Default
 Instance74.LayoutOrder = 0
 Instance74.TextWrapped = true
 Instance74.LineHeight = 1
@@ -1792,7 +1792,7 @@ Instance74.BackgroundTransparency = 1
 Instance74.Position = UDim2.new(0, 0, 0, 0)
 Instance74.MaxVisibleGraphemes = -1
 
-local Instance75 = Instance.new("Frame", Instance66) --Separator2
+Instance75 = Instance.new("Frame", Instance66) --Separator2
 Instance75.Visible = true
 Instance75.SelectionOrder = 0
 Instance75.Name = "Separator2"
@@ -1815,7 +1815,7 @@ Instance75.BackgroundTransparency = 0
 Instance75.BorderMode = Enum.BorderMode.Outline
 Instance75.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance76 = Instance.new("Frame", Instance66) --Separator
+Instance76 = Instance.new("Frame", Instance66) --Separator
 Instance76.Visible = true
 Instance76.SelectionOrder = 0
 Instance76.Name = "Separator"
@@ -1838,7 +1838,7 @@ Instance76.BackgroundTransparency = 0
 Instance76.BorderMode = Enum.BorderMode.Outline
 Instance76.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance77 = Instance.new("TextButton", Instance66) --Trigger
+Instance77 = Instance.new("TextButton", Instance66) --Trigger
 Instance77.LayoutOrder = 0
 Instance77.TextWrapped = false
 Instance77.LineHeight = 1
@@ -1882,7 +1882,7 @@ Instance77.MaxVisibleGraphemes = -1
 Instance77.Position = UDim2.new(0, 0, 0, 0)
 Instance77.Style = Enum.ButtonStyle.Custom
 
-local Instance78 = Instance.new("TextLabel", Instance66) --Text
+Instance78 = Instance.new("TextLabel", Instance66) --Text
 Instance78.LayoutOrder = 0
 Instance78.TextWrapped = true
 Instance78.LineHeight = 1
@@ -1922,7 +1922,7 @@ Instance78.BackgroundTransparency = 1
 Instance78.Position = UDim2.new(0.5, 0, 0.05000000074505806, 0)
 Instance78.MaxVisibleGraphemes = -1
 
-local Instance79 = Instance.new("Frame", Instance20) --Input
+Instance79 = Instance.new("Frame", Instance20) --Input
 Instance79.Visible = true
 Instance79.SelectionOrder = 0
 Instance79.Name = "Input"
@@ -1945,7 +1945,7 @@ Instance79.BackgroundTransparency = 1
 Instance79.BorderMode = Enum.BorderMode.Outline
 Instance79.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance80 = Instance.new("Frame", Instance79) --InputOuter
+Instance80 = Instance.new("Frame", Instance79) --InputOuter
 Instance80.Visible = true
 Instance80.SelectionOrder = 0
 Instance80.Name = "InputOuter"
@@ -1968,7 +1968,7 @@ Instance80.BackgroundTransparency = 0
 Instance80.BorderMode = Enum.BorderMode.Outline
 Instance80.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance81 = Instance.new("UIStroke", Instance80) --UIStroke
+Instance81 = Instance.new("UIStroke", Instance80) --UIStroke
 Instance81.Enabled = true
 Instance81.Color = Color3.new(0, 0, 0)
 Instance81.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
@@ -1977,7 +1977,7 @@ Instance81.Transparency = 0
 Instance81.Name = "UIStroke"
 Instance81.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance82 = Instance.new("Frame", Instance80) --Frame
+Instance82 = Instance.new("Frame", Instance80) --Frame
 Instance82.Visible = true
 Instance82.SelectionOrder = 0
 Instance82.Name = "Frame"
@@ -2000,7 +2000,7 @@ Instance82.BackgroundTransparency = 0
 Instance82.BorderMode = Enum.BorderMode.Outline
 Instance82.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance83 = Instance.new("TextLabel", Instance82) --Input
+Instance83 = Instance.new("TextLabel", Instance82) --Input
 Instance83.LayoutOrder = 0
 Instance83.TextWrapped = true
 Instance83.LineHeight = 1
@@ -2040,7 +2040,7 @@ Instance83.BackgroundTransparency = 1
 Instance83.Position = UDim2.new(0.5, 0, 0.5, 0)
 Instance83.MaxVisibleGraphemes = -1
 
-local Instance84 = Instance.new("Frame", Instance79) --Separator2
+Instance84 = Instance.new("Frame", Instance79) --Separator2
 Instance84.Visible = true
 Instance84.SelectionOrder = 0
 Instance84.Name = "Separator2"
@@ -2063,7 +2063,7 @@ Instance84.BackgroundTransparency = 0
 Instance84.BorderMode = Enum.BorderMode.Outline
 Instance84.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance85 = Instance.new("Frame", Instance79) --Separator
+Instance85 = Instance.new("Frame", Instance79) --Separator
 Instance85.Visible = true
 Instance85.SelectionOrder = 0
 Instance85.Name = "Separator"
@@ -2086,7 +2086,7 @@ Instance85.BackgroundTransparency = 0
 Instance85.BorderMode = Enum.BorderMode.Outline
 Instance85.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance86 = Instance.new("TextButton", Instance79) --Trigger
+Instance86 = Instance.new("TextButton", Instance79) --Trigger
 Instance86.LayoutOrder = 0
 Instance86.TextWrapped = false
 Instance86.LineHeight = 1
@@ -2130,7 +2130,7 @@ Instance86.MaxVisibleGraphemes = -1
 Instance86.Position = UDim2.new(0, 0, 0, 0)
 Instance86.Style = Enum.ButtonStyle.Custom
 
-local Instance87 = Instance.new("TextLabel", Instance79) --Text
+Instance87 = Instance.new("TextLabel", Instance79) --Text
 Instance87.LayoutOrder = 0
 Instance87.TextWrapped = true
 Instance87.LineHeight = 1
@@ -2170,7 +2170,7 @@ Instance87.BackgroundTransparency = 1
 Instance87.Position = UDim2.new(0.625, 0, 0.5, 0)
 Instance87.MaxVisibleGraphemes = -1
 
-local Instance88 = Instance.new("Frame", Instance20) --Slider
+Instance88 = Instance.new("Frame", Instance20) --Slider
 Instance88.Visible = true
 Instance88.SelectionOrder = 0
 Instance88.Name = "Slider"
@@ -2193,7 +2193,7 @@ Instance88.BackgroundTransparency = 1
 Instance88.BorderMode = Enum.BorderMode.Outline
 Instance88.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance89 = Instance.new("Frame", Instance88) --Separator
+Instance89 = Instance.new("Frame", Instance88) --Separator
 Instance89.Visible = true
 Instance89.SelectionOrder = 0
 Instance89.Name = "Separator"
@@ -2216,7 +2216,7 @@ Instance89.BackgroundTransparency = 0
 Instance89.BorderMode = Enum.BorderMode.Outline
 Instance89.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance90 = Instance.new("Frame", Instance88) --Separator2
+Instance90 = Instance.new("Frame", Instance88) --Separator2
 Instance90.Visible = true
 Instance90.SelectionOrder = 0
 Instance90.Name = "Separator2"
@@ -2239,7 +2239,7 @@ Instance90.BackgroundTransparency = 0
 Instance90.BorderMode = Enum.BorderMode.Outline
 Instance90.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance91 = Instance.new("Frame", Instance88) --SliderOuter
+Instance91 = Instance.new("Frame", Instance88) --SliderOuter
 Instance91.Visible = true
 Instance91.SelectionOrder = 0
 Instance91.Name = "SliderOuter"
@@ -2262,7 +2262,7 @@ Instance91.BackgroundTransparency = 0
 Instance91.BorderMode = Enum.BorderMode.Outline
 Instance91.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance92 = Instance.new("UIStroke", Instance91) --UIStroke
+Instance92 = Instance.new("UIStroke", Instance91) --UIStroke
 Instance92.Enabled = true
 Instance92.Color = Color3.new(0, 0, 0)
 Instance92.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
@@ -2271,7 +2271,7 @@ Instance92.Transparency = 0
 Instance92.Name = "UIStroke"
 Instance92.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance93 = Instance.new("Frame", Instance91) --Bar
+Instance93 = Instance.new("Frame", Instance91) --Bar
 Instance93.Visible = true
 Instance93.SelectionOrder = 0
 Instance93.Name = "Bar"
@@ -2294,7 +2294,7 @@ Instance93.BackgroundTransparency = 0
 Instance93.BorderMode = Enum.BorderMode.Outline
 Instance93.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance94 = Instance.new("Frame", Instance93) --Fill
+Instance94 = Instance.new("Frame", Instance93) --Fill
 Instance94.Visible = true
 Instance94.SelectionOrder = 0
 Instance94.Name = "Fill"
@@ -2317,7 +2317,7 @@ Instance94.BackgroundTransparency = 0
 Instance94.BorderMode = Enum.BorderMode.Outline
 Instance94.BackgroundColor3 = Color3.new(0.666667, 0, 1)
 
-local Instance95 = Instance.new("TextLabel", Instance93) --Progress
+Instance95 = Instance.new("TextLabel", Instance93) --Progress
 Instance95.LayoutOrder = 0
 Instance95.TextWrapped = true
 Instance95.LineHeight = 1
@@ -2357,7 +2357,7 @@ Instance95.BackgroundTransparency = 1
 Instance95.Position = UDim2.new(0, 0, 0, 0)
 Instance95.MaxVisibleGraphemes = -1
 
-local Instance96 = Instance.new("TextButton", Instance88) --Trigger
+Instance96 = Instance.new("TextButton", Instance88) --Trigger
 Instance96.LayoutOrder = 0
 Instance96.TextWrapped = false
 Instance96.LineHeight = 1
@@ -2401,7 +2401,7 @@ Instance96.MaxVisibleGraphemes = -1
 Instance96.Position = UDim2.new(0, 0, 0, 0)
 Instance96.Style = Enum.ButtonStyle.Custom
 
-local Instance97 = Instance.new("TextLabel", Instance88) --Text
+Instance97 = Instance.new("TextLabel", Instance88) --Text
 Instance97.LayoutOrder = 0
 Instance97.TextWrapped = true
 Instance97.LineHeight = 1
@@ -2441,7 +2441,7 @@ Instance97.BackgroundTransparency = 1
 Instance97.Position = UDim2.new(0.5, 0, 0.25, 0)
 Instance97.MaxVisibleGraphemes = -1
 
-local Instance98 = Instance.new("Frame", Instance20) --TextBox
+Instance98 = Instance.new("Frame", Instance20) --TextBox
 Instance98.Visible = true
 Instance98.SelectionOrder = 0
 Instance98.Name = "TextBox"
@@ -2464,7 +2464,7 @@ Instance98.BackgroundTransparency = 1
 Instance98.BorderMode = Enum.BorderMode.Outline
 Instance98.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance99 = Instance.new("Frame", Instance98) --Separator
+Instance99 = Instance.new("Frame", Instance98) --Separator
 Instance99.Visible = true
 Instance99.SelectionOrder = 0
 Instance99.Name = "Separator"
@@ -2487,7 +2487,7 @@ Instance99.BackgroundTransparency = 0
 Instance99.BorderMode = Enum.BorderMode.Outline
 Instance99.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance100 = Instance.new("Frame", Instance98) --Separator2
+Instance100 = Instance.new("Frame", Instance98) --Separator2
 Instance100.Visible = true
 Instance100.SelectionOrder = 0
 Instance100.Name = "Separator2"
@@ -2510,7 +2510,7 @@ Instance100.BackgroundTransparency = 0
 Instance100.BorderMode = Enum.BorderMode.Outline
 Instance100.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance101 = Instance.new("Frame", Instance98) --TextBoxOuter
+Instance101 = Instance.new("Frame", Instance98) --TextBoxOuter
 Instance101.Visible = true
 Instance101.SelectionOrder = 0
 Instance101.Name = "TextBoxOuter"
@@ -2533,7 +2533,7 @@ Instance101.BackgroundTransparency = 0
 Instance101.BorderMode = Enum.BorderMode.Outline
 Instance101.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance102 = Instance.new("UIStroke", Instance101) --UIStroke
+Instance102 = Instance.new("UIStroke", Instance101) --UIStroke
 Instance102.Enabled = true
 Instance102.Color = Color3.new(0, 0, 0)
 Instance102.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
@@ -2542,7 +2542,7 @@ Instance102.Transparency = 0
 Instance102.Name = "UIStroke"
 Instance102.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance103 = Instance.new("Frame", Instance101) --TextBoxBackground
+Instance103 = Instance.new("Frame", Instance101) --TextBoxBackground
 Instance103.Visible = true
 Instance103.SelectionOrder = 0
 Instance103.Name = "TextBoxBackground"
@@ -2565,7 +2565,7 @@ Instance103.BackgroundTransparency = 0
 Instance103.BorderMode = Enum.BorderMode.Outline
 Instance103.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance104 = Instance.new("TextBox", Instance101) --TextBox
+Instance104 = Instance.new("TextBox", Instance101) --TextBox
 Instance104.Visible = true
 Instance104.FontSize = Enum.FontSize.Size14
 Instance104.LineHeight = 1
@@ -2613,14 +2613,14 @@ Instance104.Name = "TextBox"
 Instance104.MaxVisibleGraphemes = -1
 Instance104.TextWrapped = true
 
-local Instance105 = Instance.new("UIPadding", Instance104) --UIPadding
+Instance105 = Instance.new("UIPadding", Instance104) --UIPadding
 Instance105.PaddingTop = UDim.new(0, 0)
 Instance105.PaddingRight = UDim.new(0, 0)
 Instance105.PaddingLeft = UDim.new(0.0199999996, 0)
 Instance105.Name = "UIPadding"
 Instance105.PaddingBottom = UDim.new(0, 0)
 
-local Instance106 = Instance.new("TextButton", Instance98) --Trigger
+Instance106 = Instance.new("TextButton", Instance98) --Trigger
 Instance106.LayoutOrder = 0
 Instance106.TextWrapped = false
 Instance106.LineHeight = 1
@@ -2664,7 +2664,7 @@ Instance106.MaxVisibleGraphemes = -1
 Instance106.Position = UDim2.new(0, 0, 0, 0)
 Instance106.Style = Enum.ButtonStyle.Custom
 
-local Instance107 = Instance.new("TextLabel", Instance98) --Text
+Instance107 = Instance.new("TextLabel", Instance98) --Text
 Instance107.LayoutOrder = 0
 Instance107.TextWrapped = true
 Instance107.LineHeight = 1
@@ -2704,7 +2704,7 @@ Instance107.BackgroundTransparency = 1
 Instance107.Position = UDim2.new(0.5, 0, 0.25, 0)
 Instance107.MaxVisibleGraphemes = -1
 
-local Instance108 = Instance.new("Frame", Instance20) --Toggle
+Instance108 = Instance.new("Frame", Instance20) --Toggle
 Instance108.Visible = true
 Instance108.SelectionOrder = 0
 Instance108.Name = "Toggle"
@@ -2727,7 +2727,7 @@ Instance108.BackgroundTransparency = 1
 Instance108.BorderMode = Enum.BorderMode.Outline
 Instance108.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance109 = Instance.new("Frame", Instance108) --Separator
+Instance109 = Instance.new("Frame", Instance108) --Separator
 Instance109.Visible = true
 Instance109.SelectionOrder = 0
 Instance109.Name = "Separator"
@@ -2750,7 +2750,7 @@ Instance109.BackgroundTransparency = 0
 Instance109.BorderMode = Enum.BorderMode.Outline
 Instance109.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance110 = Instance.new("Frame", Instance108) --Separator2
+Instance110 = Instance.new("Frame", Instance108) --Separator2
 Instance110.Visible = true
 Instance110.SelectionOrder = 0
 Instance110.Name = "Separator2"
@@ -2773,7 +2773,7 @@ Instance110.BackgroundTransparency = 0
 Instance110.BorderMode = Enum.BorderMode.Outline
 Instance110.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance111 = Instance.new("Frame", Instance108) --ToggleOuter
+Instance111 = Instance.new("Frame", Instance108) --ToggleOuter
 Instance111.Visible = true
 Instance111.SelectionOrder = 0
 Instance111.Name = "ToggleOuter"
@@ -2796,13 +2796,13 @@ Instance111.BackgroundTransparency = 0
 Instance111.BorderMode = Enum.BorderMode.Outline
 Instance111.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance112 = Instance.new("UIAspectRatioConstraint", Instance111) --UIAspectRatioConstraint
+Instance112 = Instance.new("UIAspectRatioConstraint", Instance111) --UIAspectRatioConstraint
 Instance112.DominantAxis = Enum.DominantAxis.Width
 Instance112.AspectRatio = 1
 Instance112.Name = "UIAspectRatioConstraint"
 Instance112.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Instance113 = Instance.new("UIStroke", Instance111) --UIStroke
+Instance113 = Instance.new("UIStroke", Instance111) --UIStroke
 Instance113.Enabled = true
 Instance113.Color = Color3.new(0, 0, 0)
 Instance113.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
@@ -2811,7 +2811,7 @@ Instance113.Transparency = 0
 Instance113.Name = "UIStroke"
 Instance113.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance114 = Instance.new("Frame", Instance111) --Frame
+Instance114 = Instance.new("Frame", Instance111) --Frame
 Instance114.Visible = true
 Instance114.SelectionOrder = 0
 Instance114.Name = "Frame"
@@ -2834,7 +2834,7 @@ Instance114.BackgroundTransparency = 0
 Instance114.BorderMode = Enum.BorderMode.Outline
 Instance114.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance115 = Instance.new("Frame", Instance114) --ImageHolder
+Instance115 = Instance.new("Frame", Instance114) --ImageHolder
 Instance115.Visible = true
 Instance115.SelectionOrder = 0
 Instance115.Name = "ImageHolder"
@@ -2857,7 +2857,7 @@ Instance115.BackgroundTransparency = 0
 Instance115.BorderMode = Enum.BorderMode.Outline
 Instance115.BackgroundColor3 = Color3.new(0.666667, 0, 1)
 
-local Instance116 = Instance.new("ImageLabel", Instance115) --ImageLabel
+Instance116 = Instance.new("ImageLabel", Instance115) --ImageLabel
 Instance116.Visible = false
 Instance116.Active = false
 Instance116.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -2889,7 +2889,7 @@ Instance116.Position = UDim2.new(0.5, 0, 0.5, 0)
 Instance116.SliceScale = 1
 Instance116.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance117 = Instance.new("TextButton", Instance108) --Trigger
+Instance117 = Instance.new("TextButton", Instance108) --Trigger
 Instance117.LayoutOrder = 0
 Instance117.TextWrapped = false
 Instance117.LineHeight = 1
@@ -2933,7 +2933,7 @@ Instance117.MaxVisibleGraphemes = -1
 Instance117.Position = UDim2.new(0, 0, 0, 0)
 Instance117.Style = Enum.ButtonStyle.Custom
 
-local Instance118 = Instance.new("TextLabel", Instance108) --Text
+Instance118 = Instance.new("TextLabel", Instance108) --Text
 Instance118.LayoutOrder = 0
 Instance118.TextWrapped = true
 Instance118.LineHeight = 1
@@ -2973,7 +2973,7 @@ Instance118.BackgroundTransparency = 1
 Instance118.Position = UDim2.new(0.5249999761581421, 0, 0.5, 0)
 Instance118.MaxVisibleGraphemes = -1
 
-local Instance119 = Instance.new("UIGradient", Instance10) --UIGradient
+Instance119 = Instance.new("UIGradient", Instance10) --UIGradient
 Instance119.Offset = Vector2.new(0, 0)
 Instance119.Color = ColorSequence.new({
     [1] = ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
@@ -2988,7 +2988,7 @@ Instance119.Transparency = NumberSequence.new({
 Instance119.Name = "UIGradient"
 Instance119.Enabled = true
 
-local Instance120 = Instance.new("Frame", Instance10) --StarterFade
+Instance120 = Instance.new("Frame", Instance10) --StarterFade
 Instance120.Visible = false
 Instance120.SelectionOrder = 0
 Instance120.Name = "StarterFade"
@@ -3011,7 +3011,7 @@ Instance120.BackgroundTransparency = 0
 Instance120.BorderMode = Enum.BorderMode.Outline
 Instance120.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance121 = Instance.new("Frame", Instance10) --KeySystem
+Instance121 = Instance.new("Frame", Instance10) --KeySystem
 Instance121.Visible = true
 Instance121.SelectionOrder = 0
 Instance121.Name = "KeySystem"
@@ -3034,7 +3034,7 @@ Instance121.BackgroundTransparency = 1
 Instance121.BorderMode = Enum.BorderMode.Outline
 Instance121.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance122 = Instance.new("TextButton", Instance121) --TextBox
+Instance122 = Instance.new("TextButton", Instance121) --TextBox
 Instance122.LayoutOrder = 1
 Instance122.TextWrapped = false
 Instance122.LineHeight = 1
@@ -3078,7 +3078,7 @@ Instance122.MaxVisibleGraphemes = -1
 Instance122.Position = UDim2.new(0, 0, 0.5, 0)
 Instance122.Style = Enum.ButtonStyle.Custom
 
-local Instance123 = Instance.new("TextLabel", Instance122) --Text
+Instance123 = Instance.new("TextLabel", Instance122) --Text
 Instance123.LayoutOrder = 0
 Instance123.TextWrapped = true
 Instance123.LineHeight = 1
@@ -3118,7 +3118,7 @@ Instance123.BackgroundTransparency = 1
 Instance123.Position = UDim2.new(0.5, 0, 0.25, 0)
 Instance123.MaxVisibleGraphemes = -1
 
-local Instance124 = Instance.new("Frame", Instance122) --Separator
+Instance124 = Instance.new("Frame", Instance122) --Separator
 Instance124.Visible = true
 Instance124.SelectionOrder = 0
 Instance124.Name = "Separator"
@@ -3141,7 +3141,7 @@ Instance124.BackgroundTransparency = 0
 Instance124.BorderMode = Enum.BorderMode.Outline
 Instance124.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance125 = Instance.new("Frame", Instance122) --TextBoxOuter
+Instance125 = Instance.new("Frame", Instance122) --TextBoxOuter
 Instance125.Visible = true
 Instance125.SelectionOrder = 0
 Instance125.Name = "TextBoxOuter"
@@ -3164,7 +3164,7 @@ Instance125.BackgroundTransparency = 0
 Instance125.BorderMode = Enum.BorderMode.Outline
 Instance125.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance126 = Instance.new("UIStroke", Instance125) --UIStroke
+Instance126 = Instance.new("UIStroke", Instance125) --UIStroke
 Instance126.Enabled = true
 Instance126.Color = Color3.new(0, 0, 0)
 Instance126.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
@@ -3173,7 +3173,7 @@ Instance126.Transparency = 0
 Instance126.Name = "UIStroke"
 Instance126.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance127 = Instance.new("Frame", Instance125) --TextBoxBackground
+Instance127 = Instance.new("Frame", Instance125) --TextBoxBackground
 Instance127.Visible = true
 Instance127.SelectionOrder = 0
 Instance127.Name = "TextBoxBackground"
@@ -3196,7 +3196,7 @@ Instance127.BackgroundTransparency = 0
 Instance127.BorderMode = Enum.BorderMode.Outline
 Instance127.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance128 = Instance.new("TextBox", Instance125) --TextBox
+Instance128 = Instance.new("TextBox", Instance125) --TextBox
 Instance128.Visible = true
 Instance128.FontSize = Enum.FontSize.Size14
 Instance128.LineHeight = 1
@@ -3244,14 +3244,14 @@ Instance128.Name = "TextBox"
 Instance128.MaxVisibleGraphemes = -1
 Instance128.TextWrapped = true
 
-local Instance129 = Instance.new("UIPadding", Instance128) --UIPadding
+Instance129 = Instance.new("UIPadding", Instance128) --UIPadding
 Instance129.PaddingTop = UDim.new(0, 0)
 Instance129.PaddingRight = UDim.new(0, 0)
 Instance129.PaddingLeft = UDim.new(0.0199999996, 0)
 Instance129.Name = "UIPadding"
 Instance129.PaddingBottom = UDim.new(0, 0)
 
-local Instance130 = Instance.new("TextButton", Instance122) --Trigger
+Instance130 = Instance.new("TextButton", Instance122) --Trigger
 Instance130.LayoutOrder = 0
 Instance130.TextWrapped = false
 Instance130.LineHeight = 1
@@ -3295,7 +3295,7 @@ Instance130.MaxVisibleGraphemes = -1
 Instance130.Position = UDim2.new(0, 0, 0, 0)
 Instance130.Style = Enum.ButtonStyle.Custom
 
-local Instance131 = Instance.new("UIListLayout", Instance121) --UIListLayout
+Instance131 = Instance.new("UIListLayout", Instance121) --UIListLayout
 Instance131.FillDirection = Enum.FillDirection.Vertical
 Instance131.HorizontalAlignment = Enum.HorizontalAlignment.Left
 Instance131.HorizontalFlex = Enum.UIFlexAlignment.None
@@ -3306,7 +3306,7 @@ Instance131.Name = "UIListLayout"
 Instance131.Padding = UDim.new(0, 0)
 Instance131.ItemLineAlignment = Enum.ItemLineAlignment.Automatic
 
-local Instance132 = Instance.new("TextButton", Instance121) --Copy
+Instance132 = Instance.new("TextButton", Instance121) --Copy
 Instance132.LayoutOrder = 3
 Instance132.TextWrapped = false
 Instance132.LineHeight = 1
@@ -3350,7 +3350,7 @@ Instance132.MaxVisibleGraphemes = -1
 Instance132.Position = UDim2.new(0, 0, 0, 0)
 Instance132.Style = Enum.ButtonStyle.Custom
 
-local Instance133 = Instance.new("Frame", Instance132) --ToggleOuter
+Instance133 = Instance.new("Frame", Instance132) --ToggleOuter
 Instance133.Visible = true
 Instance133.SelectionOrder = 0
 Instance133.Name = "ToggleOuter"
@@ -3373,13 +3373,13 @@ Instance133.BackgroundTransparency = 0
 Instance133.BorderMode = Enum.BorderMode.Outline
 Instance133.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance134 = Instance.new("UIAspectRatioConstraint", Instance133) --UIAspectRatioConstraint
+Instance134 = Instance.new("UIAspectRatioConstraint", Instance133) --UIAspectRatioConstraint
 Instance134.DominantAxis = Enum.DominantAxis.Width
 Instance134.AspectRatio = 1
 Instance134.Name = "UIAspectRatioConstraint"
 Instance134.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Instance135 = Instance.new("Frame", Instance133) --Frame
+Instance135 = Instance.new("Frame", Instance133) --Frame
 Instance135.Visible = true
 Instance135.SelectionOrder = 0
 Instance135.Name = "Frame"
@@ -3402,7 +3402,7 @@ Instance135.BackgroundTransparency = 0
 Instance135.BorderMode = Enum.BorderMode.Outline
 Instance135.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance136 = Instance.new("ImageLabel", Instance135) --ImageLabel
+Instance136 = Instance.new("ImageLabel", Instance135) --ImageLabel
 Instance136.Visible = true
 Instance136.Active = false
 Instance136.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -3434,7 +3434,7 @@ Instance136.Position = UDim2.new(0.5, 0, 0.5, 0)
 Instance136.SliceScale = 1
 Instance136.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance137 = Instance.new("UIStroke", Instance133) --UIStroke
+Instance137 = Instance.new("UIStroke", Instance133) --UIStroke
 Instance137.Enabled = true
 Instance137.Color = Color3.new(0, 0, 0)
 Instance137.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
@@ -3443,7 +3443,7 @@ Instance137.Transparency = 0
 Instance137.Name = "UIStroke"
 Instance137.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance138 = Instance.new("TextLabel", Instance132) --Text
+Instance138 = Instance.new("TextLabel", Instance132) --Text
 Instance138.LayoutOrder = 0
 Instance138.TextWrapped = true
 Instance138.LineHeight = 1
@@ -3483,7 +3483,7 @@ Instance138.BackgroundTransparency = 1
 Instance138.Position = UDim2.new(0.5249999761581421, 0, 0.5, 0)
 Instance138.MaxVisibleGraphemes = -1
 
-local Instance139 = Instance.new("TextButton", Instance132) --Trigger
+Instance139 = Instance.new("TextButton", Instance132) --Trigger
 Instance139.LayoutOrder = 0
 Instance139.TextWrapped = false
 Instance139.LineHeight = 1
@@ -3527,7 +3527,7 @@ Instance139.MaxVisibleGraphemes = -1
 Instance139.Position = UDim2.new(0, 0, 0, 0)
 Instance139.Style = Enum.ButtonStyle.Custom
 
-local Instance140 = Instance.new("Frame", Instance121) --Label
+Instance140 = Instance.new("Frame", Instance121) --Label
 Instance140.Visible = true
 Instance140.SelectionOrder = 0
 Instance140.Name = "Label"
@@ -3550,7 +3550,7 @@ Instance140.BackgroundTransparency = 1
 Instance140.BorderMode = Enum.BorderMode.Outline
 Instance140.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance141 = Instance.new("TextLabel", Instance140) --Text
+Instance141 = Instance.new("TextLabel", Instance140) --Text
 Instance141.LayoutOrder = 0
 Instance141.TextWrapped = true
 Instance141.LineHeight = 1
@@ -3590,7 +3590,7 @@ Instance141.BackgroundTransparency = 1
 Instance141.Position = UDim2.new(0.5, 0, 0.5, 0)
 Instance141.MaxVisibleGraphemes = -1
 
-local Instance142 = Instance.new("TextButton", Instance121) --Redeem
+Instance142 = Instance.new("TextButton", Instance121) --Redeem
 Instance142.LayoutOrder = 4
 Instance142.TextWrapped = false
 Instance142.LineHeight = 1
@@ -3634,7 +3634,7 @@ Instance142.MaxVisibleGraphemes = -1
 Instance142.Position = UDim2.new(0, 0, 0, 0)
 Instance142.Style = Enum.ButtonStyle.Custom
 
-local Instance143 = Instance.new("Frame", Instance142) --ToggleOuter
+Instance143 = Instance.new("Frame", Instance142) --ToggleOuter
 Instance143.Visible = true
 Instance143.SelectionOrder = 0
 Instance143.Name = "ToggleOuter"
@@ -3657,13 +3657,13 @@ Instance143.BackgroundTransparency = 0
 Instance143.BorderMode = Enum.BorderMode.Outline
 Instance143.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance144 = Instance.new("UIAspectRatioConstraint", Instance143) --UIAspectRatioConstraint
+Instance144 = Instance.new("UIAspectRatioConstraint", Instance143) --UIAspectRatioConstraint
 Instance144.DominantAxis = Enum.DominantAxis.Width
 Instance144.AspectRatio = 1
 Instance144.Name = "UIAspectRatioConstraint"
 Instance144.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Instance145 = Instance.new("Frame", Instance143) --Frame
+Instance145 = Instance.new("Frame", Instance143) --Frame
 Instance145.Visible = true
 Instance145.SelectionOrder = 0
 Instance145.Name = "Frame"
@@ -3686,7 +3686,7 @@ Instance145.BackgroundTransparency = 0
 Instance145.BorderMode = Enum.BorderMode.Outline
 Instance145.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance146 = Instance.new("ImageLabel", Instance145) --ImageLabel
+Instance146 = Instance.new("ImageLabel", Instance145) --ImageLabel
 Instance146.Visible = true
 Instance146.Active = false
 Instance146.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -3718,7 +3718,7 @@ Instance146.Position = UDim2.new(0.5, 0, 0.5, 0)
 Instance146.SliceScale = 1
 Instance146.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance147 = Instance.new("UIStroke", Instance143) --UIStroke
+Instance147 = Instance.new("UIStroke", Instance143) --UIStroke
 Instance147.Enabled = true
 Instance147.Color = Color3.new(0, 0, 0)
 Instance147.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
@@ -3727,7 +3727,7 @@ Instance147.Transparency = 0
 Instance147.Name = "UIStroke"
 Instance147.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance148 = Instance.new("TextLabel", Instance142) --Text
+Instance148 = Instance.new("TextLabel", Instance142) --Text
 Instance148.LayoutOrder = 0
 Instance148.TextWrapped = true
 Instance148.LineHeight = 1
@@ -3767,7 +3767,7 @@ Instance148.BackgroundTransparency = 1
 Instance148.Position = UDim2.new(0.5249999761581421, 0, 0.5, 0)
 Instance148.MaxVisibleGraphemes = -1
 
-local Instance149 = Instance.new("TextButton", Instance142) --Trigger
+Instance149 = Instance.new("TextButton", Instance142) --Trigger
 Instance149.LayoutOrder = 0
 Instance149.TextWrapped = false
 Instance149.LineHeight = 1
@@ -3811,7 +3811,7 @@ Instance149.MaxVisibleGraphemes = -1
 Instance149.Position = UDim2.new(0, 0, 0, 0)
 Instance149.Style = Enum.ButtonStyle.Custom
 
-local Instance150 = Instance.new("Frame", Instance142) --Separator
+Instance150 = Instance.new("Frame", Instance142) --Separator
 Instance150.Visible = true
 Instance150.SelectionOrder = 0
 Instance150.Name = "Separator"
@@ -3834,7 +3834,7 @@ Instance150.BackgroundTransparency = 0
 Instance150.BorderMode = Enum.BorderMode.Outline
 Instance150.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance151 = Instance.new("Frame", Instance121) --Distance
+Instance151 = Instance.new("Frame", Instance121) --Distance
 Instance151.Visible = true
 Instance151.SelectionOrder = 0
 Instance151.Name = "Distance"
@@ -3857,7 +3857,7 @@ Instance151.BackgroundTransparency = 1
 Instance151.BorderMode = Enum.BorderMode.Outline
 Instance151.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance152 = Instance.new("TextButton", Instance121) --CloseUI
+Instance152 = Instance.new("TextButton", Instance121) --CloseUI
 Instance152.LayoutOrder = 4
 Instance152.TextWrapped = false
 Instance152.LineHeight = 1
@@ -3901,7 +3901,7 @@ Instance152.MaxVisibleGraphemes = -1
 Instance152.Position = UDim2.new(0, 0, 0, 0)
 Instance152.Style = Enum.ButtonStyle.Custom
 
-local Instance153 = Instance.new("Frame", Instance152) --ToggleOuter
+Instance153 = Instance.new("Frame", Instance152) --ToggleOuter
 Instance153.Visible = true
 Instance153.SelectionOrder = 0
 Instance153.Name = "ToggleOuter"
@@ -3924,13 +3924,13 @@ Instance153.BackgroundTransparency = 0
 Instance153.BorderMode = Enum.BorderMode.Outline
 Instance153.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance154 = Instance.new("UIAspectRatioConstraint", Instance153) --UIAspectRatioConstraint
+Instance154 = Instance.new("UIAspectRatioConstraint", Instance153) --UIAspectRatioConstraint
 Instance154.DominantAxis = Enum.DominantAxis.Width
 Instance154.AspectRatio = 1
 Instance154.Name = "UIAspectRatioConstraint"
 Instance154.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Instance155 = Instance.new("Frame", Instance153) --Frame
+Instance155 = Instance.new("Frame", Instance153) --Frame
 Instance155.Visible = true
 Instance155.SelectionOrder = 0
 Instance155.Name = "Frame"
@@ -3953,7 +3953,7 @@ Instance155.BackgroundTransparency = 0
 Instance155.BorderMode = Enum.BorderMode.Outline
 Instance155.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance156 = Instance.new("ImageLabel", Instance155) --ImageLabel
+Instance156 = Instance.new("ImageLabel", Instance155) --ImageLabel
 Instance156.Visible = true
 Instance156.Active = false
 Instance156.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -3985,7 +3985,7 @@ Instance156.Position = UDim2.new(0.5, 0, 0.5, 0)
 Instance156.SliceScale = 1
 Instance156.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance157 = Instance.new("UIStroke", Instance153) --UIStroke
+Instance157 = Instance.new("UIStroke", Instance153) --UIStroke
 Instance157.Enabled = true
 Instance157.Color = Color3.new(0, 0, 0)
 Instance157.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
@@ -3994,7 +3994,7 @@ Instance157.Transparency = 0
 Instance157.Name = "UIStroke"
 Instance157.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance158 = Instance.new("TextLabel", Instance152) --Text
+Instance158 = Instance.new("TextLabel", Instance152) --Text
 Instance158.LayoutOrder = 0
 Instance158.TextWrapped = true
 Instance158.LineHeight = 1
@@ -4034,7 +4034,7 @@ Instance158.BackgroundTransparency = 1
 Instance158.Position = UDim2.new(0.5249999761581421, 0, 0.5, 0)
 Instance158.MaxVisibleGraphemes = -1
 
-local Instance159 = Instance.new("TextButton", Instance152) --Trigger
+Instance159 = Instance.new("TextButton", Instance152) --Trigger
 Instance159.LayoutOrder = 0
 Instance159.TextWrapped = false
 Instance159.LineHeight = 1
@@ -4078,7 +4078,7 @@ Instance159.MaxVisibleGraphemes = -1
 Instance159.Position = UDim2.new(0, 0, 0, 0)
 Instance159.Style = Enum.ButtonStyle.Custom
 
-local Instance160 = Instance.new("ImageLabel", Instance10) --Stripes
+Instance160 = Instance.new("ImageLabel", Instance10) --Stripes
 Instance160.Visible = true
 Instance160.Active = false
 Instance160.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -4110,7 +4110,7 @@ Instance160.Position = UDim2.new(0, 0, 0, 0)
 Instance160.SliceScale = 1
 Instance160.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance161 = Instance.new("UIGradient", Instance8) --UIGradient
+Instance161 = Instance.new("UIGradient", Instance8) --UIGradient
 Instance161.Offset = Vector2.new(0, 0)
 Instance161.Color = ColorSequence.new({
     [1] = ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
@@ -4124,7 +4124,7 @@ Instance161.Transparency = NumberSequence.new({
 Instance161.Name = "UIGradient"
 Instance161.Enabled = true
 
-local Instance162 = Instance.new("ImageLabel", Instance8) --Stripes
+Instance162 = Instance.new("ImageLabel", Instance8) --Stripes
 Instance162.Visible = true
 Instance162.Active = false
 Instance162.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -4156,13 +4156,13 @@ Instance162.Position = UDim2.new(0, 0, 0, 0)
 Instance162.SliceScale = 1
 Instance162.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance163 = Instance.new("UIAspectRatioConstraint", Instance7) --UIAspectRatioConstraint
+Instance163 = Instance.new("UIAspectRatioConstraint", Instance7) --UIAspectRatioConstraint
 Instance163.DominantAxis = Enum.DominantAxis.Width
 Instance163.AspectRatio = 1
 Instance163.Name = "UIAspectRatioConstraint"
 Instance163.AspectType = Enum.AspectType.FitWithinMaxSize
 
-local Instance164 = Instance.new("Frame", Instance7) --MobileMaximize
+Instance164 = Instance.new("Frame", Instance7) --MobileMaximize
 Instance164.Visible = false
 Instance164.SelectionOrder = 0
 Instance164.Name = "MobileMaximize"
@@ -4185,7 +4185,7 @@ Instance164.BackgroundTransparency = 1
 Instance164.BorderMode = Enum.BorderMode.Outline
 Instance164.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance165 = Instance.new("TextButton", Instance164) --DragButton
+Instance165 = Instance.new("TextButton", Instance164) --DragButton
 Instance165.LayoutOrder = 0
 Instance165.TextWrapped = false
 Instance165.LineHeight = 1
@@ -4229,7 +4229,7 @@ Instance165.MaxVisibleGraphemes = -1
 Instance165.Position = UDim2.new(0, 0, 0, 0)
 Instance165.Style = Enum.ButtonStyle.Custom
 
-local Instance166 = Instance.new("TextLabel", Instance165) --Text
+Instance166 = Instance.new("TextLabel", Instance165) --Text
 Instance166.LayoutOrder = 0
 Instance166.TextWrapped = true
 Instance166.LineHeight = 1
@@ -4269,7 +4269,7 @@ Instance166.BackgroundTransparency = 1
 Instance166.Position = UDim2.new(0, 0, 0, 0)
 Instance166.MaxVisibleGraphemes = -1
 
-local Instance167 = Instance.new("UIStroke", Instance165) --UIStroke
+Instance167 = Instance.new("UIStroke", Instance165) --UIStroke
 Instance167.Enabled = true
 Instance167.Color = Color3.new(0, 0, 0)
 Instance167.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -4278,11 +4278,11 @@ Instance167.Transparency = 0
 Instance167.Name = "UIStroke"
 Instance167.LineJoinMode = Enum.LineJoinMode.Round
 
-local Instance168 = Instance.new("UICorner", Instance165) --UICorner
+Instance168 = Instance.new("UICorner", Instance165) --UICorner
 Instance168.Name = "UICorner"
 Instance168.CornerRadius = UDim.new(0.200000003, 0)
 
-local Instance169 = Instance.new("Frame", Instance1) --Notification
+Instance169 = Instance.new("Frame", Instance1) --Notification
 Instance169.Visible = true
 Instance169.SelectionOrder = 0
 Instance169.Name = "Notification"
@@ -4305,7 +4305,7 @@ Instance169.BackgroundTransparency = 1
 Instance169.BorderMode = Enum.BorderMode.Outline
 Instance169.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance170 = Instance.new("Frame", Instance169) --NotificationHolder
+Instance170 = Instance.new("Frame", Instance169) --NotificationHolder
 Instance170.Visible = true
 Instance170.SelectionOrder = 0
 Instance170.Name = "NotificationHolder"
@@ -4328,7 +4328,7 @@ Instance170.BackgroundTransparency = 1
 Instance170.BorderMode = Enum.BorderMode.Outline
 Instance170.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance171 = Instance.new("Frame", Instance170) --NotificationColored
+Instance171 = Instance.new("Frame", Instance170) --NotificationColored
 Instance171.Visible = true
 Instance171.SelectionOrder = 0
 Instance171.Name = "NotificationColored"
@@ -4351,7 +4351,7 @@ Instance171.BackgroundTransparency = 0
 Instance171.BorderMode = Enum.BorderMode.Outline
 Instance171.BackgroundColor3 = Color3.new(0.666667, 0, 1)
 
-local Instance172 = Instance.new("UIStroke", Instance171) --UIStroke
+Instance172 = Instance.new("UIStroke", Instance171) --UIStroke
 Instance172.Enabled = true
 Instance172.Color = Color3.new(0, 0, 0)
 Instance172.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -4360,7 +4360,7 @@ Instance172.Transparency = 0
 Instance172.Name = "UIStroke"
 Instance172.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance173 = Instance.new("Frame", Instance171) --NotificationMain
+Instance173 = Instance.new("Frame", Instance171) --NotificationMain
 Instance173.Visible = true
 Instance173.SelectionOrder = 0
 Instance173.Name = "NotificationMain"
@@ -4383,7 +4383,7 @@ Instance173.BackgroundTransparency = 0
 Instance173.BorderMode = Enum.BorderMode.Outline
 Instance173.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance174 = Instance.new("Frame", Instance173) --Bar
+Instance174 = Instance.new("Frame", Instance173) --Bar
 Instance174.Visible = true
 Instance174.SelectionOrder = 0
 Instance174.Name = "Bar"
@@ -4406,7 +4406,7 @@ Instance174.BackgroundTransparency = 0
 Instance174.BorderMode = Enum.BorderMode.Outline
 Instance174.BackgroundColor3 = Color3.new(0.27451, 0, 0.607843)
 
-local Instance175 = Instance.new("Frame", Instance174) --Fill
+Instance175 = Instance.new("Frame", Instance174) --Fill
 Instance175.Visible = true
 Instance175.SelectionOrder = 0
 Instance175.Name = "Fill"
@@ -4429,7 +4429,7 @@ Instance175.BackgroundTransparency = 0
 Instance175.BorderMode = Enum.BorderMode.Outline
 Instance175.BackgroundColor3 = Color3.new(0.666667, 0, 1)
 
-local Instance176 = Instance.new("TextLabel", Instance173) --Title
+Instance176 = Instance.new("TextLabel", Instance173) --Title
 Instance176.LayoutOrder = 0
 Instance176.TextWrapped = true
 Instance176.LineHeight = 1
@@ -4469,7 +4469,7 @@ Instance176.BackgroundTransparency = 1
 Instance176.Position = UDim2.new(0, 0, 0.02500000037252903, 0)
 Instance176.MaxVisibleGraphemes = -1
 
-local Instance177 = Instance.new("Frame", Instance173) --Separator
+Instance177 = Instance.new("Frame", Instance173) --Separator
 Instance177.Visible = true
 Instance177.SelectionOrder = 0
 Instance177.Name = "Separator"
@@ -4492,7 +4492,7 @@ Instance177.BackgroundTransparency = 0
 Instance177.BorderMode = Enum.BorderMode.Outline
 Instance177.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance178 = Instance.new("Frame", Instance173) --Lines
+Instance178 = Instance.new("Frame", Instance173) --Lines
 Instance178.Visible = true
 Instance178.SelectionOrder = 0
 Instance178.Name = "Lines"
@@ -4515,7 +4515,7 @@ Instance178.BackgroundTransparency = 1
 Instance178.BorderMode = Enum.BorderMode.Outline
 Instance178.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance179 = Instance.new("UIListLayout", Instance178) --UIListLayout
+Instance179 = Instance.new("UIListLayout", Instance178) --UIListLayout
 Instance179.FillDirection = Enum.FillDirection.Vertical
 Instance179.HorizontalAlignment = Enum.HorizontalAlignment.Left
 Instance179.HorizontalFlex = Enum.UIFlexAlignment.None
@@ -4526,7 +4526,7 @@ Instance179.Name = "UIListLayout"
 Instance179.Padding = UDim.new(0, 0)
 Instance179.ItemLineAlignment = Enum.ItemLineAlignment.Automatic
 
-local Instance180 = Instance.new("TextLabel", Instance178) --1
+Instance180 = Instance.new("TextLabel", Instance178) --1
 Instance180.LayoutOrder = 0
 Instance180.TextWrapped = true
 Instance180.LineHeight = 1
@@ -4566,7 +4566,7 @@ Instance180.BackgroundTransparency = 1
 Instance180.Position = UDim2.new(0, 0, 0, 0)
 Instance180.MaxVisibleGraphemes = -1
 
-local Instance181 = Instance.new("ImageLabel", Instance173) --Stripes
+Instance181 = Instance.new("ImageLabel", Instance173) --Stripes
 Instance181.Visible = true
 Instance181.Active = false
 Instance181.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -4598,7 +4598,7 @@ Instance181.Position = UDim2.new(0, 0, 0, 0)
 Instance181.SliceScale = 1
 Instance181.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance182 = Instance.new("ImageLabel", Instance171) --Stripes
+Instance182 = Instance.new("ImageLabel", Instance171) --Stripes
 Instance182.Visible = true
 Instance182.Active = false
 Instance182.SizeConstraint = Enum.SizeConstraint.RelativeXY
@@ -4630,7 +4630,7 @@ Instance182.Position = UDim2.new(0, 0, 0, 0)
 Instance182.SliceScale = 1
 Instance182.AutomaticSize = Enum.AutomaticSize.None
 
-local Instance183 = Instance.new("UIListLayout", Instance169) --UIListLayout
+Instance183 = Instance.new("UIListLayout", Instance169) --UIListLayout
 Instance183.FillDirection = Enum.FillDirection.Vertical
 Instance183.HorizontalAlignment = Enum.HorizontalAlignment.Left
 Instance183.HorizontalFlex = Enum.UIFlexAlignment.None
@@ -4641,7 +4641,7 @@ Instance183.Name = "UIListLayout"
 Instance183.Padding = UDim.new(0.00999999978, 1)
 Instance183.ItemLineAlignment = Enum.ItemLineAlignment.Automatic
 
-local Instance184 = Instance.new("Frame", Instance169) --ChooseNotificationHolder
+Instance184 = Instance.new("Frame", Instance169) --ChooseNotificationHolder
 Instance184.Visible = true
 Instance184.SelectionOrder = 0
 Instance184.Name = "ChooseNotificationHolder"
@@ -4664,7 +4664,7 @@ Instance184.BackgroundTransparency = 1
 Instance184.BorderMode = Enum.BorderMode.Outline
 Instance184.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance185 = Instance.new("Frame", Instance184) --NotificationColored
+Instance185 = Instance.new("Frame", Instance184) --NotificationColored
 Instance185.Visible = true
 Instance185.SelectionOrder = 0
 Instance185.Name = "NotificationColored"
@@ -4687,7 +4687,7 @@ Instance185.BackgroundTransparency = 0
 Instance185.BorderMode = Enum.BorderMode.Outline
 Instance185.BackgroundColor3 = Color3.new(0.666667, 0, 1)
 
-local Instance186 = Instance.new("UIStroke", Instance185) --UIStroke
+Instance186 = Instance.new("UIStroke", Instance185) --UIStroke
 Instance186.Enabled = true
 Instance186.Color = Color3.new(0, 0, 0)
 Instance186.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -4696,7 +4696,7 @@ Instance186.Transparency = 0
 Instance186.Name = "UIStroke"
 Instance186.LineJoinMode = Enum.LineJoinMode.Miter
 
-local Instance187 = Instance.new("Frame", Instance185) --NotificationMain
+Instance187 = Instance.new("Frame", Instance185) --NotificationMain
 Instance187.Visible = true
 Instance187.SelectionOrder = 0
 Instance187.Name = "NotificationMain"
@@ -4719,7 +4719,7 @@ Instance187.BackgroundTransparency = 0
 Instance187.BorderMode = Enum.BorderMode.Outline
 Instance187.BackgroundColor3 = Color3.new(0.137255, 0.137255, 0.137255)
 
-local Instance188 = Instance.new("Frame", Instance187) --Bar
+Instance188 = Instance.new("Frame", Instance187) --Bar
 Instance188.Visible = true
 Instance188.SelectionOrder = 0
 Instance188.Name = "Bar"
@@ -4742,7 +4742,7 @@ Instance188.BackgroundTransparency = 0
 Instance188.BorderMode = Enum.BorderMode.Outline
 Instance188.BackgroundColor3 = Color3.new(0.27451, 0, 0.607843)
 
-local Instance189 = Instance.new("Frame", Instance188) --Fill
+Instance189 = Instance.new("Frame", Instance188) --Fill
 Instance189.Visible = true
 Instance189.SelectionOrder = 0
 Instance189.Name = "Fill"
@@ -4765,7 +4765,7 @@ Instance189.BackgroundTransparency = 0
 Instance189.BorderMode = Enum.BorderMode.Outline
 Instance189.BackgroundColor3 = Color3.new(0.666667, 0, 1)
 
-local Instance190 = Instance.new("TextLabel", Instance187) --Title
+Instance190 = Instance.new("TextLabel", Instance187) --Title
 Instance190.LayoutOrder = 0
 Instance190.TextWrapped = true
 Instance190.LineHeight = 1
@@ -4805,7 +4805,7 @@ Instance190.BackgroundTransparency = 1
 Instance190.Position = UDim2.new(0, 0, 0.02500000037252903, 0)
 Instance190.MaxVisibleGraphemes = -1
 
-local Instance191 = Instance.new("Frame", Instance187) --Separator
+Instance191 = Instance.new("Frame", Instance187) --Separator
 Instance191.Visible = true
 Instance191.SelectionOrder = 0
 Instance191.Name = "Separator"
@@ -4828,7 +4828,7 @@ Instance191.BackgroundTransparency = 0
 Instance191.BorderMode = Enum.BorderMode.Outline
 Instance191.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 
-local Instance192 = Instance.new("Frame", Instance187) --Lines
+Instance192 = Instance.new("Frame", Instance187) --Lines
 Instance192.Visible = true
 Instance192.SelectionOrder = 0
 Instance192.Name = "Lines"
@@ -4851,7 +4851,7 @@ Instance192.BackgroundTransparency = 1
 Instance192.BorderMode = Enum.BorderMode.Outline
 Instance192.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local Instance193 = Instance.new("UIListLayout", Instance192) --UIListLayout
+Instance193 = Instance.new("UIListLayout", Instance192) --UIListLayout
 Instance193.FillDirection = Enum.FillDirection.Vertical
 Instance193.HorizontalAlignment = Enum.HorizontalAlignment.Left
 Instance193.HorizontalFlex = Enum.UIFlexAlignment.None
@@ -4862,7 +4862,7 @@ Instance193.Name = "UIListLayout"
 Instance193.Padding = UDim.new(0, 0)
 Instance193.ItemLineAlignment = Enum.ItemLineAlignment.Automatic
 
-local Instance194 = Instance.new("TextLabel", Instance192) --1
+Instance194 = Instance.new("TextLabel", Instance192) --1
 Instance194.LayoutOrder = 0
 Instance194.TextWrapped = true
 Instance194.LineHeight = 1
