@@ -76,7 +76,7 @@ local function sendBugReport(problem, issue)
 		Executor = getfenv().identifyexecutor and getfenv().identifyexecutor() or "Unknown",
 		Issue = issue,
 		Problem = problem,
-		Type = "Bug Report"
+		Type = "Auto Bug Report"
 	})
 end
 
