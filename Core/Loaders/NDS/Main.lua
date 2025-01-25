@@ -99,8 +99,6 @@ cons[#cons+1] = plr.CharacterAdded:Connect(function(char)
 	end
 end)
 
-local hh, si
-
 local pp
 local d = 3
 local td = 128
@@ -119,13 +117,11 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function()
 	end
 	map = (workspace.Structure:FindFirstChildOfClass("Model") or none).Name
 	if realCharacter then
-		if realCharacter:FindFirstChild("Humanoid") and not hh then
-			hh = realCharacter.Humanoid.HipHeight
-			fakeHum.HipHeight = hh
+		if realCharacter:FindFirstChild("Humanoid") then
+			fakeHum.HipHeight = realCharacter.Humanoid.HipHeight
 		end
-		if realCharacter:FindFirstChild("HumanoidRootParent") and not si then
-			si = realCharacter.HumanoidRootParent.Size
-			fakeHrp.Size = si
+		if realCharacter:FindFirstChild("HumanoidRootParent") then
+			fakeHrp.Size = realCharacter.HumanoidRootParent.Size
 		end
 		local pos = plr.Character:GetPivot().Position
 		local flood = workspace.Structure:FindFirstChild("FloodLevel")
