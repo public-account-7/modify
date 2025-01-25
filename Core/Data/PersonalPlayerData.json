@@ -5,5 +5,6 @@
   "4181380151": {"Admin":true},
   "2911945585": {"Ban": [9456386754, "funny, you're not owner"]},
   "7565802896": {"ReportsAnswered": {"652FC8B0FAF649D38C05723A5F6809B5": "eh, you can use autohide dummy"}},
-  "5652618701": {"ReportsAnswered": {"e73b65afdf3248279aacd84168c7eb2f": "When you using custom gravity and equipping balloon, it is lowering your gravity even more."}}
+  "5652618701": {"ReportsAnswered": {"e73b65afdf3248279aacd84168c7eb2f": "When you using custom gravity and equipping balloon, it is lowering your gravity even more."}},
+  "2016822985": {"ReportsAnswered": {"1EF302375E30480A87B0ED687AED00BB": "Hi. My ESP doesnt use loops, so it wont lag + ESP deletes itself after room being deleted"}}
 }
