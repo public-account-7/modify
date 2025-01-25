@@ -7595,9 +7595,6 @@ local modules do
 						end
 						configEvent:Fire(got)
 					end
-					left:AddSeparator()
-					left:AddLabel({Text = "Configs"})
-					left:AddSeparator()
 					local currentConfig = ""
 					left:AddTextBox({Text = "Config name", NeedEnter = false, Callback = function(text)
 						currentConfig = text
