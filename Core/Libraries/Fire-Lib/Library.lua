@@ -7448,7 +7448,7 @@ local modules do
 
 				local keySystemFunc = type(options.KeySystemFunction) == "function" and options.KeySystemFunction or type(options.KeySystemFunc) == "function" and options.KeySystemFunc or type(options.KeySystem) == "function" and options.KeySystem or type(options.KeyCheck) == "function" and options.KeyCheck or type(options.Key) == "function" and options.Key
 				local keySystemUrl = type(options.KeySystemUrl) == "string" and options.KeySystemUrl or type(options.Url) == "string" and options.Url or type(options.KeyUrl) == "string" and options.KeyUrl
-				local newSize = typeof(options.WindowSize) == "UDim2" and options.WindowSize or typeof(options.CustomWindowSize) == "UDim2" and options.CustomWindowSize or typeof(options.Size) == "UDim2" and options.Size or UDim2.fromScale(0.7, 0.775)
+				local newSize = typeof(options.WindowSize) == "UDim2" and options.WindowSize or typeof(options.CustomWindowSize) == "UDim2" and options.CustomWindowSize or typeof(options.Size) == "UDim2" and options.Size or UDim2.fromScale(1, 0.7)
 
 				if keySystemFunc and keySystemUrl then
 					window.HolderFrame.KeySystem.Visible = true
