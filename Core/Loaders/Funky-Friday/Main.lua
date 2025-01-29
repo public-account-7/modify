@@ -85,10 +85,10 @@ local notified = false
 local storage = {}
 
 local function getSignal(sig)
-	if not getfenv().getconnections then
+	if not getfenv().getconnections and framework then
 		if not notified then
 			notified = true
-			lib.Notifications:Notification({Time = 30, Title = "Unstable", Text = "Your executor ("..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "RobloxClient").." does not support getconnections\nAutoplay can be buggy"})
+			task.spawn(lib.Notifications.Notification, lib.Notifications, {Time = 30, Title = "Unstable", Text = "Your executor ("..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "RobloxClient").." does not support getconnections\nAutoplay can be buggy"})
 		end
 		return
 	end
@@ -112,8 +112,6 @@ set(2)
 
 local signalPress = getSignal(game.UserInputService.InputBegan)
 local signalRelease = getSignal(game.UserInputService.InputEnded)
-
-set(old)
 
 local spawn = task.spawn
 
@@ -396,6 +394,7 @@ task.spawn(function()
 end)
 
 local firesignalGood = false
+local sucks = (getfenv().identifyexecutor or function() return "robloz" end)():lower():match("delta") ~= nil
 if getfenv().getconnections then
 	local event = Instance.new("BindableEvent")
 	event.Event:Connect(function()
@@ -406,7 +405,10 @@ if getfenv().getconnections then
 			task.spawn(pcall, v.Function)
 		end
 	end
+	event:Destroy()
 end
+
+set(old)
 
 local window = lib:MakeWindow({Title = "NullFire: Funky Friday", CloseCallback = function()
 	for i,v in defaults do
@@ -430,7 +432,7 @@ if framework then
 	if vals.method then
 		page:AddToggle({Caption = "Use FireSignal [Disable only if autoplayer does not work]", Callback = function(bool)
 			vals.method = bool
-		end, Default = firesignalGood})
+		end, Default = not sucks and firesignalGood})
 	end
 	page:AddToggle({Caption = "Auto solo", Callback = function(bool)
 		vals.autosolo = bool
@@ -558,6 +560,13 @@ page:AddButton({Caption = "Give score", Callback = function()
 		end
 	end
 end})
+
 if getfenv().hookmetamethod then
 	page:AddLabel({Caption = "Warning: Giving score can be buggy when max score or mega score options are enabled.\nAlso might break on multiplayer"})
+end
+
+task.wait(5)
+
+if sucks then
+	task.spawn(lib.Notifications.Notification, lib.Notifications, {Time = 30, Title = "Delta sucks", Text = "Delta sucks:\n99% chance of autoplayer wont work"})
 end
