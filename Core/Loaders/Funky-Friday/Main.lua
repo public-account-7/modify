@@ -1,3 +1,5 @@
+print("skill issue")
+
 local defaults = {
 	showNPS = false,
 	showNPSD = false,
@@ -85,8 +87,8 @@ local notified = false
 local storage = {}
 
 local function getSignal(sig)
-	if not getfenv().getconnections and framework then
-		if not notified then
+	if not getfenv().getconnections then
+		if not notified and framework then
 			notified = true
 			task.spawn(lib.Notifications.Notification, lib.Notifications, {Time = 30, Title = "Unstable", Text = "Your executor ("..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "RobloxClient").." does not support getconnections\nAutoplay can be buggy"})
 		end
