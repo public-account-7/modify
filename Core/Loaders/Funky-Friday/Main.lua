@@ -202,13 +202,14 @@ end
 
 local rf = game.ReplicatedStorage.RF
 local function gainScore(score)
-	rf:InvokeServer({"Server", "RoundManager", "UpdateScore"},  {score})
-	rf:InvokeServer({"Server", "RoundManager", "UpdateHealth"}, {score > 0 and "Gain" or "Loss"})
+	task.spawn(rf.InvokeServer, rf, {"Server", "RoundManager", "UpdateScore"},  {score})
+	task.spawn(rf.InvokeServer, rf, {"Server", "RoundManager", "UpdateHealth"}, {score > 0 and "Gain" or "Loss"})
 end
 
 if getfenv().hookmetamethod and getfenv().getnamecallmethod then
+	local gncm = getfenv().getnamecallmethod
 	local old; old = getfenv().hookmetamethod(game, "__namecall", function(self, ...)
-		local method = getfenv().getnamecallmethod()
+		local method = gncm()
 		if self == rf and method == "InvokeServer" then
 			if vals.nomiss or vals.infscore or vals.megascore or vals.nodeath or vals.increaseonmiss then
 				local args = {...}
@@ -434,7 +435,7 @@ if framework then
 	if vals.method then
 		page:AddToggle({Caption = "Use FireSignal [Disable only if autoplayer does not work]", Callback = function(bool)
 			vals.method = bool
-		end, Default = not sucks and firesignalGood})
+		end, Default = not sucks and firesignalGood or false})
 	end
 	page:AddToggle({Caption = "Auto solo", Callback = function(bool)
 		vals.autosolo = bool
