@@ -427,15 +427,19 @@ local window = lib:MakeWindow({Title = "NullFire: Funky Friday", CloseCallback =
 	end
 	npsGui:Destroy()
 end}, true)
+
+local page = window:AddPage({Title = "Auto play"})
 if framework then
-	local page = window:AddPage({Title = "Auto play"})
 	page:AddToggle({Caption = "Autoplay", Callback = function(bool)
 		vals.autoplay = bool
 	end, Default = false})
 	if vals.method then
+		page:AddLabel({Caption = "Your executor (" .. exec .. ") might have issues with autoplay"})
 		page:AddToggle({Caption = "Use FireSignal [Disable only if autoplayer does not work]", Callback = function(bool)
 			vals.method = bool
 		end, Default = not sucks and firesignalGood or false})
+	else
+		page:AddLabel({Caption = "Your executor (" .. exec .. ") got issues with autoplay"})
 	end
 	page:AddToggle({Caption = "Auto solo", Callback = function(bool)
 		vals.autosolo = bool
@@ -474,6 +478,9 @@ if framework then
 	page:AddSlider({Caption = "Extra random long arrow holding time (ms)", Default = 0, Min = 0, Max = 1000, Step = 1, Callback = function(v)
 		vals.extraLongDelayRNG = v
 	end})
+else
+	local exec = getfenv().identifyexecutor and getfenv().identifyexecutor() or "Roblox"
+	page:AddLabel({Caption = "Your executor (" .. exec .. ") does not support autoplay"})
 end
 
 local page = window:AddPage({Title = "Visual"})
