@@ -428,6 +428,7 @@ local window = lib:MakeWindow({Title = "NullFire: Funky Friday", CloseCallback =
 	npsGui:Destroy()
 end}, true)
 
+local exec = getfenv().identifyexecutor and getfenv().identifyexecutor() or "Roblox"
 local page = window:AddPage({Title = "Auto play"})
 if framework then
 	page:AddToggle({Caption = "Autoplay", Callback = function(bool)
@@ -479,7 +480,6 @@ if framework then
 		vals.extraLongDelayRNG = v
 	end})
 else
-	local exec = getfenv().identifyexecutor and getfenv().identifyexecutor() or "Roblox"
 	page:AddLabel({Caption = "Your executor (" .. exec .. ") does not support autoplay"})
 end
 
