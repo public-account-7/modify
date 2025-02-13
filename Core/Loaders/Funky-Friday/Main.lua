@@ -1,5 +1,3 @@
-print("skill issue")
-
 local defaults = {
 	showNPS = false,
 	showNPSD = false,
@@ -87,8 +85,8 @@ local notified = false
 local storage = {}
 
 local function getSignal(sig)
-	if not getfenv().getconnections then
-		if not notified and framework then
+	if not getfenv().getconnections and framework then
+		if not notified then
 			notified = true
 			task.spawn(lib.Notifications.Notification, lib.Notifications, {Time = 30, Title = "Unstable", Text = "Your executor ("..(getfenv().identifyexecutor and getfenv().identifyexecutor() or "RobloxClient").." does not support getconnections\nAutoplay can be buggy"})
 		end
@@ -112,15 +110,15 @@ end
 
 set(2)
 
-local signalPress = getSignal(game.UserInputService.InputBegan)
-local signalRelease = getSignal(game.UserInputService.InputEnded)
+local signalPress = getSignal(game:GetService("UserInputService").InputBegan)
+local signalRelease = getSignal(game:GetService("UserInputService").InputEnded)
 
 local spawn = task.spawn
 
 local PressKey
 
 local function sendevent(keyCode, state)
-	game.VirtualInputManager:SendKeyEvent(state, keyCode, false, game)
+	game:GetService("VirtualInputManager"):SendKeyEvent(state, keyCode, false, game)
 end
 
 if signalPress and signalRelease then
@@ -200,16 +198,22 @@ local function appendText(text, newLines)
 	end
 end
 
-local rf = game.ReplicatedStorage.RF
+local rf = game:GetService("ReplicatedStorage").RF
+local re = game:GetService("ReplicatedStorage").RE
+
+local updsc = {"Server", "RoundManager", "UpdateScore"}
+local updh = {"Server", "RoundManager", "UpdateHealth"}
+local gain = {"Gain"}
+local loss = {"Loss"}
+
 local function gainScore(score)
-	task.spawn(rf.InvokeServer, rf, {"Server", "RoundManager", "UpdateScore"},  {score})
-	task.spawn(rf.InvokeServer, rf, {"Server", "RoundManager", "UpdateHealth"}, {score > 0 and "Gain" or "Loss"})
+	rf:InvokeServer(updsc, {score})
+	rf:InvokeServer(updh, score > 0 and gain or loss)
 end
 
 if getfenv().hookmetamethod and getfenv().getnamecallmethod then
-	local gncm = getfenv().getnamecallmethod
 	local old; old = getfenv().hookmetamethod(game, "__namecall", function(self, ...)
-		local method = gncm()
+		local method = getfenv().getnamecallmethod()
 		if self == rf and method == "InvokeServer" then
 			if vals.nomiss or vals.infscore or vals.megascore or vals.nodeath or vals.increaseonmiss then
 				local args = {...}
@@ -225,7 +229,7 @@ if getfenv().hookmetamethod and getfenv().getnamecallmethod then
 					return "!"
 				end
 			end
-		elseif self == game.ReplicatedStorage.RE and method == "FireServer" then
+		elseif self == re and method == "FireServer" then
 			if ({...})[1][3] == "Died" and vals.nodeath then
 				return
 			end
@@ -307,10 +311,10 @@ end
 
 local deltaSum, frames = 0, 12
 
-cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function(delta)
+cons[#cons+1] = game:GetService("RunService").RenderStepped:Connect(function(delta)
 	rendered = 0
 	deltaSum += delta
-	framesPassed = framesPassed + 1
+	framesPassed += 1
 	if framesPassed == frames then
 		fps = frames / deltaSum
 		deltaSum = 0
@@ -362,7 +366,7 @@ cons[#cons+1] = game["Run Service"].RenderStepped:Connect(function(delta)
 		0.5,
 		(#npsText.Text:split("\n"))/35
 	)
-	if vals.nomiss then
+	if vals.nomiss and framework.UI and framework.UI.Misses then
 		framework.UI.Combo += framework.UI.Misses
 		if framework.UI.ScoreCounter then
 			framework.UI.ScoreCounter.Sick += framework.UI.Misses
@@ -420,27 +424,22 @@ local window = lib:MakeWindow({Title = "NullFire: Funky Friday", CloseCallback =
 	getGlobalTable().FireHubLoaded = false
 	closed = true
 	for i=1, 3 do
-		game["Run Service"].RenderStepped:Wait()
+		game:GetService("RunService").RenderStepped:Wait()
 	end
 	for i,v in cons do
 		v:Disconnect()
 	end
 	npsGui:Destroy()
 end}, true)
-
-local exec = getfenv().identifyexecutor and getfenv().identifyexecutor() or "Roblox"
-local page = window:AddPage({Title = "Auto play"})
 if framework then
+	local page = window:AddPage({Title = "Auto play"})
 	page:AddToggle({Caption = "Autoplay", Callback = function(bool)
 		vals.autoplay = bool
 	end, Default = false})
 	if vals.method then
-		page:AddLabel({Caption = "Your executor (" .. exec .. ") might have issues with autoplay"})
 		page:AddToggle({Caption = "Use FireSignal [Disable only if autoplayer does not work]", Callback = function(bool)
 			vals.method = bool
-		end, Default = not sucks and firesignalGood or false})
-	else
-		page:AddLabel({Caption = "Your executor (" .. exec .. ") got issues with autoplay"})
+		end, Default = not sucks and firesignalGood})
 	end
 	page:AddToggle({Caption = "Auto solo", Callback = function(bool)
 		vals.autosolo = bool
@@ -479,8 +478,6 @@ if framework then
 	page:AddSlider({Caption = "Extra random long arrow holding time (ms)", Default = 0, Min = 0, Max = 1000, Step = 1, Callback = function(v)
 		vals.extraLongDelayRNG = v
 	end})
-else
-	page:AddLabel({Caption = "Your executor (" .. exec .. ") does not support autoplay"})
 end
 
 local page = window:AddPage({Title = "Visual"})
