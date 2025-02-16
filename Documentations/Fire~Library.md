@@ -58,7 +58,7 @@ window.ThemeColors.Back = Color3.new(1, 1, 1) -- will set window background colo
 local page = window:AddPage({Title = "Example page!"})
 ```
 Alright, we got a page, now we can add some stuff here!
-(There's secret argument, called "order", max order is 999 and min is 1. The higher order, the closer page will be to the "Main" page)
+(There is a secret argument called "order", the maximum order is 999, and the minimum is 1. The higher the order, the further the page will be from the "Main" page)
 
 ### Sliders
 ```lua
