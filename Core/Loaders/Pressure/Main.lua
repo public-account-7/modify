@@ -1475,7 +1475,7 @@ page:AddToggle({Caption = "Anti parasites", Default = false, Callback = function
 	vals.AntiParasite = b
 end})
 page:AddToggle({Caption = "Anti Death Angel", Default = false, Callback = function(b)
-	vals.AntiParasite = b
+	vals.AntiDeathAngel = b
 end})
 page:AddToggle({Caption = "Anti Sebastian", Default = false, Callback = function(b)
 	vals.FlashSeb = b
