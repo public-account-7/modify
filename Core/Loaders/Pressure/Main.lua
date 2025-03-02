@@ -1413,7 +1413,7 @@ page:AddToggle({Caption = "Tween character instead of teleporting", Default = fa
 end})
 
 local page = window:AddPage({Title = "Anti monster"})
-gm = page:AddToggle({Caption = "God Mode [!RE-ENABLE AFTER ANY TYPE OF TELEPORTATION!]", Default = vals.GodMode, Callback = function(b)
+gm = page:AddToggle({Caption = "God Mode", Default = vals.GodMode, Callback = function(b)
 	vals.GodMode = b
 	getGlobalTable().GodMode = b
 	if b then
