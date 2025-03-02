@@ -1468,7 +1468,7 @@ end})
 page:AddToggle({Caption = "Anti Tripwire", Default = false, Callback = function(b)
 	vals.AntiTripwire = b
 end})
-page:AddToggle({Caption = "Anti Tripwire", Default = false, Callback = function(b)
+page:AddToggle({Caption = "Anti Landmine", Default = false, Callback = function(b)
 	vals.AntiLandmine = b
 end})
 page:AddToggle({Caption = "Anti parasites", Default = false, Callback = function(b)
