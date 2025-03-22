@@ -41,6 +41,10 @@ local espLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Infern
 local txtf = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/Side-Text/Main.lua"))()
 local plr = game:GetService("Players").LocalPlayer
 
+if game.PlaceId == 116495829188952 then
+	return lib.Notifications:Notification({Title = "Hey!", Text = "Please, load the script ingame!"})
+end
+
 espLib.Values = vals.ESP
 
 local function rs(times)
