@@ -6,7 +6,8 @@ local defaults = {
 		["AnimalESP"] = false,
 		["Dead AnimalESP"] = false,
 		["ItemESP"] = false,
-		["Vault CodeESP"] = false
+		["Vault CodeESP"] = false,
+		["Train (the most useful)ESP"] = false
 	},
 	ExtraPP = 1,
 	AutoCollectBags = false,
@@ -24,7 +25,8 @@ local defaults = {
 	MA = false,
 	ARG = false,
 	Aimbot = false,
-	Mode = "Distance"
+	Mode = "Distance",
+	NoVoid = false
 }
 
 local vals = table.clone(defaults)
@@ -67,21 +69,103 @@ local cd = {}
 local fppn = false
 local fpp = getfenv().fireproximityprompt
 
-local s = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Weapon"):WaitForChild("Shoot")
+local probablyDead = {}
+local function isDead(hum)
+	if probablyDead[hum] then
+		return true
+	end
+	
+	if hum and hum.Parent then
+		if not hum:IsA("Humanoid") then
+			hum = hum:FindFirstChild("Humanoid")
+		end
+		
+		if hum then
+			if probablyDead[hum] then
+				return true
+			end
+			
+			return hum.Health < 0.01 and hum.PlatformStand
+		end
+	end
+	
+	return true
+end
+
+local myGuns = {}
+local melee = {}
+local heals = {
+	Bandage = {},
+	["Snake Oil"] = {}
+}
+
+local function bp(v)
+	if v and v:IsA("Tool") then
+		if v:FindFirstChild("WeaponConfiguration") and not myGuns[v] then
+			myGuns[v] = true
+		elseif v:FindFirstChild("SwingEvent") and not melee[v] then
+			melee[v] = true
+		elseif heals[v.Name] and not heals[v.Name][v] then
+			heals[v.Name][v] = true
+		end
+	end
+end
+
+local toolsMt = setmetatable({}, {
+	__index = function(self, value)
+		if value == "GetChildren" then
+			local tools = plr.Backpack:GetChildren()
+
+			if plr.Character then
+				for i,v in plr.Character:GetChildren() do
+					if v and v:IsA("Tool") then
+						table.insert(tools, 1, v)
+					end
+				end
+			end
+
+			return tools
+		end
+		if plr and plr.Character and plr.Character:FindFirstChildOfClass("Tool") and plr.Character:FindFirstChildOfClass("Tool").Name == value then
+			return plr.Character:FindFirstChildOfClass("Tool")
+		end
+		return plr.Backpack:FindFirstChild(value)
+	end
+})
+
+for i,v in toolsMt.GetChildren do
+	bp(v)
+end
+cons[#cons+1] = plr.Backpack.ChildAdded:Connect(bp)
+
+local cooldown = {}
+local function setCooldown(gun)
+	cooldown[gun] = true
+	task.wait((gun.WeaponConfiguration.FireDelay.Value * 1.5) + 0.25)
+	cooldown[gun] = false
+end
+
+local s = game:GetService("ReplicatedStorage").Remotes.Weapon.Shoot
+local r = game:GetService("ReplicatedStorage").Remotes.Weapon.Reload
 local function shoot(gun, target)
-	if target:FindFirstChild("Humanoid") and target.Humanoid.Health >= 0.01 then
+	if not isDead(target) then
 		local head = target:FindFirstChild("Head") or target:GetPivot()
 
 		local hits = {}
 		for i=1, gun.WeaponConfiguration.PelletsPerBullet.Value do
 			hits[tostring(i)] = target.Humanoid
 		end
+		
+		if target.Humanoid.Health - gun.WeaponConfiguration.BulletDamage.Value < 0 and gun.ServerWeaponState.CurrentAmmo.Value >= 1 and not cooldown[gun] then
+			probablyDead[target.Humanoid] = true
+			task.spawn(setCooldown, gun)
+		end
 
-		s:FireServer(workspace:GetServerTimeNow(), gun, CFrame.lookAt(head.Position + Vector3.new(0, 1), head.Position), hits)
+		s:FireServer(workspace:GetServerTimeNow(), gun, CFrame.lookAt(head.Position + (head.CFrame.LookVector * 10), head.Position), hits)
 	end
 end
 local function reload(gun)
-	game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Weapon"):WaitForChild("Reload"):FireServer(workspace:GetServerTimeNow(), gun)
+	r:FireServer(workspace:GetServerTimeNow(), gun)
 end
 
 if fpp then
@@ -188,12 +272,13 @@ local function count(t)
 end
 local function getFirst(t)
 	local amnt = 0
-	for i,v in t do
+	for v,i in t do
 		if typeof(v) == "Instance" and v.Parent ~= nil or typeof(v) ~= "Instance" and v ~= nil then
 			return v
+		else
+			remove(t, v)
 		end
 	end
-	return amnt
 end
 
 local function insertCum(str)
@@ -237,6 +322,9 @@ local function hasProperty(object, prop)
 	if not object:FindFirstChild("ObjectInfo") then return false end
 
 	local info = getInfo(object)
+	
+	if not info then return false end
+	
 	for i,v in info do
 		if v == prop then
 			return true
@@ -275,7 +363,7 @@ local function main(v)
 			oprompts[v] = v.MaxActivationDistance
 			v.MaxActivationDistance *= vals.ExtraPP
 		elseif v:IsA("Model") and not game:GetService("Players"):GetPlayerFromCharacter(v) then
-			if v.Name ~= "Moneybag" then
+			if v.Name ~= "Moneybag" and v.Name ~= "Vault" then
 				if v:GetAttribute("DangerScore") then
 					local hum = v:WaitForChild("Humanoid", 9e9)
 
@@ -286,7 +374,7 @@ local function main(v)
 					espFunc(v, monster)
 					add(monsters, v)
 
-					repeat task.wait() until not hum or not hum.Parent or hum.Health <= 1
+					repeat task.wait() until not hum or not hum.Parent or isDead(hum)
 
 					pcall(espLib.DeapplyESP, v)
 
@@ -308,7 +396,7 @@ local function main(v)
 
 					espFunc(v, animal)
 
-					repeat task.wait() until not hum or not hum.Parent or hum.Health <= 1
+					repeat task.wait() until not hum or not hum.Parent or isDead(hum)
 
 					pcall(espLib.DeapplyESP, v)
 
@@ -359,11 +447,12 @@ local function main(v)
 	end
 end
 
-local function getClosestMonster()
-	if vals.Mode == "Angle" and workspace.CurrentCamera then
+local function getClosestMonster(mode)
+	mode = mode or vals.Mode
+	if mode == "Angle" and workspace.CurrentCamera then
 		local a, d, m = math.huge, math.huge, nil
 		for i,v in monsters do
-			if v and v.Parent and v:FindFirstChild("Humanoid") and v.Humanoid.Health >= 0.01 then
+			if v and v.Parent and not isDead(v) then
 				local an = (workspace.CurrentCamera.CFrame.LookVector - CFrame.lookAt(workspace.CurrentCamera.CFrame.Position, v:GetPivot().Position).LookVector).Magnitude
 
 				if an <= a then
@@ -381,7 +470,7 @@ local function getClosestMonster()
 	else
 		local d, m = math.huge, nil
 		for i,v in monsters do
-			if v and v.Parent and v:FindFirstChild("Humanoid") and v.Humanoid.Health >= 0.01 then
+			if v and v.Parent and not isDead(v) then
 				local di = (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude
 
 				if di <= d then
@@ -432,15 +521,10 @@ task.spawn(function()
 		if vals.GKA and plr.Character then
 			local m = getClosestMonster()
 			if m then
-				if plr.Character:FindFirstChildOfClass("Tool") and plr.Character:FindFirstChildOfClass("Tool"):FindFirstChild("WeaponConfiguration") then
-					pcall(shoot, plr.Character:FindFirstChildOfClass("Tool"), m)
-					task.wait(0.1)
-				else
-					for i,v in plr.Backpack:GetChildren() do
-						if v and v.Parent and v:FindFirstChild("WeaponConfiguration") then
-							pcall(shoot, v, m)
-							task.wait(0.1)
-						end
+				for v in myGuns do
+					if v and v.Parent and v:FindFirstChild("WeaponConfiguration") then
+						pcall(shoot, v, m)
+						task.wait(0.01)
 					end
 				end
 			end
@@ -450,10 +534,7 @@ end)
 task.spawn(function()
 	while not closed and task.wait(0.1) do
 		if vals.ARG and plr.Character then
-			if plr.Character:FindFirstChildOfClass("Tool") and plr.Character:FindFirstChildOfClass("Tool"):FindFirstChild("WeaponConfiguration") then
-				pcall(reload, plr.Character:FindFirstChildOfClass("Tool"))
-			end
-			for i,v in plr.Backpack:GetChildren() do
+			for v in myGuns do
 				if v and v.Parent and v:FindFirstChild("WeaponConfiguration") then
 					pcall(reload, v)
 				end
@@ -461,23 +542,41 @@ task.spawn(function()
 		end
 	end
 end)
+
+local ad = 30
+local farEvents = {}
+
+local function equipUntilNoZombie(tool, zombie)
+	tool.Parent = plr.Character
+	
+	if not farEvents[zombie] then
+		farEvents[zombie] = Instance.new("BindableEvent")
+		repeat task.wait() until not vals.MA or isDead(zombie)
+		
+		farEvents[zombie]:Fire()
+		
+		farEvents[zombie]:Destroy()
+		farEvents[zombie] = nil
+	else
+		farEvents[zombie].Event:Wait()
+	end
+	
+	tool.Parent = plr.Backpack
+end
+
 task.spawn(function()
 	while not closed and task.wait(0.1) do
 		if vals.MA then
-			local m, d = getClosestMonster()
-			if m and d <= 30 then
-				for i,v in plr.Backpack:GetChildren() do
-					if v:FindFirstChild("SwingEvent") then
-						if (v:GetPivot().Position - plr.Character:GetPivot().Position).Magnitude > 10 then
-							v.Parent = plr.Character
-							task.wait()
-							v.Parent = plr.Backpack
+			local m, d = getClosestMonster("Distance")
+			if m and d <= ad then
+				for v in melee do
+					if v and v.Parent and v:FindFirstChild("SwingEvent") then
+						if v.Parent == plr.Backpack then
+							task.spawn(equipUntilNoZombie, v, m)
 						end
-						v.SwingEvent:FireServer(CFrame.lookAt(plr.Character:GetPivot().Position, m:GetPivot().Position).LookVector)
+						
+						v.SwingEvent:FireServer(CFrame.lookAt(plr.Character:GetPivot().Position, m:GetPivot().Position + Vector3.new(0, 2)).LookVector)
 					end
-				end
-				if plr.Character:FindFirstChildOfClass("Tool") and plr.Character:FindFirstChildOfClass("Tool"):FindFirstChild("SwingEvent") then
-					plr.Character:FindFirstChildOfClass("Tool").SwingEvent:FireServer(CFrame.lookAt(plr.Character:GetPivot().Position, m:GetPivot().Position).LookVector)
 				end
 			end
 		end
@@ -488,6 +587,10 @@ for i,v in workspace:GetDescendants() do
 	task.spawn(main, v)
 end
 cons[#cons+1] = workspace.DescendantAdded:Connect(main)
+
+local void = pcall(function()
+	workspace.FallenPartsDestroyHeight = workspace.FallenPartsDestroyHeight
+end)
 
 cons[#cons+1] = game:GetService("RunService").RenderStepped:Connect(function()
 	txtf("ClearText")
@@ -512,6 +615,9 @@ cons[#cons+1] = game:GetService("RunService").RenderStepped:Connect(function()
 	if vals.NC then
 		plr.CameraMode = Enum.CameraMode.Classic
 	end
+	if void then
+		workspace.FallenPartsDestroyHeight = vals.NoVoid and 0/0 or -500
+	end
 	plr.DevCameraOcclusionMode = vals.NC and Enum.DevCameraOcclusionMode.Invisicam or Enum.DevCameraOcclusionMode.Zoom
 	game.Lighting.GlobalShadows = not vals.FB
 	if vals.AutoCollectBags then
@@ -524,6 +630,16 @@ cons[#cons+1] = game:GetService("RunService").RenderStepped:Connect(function()
 		end
 	end
 	if plr.Character then
+		if vals.Noclip then
+			for i,v in plr.Character:GetDescendants() do
+				if v and v:IsA("BasePart") then
+					v.CanCollide = false
+				end
+			end
+		elseif plr.Character:FindFirstChild("HumanoidRootPart") then
+			plr.Character.HumanoidRootPart.CanCollide = true
+		end
+		
 		if vals.AutoPickTools then
 			for i,v in tools do
 				if v and v.Parent then
@@ -555,17 +671,18 @@ cons[#cons+1] = game:GetService("RunService").RenderStepped:Connect(function()
 				end
 			end
 		end
-		if vals.AutoBandage and plr.Backpack:FindFirstChild("Bandage") and plr.Character:FindFirstChildOfClass("Humanoid") and plr.Character:FindFirstChildOfClass("Humanoid").MaxHealth - plr.Character:FindFirstChildOfClass("Humanoid").Health >= 50 then
-			plr.Backpack.Bandage.Use:FireServer()
+		
+		local bandage = getFirst(heals.Bandage)
+		if vals.AutoBandage and bandage and plr.Character:FindFirstChildOfClass("Humanoid").MaxHealth - plr.Character:FindFirstChildOfClass("Humanoid").Health >= 50 then
+			return bandage.Use:FireServer()
 		end
-		if vals.Noclip then
-			for i,v in plr.Character:GetDescendants() do
-				if v and v:IsA("BasePart") then
-					v.CanCollide = false
-				end
-			end
-		elseif plr.Character:FindFirstChild("HumanoidRootPart") then
-			plr.Character.HumanoidRootPart.CanCollide = true
+		
+		local oil = getFirst(heals["Snake Oil"])
+		if vals.AutoBandage and oil and plr.Character:FindFirstChildOfClass("Humanoid").MaxHealth - plr.Character:FindFirstChildOfClass("Humanoid").Health >= 30 then
+			vals.AutoBandage = false
+			oil.Use:FireServer()
+			task.wait(2.5)
+			vals.AutoBandage = true
 		end
 	end
 end)
@@ -585,6 +702,11 @@ local window = lib:MakeWindow({Title = "NullFire: Dead Rails", CloseCallback = f
 	end
 	for i,v in hooks do
 		task.spawn(v)
+	end
+	for i,v in oprompts do
+		if i and i.Parent and v then
+			i.MaxActivationDistance = v
+		end
 	end
 	getGlobalTable().FireHubLoaded = false
 	closed = true
@@ -621,7 +743,7 @@ end})
 page:AddToggle({Caption = "Auto pick up ammo, bonds & other", Default = false, Callback = function(b)
 	vals.AutoPickOther = b
 end})
-page:AddToggle({Caption = "Auto bandage", Default = false, Callback = function(b)
+page:AddToggle({Caption = "Auto bandage / snake oil", Default = false, Callback = function(b)
 	vals.AutoBandage = b
 end})
 page:AddSeparator()
@@ -636,6 +758,12 @@ page:AddSlider({Caption = "Prompt activation distance multiplier", Default = 1, 
 		end
 	end
 end})
+if void then
+	page:AddSeparator()
+	page:AddToggle({Caption = "No void (fix death when falling under map)", Default = false, Callback = function(b)
+		vals.NoVoid = b
+	end})
+end
 
 local page = window:AddPage({Title = "Visual"})
 page:AddToggle({Caption = "Show distance", Default = false, Callback = function(b)
@@ -664,9 +792,12 @@ page:AddToggle({Caption = "Normal camera", Default = false, Callback = function(
 end})
 page:AddSeparator()
 local activated = false
-page:AddToggle({Caption = "Gay ESP", Default = false, Callback = function(b)
+page:AddToggle({Caption = "RGB ESP (might cause FPS issues, careful!)", Default = false, Callback = function(b)
 	if not activated then activated = true return end
 	espLib.ESPValues.RGBESP = b
+	if b then
+		lib.Notifications:Notification({Title = "RGB ESP", Text = "This might cause FPS issues when a lot of objects!\nUse this only if you think your device is strong enough"})
+	end
 end})
 page:AddSeparator()
 for i,v in vals.ESP do
@@ -683,9 +814,15 @@ page:AddToggle({Caption = "Auto reload guns", Default = false, Callback = functi
 	vals.ARG = b
 end})
 if hmm and gncm then
+	page:AddSeparator()
 	page:AddToggle({Caption = "Aimbot", Default = false, Callback = function(b)
 		vals.Aimbot = b
 	end})
+	page:AddLabel({Caption = "Aimbot makes bullets hit target no matter what"})
+	page:AddLabel({Caption = "It wont rotate your camera towards enemies"})
+	page:AddSeparator()
+	page:AddLabel({Caption = "If Aimbot does not work, then your executor is bad"})
+	page:AddSeparator()
 end
 
 local t = {"Distance", "Angle"}
@@ -697,3 +834,5 @@ page:AddSeparator()
 page:AddToggle({Caption = "Melee aura (auto shovel)", Default = false, Callback = function(b)
 	vals.MA = b
 end})
+
+espFunc(workspace:WaitForChild("Train", 9e9), {HighlightEnabled = false, Color = Color3.fromRGB(55, 65, 65), Text = "Train", ESPName = "Train (the most useful)ESP"})
