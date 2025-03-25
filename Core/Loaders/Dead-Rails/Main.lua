@@ -35,7 +35,7 @@ local defaults = {
 	OilUse = 0,
 	OilUseCooldown = 5,
 	KAR = 500,
-	
+
 	ThrowPower = 100
 }
 
@@ -86,26 +86,26 @@ local function isDead(hum)
 	if probablyDead[hum] then
 		return true
 	end
-	
+
 	if hum and hum.Parent then
 		if not hum:IsA("Humanoid") then
 			hum = hum:FindFirstChild("Humanoid")
 		end
-		
+
 		if hum then
 			if probablyDead[hum] then
 				return true
 			end
-			
+
 			local dead = hum.Health <= 0.01 and hum.PlatformStand
 			if dead then
 				probablyDead[hum] = true
 			end
-			
+
 			return dead
 		end
 	end
-	
+
 	return true
 end
 
@@ -229,7 +229,7 @@ local function shoot(gun, target)
 		for i=1, gun.WeaponConfiguration.PelletsPerBullet.Value do
 			hits[tostring(i)] = target.Humanoid
 		end
-		
+
 		if target.Humanoid.Health - gun.WeaponConfiguration.BulletDamage.Value < 0 and gun.ServerWeaponState.CurrentAmmo.Value >= 1 and not cooldown[gun] then
 			deathAmmo[target.Humaoind] = (tonumber(deathAmmo[target.Humaoind]) or 3) - 1
 			if deathAmmo[target.Humaoind] <= 0 then
@@ -335,16 +335,16 @@ local function throwObject(object)
 	if (object:GetPivot().Position - plr.Character:GetPivot().Position).Magnitude > 20 then
 		return
 	end
-	
+
 	game:GetService("ReplicatedStorage").Shared.Remotes.RequestStartDrag:FireServer(object)
-	
+
 	local par
-	
+
 	while true do
 		local drag1 = object:FindFirstChild("DragAttachment", math.huge)
 		local drag2 = object:FindFirstChild("DragAlignPosition", math.huge)
 		local drag3 = object:FindFirstChild("DragAlignOrientation", math.huge)
-		
+
 		if not drag1 and not drag2 and not drag3 and par then
 			break
 		end
@@ -364,17 +364,17 @@ local function throwObject(object)
 			drag3:Destroy()
 			continue
 		end
-		
+
 		task.wait()
 	end
-	
+
 	task.wait()
-	
+
 	if par then
 		par.AssemblyLinearVelocity = CFrame.lookAt(workspace.CurrentCamera.CFrame.Position, par:GetPivot().Position + Vector3.new(0, ((10000 - vals.ThrowPower)/10000) * 5 - 0.25)).LookVector * vals.ThrowPower
 		task.wait()
 	end
-	
+
 	game:GetService("ReplicatedStorage").Shared.Remotes.RequestStopDrag:FireServer()
 end
 
@@ -412,9 +412,9 @@ local function hasProperty(object, prop)
 	if not object:FindFirstChild("ObjectInfo") then return false end
 
 	local info = getInfo(object)
-	
+
 	if not info then return false end
-	
+
 	for i,v in info do
 		if v == prop then
 			return true
@@ -547,7 +547,7 @@ local function getClosestMonster(mode)
 				if vals.Raycast and raycast(workspace.CurrentCamera.CFrame.Position, v:GetPivot().Position, v:GetDescendants()) or (workspace.CurrentCamera.CFrame.Position - v:GetPivot().Position).Magnitude > vals.KAR then
 					continue
 				end
-				
+
 				local di = (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude
 				local an = ((workspace.CurrentCamera.CFrame.Position + (workspace.CurrentCamera.CFrame.LookVector * di)) - v:GetPivot().Position).Magnitude
 
@@ -571,7 +571,7 @@ local function getClosestMonster(mode)
 				add(allowedMonsters, v)
 			end
 		end
-		
+
 		if #allowedMonsters > 0 then
 			local monster = allowedMonsters[math.random(1, #allowedMonsters)]
 			return monster, monster and (plr.Character:GetPivot().Position - monster:GetPivot().Position).Magnitude
@@ -583,7 +583,7 @@ local function getClosestMonster(mode)
 				if vals.Raycast and raycast(workspace.CurrentCamera.CFrame.Position, v:GetPivot().Position, v:GetDescendants()) or (workspace.CurrentCamera.CFrame.Position - v:GetPivot().Position).Magnitude > vals.KAR then
 					continue
 				end
-				
+
 				local di = (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude
 
 				if di <= d then
@@ -602,7 +602,7 @@ if hmm and gncm then
 	local old; old = hmm(game, "__namecall", function(self, ...)
 		if vals.Aimbot and self == s and gncm() == "FireServer" then
 			local args = { ... }
-			
+
 			local m = getClosestMonster()
 
 			if m then
@@ -628,7 +628,7 @@ if hmm and gncm then
 
 		return old(self, ...)
 	end)
-	
+
 	hooks[#hooks + 1] = function()
 		hmm(game, "__namecall", old)
 	end
@@ -666,19 +666,19 @@ local farEvents = {}
 
 local function equipUntilNoZombie(tool, zombie)
 	tool.Parent = plr.Character
-	
+
 	if not farEvents[zombie] then
 		farEvents[zombie] = Instance.new("BindableEvent")
 		repeat task.wait() until not vals.MA or isDead(zombie)
-		
+
 		farEvents[zombie]:Fire()
-		
+
 		farEvents[zombie]:Destroy()
 		farEvents[zombie] = nil
 	else
 		farEvents[zombie].Event:Wait()
 	end
-	
+
 	tool.Parent = plr.Backpack
 end
 
@@ -692,7 +692,7 @@ task.spawn(function()
 						if v.Parent == plr.Backpack then
 							task.spawn(equipUntilNoZombie, v, m)
 						end
-						
+
 						v.SwingEvent:FireServer(CFrame.lookAt(plr.Character:GetPivot().Position, m:GetPivot().Position + Vector3.new(0, 2)).LookVector)
 					end
 				end
@@ -758,7 +758,7 @@ cons[#cons+1] = game:GetService("RunService").RenderStepped:Connect(function()
 		elseif plr.Character:FindFirstChild("HumanoidRootPart") then
 			plr.Character.HumanoidRootPart.CanCollide = true
 		end
-		
+
 		if vals.AutoPickTools then
 			for i,v in tools do
 				if v and v.Parent then
@@ -803,12 +803,12 @@ cons[#cons+1] = game:GetService("RunService").RenderStepped:Connect(function()
 				end
 			end
 		end
-		
+
 		local bandage = getFirst(heals.Bandage)
 		if bandage and bandage.Parent and plr.Character:FindFirstChildOfClass("Humanoid").Health <= vals.BandageUse then
 			return bandage.Use:FireServer(bandage)
 		end
-		
+
 		local oil = getFirst(heals["Snake Oil"])
 		if not oilCooldown and oil and oil.Parent and plr.Character:FindFirstChildOfClass("Humanoid").Health <= vals.OilUse then
 			oilCooldown = true
@@ -992,7 +992,7 @@ if hmm and gncm then
 	page:AddSeparator()
 	page:AddLabel({Caption = "If Aimbot does not work, then your executor is bad"})
 	page:AddSeparator()
-	
+
 	page:AddToggle({Caption = "Save bullets", Default = false, Callback = function(b)
 		vals.SaveBullets = b
 	end})
@@ -1008,34 +1008,30 @@ page:AddButton({Caption = "Throw object", Callback = function(b)
 	if not obj then
 		return lib.Notifications:Notification({Title = "No object", Text = "Please, look at object you want to throw!"})
 	end
-	
+
 	throwObject(obj)
 end})
 page:AddSlider({Caption = "Throw power", Default = vals.ThrowPower, Min = 10, Max = 10000, Step = 1, Callback = function(b)
 	vals.ThrowPower = b
 end})
 
-if not game:GetService("UserInputService").TouchEnabled and game:GetService("UserInputService").KeyboardEnabled then
-	local throwKey = Enum.KeyCode.X
-	page:AddInput({Text = "Throw keybind", Default = throwKey.Name, Callback = function(kc)
-		throwKey = kc
-	end})
+local throwKey = Enum.KeyCode.X
+page:AddInput({Text = "Throw keybind", Default = throwKey.Name, Callback = function(kc)
+	throwKey = kc
+end})
 
-	cons[#cons+1] = game:GetService("UserInputService").InputBegan:Connect(function(kk, a)
-		if a or kk.KeyCode ~= throwKey then return end
-		
-		local obj = getSelectedObject()
-		if not obj then
-			return lib.Notifications:Notification({Title = "No object", Text = "Please, look at object you want to throw!"})
-		end
+cons[#cons+1] = game:GetService("UserInputService").InputBegan:Connect(function(kk, a)
+	if a or kk.KeyCode ~= throwKey then return end
 
-		throwObject(obj)
-	end)
+	local obj = getSelectedObject()
+	if not obj then
+		return lib.Notifications:Notification({Title = "No object", Text = "Please, look at object you want to throw!"})
+	end
 
-	page:AddLabel({Caption = "Try throwing a friend's corpse XD"})
-else
-	page:AddLabel({Caption = "!THROWING ABILITY UNAVAILABLE ON MOBILE!"})
-end
+	throwObject(obj)
+end)
+
+page:AddLabel({Caption = "Try throwing a friend's corpse XD"})
 
 page:AddSeparator()
 page:AddButton({Caption = "Glitch train", Callback = function()
