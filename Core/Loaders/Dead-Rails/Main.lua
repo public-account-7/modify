@@ -13,7 +13,8 @@ local defaults = {
 	AutoCollectBags = false,
 	AutoPickTools = false,
 	AutoPickOther = false,
-	AutoBandage = false,
+	AutoPickArmor = false,
+	AutoPickBonds = false,
 	Noclip = false,
 	NC = false,
 	ShowTime = false,
@@ -24,9 +25,18 @@ local defaults = {
 	GKA = false,
 	MA = false,
 	ARG = false,
+	Raycast = false,
 	Aimbot = false,
 	Mode = "Distance",
-	NoVoid = false
+	NoVoid = false,
+	SaveBulltets = false,
+
+	BandageUse = 0,
+	OilUse = 0,
+	OilUseCooldown = 5,
+	KAR = 500,
+	
+	ThrowPower = 100
 }
 
 local vals = table.clone(defaults)
@@ -70,6 +80,8 @@ local fppn = false
 local fpp = getfenv().fireproximityprompt
 
 local probablyDead = {}
+local deathAmmo = {}
+
 local function isDead(hum)
 	if probablyDead[hum] then
 		return true
@@ -85,7 +97,12 @@ local function isDead(hum)
 				return true
 			end
 			
-			return hum.Health < 0.01 and hum.PlatformStand
+			local dead = hum.Health <= 0.01 and hum.PlatformStand
+			if dead then
+				probablyDead[hum] = true
+			end
+			
+			return dead
 		end
 	end
 	
@@ -145,10 +162,67 @@ local function setCooldown(gun)
 	cooldown[gun] = false
 end
 
+local function addFunction(t,v)
+	if v == nil or typeof(t) ~= "table" then return end
+	local i = 1
+	while true do
+		if v == nil or typeof(v) == "Instance" and v.Parent == nil then
+			return -1
+		end
+		if t[i] == nil or typeof(t[i]) == "Instance" and t[i].Parent == nil then
+			t[i] = v
+			return i
+		end
+		i = i + 1
+	end
+end
+local function add(t,v)
+	task.spawn(addFunction, t, v)
+end
+local function remove(t,v)
+	task.spawn(pcall, table.remove, t, table.find(t, v))
+end
+local function count(t)
+	local amnt = 0
+	for i,v in t do
+		if typeof(v) == "Instance" and v.Parent ~= nil or typeof(v) ~= "Instance" and v ~= nil then
+			amnt = amnt + 1
+		end
+	end
+	return amnt
+end
+local function getFirst(t)
+	for v,i in t do
+		if typeof(v) == "Instance" and (v.Parent == plr.Character or v.Parent == plr.Backpack) or typeof(v) ~= "Instance" and v ~= nil then
+			return v
+		else
+			remove(t, v)
+		end
+	end
+end
+
+local function fuseTables(t1, t2)
+	for i,v in t2 do
+		add(t1, v)
+	end
+
+	return t1
+end
+
+local function raycast(from, to, ignore)
+	local raycastParams = RaycastParams.new()
+
+	raycastParams.IgnoreWater = true
+	raycastParams.FilterDescendantsInstances = fuseTables(plr.Character and plr.Character:GetDescendants() or {}, ignore or {})
+
+	local result = workspace:Raycast(from, (to - from).Unit * (to - from).Magnitude, raycastParams)
+	return result and result.Instance
+end
+
 local s = game:GetService("ReplicatedStorage").Remotes.Weapon.Shoot
 local r = game:GetService("ReplicatedStorage").Remotes.Weapon.Reload
 local function shoot(gun, target)
-	if not isDead(target) then
+	if not isDead(target) and (vals.Raycast and not raycast(workspace.CurrentCamera.CFrame.Position, target:GetPivot().Position, target:GetDescendants()) or not vals.Raycast) and (workspace.CurrentCamera.CFrame.Position - target:GetPivot().Position).Magnitude <= vals.KAR then
 		local head = target:FindFirstChild("Head") or target:GetPivot()
 
 		local hits = {}
@@ -157,7 +231,10 @@ local function shoot(gun, target)
 		end
 		
 		if target.Humanoid.Health - gun.WeaponConfiguration.BulletDamage.Value < 0 and gun.ServerWeaponState.CurrentAmmo.Value >= 1 and not cooldown[gun] then
-			probablyDead[target.Humanoid] = true
+			deathAmmo[target.Humaoind] = (tonumber(deathAmmo[target.Humaoind]) or 3) - 1
+			if deathAmmo[target.Humaoind] <= 0 then
+				probablyDead[target.Humanoid] = true
+			end
 			task.spawn(setCooldown, gun)
 		end
 
@@ -241,46 +318,6 @@ local fireproximityprompt = function(pp, i)
 	task.spawn(fppFunc, pp)
 end
 
-local function addFunction(t,v)
-	if v == nil or typeof(t) ~= "table" then return end
-	local i = 1
-	while true do
-		if v == nil or typeof(v) == "Instance" and v.Parent == nil then
-			return -1
-		end
-		if t[i] == nil or typeof(t[i]) == "Instance" and t[i].Parent == nil then
-			t[i] = v
-			return i
-		end
-		i = i + 1
-	end
-end
-local function add(t,v)
-	task.spawn(addFunction, t, v)
-end
-local function remove(t,v)
-	task.spawn(pcall, table.remove, t, table.find(t, v))
-end
-local function count(t)
-	local amnt = 0
-	for i,v in t do
-		if typeof(v) == "Instance" and v.Parent ~= nil or typeof(v) ~= "Instance" and v ~= nil then
-			amnt = amnt + 1
-		end
-	end
-	return amnt
-end
-local function getFirst(t)
-	local amnt = 0
-	for v,i in t do
-		if typeof(v) == "Instance" and v.Parent ~= nil or typeof(v) ~= "Instance" and v ~= nil then
-			return v
-		else
-			remove(t, v)
-		end
-	end
-end
-
 local function insertCum(str)
 	local new = str:gsub("(%u)", " %1")
 	if new:sub(1, 1) == " " then
@@ -290,16 +327,68 @@ local function insertCum(str)
 	return new:gsub("  ", " "):gsub("_", "") .. ""
 end
 
+local function getSelectedObject()
+	return game:GetService("ReplicatedStorage").Client.Handlers.DraggableItemHandlers.ClientDraggableObjectHandler.DragHighlight.Adornee
+end
+
+local function throwObject(object)
+	if (object:GetPivot().Position - plr.Character:GetPivot().Position).Magnitude > 20 then
+		return
+	end
+	
+	game:GetService("ReplicatedStorage").Shared.Remotes.RequestStartDrag:FireServer(object)
+	
+	local par
+	
+	while true do
+		local drag1 = object:FindFirstChild("DragAttachment", math.huge)
+		local drag2 = object:FindFirstChild("DragAlignPosition", math.huge)
+		local drag3 = object:FindFirstChild("DragAlignOrientation", math.huge)
+		
+		if not drag1 and not drag2 and not drag3 and par then
+			break
+		end
+
+		if drag1 then
+			par = drag1.Parent
+			drag1:Destroy()
+			continue
+		end
+		if drag2 then
+			par = drag2.Parent
+			drag2:Destroy()
+			continue
+		end
+		if drag3 then
+			par = drag3.Parent
+			drag3:Destroy()
+			continue
+		end
+		
+		task.wait()
+	end
+	
+	task.wait()
+	
+	if par then
+		par.AssemblyLinearVelocity = CFrame.lookAt(workspace.CurrentCamera.CFrame.Position, par:GetPivot().Position + Vector3.new(0, ((10000 - vals.ThrowPower)/10000) * 5 - 0.25)).LookVector * vals.ThrowPower
+		task.wait()
+	end
+	
+	game:GetService("ReplicatedStorage").Shared.Remotes.RequestStopDrag:FireServer()
+end
+
 local esps = {}
 local desps = {}
 local monsters = {}
 
 local tools = {}
+local bonds = {}
 local other = {}
 local equippables = {}
 
-local pickupable = { "Consumable", "Gun", "Weapon", "Melee" }
-local activateable = { "Ammo", "Currency" }
+local pickupable = { "Consumable", "Gun", "Weapon", "Melee", "Playable", "Tool" }
+local activateable = { "Ammo" }
 
 local infoStored = {}
 
@@ -318,6 +407,7 @@ local function getInfo(object)
 	infoStored[object.Name] = info
 	return info
 end
+
 local function hasProperty(object, prop)
 	if not object:FindFirstChild("ObjectInfo") then return false end
 
@@ -368,7 +458,6 @@ local function main(v)
 					local hum = v:WaitForChild("Humanoid", 9e9)
 
 					local monster = esps[v.Name] or {HighlightEnabled = false, Color = Color3.new(1 / 5):Lerp(Color3.new(1), v:GetAttribute("DangerScore") / 100), Text = insertCum(v.Name), ESPName = "MonsterESP"}
-
 					esps[v.Name] = monster
 
 					espFunc(v, monster)
@@ -377,8 +466,6 @@ local function main(v)
 					repeat task.wait() until not hum or not hum.Parent or isDead(hum)
 
 					pcall(espLib.DeapplyESP, v)
-
-					remove(monsters, v)
 
 					local dead = desps[v.Name] or {HighlightEnabled = true, Color = Color3.fromRGB(200, 150, 50):Lerp(Color3.fromRGB(255, 100, 50), v:GetAttribute("DangerScore") / 100), Text = insertCum(v.Name), ESPName = "Dead MonsterESP"}
 					desps[v.Name] = dead
@@ -408,7 +495,7 @@ local function main(v)
 					return
 				end
 
-				if v:FindFirstChild("ObjectInfo") and (v:FindFirstChild("Base") and v.Base:IsA("BasePart") and not v.Base.Anchored or not v:FindFirstChild("Base") or not v.Base:IsA("BasePart")) then
+				if v:FindFirstChild("ObjectInfo") and (v:FindFirstChild("Base") and v.Base:IsA("BasePart") and not v.Base.Anchored or not v:FindFirstChild("Base") or not v.Base:IsA("BasePart")) or v.Parent == workspace.RuntimeItems then
 					local tool = esps[v.Name] or {HighlightEnabled = false, Color = getColor(v), Text = insertCum(v.Name) .. (v:GetAttribute("Value") and " (" .. v:GetAttribute("Value") .. "$)" or ""), ESPName = "ItemESP"}
 
 					esps[v.Name] = tool
@@ -427,6 +514,10 @@ local function main(v)
 							return
 						end
 					end
+					if hasProperty(v, "Currency") then
+						add(bonds, v)
+						return
+					end
 					if hasProperty(v, "Equippable") then
 						add(equippables, v)
 						return
@@ -441,7 +532,7 @@ local function main(v)
 				espFunc(v, bag)
 				add(prompts, v.MoneyBag:WaitForChild("CollectPrompt", 9e9))
 			elseif v.Name == "Vault" and v:FindFirstChild("Combination") then
-				espFunc(v, {HighlightEnabled = true, Color = Color3.fromRGB(85, 170, 0), Text = "[ " .. tostring(v.Combination.Value):gsub("", " ") .. "]", ESPName = "Vault CodeESP"})
+				espFunc(v, {HighlightEnabled = true, Color = Color3.fromRGB(85, 170, 0), Text = "[" .. tostring(v.Combination.Value):gsub("", " ") .. "]", ESPName = "Vault CodeESP"})
 			end
 		end
 	end
@@ -453,32 +544,52 @@ local function getClosestMonster(mode)
 		local a, d, m = math.huge, math.huge, nil
 		for i,v in monsters do
 			if v and v.Parent and not isDead(v) then
-				local an = (workspace.CurrentCamera.CFrame.LookVector - CFrame.lookAt(workspace.CurrentCamera.CFrame.Position, v:GetPivot().Position).LookVector).Magnitude
+				if vals.Raycast and raycast(workspace.CurrentCamera.CFrame.Position, v:GetPivot().Position, v:GetDescendants()) or (workspace.CurrentCamera.CFrame.Position - v:GetPivot().Position).Magnitude > vals.KAR then
+					continue
+				end
+				
+				local di = (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude
+				local an = ((workspace.CurrentCamera.CFrame.Position + (workspace.CurrentCamera.CFrame.LookVector * di)) - v:GetPivot().Position).Magnitude
 
 				if an <= a then
-					d = (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude
-					
+					d = di
 					a = an
 					m = v
 				end
-			else
-				remove(monsters, v)
 			end
 		end
 
 		return m, d
+	elseif mode == "Random" then
+		local allowedMonsters = {}
+		for i,v in monsters do
+			if v and v.Parent and not isDead(v) then
+				if vals.Raycast and raycast(workspace.CurrentCamera.CFrame.Position, v:GetPivot().Position, v:GetDescendants()) or (workspace.CurrentCamera.CFrame.Position - v:GetPivot().Position).Magnitude > vals.KAR then
+					continue
+				end
+
+				add(allowedMonsters, v)
+			end
+		end
+		
+		if #allowedMonsters > 0 then
+			local monster = allowedMonsters[math.random(1, #allowedMonsters)]
+			return monster, monster and (plr.Character:GetPivot().Position - monster:GetPivot().Position).Magnitude
+		end
 	else
 		local d, m = math.huge, nil
 		for i,v in monsters do
 			if v and v.Parent and not isDead(v) then
+				if vals.Raycast and raycast(workspace.CurrentCamera.CFrame.Position, v:GetPivot().Position, v:GetDescendants()) or (workspace.CurrentCamera.CFrame.Position - v:GetPivot().Position).Magnitude > vals.KAR then
+					continue
+				end
+				
 				local di = (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude
 
 				if di <= d then
 					d = di
 					m = v
 				end
-			else
-				remove(monsters, v)
 			end
 		end
 
@@ -504,13 +615,20 @@ if hmm and gncm then
 
 				args[3] = CFrame.lookAt(head.Position + Vector3.new(0, 1), head.Position)
 				args[4] = hits
+			elseif vals.SaveBullets then
+				args[2].ClientWeaponState.CurrentAmmo.Value += 1
+				error("Cancel shoot", 0)
 			end
 
 			return s.FireServer(s, unpack(args))
+		elseif vals.SaveBullets and self == s and gncm() == "FireServer" and not getClosestMonster() then
+			({ ... })[2].ClientWeaponState.CurrentAmmo.Value += 1
+			error("Cancel shoot", 0)
 		end
 
 		return old(self, ...)
 	end)
+	
 	hooks[#hooks + 1] = function()
 		hmm(game, "__namecall", old)
 	end
@@ -592,6 +710,7 @@ local void = pcall(function()
 	workspace.FallenPartsDestroyHeight = workspace.FallenPartsDestroyHeight
 end)
 
+local oilCooldown = false
 cons[#cons+1] = game:GetService("RunService").RenderStepped:Connect(function()
 	txtf("ClearText")
 	if workspace.Train.TrainControls:FindFirstChild("TimeDial") then
@@ -661,6 +780,19 @@ cons[#cons+1] = game:GetService("RunService").RenderStepped:Connect(function()
 					remove(prompts, v)
 				end
 			end
+		end
+		if vals.AutoPickBonds then
+			for i,v in bonds do
+				if v and v.Parent then
+					if (v:GetPivot().Position - plr.Character:GetPivot().Position).Magnitude <= 30 then
+						game:GetService("ReplicatedStorage").Packages.RemotePromise.Remotes.C_ActivateObject:FireServer(v)
+					end
+				else
+					remove(prompts, v)
+				end
+			end
+		end
+		if vals.AutoPickArmor then
 			for i,v in equippables do
 				if v and v.Parent then
 					if (v:GetPivot().Position - plr.Character:GetPivot().Position).Magnitude <= 30 then
@@ -673,16 +805,16 @@ cons[#cons+1] = game:GetService("RunService").RenderStepped:Connect(function()
 		end
 		
 		local bandage = getFirst(heals.Bandage)
-		if vals.AutoBandage and bandage and plr.Character:FindFirstChildOfClass("Humanoid").MaxHealth - plr.Character:FindFirstChildOfClass("Humanoid").Health >= 50 then
-			return bandage.Use:FireServer()
+		if bandage and bandage.Parent and plr.Character:FindFirstChildOfClass("Humanoid").Health <= vals.BandageUse then
+			return bandage.Use:FireServer(bandage)
 		end
 		
 		local oil = getFirst(heals["Snake Oil"])
-		if vals.AutoBandage and oil and plr.Character:FindFirstChildOfClass("Humanoid").MaxHealth - plr.Character:FindFirstChildOfClass("Humanoid").Health >= 30 then
-			vals.AutoBandage = false
-			oil.Use:FireServer()
-			task.wait(2.5)
-			vals.AutoBandage = true
+		if not oilCooldown and oil and oil.Parent and plr.Character:FindFirstChildOfClass("Humanoid").Health <= vals.OilUse then
+			oilCooldown = true
+			oil.Use:FireServer(oil)
+			task.wait(vals.OilUseCooldown)
+			oilCooldown = false
 		end
 	end
 end)
@@ -720,18 +852,6 @@ local page = window:AddPage({Title = "Character"})
 page:AddToggle({Caption = "Noclip", Default = false, Callback = function(b)
 	vals.Noclip = b
 end})
-page:AddButton({Caption = "Glitch train", Callback = function()
-	if workspace.Train.TrainControls.ConductorSeat:FindFirstChild("VehicleSeat") then
-		local old = plr.Character:GetPivot()
-		plr.Character:PivotTo(old + Vector3.new(0, 5))
-		task.wait(0.02)
-		plr.Character:PivotTo(workspace.Train.TrainControls.ConductorSeat.VehicleSeat:GetPivot())
-		task.wait(0.02)
-		plr.Character:PivotTo(old)
-	else
-		lib.Notifications:Notification({Title = "Uh-oh!", Text = "Looks like the train is way too far away"})
-	end
-end})
 
 local page = window:AddPage({Title = "Interact"})
 page:AddToggle({Caption = "Auto grab money bags", Default = false, Callback = function(b)
@@ -740,12 +860,16 @@ end})
 page:AddToggle({Caption = "Auto pick up tools", Default = false, Callback = function(b)
 	vals.AutoPickTools = b
 end})
-page:AddToggle({Caption = "Auto pick up ammo, bonds & other", Default = false, Callback = function(b)
+page:AddToggle({Caption = "Auto pick up armor", Default = false, Callback = function(b)
+	vals.AutoPickArmor = b
+end})
+page:AddToggle({Caption = "Auto pick up bonds", Default = false, Callback = function(b)
+	vals.AutoPickBonds = b
+end})
+page:AddToggle({Caption = "Auto pick up ammo & other", Default = false, Callback = function(b)
 	vals.AutoPickOther = b
 end})
-page:AddToggle({Caption = "Auto bandage / snake oil", Default = false, Callback = function(b)
-	vals.AutoBandage = b
-end})
+
 page:AddSeparator()
 page:AddToggle({Caption = "Instant interact", Default = false, Callback = function(b)
 	vals.II = b
@@ -758,6 +882,7 @@ page:AddSlider({Caption = "Prompt activation distance multiplier", Default = 1, 
 		end
 	end
 end})
+
 if void then
 	page:AddSeparator()
 	page:AddToggle({Caption = "No void (fix death when falling under map)", Default = false, Callback = function(b)
@@ -765,7 +890,20 @@ if void then
 	end})
 end
 
+page:AddSeparator()
+
+page:AddSlider({Caption = "Auto use Bandage when has HP:", Default = 0, Min = 0, Max = 99.5, Step = 0.5, Callback = function(b)
+	vals.BandageUse = b
+end})
+page:AddSlider({Caption = "Auto use Snake Oil when has HP:", Default = 0, Min = 0, Max = 100, Step = 0.5, Callback = function(b)
+	vals.OilUse = b
+end})
+page:AddSlider({Caption = "Auto use Snake Oil cooldown", Default = 5, Min = 0, Max = 10, Step = 0.1, Callback = function(b)
+	vals.OilUseCooldown = b
+end})
+
 local page = window:AddPage({Title = "Visual"})
+
 page:AddToggle({Caption = "Show distance", Default = false, Callback = function(b)
 	vals.ShowDistance = b
 end})
@@ -778,7 +916,9 @@ end})
 page:AddToggle({Caption = "Show fuel", Default = false, Callback = function(b)
 	vals.ShowFuel = b
 end})
+
 page:AddSeparator()
+
 page:AddToggle({Caption = "Full bright", Default = false, Callback = function(b)
 	vals.FB = b
 end})
@@ -790,7 +930,9 @@ page:AddToggle({Caption = "Normal camera", Default = false, Callback = function(
 		lib.Notifications:Notification({Title = "Normal camera", Text = "Now you can zoom out your camera"})
 	end
 end})
+
 page:AddSeparator()
+
 local activated = false
 page:AddToggle({Caption = "RGB ESP (might cause FPS issues, careful!)", Default = false, Callback = function(b)
 	if not activated then activated = true return end
@@ -799,7 +941,9 @@ page:AddToggle({Caption = "RGB ESP (might cause FPS issues, careful!)", Default 
 		lib.Notifications:Notification({Title = "RGB ESP", Text = "This might cause FPS issues when a lot of objects!\nUse this only if you think your device is strong enough"})
 	end
 end})
+
 page:AddSeparator()
+
 for i,v in vals.ESP do
 	page:AddToggle({Caption = i:gsub("ESP", " ESP"), Default = v, Callback = function(b)
 		espLib.ESPValues[i] = b
@@ -807,12 +951,37 @@ for i,v in vals.ESP do
 end
 
 local page = window:AddPage({Title = "Killaura"})
+
 page:AddToggle({Caption = "Gun kill aura", Default = false, Callback = function(b)
 	vals.GKA = b
 end})
+page:AddToggle({Caption = "Melee kill aura (auto shovel)", Default = false, Callback = function(b)
+	vals.MA = b
+end})
+page:AddSlider({Caption = "Gun killaura radius", Default = vals.KAR, Min = 10, Max = 2501, Step = 1, Callback = function(b)
+	vals.KAR = b ~= 2501 and b or 1488e+228
+end, CustomTextDisplay = function(i)
+	return (tonumber(i) == 2501 and "Infinite" or i) .. " studs"
+end})
+page:AddSeparator()
+page:AddToggle({Caption = "Kill aura " .. (hmm and gncm and "and aimbot " or "") .. "check line of sight (raycast)", Default = false, Callback = function(b)
+	vals.Raycast = b
+end})
+page:AddLabel({Caption = "Better dont enable ^^^ because unstable"})
+
+page:AddSeparator()
+
+local t = {"Distance", "Angle", "Random"}
+page:AddDropdown({Text = "Find closest target by", Default = "Distance", Rows = t, Callback = function(name)
+	vals.Mode = t[name]
+end})
+
+page:AddSeparator()
+
 page:AddToggle({Caption = "Auto reload guns", Default = false, Callback = function(b)
 	vals.ARG = b
 end})
+
 if hmm and gncm then
 	page:AddSeparator()
 	page:AddToggle({Caption = "Aimbot", Default = false, Callback = function(b)
@@ -823,16 +992,63 @@ if hmm and gncm then
 	page:AddSeparator()
 	page:AddLabel({Caption = "If Aimbot does not work, then your executor is bad"})
 	page:AddSeparator()
+	
+	page:AddToggle({Caption = "Save bullets", Default = false, Callback = function(b)
+		vals.SaveBullets = b
+	end})
+	page:AddLabel({Caption = "Better dont ^^^ this because unstable + can't kill animals"})
+	page:AddLabel({Caption = "Save bullets cancels the shoot if theres no alive zombies around"})
+	page:AddSeparator()
 end
 
-local t = {"Distance", "Angle"}
-page:AddDropdown({Text = "Find closest target by", Default = "Distance", Rows = t, Callback = function(name)
-	vals.Mode = t[name]
+local page = window:AddPage({Title = "Trolling"})
+
+page:AddButton({Caption = "Throw object", Callback = function(b)
+	local obj = getSelectedObject()
+	if not obj then
+		return lib.Notifications:Notification({Title = "No object", Text = "Please, look at object you want to throw!"})
+	end
+	
+	throwObject(obj)
+end})
+page:AddSlider({Caption = "Throw power", Default = vals.ThrowPower, Min = 10, Max = 10000, Step = 1, Callback = function(b)
+	vals.ThrowPower = b
 end})
 
+if not game:GetService("UserInputService").TouchEnabled and game:GetService("UserInputService").KeyboardEnabled then
+	local throwKey = Enum.KeyCode.X
+	page:AddInput({Text = "Throw keybind", Default = throwKey.Name, Callback = function(kc)
+		throwKey = kc
+	end})
+
+	cons[#cons+1] = game:GetService("UserInputService").InputBegan:Connect(function(kk, a)
+		if a or kk.KeyCode ~= throwKey then return end
+		
+		local obj = getSelectedObject()
+		if not obj then
+			return lib.Notifications:Notification({Title = "No object", Text = "Please, look at object you want to throw!"})
+		end
+
+		throwObject(obj)
+	end)
+
+	page:AddLabel({Caption = "Try throwing a friend's corpse XD"})
+else
+	page:AddLabel({Caption = "!THROWING ABILITY UNAVAILABLE ON MOBILE!"})
+end
+
 page:AddSeparator()
-page:AddToggle({Caption = "Melee aura (auto shovel)", Default = false, Callback = function(b)
-	vals.MA = b
+page:AddButton({Caption = "Glitch train", Callback = function()
+	if workspace.Train.TrainControls.ConductorSeat:FindFirstChild("VehicleSeat") then
+		local old = plr.Character:GetPivot()
+		plr.Character:PivotTo(old + Vector3.new(0, 5))
+		task.wait(0.02)
+		plr.Character:PivotTo(workspace.Train.TrainControls.ConductorSeat.VehicleSeat:GetPivot())
+		task.wait(0.02)
+		plr.Character:PivotTo(old)
+	else
+		lib.Notifications:Notification({Title = "Uh-oh!", Text = "Looks like the train is way too far away"})
+	end
 end})
 
 espFunc(workspace:WaitForChild("Train", 9e9), {HighlightEnabled = false, Color = Color3.fromRGB(55, 65, 65), Text = "Train", ESPName = "Train (the most useful)ESP"})
