@@ -997,9 +997,9 @@ page:AddToggle({Caption = "Melee kill aura (auto shovel)", Default = false, Call
 	vals.MA = b
 end})
 page:AddSlider({Caption = "Gun killaura radius", Default = vals.KAR, Min = 10, Max = 2501, Step = 1, Callback = function(b)
-	vals.KAR = b ~= 2501 and b or 1488e+228
+	vals.KAR = b >= 2751 and 228_1488 or b >= 2501 and 2500 or b
 end, CustomTextDisplay = function(i)
-	return (tonumber(i) == 2501 and "Infinite" or i) .. " studs"
+	return (tonumber(i) >= 2751 and "Infinite" or tonumber(i) >= 2501 and "2500" or i) .. " studs"
 end})
 page:AddSeparator()
 page:AddToggle({Caption = "Kill aura " .. (hmm and gncm and "and aimbot " or "") .. "check line of sight (raycast)", Default = false, Callback = function(b)
