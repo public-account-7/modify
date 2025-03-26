@@ -378,6 +378,15 @@ local function throwObject(object)
 	game:GetService("ReplicatedStorage").Shared.Remotes.RequestStopDrag:FireServer()
 end
 
+local function throw()
+	local obj = getSelectedObject()
+	if not obj then
+		return lib.Notifications:Notification({Title = "No object", Text = "Please, look at object you want to throw!"})
+	end
+
+	throwObject(obj)
+end
+
 local esps = {}
 local desps = {}
 local monsters = {}
@@ -389,6 +398,7 @@ local equippables = {}
 
 local pickupable = { "Consumable", "Gun", "Weapon", "Melee", "Playable", "Tool" }
 local activateable = { "Ammo" }
+local armor = { "Equippable" }
 
 local infoStored = {}
 
@@ -430,6 +440,12 @@ local function getColor(v)
 		return Color3.fromRGB(255, 170)
 	elseif v.Name == "Coal" then
 		return Color3.new(0.2, 0.2, 0.2)
+	elseif v.Name == "Unicorn" then
+		return Color3.fromRGB(85, 255, 255)
+	elseif v.Name == "Bandage" then
+		return Color3.fromRGB(255, 85, 255)
+	elseif v.Name == "Snake Oil" then
+		return Color3.fromRGB(0, 170)
 	elseif hasProperty(v, "Ammo") then
 		return Color3.fromRGB(255, 170, 125)
 	elseif hasProperty(v, "Weapon") or hasProperty(v, "Gun") or hasProperty(v, "Melee") then
@@ -446,6 +462,23 @@ local function getColor(v)
 	return Color3.new(0.8, 0.8, 0.8)
 end
 
+local function getText(obj)
+	local n = obj.Name
+	local l = n:lower()
+	
+	if l:match("vase") then
+		return "Vase"
+	elseif l:match("outlaw") then
+		return "Outlaw"
+	elseif l:match("zombie") then
+		return "Zombie"
+	elseif l:match("nikola") then
+		return "OMFG, IT IS THE MOTHERFUCKER"
+	end
+	
+	return insertCum(n)
+end
+
 local function main(v)
 	rs(2)
 	if v and v.Parent then
@@ -457,7 +490,7 @@ local function main(v)
 				if v:GetAttribute("DangerScore") then
 					local hum = v:WaitForChild("Humanoid", 9e9)
 
-					local monster = esps[v.Name] or {HighlightEnabled = false, Color = Color3.new(1 / 5):Lerp(Color3.new(1), v:GetAttribute("DangerScore") / 100), Text = insertCum(v.Name), ESPName = "MonsterESP"}
+					local monster = esps[v.Name] or {HighlightEnabled = false, Color = Color3.new(0.35):Lerp(Color3.new(1), v:GetAttribute("DangerScore") / 100), Text = getText(v), ESPName = "MonsterESP"}
 					esps[v.Name] = monster
 
 					espFunc(v, monster)
@@ -467,7 +500,7 @@ local function main(v)
 
 					pcall(espLib.DeapplyESP, v)
 
-					local dead = desps[v.Name] or {HighlightEnabled = true, Color = Color3.fromRGB(200, 150, 50):Lerp(Color3.fromRGB(255, 100, 50), v:GetAttribute("DangerScore") / 100), Text = insertCum(v.Name), ESPName = "Dead MonsterESP"}
+					local dead = desps[v.Name] or {HighlightEnabled = true, Color = Color3.fromRGB(200, 150, 50):Lerp(Color3.fromRGB(255, 75, 0), v:GetAttribute("DangerScore") / 100), Text = getText(v), ESPName = "Dead MonsterESP"}
 					desps[v.Name] = dead
 
 					espFunc(v, dead)
@@ -478,7 +511,7 @@ local function main(v)
 				if v:GetAttribute("BloodColor") then
 					local hum = v:WaitForChild("Humanoid", 9e9)
 
-					local animal = esps[v.Name] or {HighlightEnabled = true, Color = Color3.new(0.8, 0.8, 0.8), Text = insertCum(v.Name) .. (v:GetAttribute("Value") and " (" .. v:GetAttribute("Value") .. "$)" or ""), ESPName = "AnimalESP"}
+					local animal = esps[v.Name] or {HighlightEnabled = true, Color = Color3.new(0.8, 0.8, 0.8), Text = getText(v) .. (v:GetAttribute("Value") and " (" .. v:GetAttribute("Value") .. "$)" or ""), ESPName = "AnimalESP"}
 					esps[v.Name] = animal
 
 					espFunc(v, animal)
@@ -487,7 +520,7 @@ local function main(v)
 
 					pcall(espLib.DeapplyESP, v)
 
-					local dead = desps[v.Name] or {HighlightEnabled = true, Color = Color3.new(1, 0.7, 0.7), Text = insertCum(v.Name) .. (v:GetAttribute("Value") and " (" .. v:GetAttribute("Value") .. "$)" or ""), ESPName = "Dead AnimalESP"}
+					local dead = desps[v.Name] or {HighlightEnabled = true, Color = Color3.new(1, 0.7, 0.7), Text = getText(v) .. (v:GetAttribute("Value") and " (" .. v:GetAttribute("Value") .. "$)" or ""), ESPName = "Dead AnimalESP"}
 					desps[v.Name] = dead
 
 					espFunc(v, dead)
@@ -495,8 +528,8 @@ local function main(v)
 					return
 				end
 
-				if v:FindFirstChild("ObjectInfo") and (v:FindFirstChild("Base") and v.Base:IsA("BasePart") and not v.Base.Anchored or not v:FindFirstChild("Base") or not v.Base:IsA("BasePart")) or v.Parent == workspace.RuntimeItems then
-					local tool = esps[v.Name] or {HighlightEnabled = false, Color = getColor(v), Text = insertCum(v.Name) .. (v:GetAttribute("Value") and " (" .. v:GetAttribute("Value") .. "$)" or ""), ESPName = "ItemESP"}
+				if v:FindFirstChild("ObjectInfo") and (v:FindFirstChild("Base") and v.Base:IsA("BasePart") and not v.Base.Anchored or not v:FindFirstChild("Base") or not v.Base:IsA("BasePart")) --[[or v.Parent == workspace.RuntimeItems]] then
+					local tool = esps[v.Name] or {HighlightEnabled = false, Color = getColor(v), Text = getText(v) .. (v:GetAttribute("Value") and " (" .. v:GetAttribute("Value") .. "$)" or ""), ESPName = "ItemESP"}
 
 					esps[v.Name] = tool
 
@@ -508,18 +541,23 @@ local function main(v)
 							return
 						end
 					end
+					
 					for i,va in activateable do
 						if hasProperty(v, va) then
 							add(other, v)
 							return
 						end
 					end
+
+					for i,va in armor do
+						if hasProperty(v, va) then
+							add(equippables, v)
+							return
+						end
+					end
+					
 					if hasProperty(v, "Currency") then
 						add(bonds, v)
-						return
-					end
-					if hasProperty(v, "Equippable") then
-						add(equippables, v)
 						return
 					end
 				end
@@ -1003,14 +1041,7 @@ end
 
 local page = window:AddPage({Title = "Trolling"})
 
-page:AddButton({Caption = "Throw object", Callback = function(b)
-	local obj = getSelectedObject()
-	if not obj then
-		return lib.Notifications:Notification({Title = "No object", Text = "Please, look at object you want to throw!"})
-	end
-
-	throwObject(obj)
-end})
+page:AddButton({Caption = "Throw object", Callback = throw})
 page:AddSlider({Caption = "Throw power", Default = vals.ThrowPower, Min = 10, Max = 10000, Step = 1, Callback = function(b)
 	vals.ThrowPower = b
 end})
@@ -1022,18 +1053,13 @@ end})
 
 cons[#cons+1] = game:GetService("UserInputService").InputBegan:Connect(function(kk, a)
 	if a or kk.KeyCode ~= throwKey then return end
-
-	local obj = getSelectedObject()
-	if not obj then
-		return lib.Notifications:Notification({Title = "No object", Text = "Please, look at object you want to throw!"})
-	end
-
-	throwObject(obj)
+	throw()
 end)
 
 page:AddLabel({Caption = "Try throwing a friend's corpse XD"})
 
 page:AddSeparator()
+
 page:AddButton({Caption = "Glitch train", Callback = function()
 	if workspace.Train.TrainControls.ConductorSeat:FindFirstChild("VehicleSeat") then
 		local old = plr.Character:GetPivot()
