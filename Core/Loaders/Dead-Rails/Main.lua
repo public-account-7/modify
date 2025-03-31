@@ -887,6 +887,13 @@ local window = lib:MakeWindow({Title = "NullFire: Dead Rails", CloseCallback = f
 end}, true)
 
 local page = window:AddPage({Title = "Character"})
+
+page:AddLabel({Caption = "!SCRIPT IS NOT UPDATED TO LATEST VERSION OF THE GAME!"})
+page:AddLabel({Caption = "!YOU MAY ENCOUNTER BUGS WHILE UPDATING!"})
+page:AddSeparator()
+page:AddSeparator()
+page:AddSeparator()
+
 page:AddToggle({Caption = "Noclip", Default = false, Callback = function(b)
 	vals.Noclip = b
 end})
@@ -942,6 +949,12 @@ end})
 
 local page = window:AddPage({Title = "Visual"})
 
+page:AddLabel({Caption = "!SCRIPT IS NOT UPDATED TO LATEST VERSION OF THE GAME!"})
+page:AddLabel({Caption = "!YOU MAY ENCOUNTER BUGS WHILE UPDATING!"})
+page:AddSeparator()
+page:AddSeparator()
+page:AddSeparator()
+
 page:AddToggle({Caption = "Show distance", Default = false, Callback = function(b)
 	vals.ShowDistance = b
 end})
@@ -989,6 +1002,12 @@ for i,v in vals.ESP do
 end
 
 local page = window:AddPage({Title = "Killaura"})
+
+page:AddLabel({Caption = "!SCRIPT IS NOT UPDATED TO LATEST VERSION OF THE GAME!"})
+page:AddLabel({Caption = "!YOU MAY ENCOUNTER BUGS WHILE UPDATING!"})
+page:AddSeparator()
+page:AddSeparator()
+page:AddSeparator()
 
 page:AddToggle({Caption = "Gun kill aura", Default = false, Callback = function(b)
 	vals.GKA = b
@@ -1040,6 +1059,12 @@ if hmm and gncm then
 end
 
 local page = window:AddPage({Title = "Trolling"})
+
+page:AddLabel({Caption = "!SCRIPT IS NOT UPDATED TO LATEST VERSION OF THE GAME!"})
+page:AddLabel({Caption = "!YOU MAY ENCOUNTER BUGS WHILE UPDATING!"})
+page:AddSeparator()
+page:AddSeparator()
+page:AddSeparator()
 
 page:AddButton({Caption = "Throw object", Callback = throw})
 page:AddSlider({Caption = "Throw power", Default = vals.ThrowPower, Min = 10, Max = 10000, Step = 1, Callback = function(b)
