@@ -1,5 +1,3 @@
-getfenv().getgenv().GameName = "Dead-Rails"
-
 local defaults = {
 	ESP = {
 		["Money BagESP"] = false,
