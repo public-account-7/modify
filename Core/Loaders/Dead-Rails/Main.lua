@@ -1,3 +1,5 @@
+getfenv().getgenv().GameName = "Dead-Rails"
+
 local defaults = {
 	ESP = {
 		["Money BagESP"] = false,
@@ -26,7 +28,7 @@ local defaults = {
 	MA = false,
 	ARG = false,
 	Raycast = false,
-	Aimbot = false,
+	SilentAim = false,
 	Mode = "Distance",
 	NoVoid = false,
 	SaveBulltets = false,
@@ -67,6 +69,20 @@ local function rs(times)
 	end
 	return dt / times
 end
+
+local function renderWait(t)
+	local start = tick()
+	t = tonumber(t) or 0
+	
+	rs()
+	task.wait(t / 2)
+	rs()
+	task.wait(t / 2)
+	rs()
+	
+	return tick() - start
+end
+
 local espFunc = espLib.ApplyESP
 
 local closed = false
@@ -397,13 +413,13 @@ local other = {}
 local equippables = {}
 
 local pickupable = { "Consumable", "Gun", "Weapon", "Melee", "Playable", "Tool" }
-local activateable = { "Ammo" }
 local armor = { "Equippable" }
 
 local infoStored = {}
 
 local function getInfo(object)
-	rs(2)
+	renderWait()
+	
 	if not object or not object.Parent then return end
 	if infoStored[object.Name] then return infoStored[object.Name] end
 
@@ -440,10 +456,8 @@ local function getColor(v)
 		return Color3.fromRGB(255, 170)
 	elseif v.Name == "Coal" then
 		return Color3.new(0.2, 0.2, 0.2)
-	elseif v.Name == "Unicorn" then
-		return Color3.fromRGB(85, 255, 255)
 	elseif v.Name == "Bandage" then
-		return Color3.fromRGB(255, 85, 255)
+		return Color3.fromRGB(255, 150, 255)
 	elseif v.Name == "Snake Oil" then
 		return Color3.fromRGB(0, 170)
 	elseif hasProperty(v, "Ammo") then
@@ -480,17 +494,18 @@ local function getText(obj)
 end
 
 local function main(v)
-	rs(2)
+	renderWait()
+	
 	if v and v.Parent then
 		if v:IsA("ProximityPrompt") and not oprompts[v] then
 			oprompts[v] = v.MaxActivationDistance
 			v.MaxActivationDistance *= vals.ExtraPP
 		elseif v:IsA("Model") and not game:GetService("Players"):GetPlayerFromCharacter(v) then
 			if v.Name ~= "Moneybag" and v.Name ~= "Vault" then
-				if v:GetAttribute("DangerScore") then
+				if v:GetAttribute("DangerScore") or v.Parent and (v.Parent.Name:lower():match("enemies") or v.Parent.Name:lower():match("enemy")) then
 					local hum = v:WaitForChild("Humanoid", 9e9)
 
-					local monster = esps[v.Name] or {HighlightEnabled = false, Color = Color3.new(0.35):Lerp(Color3.new(1), v:GetAttribute("DangerScore") / 100), Text = getText(v), ESPName = "MonsterESP"}
+					local monster = esps[v.Name] or {HighlightEnabled = false, Color = Color3.new(0.35):Lerp(Color3.new(1), (v:GetAttribute("DangerScore") or 10) / 100), Text = getText(v), ESPName = "MonsterESP"}
 					esps[v.Name] = monster
 
 					espFunc(v, monster)
@@ -500,7 +515,7 @@ local function main(v)
 
 					pcall(espLib.DeapplyESP, v)
 
-					local dead = desps[v.Name] or {HighlightEnabled = true, Color = Color3.fromRGB(200, 150, 50):Lerp(Color3.fromRGB(255, 75, 0), v:GetAttribute("DangerScore") / 100), Text = getText(v), ESPName = "Dead MonsterESP"}
+					local dead = desps[v.Name] or {HighlightEnabled = true, Color = Color3.fromRGB(200, 150, 50):Lerp(Color3.fromRGB(255, 75, 0), (v:GetAttribute("DangerScore") / 10) / 100), Text = getText(v), ESPName = "Dead MonsterESP"}
 					desps[v.Name] = dead
 
 					espFunc(v, dead)
@@ -511,7 +526,7 @@ local function main(v)
 				if v:GetAttribute("BloodColor") then
 					local hum = v:WaitForChild("Humanoid", 9e9)
 
-					local animal = esps[v.Name] or {HighlightEnabled = true, Color = Color3.new(0.8, 0.8, 0.8), Text = getText(v) .. (v:GetAttribute("Value") and " (" .. v:GetAttribute("Value") .. "$)" or ""), ESPName = "AnimalESP"}
+					local animal = esps[v.Name] or {HighlightEnabled = true, Color = getColor(v), Text = getText(v) .. (v:GetAttribute("Value") and " (" .. v:GetAttribute("Value") .. "$)" or ""), ESPName = "AnimalESP"}
 					esps[v.Name] = animal
 
 					espFunc(v, animal)
@@ -542,11 +557,8 @@ local function main(v)
 						end
 					end
 					
-					for i,va in activateable do
-						if hasProperty(v, va) then
-							add(other, v)
-							return
-						end
+					if v:GetAttribute("ActivateText") then
+						return add(other, v)
 					end
 
 					for i,va in armor do
@@ -576,18 +588,18 @@ local function main(v)
 	end
 end
 
-local function getClosestMonster(mode)
+local getClosestMonster; getClosestMonster = function(mode)
 	mode = mode or vals.Mode
 	if mode == "Angle" and workspace.CurrentCamera then
 		local a, d, m = math.huge, math.huge, nil
 		for i,v in monsters do
 			if v and v.Parent and not isDead(v) then
-				if vals.Raycast and raycast(workspace.CurrentCamera.CFrame.Position, v:GetPivot().Position, v:GetDescendants()) or (workspace.CurrentCamera.CFrame.Position - v:GetPivot().Position).Magnitude > vals.KAR then
+				if vals.Raycast and raycast(workspace.CurrentCamera.CFrame.Position, v.GetPivot(v).Position, v.GetDescendants(v)) then
 					continue
 				end
 
-				local di = (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude
-				local an = ((workspace.CurrentCamera.CFrame.Position + (workspace.CurrentCamera.CFrame.LookVector * di)) - v:GetPivot().Position).Magnitude
+				local di = (plr.Character.GetPivot(plr.Character).Position - v.GetPivot(v).Position).Magnitude
+				local an = ((workspace.CurrentCamera.CFrame.Position + (workspace.CurrentCamera.CFrame.LookVector * di)) - v.GetPivot(v).Position).Magnitude
 
 				if an <= a then
 					d = di
@@ -602,7 +614,7 @@ local function getClosestMonster(mode)
 		local allowedMonsters = {}
 		for i,v in monsters do
 			if v and v.Parent and not isDead(v) then
-				if vals.Raycast and raycast(workspace.CurrentCamera.CFrame.Position, v:GetPivot().Position, v:GetDescendants()) or (workspace.CurrentCamera.CFrame.Position - v:GetPivot().Position).Magnitude > vals.KAR then
+				if vals.Raycast and raycast(workspace.CurrentCamera.CFrame.Position, v.GetPivot(v).Position, v.GetDescendants(v)) then
 					continue
 				end
 
@@ -612,17 +624,19 @@ local function getClosestMonster(mode)
 
 		if #allowedMonsters > 0 then
 			local monster = allowedMonsters[math.random(1, #allowedMonsters)]
-			return monster, monster and (plr.Character:GetPivot().Position - monster:GetPivot().Position).Magnitude
+			return monster, monster and (plr.Character.GetPivot(plr.Character).Position - monster.GetPivot(monster).Position).Magnitude
 		end
+		
+		return getClosestMonster("Angle")
 	else
 		local d, m = math.huge, nil
 		for i,v in monsters do
 			if v and v.Parent and not isDead(v) then
-				if vals.Raycast and raycast(workspace.CurrentCamera.CFrame.Position, v:GetPivot().Position, v:GetDescendants()) or (workspace.CurrentCamera.CFrame.Position - v:GetPivot().Position).Magnitude > vals.KAR then
+				if vals.Raycast and raycast(workspace.CurrentCamera.CFrame.Position, v.GetPivot(v).Position, v.GetDescendants(v)) then
 					continue
 				end
 
-				local di = (plr.Character:GetPivot().Position - v:GetPivot().Position).Magnitude
+				local di = (plr.Character.GetPivot(plr.Character).Position - v.GetPivot(v).Position).Magnitude
 
 				if di <= d then
 					d = di
@@ -638,10 +652,10 @@ end
 local gncm, hmm = getfenv().getnamecallmethod, getfenv().hookmetamethod
 if hmm and gncm then
 	local old; old = hmm(game, "__namecall", function(self, ...)
-		if vals.Aimbot and self == s and gncm() == "FireServer" then
+		if vals.SilentAim and self == s and gncm() == "FireServer" then
 			local args = { ... }
 
-			local m = getClosestMonster()
+			local m, d = getClosestMonster()
 
 			if m then
 				local hits = {}
@@ -658,7 +672,9 @@ if hmm and gncm then
 				error("Cancel shoot", 0)
 			end
 
-			return s.FireServer(s, unpack(args))
+			if d <= vals.KAR then
+				return s.FireServer(s, unpack(args))
+			end
 		elseif vals.SaveBullets and self == s and gncm() == "FireServer" and not getClosestMonster() then
 			({ ... })[2].ClientWeaponState.CurrentAmmo.Value += 1
 			error("Cancel shoot", 0)
@@ -673,14 +689,13 @@ if hmm and gncm then
 end
 
 task.spawn(function()
-	while not closed and task.wait(0.1) do
+	while not closed and task.wait(0.5) do
 		if vals.GKA and plr.Character then
-			local m = getClosestMonster()
-			if m then
+			local m, d = getClosestMonster()
+			if m and d <= vals.KAR then
 				for v in myGuns do
 					if v and v.Parent and v:FindFirstChild("WeaponConfiguration") then
 						pcall(shoot, v, m)
-						task.wait(0.01)
 					end
 				end
 			end
@@ -688,7 +703,7 @@ task.spawn(function()
 	end
 end)
 task.spawn(function()
-	while not closed and task.wait(0.1) do
+	while not closed and task.wait(0.5) do
 		if vals.ARG and plr.Character then
 			for v in myGuns do
 				if v and v.Parent and v:FindFirstChild("WeaponConfiguration") then
@@ -722,7 +737,7 @@ end
 
 task.spawn(function()
 	while not closed and task.wait(0.1) do
-		if vals.MA then
+		if vals.MA and plr.Character then
 			local m, d = getClosestMonster("Distance")
 			if m and d <= ad then
 				for v in melee do
@@ -797,6 +812,9 @@ cons[#cons+1] = game:GetService("RunService").RenderStepped:Connect(function()
 			plr.Character.HumanoidRootPart.CanCollide = true
 		end
 
+		local hum = plr.Character:FindFirstChildOfClass("Humanoid")
+		
+		if not hum or hum.Health <= 0.01 and hum.PlatformStand then return end
 		if vals.AutoPickTools then
 			for i,v in tools do
 				if v and v.Parent then
@@ -880,23 +898,24 @@ local window = lib:MakeWindow({Title = "NullFire: Dead Rails", CloseCallback = f
 	end
 	getGlobalTable().FireHubLoaded = false
 	closed = true
-	rs(3)
+	
+	renderWait(0.1)
+	
 	for i,v in cons do
 		v:Disconnect()
 	end
 end}, true)
 
 local page = window:AddPage({Title = "Character"})
-
-page:AddLabel({Caption = "!SCRIPT IS NOT UPDATED TO LATEST VERSION OF THE GAME!"})
-page:AddLabel({Caption = "!YOU MAY ENCOUNTER BUGS WHILE UPDATING!"})
-page:AddSeparator()
-page:AddSeparator()
-page:AddSeparator()
-
 page:AddToggle({Caption = "Noclip", Default = false, Callback = function(b)
 	vals.Noclip = b
 end})
+if void then
+	page:AddSeparator()
+	page:AddToggle({Caption = "No void (fix death when falling under map)", Default = false, Callback = function(b)
+		vals.NoVoid = b
+	end})
+end
 
 local page = window:AddPage({Title = "Interact"})
 page:AddToggle({Caption = "Auto grab money bags", Default = false, Callback = function(b)
@@ -928,13 +947,6 @@ page:AddSlider({Caption = "Prompt activation distance multiplier", Default = 1, 
 	end
 end})
 
-if void then
-	page:AddSeparator()
-	page:AddToggle({Caption = "No void (fix death when falling under map)", Default = false, Callback = function(b)
-		vals.NoVoid = b
-	end})
-end
-
 page:AddSeparator()
 
 page:AddSlider({Caption = "Auto use Bandage when has HP:", Default = 0, Min = 0, Max = 99.5, Step = 0.5, Callback = function(b)
@@ -948,12 +960,6 @@ page:AddSlider({Caption = "Auto use Snake Oil cooldown", Default = 5, Min = 0, M
 end})
 
 local page = window:AddPage({Title = "Visual"})
-
-page:AddLabel({Caption = "!SCRIPT IS NOT UPDATED TO LATEST VERSION OF THE GAME!"})
-page:AddLabel({Caption = "!YOU MAY ENCOUNTER BUGS WHILE UPDATING!"})
-page:AddSeparator()
-page:AddSeparator()
-page:AddSeparator()
 
 page:AddToggle({Caption = "Show distance", Default = false, Callback = function(b)
 	vals.ShowDistance = b
@@ -1003,28 +1009,22 @@ end
 
 local page = window:AddPage({Title = "Killaura"})
 
-page:AddLabel({Caption = "!SCRIPT IS NOT UPDATED TO LATEST VERSION OF THE GAME!"})
-page:AddLabel({Caption = "!YOU MAY ENCOUNTER BUGS WHILE UPDATING!"})
-page:AddSeparator()
-page:AddSeparator()
-page:AddSeparator()
-
 page:AddToggle({Caption = "Gun kill aura", Default = false, Callback = function(b)
 	vals.GKA = b
 end})
 page:AddToggle({Caption = "Melee kill aura (auto shovel)", Default = false, Callback = function(b)
 	vals.MA = b
 end})
-page:AddSlider({Caption = "Gun killaura radius", Default = vals.KAR, Min = 10, Max = 2501, Step = 1, Callback = function(b)
-	vals.KAR = b >= 2751 and 228_1488 or b >= 2501 and 2500 or b
+page:AddSlider({Caption = "Gun killaura radius", Default = vals.KAR, Min = 10, Max = 3000, Step = 1, Callback = function(b)
+	vals.KAR = b >= 2751 and 1488_228 or b >= 2501 and 2500 or b
 end, CustomTextDisplay = function(i)
 	return (tonumber(i) >= 2751 and "Infinite" or tonumber(i) >= 2501 and "2500" or i) .. " studs"
 end})
-page:AddSeparator()
-page:AddToggle({Caption = "Kill aura " .. (hmm and gncm and "and aimbot " or "") .. "check line of sight (raycast)", Default = false, Callback = function(b)
+--[[page:AddSeparator()
+page:AddToggle({Caption = "Kill aura " .. (hmm and gncm and "and Silent aim " or "") .. "check line of sight (raycast)", Default = false, Callback = function(b)
 	vals.Raycast = b
 end})
-page:AddLabel({Caption = "Better dont enable ^^^ because unstable"})
+page:AddLabel({Caption = "Better dont enable ^^^ because unstable"})]]
 
 page:AddSeparator()
 
@@ -1041,13 +1041,10 @@ end})
 
 if hmm and gncm then
 	page:AddSeparator()
-	page:AddToggle({Caption = "Aimbot", Default = false, Callback = function(b)
-		vals.Aimbot = b
+	page:AddToggle({Caption = "Silent aim", Default = false, Callback = function(b)
+		vals.SilentAim = b
 	end})
-	page:AddLabel({Caption = "Aimbot makes bullets hit target no matter what"})
-	page:AddLabel({Caption = "It wont rotate your camera towards enemies"})
-	page:AddSeparator()
-	page:AddLabel({Caption = "If Aimbot does not work, then your executor is bad"})
+	page:AddLabel({Caption = "If Silent aim does not work, then your executor is bad"})
 	page:AddSeparator()
 
 	page:AddToggle({Caption = "Save bullets", Default = false, Callback = function(b)
@@ -1059,12 +1056,6 @@ if hmm and gncm then
 end
 
 local page = window:AddPage({Title = "Trolling"})
-
-page:AddLabel({Caption = "!SCRIPT IS NOT UPDATED TO LATEST VERSION OF THE GAME!"})
-page:AddLabel({Caption = "!YOU MAY ENCOUNTER BUGS WHILE UPDATING!"})
-page:AddSeparator()
-page:AddSeparator()
-page:AddSeparator()
 
 page:AddButton({Caption = "Throw object", Callback = throw})
 page:AddSlider({Caption = "Throw power", Default = vals.ThrowPower, Min = 10, Max = 10000, Step = 1, Callback = function(b)
