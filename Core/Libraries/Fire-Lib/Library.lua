@@ -5003,6 +5003,7 @@ local modules do
 				end})
 
 				coroutineCall(function()
+					if isMobile then return end
 					updateFloatingKeybinds(keybinds, binds, colors)
 					for i=1, 30 do
 						task.wait(0.01)
