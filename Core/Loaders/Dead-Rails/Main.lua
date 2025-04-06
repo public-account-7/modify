@@ -6,8 +6,7 @@ local defaults = {
 		["AnimalESP"] = false,
 		["Dead AnimalESP"] = false,
 		["ItemESP"] = false,
-		["Vault CodeESP"] = false,
-		["Train (the most useful)ESP"] = false
+		["Vault CodeESP"] = false
 	},
 	ExtraPP = 1,
 	AutoCollectBags = false,
@@ -764,20 +763,6 @@ end)
 local oilCooldown = false
 cons[#cons+1] = game:GetService("RunService").RenderStepped:Connect(function()
 	txtf("ClearText")
-	if workspace.Train.TrainControls:FindFirstChild("TimeDial") then
-		if vals.ShowTime then
-			txtf("UpdateLine", "Left", "Time: " .. workspace.Train.TrainControls.TimeDial.SurfaceGui.TextLabel.Text)
-		end
-		if vals.ShowDistance then
-			txtf("UpdateLine", "Left", "Traveled: " .. workspace.Train.TrainControls.DistanceDial.SurfaceGui.TextLabel.Text)
-		end
-		if vals.ShowSpeed then
-			txtf("UpdateLine", "Left", "Speed: " .. (math.round((workspace.Train.TrainControls.Spedometer.SurfaceGui.ImageLabel.Gauge.Rotation - 120) / 163 * 65 * 10) / 10) .. " s/s")
-		end
-		if vals.ShowFuel then
-			txtf("UpdateLine", "Left", "Fuel: " .. (math.round((workspace.Train.TrainControls.Fuel.SurfaceGui.ImageLabel.Gauge.Rotation - 120) / 300 * 1000) / 10) .. "%")
-		end
-	end
 	if vals.FB then
 		game.Lighting.Ambient = Color3.new(1, 1, 1)
 		game.Lighting.Brightness = 1.5
@@ -959,19 +944,6 @@ end})
 
 local page = window:AddPage({Title = "Visual"})
 
-page:AddToggle({Caption = "Show distance", Default = false, Callback = function(b)
-	vals.ShowDistance = b
-end})
-page:AddToggle({Caption = "Show time", Default = false, Callback = function(b)
-	vals.ShowTime = b
-end})
-page:AddToggle({Caption = "Show speed", Default = false, Callback = function(b)
-	vals.ShowSpeed = b
-end})
-page:AddToggle({Caption = "Show fuel", Default = false, Callback = function(b)
-	vals.ShowFuel = b
-end})
-
 page:AddSeparator()
 
 page:AddToggle({Caption = "Full bright", Default = false, Callback = function(b)
@@ -1073,18 +1045,3 @@ end)
 page:AddLabel({Caption = "Try throwing a friend's corpse XD"})
 
 page:AddSeparator()
-
-page:AddButton({Caption = "Glitch train", Callback = function()
-	if workspace.Train.TrainControls.ConductorSeat:FindFirstChild("VehicleSeat") then
-		local old = plr.Character:GetPivot()
-		plr.Character:PivotTo(old + Vector3.new(0, 5))
-		task.wait(0.02)
-		plr.Character:PivotTo(workspace.Train.TrainControls.ConductorSeat.VehicleSeat:GetPivot())
-		task.wait(0.02)
-		plr.Character:PivotTo(old)
-	else
-		lib.Notifications:Notification({Title = "Uh-oh!", Text = "Looks like the train is way too far away"})
-	end
-end})
-
-espFunc(workspace:WaitForChild("Train", 9e9), {HighlightEnabled = false, Color = Color3.fromRGB(55, 65, 65), Text = "Train", ESPName = "Train (the most useful)ESP"})
