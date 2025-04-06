@@ -894,79 +894,6 @@ task.spawn(function()
 	end
 end)
 
-local endPosition = CFrame.new(-380, 40, -48885)
-
-local function collectBonds()
-    local foundBond = false
-    for i, v in bonds do
-        if v and v.Parent then
-            local bondPosition = v:GetPivot().Position
-            local distance = (bondPosition - plr.Character:GetPivot().Position).Magnitude
-            if distance <= 30 then
-                game:GetService("ReplicatedStorage").Packages.RemotePromise.Remotes.C_ActivateObject:FireServer(v)
-                foundBond = true
-                break
-            end
-        else
-            remove(prompts, v)
-        end
-    end
-    return foundBond
-end
-
-local function moveToNextBond()
-    local closestBond = nil
-    local closestDistance = math.huge
-    for i, v in bonds do
-        if v and v.Parent then
-            local bondPosition = v:GetPivot().Position
-            local distance = (bondPosition - plr.Character:GetPivot().Position).Magnitude
-            if distance < closestDistance then
-                closestBond = v
-                closestDistance = distance
-            end
-        end
-    end
-    if closestBond then
-        local bondPosition = closestBond:GetPivot().Position
-        plr.Character.Humanoid:MoveTo(bondPosition)
-    end
-end
-
-
-local function finish()
-    if plr.Character and vals.AutoComplete and plr.Character:FindFirstChild("Humanoid") and (plr.Character:GetPivot().Position - endPosition.Position).Magnitude < 1000 then
-        vals.ForceNoclip = true
-        
-        local bondCollected = false
-        while true do
-            bondCollected = collectBonds()
-            if not bondCollected then
-                break
-            end
-            moveToNextBond()
-            task.wait(0.5)
-        end
-
-        vals.ForceNoclip = false
-        print("All bonds collected.")
-    end
-end
-
-task.spawn(function()
-    while not closed and task.wait(0.1) do
-        vals.ForceNoclip = false
-        if vals.AutoComplete and plr.Character then
-            if (plr.Character:GetPivot().Position - endPosition.Position).Magnitude > 1000 and vals.AutoComplete then
-                pcall(tpEnd)
-                pcall(finish)
-            elseif vals.AutoComplete then
-                pcall(finish)
-            end
-        end
-    end
-end)
-
 for i,v in workspace:GetDescendants() do
 	task.spawn(main, v)
 end
@@ -1097,7 +1024,79 @@ cons[#cons+1] = game:GetService("RunService").RenderStepped:Connect(function()
 		end
 	end
 end)
+local endPosition = CFrame.new(-380, 40, -48885)
 
+local function collectBonds()
+    local foundBond = false
+    for i, v in pairs(bonds) do
+        if v and v.Parent then
+            local bondPosition = v:GetPivot().Position
+            local distance = (bondPosition - plr.Character:GetPivot().Position).Magnitude
+            if distance <= 30 then
+                -- Collect the bond (FireServer action)
+                game:GetService("ReplicatedStorage").Packages.RemotePromise.Remotes.C_ActivateObject:FireServer(v)
+                foundBond = true
+                break
+            end
+        else
+            -- If bond is not valid anymore, remove it
+            remove(prompts, v)
+        end
+    end
+    return foundBond
+end
+
+local function moveToNextBond()
+    local closestBond = nil
+    local closestDistance = math.huge
+    for i, v in pairs(bonds) do
+        if v and v.Parent then
+            local bondPosition = v:GetPivot().Position
+            local distance = (bondPosition - plr.Character:GetPivot().Position).Magnitude
+            if distance < closestDistance then
+                closestBond = v
+                closestDistance = distance
+            end
+        end
+    end
+    if closestBond then
+        local bondPosition = closestBond:GetPivot().Position
+        plr.Character.Humanoid:MoveTo(bondPosition)
+    end
+end
+
+local function finish()
+    if plr.Character and vals.AutoComplete and plr.Character:FindFirstChild("Humanoid") and (plr.Character:GetPivot().Position - endPosition.Position).Magnitude < 1000 then
+        vals.ForceNoclip = true
+        
+        local bondCollected = false
+        while true do
+            bondCollected = collectBonds()
+            if not bondCollected then
+                break
+            end
+            moveToNextBond()
+            task.wait(0.5)
+        end
+
+        vals.ForceNoclip = false
+        print("All bonds collected.")
+    end
+end
+
+task.spawn(function()
+    while not closed and task.wait(0.1) do
+        vals.ForceNoclip = false
+        if vals.AutoComplete and plr.Character then
+            if (plr.Character:GetPivot().Position - endPosition.Position).Magnitude > 1000 and vals.AutoComplete then
+                pcall(tpEnd)
+                pcall(finish)
+            elseif vals.AutoComplete then
+                pcall(finish)
+            end
+        end
+    end
+end)
 cons[#cons+1] = game:GetService("ProximityPromptService").PromptButtonHoldBegan:Connect(function(pp)
 	if vals.II then
 		fireproximityprompt(pp, true)
